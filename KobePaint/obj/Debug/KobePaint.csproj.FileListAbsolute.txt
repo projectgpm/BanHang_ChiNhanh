@@ -41,3 +41,9 @@ C:\Users\LUAN IT\Desktop\New folder\BanHang\KobePaint\obj\Debug\KobePaint.dll
 C:\Users\LUAN IT\Desktop\New folder\BanHang\KobePaint\obj\Debug\KobePaint.pdb
 C:\Users\LUAN IT\Desktop\New folder\BanHang\KobePaint\bin\KobePaint.dll
 C:\Users\LUAN IT\Desktop\New folder\BanHang\KobePaint\bin\KobePaint.pdb
+D:\GPM2018\BanHang_ChiNhanh\KobePaint\bin\KobePaint.dll
+D:\GPM2018\BanHang_ChiNhanh\KobePaint\bin\KobePaint.pdb
+D:\GPM2018\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.csprojResolveAssemblyReference.cache
+D:\GPM2018\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.dll.licenses
+D:\GPM2018\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.dll
+D:\GPM2018\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.pdb

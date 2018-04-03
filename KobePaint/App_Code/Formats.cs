@@ -16,10 +16,20 @@ namespace KobePaint.App_Code
         {
             return DateTime.Parse(date, culture, DateTimeStyles.NoCurrentDateDefault).ToString("dd-MM-yyyy");
         }
+        /// <summary>
+        /// covert yyyy-MM-dd
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         public static string ConvertToShortDateString(string date)
         {
             return DateTime.Parse(date, culture, DateTimeStyles.NoCurrentDateDefault).ToString("yyyy-MM-dd");
         }
+        /// <summary>
+        /// covert yyyy-MM-dd HH:mm:ss
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         public static string ConvertToDateTimeString(string date)
         {
             return DateTime.Parse(date, culture, DateTimeStyles.NoCurrentDateDefault).ToString("yyyy-MM-dd HH:mm:ss");
@@ -28,6 +38,11 @@ namespace KobePaint.App_Code
         {
             return DateTime.Parse(date, culture, DateTimeStyles.NoCurrentDateDefault);
         }
+        /// <summary>
+        /// convert ngày 12 tháng 3 năm 1995
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         public static string ConvertToFullStringDate(DateTime date)
         {
             string ngay = date.Day.ToString();
@@ -139,10 +154,18 @@ namespace KobePaint.App_Code
             //e.Value = rowInGroupNumber;
             e.DisplayText = rowInGroupNumber.ToString();
         }
+        /// <summary>
+        /// ID User
+        /// </summary>
+        /// <returns></returns>
         public static int IDUser()
         {
             return Convert.ToInt32(HttpContext.Current.User.Identity.Name.Split('-')[0]);
         }
+        /// <summary>
+        /// Ho tên User
+        /// </summary>
+        /// <returns></returns>
         public static string NameUser()
         {
             return HttpContext.Current.User.Identity.Name.Split('-')[1];

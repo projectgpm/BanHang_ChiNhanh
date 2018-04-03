@@ -20,10 +20,10 @@
         <elementListCompartment Id="5aa5dbde-dd8d-4c74-b6cd-973490717a17" absoluteBounds="0.51500000000000012, 1.585, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="25c0234c-65b5-4f50-9467-8d92cc606773" absoluteBounds="2.375, 1.125, 2, 1.3862939453125">
+    <classShape Id="25c0234c-65b5-4f50-9467-8d92cc606773" absoluteBounds="2.75, 0.5, 2, 1.3862939453125">
       <DataClassMoniker Name="/KobePaintDBDataContext/hhNhomHang" />
       <nestedChildShapes>
-        <elementListCompartment Id="adafbdb7-2fe5-45c4-83df-391f50b359b6" absoluteBounds="2.39, 1.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="adafbdb7-2fe5-45c4-83df-391f50b359b6" absoluteBounds="2.765, 0.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
