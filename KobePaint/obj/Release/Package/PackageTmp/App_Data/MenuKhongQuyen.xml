@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<items>  
+  <item Text="Hàng hóa">    
+    <item Text="Danh sách hàng hóa" NavigateUrl="~/Pages/HangHoa/HangHoa.aspx" />
+  </item>  
+  <item Text="Hệ thống" >
+    <item Text="Thông tin tài khoản" NavigateUrl="~/Pages/TaiKhoan/ThongTinTaiKhoan.aspx" />    
+  </item>
+</items>

@@ -1,0 +1,156 @@
+﻿using DevExpress.Web;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Web;
+using System.Web.UI.WebControls;
+
+namespace KobePaint.App_Code
+{
+    public static class Formats
+    {
+        public static IFormatProvider culture = new CultureInfo("vi-VN", true);
+
+        public static string ConvertToVNDateString(string date)
+        {
+            return DateTime.Parse(date, culture, DateTimeStyles.NoCurrentDateDefault).ToString("dd-MM-yyyy");
+        }
+        public static string ConvertToShortDateString(string date)
+        {
+            return DateTime.Parse(date, culture, DateTimeStyles.NoCurrentDateDefault).ToString("yyyy-MM-dd");
+        }
+        public static string ConvertToDateTimeString(string date)
+        {
+            return DateTime.Parse(date, culture, DateTimeStyles.NoCurrentDateDefault).ToString("yyyy-MM-dd HH:mm:ss");
+        }
+        public static DateTime ConvertToDateTime(string date)
+        {
+            return DateTime.Parse(date, culture, DateTimeStyles.NoCurrentDateDefault);
+        }
+        public static string ConvertToFullStringDate(DateTime date)
+        {
+            string ngay = date.Day.ToString();
+            string thang = date.Month.ToString();
+            string nam = date.Year.ToString();
+            return "ngày " + ngay + " tháng " + thang + " năm " + nam;
+        }
+
+        public static void InitDateEditControl(object sender, EventArgs e)
+        {
+            ASPxDateEdit dateEdit = sender as ASPxDateEdit;
+            dateEdit.CalendarProperties.FirstDayOfWeek = FirstDayOfWeek.Monday;
+            dateEdit.CalendarProperties.ShowClearButton = false;
+            dateEdit.CalendarProperties.ShowTodayButton = false;
+            dateEdit.CalendarProperties.ShowWeekNumbers = false;
+            dateEdit.CalendarProperties.FastNavProperties.Enabled = false;
+            dateEdit.EditFormat = EditFormat.Custom;
+            dateEdit.DisplayFormatString = "dd/MM/yyyy";
+            dateEdit.EditFormatString = "dd/MM/yyyy";
+            dateEdit.PopupHorizontalAlign = PopupHorizontalAlign.NotSet;
+            dateEdit.PopupVerticalAlign = PopupVerticalAlign.NotSet;
+            dateEdit.Date = DateTime.Now;
+        }
+        public static void InitDateEditControlNoValue(object sender, EventArgs e)
+        {
+            ASPxDateEdit dateEdit = sender as ASPxDateEdit;
+            dateEdit.CalendarProperties.FirstDayOfWeek = FirstDayOfWeek.Monday;
+            dateEdit.CalendarProperties.ShowClearButton = false;
+            dateEdit.CalendarProperties.ShowTodayButton = false;
+            dateEdit.CalendarProperties.ShowWeekNumbers = false;
+            dateEdit.CalendarProperties.FastNavProperties.Enabled = false;
+            dateEdit.EditFormat = EditFormat.Custom;
+            dateEdit.DisplayFormatString = "dd/MM/yyyy";
+            dateEdit.EditFormatString = "dd/MM/yyyy";
+            dateEdit.PopupHorizontalAlign = PopupHorizontalAlign.NotSet;
+            dateEdit.PopupVerticalAlign = PopupVerticalAlign.NotSet;
+            dateEdit.Value = string.Empty;
+        }
+
+        public static int[] ConvertArrStringToArrInt(string[] arrString)
+        {
+            int[] numbers = new int[arrString.Length];
+            for (int i = 0; i < arrString.Length; i++)
+            {
+                try
+                {
+                    numbers[i] = int.Parse(arrString[i]);
+                }
+                catch 
+                {
+                    numbers[i] = -1;
+                }
+            }
+            return numbers;
+        }
+
+        public static void InitDisplayIndexColumn(ASPxGridViewColumnDisplayTextEventArgs e)
+        {
+            if (e.Column.Caption == "STT")
+            {
+                e.DisplayText = (e.VisibleIndex + 1).ToString();
+            }
+        }
+        static private List<int> groupIndexes = new List<int>();
+        static private int rowInGroupNumber = 1;
+        static private bool isFirstDisplayedRow = true;
+        private static bool IsGridUngrouped { get { return groupIndexes.Count == 0; } }
+        private static void CollectGroupIndexes(ASPxGridView g)
+        {
+            groupIndexes.Clear();
+            for (int i = 0; i < g.VisibleRowCount; i++)
+            {
+                if (g.IsGroupRow(i))
+                    groupIndexes.Add(i);
+            }
+        }
+        private static int GetParentGroupIndex(int index)
+        {
+            return groupIndexes.FindLast(delegate(int i) { return i < index; });
+        }
+
+        private static bool IsRowIsFirstGroup(int index, ASPxGridView g)
+        {
+            return g.IsGroupRow(index - 1);
+        }
+        public static void InitDisplayIndexGroupColumn(object sender, ASPxGridViewColumnDisplayTextEventArgs e)
+        {
+            if (e.Column.Caption != "STT")
+                return;
+            ASPxGridView g = sender as ASPxGridView;
+            CollectGroupIndexes(g);
+            if (IsGridUngrouped)
+                rowInGroupNumber = e.VisibleRowIndex + 1;
+            else
+            {
+                if (isFirstDisplayedRow)
+                {
+                    rowInGroupNumber = e.VisibleRowIndex - GetParentGroupIndex(e.VisibleRowIndex);
+                    isFirstDisplayedRow = false;
+                }
+                else
+                {
+                    if (IsRowIsFirstGroup(e.VisibleRowIndex, g))
+                        rowInGroupNumber = 1;
+                    else
+                        rowInGroupNumber++;
+                }
+            }
+            //e.Value = rowInGroupNumber;
+            e.DisplayText = rowInGroupNumber.ToString();
+        }
+        public static int IDUser()
+        {
+            return Convert.ToInt32(HttpContext.Current.User.Identity.Name.Split('-')[0]);
+        }
+        public static string NameUser()
+        {
+            return HttpContext.Current.User.Identity.Name.Split('-')[1];
+        }
+
+        public static int PermissionUser()
+        {
+            return Convert.ToInt32(HttpContext.Current.User.Identity.Name.Split('-')[2]);
+        }
+    }
+}

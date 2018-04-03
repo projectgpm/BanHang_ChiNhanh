@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 9.875" name="KobePaintDB">
+  <DataContextMoniker Name="/KobePaintDBDataContext" />
+  <nestedChildShapes>
+    <classShape Id="9dfe940d-6f0a-4d6d-935e-717588171cb2" absoluteBounds="4.875, 6.75, 2, 2.9247054036458331">
+      <DataClassMoniker Name="/KobePaintDBDataContext/nvNhanVien" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ac359ca2-a3c6-42c4-81f1-6508e23e7374" absoluteBounds="4.8900000000000006, 7.21, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="54f2ef3b-1079-4ade-8473-924755907952" absoluteBounds="2.375, 6.25, 2, 1.3862939453125">
+      <DataClassMoniker Name="/KobePaintDBDataContext/nvNhom" />
+      <nestedChildShapes>
+        <elementListCompartment Id="55b72138-cdff-4ceb-a51f-1c455e04f6b8" absoluteBounds="2.39, 6.7100000000000009, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5071c6ca-01e0-4fcd-b386-6796e70279af" absoluteBounds="0.5, 1.125, 2, 2.9247054036458331">
+      <DataClassMoniker Name="/KobePaintDBDataContext/nvNhanVien1" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5aa5dbde-dd8d-4c74-b6cd-973490717a17" absoluteBounds="0.51500000000000012, 1.585, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="25c0234c-65b5-4f50-9467-8d92cc606773" absoluteBounds="2.375, 1.125, 2, 1.3862939453125">
+      <DataClassMoniker Name="/KobePaintDBDataContext/hhNhomHang" />
+      <nestedChildShapes>
+        <elementListCompartment Id="adafbdb7-2fe5-45c4-83df-391f50b359b6" absoluteBounds="2.39, 1.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

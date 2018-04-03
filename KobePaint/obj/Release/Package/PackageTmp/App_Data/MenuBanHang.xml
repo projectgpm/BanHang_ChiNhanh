@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<items> 
+  <item Text="Giao hàng">
+    <item Text="Lập phiếu giao hàng" NavigateUrl="~/Pages/GiaoHang/LapPhieu.aspx" />
+    <item Text="Cập nhật hóa đơn" NavigateUrl="~/Pages/GiaoHang/CapNhatHoaDon.aspx" />
+    <item Text="Lập phiếu trả hàng" NavigateUrl="~/Pages/TraHang/LapPhieu.aspx" />
+    <item Text="Danh sách trả hàng" NavigateUrl="~/Pages/TraHang/DanhSachTraHang.aspx" />
+  </item>
+  <item Text="Trả hàng" >
+    <item Text="Lập phiếu trả hàng" NavigateUrl="~/Pages/TraHang/LapPhieu.aspx" />
+    <item Text="Danh sách trả hàng" NavigateUrl="~/Pages/TraHang/DanhSachTraHang.aspx" />
+  </item>
+  <item Text="Báo cáo" >
+    <item Text="Công nợ" NavigateUrl="~/Pages/BaoCao/CongNo.aspx" />
+    <item Text="Công nợ chi tiết" NavigateUrl="~/Pages/BaoCao/CongNoChiTiet.aspx" />
+    <item Text="Danh sách khách hàng" NavigateUrl="~/Pages/BaoCao/DanhSachKhachHang.aspx" />
+    <item Text="Hàng trả" NavigateUrl="~/Pages/BaoCao/TraHang.aspx" />
+  </item>
+  <item Text="Hệ thống" >
+    <item Text="Thông tin tài khoản" NavigateUrl="~/Pages/TaiKhoan/ThongTinTaiKhoan.aspx" />
+    <item Text="Danh sách xe" NavigateUrl="~/Pages/TaiKhoan/DanhSachXe.aspx" />
+  </item>
+</items>

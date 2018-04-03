@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BanHang_GPM" Class="KobePaintDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\GPM;Initial Catalog=BanHang_GPM;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="KobePaintConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.nvNhanVien" Member="nvNhanViens">
+    <Type Name="nvNhanVien">
+      <Column Name="IDNhanVien" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenDangNhap" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MatKhau" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HoTen" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DienThoai" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="NhomID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DaXoa" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NgayTao" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="IDChiNhanh" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.nvNhom" Member="nvNhoms">
+    <Type Name="nvNhom">
+      <Column Name="IDNhom" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenNhom" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DaXoa" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.nvNhanVien" Member="nvNhanVien1s">
+    <Type Name="nvNhanVien1">
+      <Column Name="IDNhanVien" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenDangNhap" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MatKhau" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HoTen" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DienThoai" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="NhomID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DaXoa" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NgayTao" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="IDChiNhanh" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.hhNhomHang" Member="hhNhomHangs">
+    <Type Name="hhNhomHang">
+      <Column Name="IDNhomHH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenNhom" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="DaXoa" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
