@@ -13,7 +13,7 @@
             if (ASPxClientEdit.ValidateGroup('checkInput'))
                 cbpThemHH.PerformCallback('Save');
         }
-       
+        
         function onRenewClick()
         {
             cbpThemHH.PerformCallback('Renew');
@@ -34,7 +34,7 @@
             ccbNhomHH.PerformCallback();
         }
     </script>
-    
+ 
     <dx:ASPxCallbackPanel ID="cbpThemHH" ClientInstanceName="cbpThemHH" runat="server" Width="100%" OnCallback="cbpThemHH_Callback">
         <PanelCollection>
             <dx:PanelContent runat="server">
@@ -42,6 +42,15 @@
                     <Items>
                         <dx:LayoutGroup Caption="Thêm hàng hóa" GroupBoxDecoration="HeadingLine" HorizontalAlign="Center" ColCount="2">
                             <Items>
+                                <dx:LayoutItem Caption="" ColSpan="2">
+                                    <LayoutItemNestedControlCollection>
+                                        <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer1" runat="server">
+                                            <div style="width:100%; background-color:#5cb85c;">
+                                                 <div style="padding-left:50px;"><dx:ASPxLabel ID="lblthongbao" runat="server" Font-Bold="True" Font-Size="13pt" ForeColor="White" ></dx:ASPxLabel></div>
+                                            </div>
+                                        </dx:LayoutItemNestedControlContainer>
+                                    </LayoutItemNestedControlCollection>
+                                </dx:LayoutItem>
                                 <dx:LayoutItem Caption="Tên hàng hóa" ColSpan="2">
                                     <LayoutItemNestedControlCollection>
                                         <dx:LayoutItemNestedControlContainer runat="server">
@@ -176,16 +185,16 @@
                                                             <ClientSideEvents Click="onSaveClick" />
                                                         </dx:ASPxButton>
                                                     </td>
+                                                   
                                                     <td style="padding-right:10px;width:110px;">
-                                                        <dx:ASPxButton ID="btnLuuTiepTuc" runat="server" Text="Lưu và tiếp tục" ValidationGroup="checkInput" AutoPostBack="false">
-                                                           <%-- <ClientSideEvents Click="onSaveClick" />--%>
-                                                        </dx:ASPxButton>
-                                                    </td>
-                                                    <td >
                                                         <dx:ASPxButton ID="btnRenew" runat="server" Text="Lập mới" Width="100" BackColor="#d9534f" AutoPostBack="false">
                                                             <ClientSideEvents Click="onRenewClick" />
                                                         </dx:ASPxButton>
                                                         
+                                                    </td>
+                                                     <td style="padding-right:10px;width:110px;">
+                                                        <dx:ASPxButton ID="btnTroVe" runat="server" Text="Trở về" AutoPostBack="true" PostBackUrl="~/Pages/HangHoa/HangHoa.aspx" >
+                                                        </dx:ASPxButton>
                                                     </td>
                                                 </tr>
                                             </table>

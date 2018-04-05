@@ -140,7 +140,7 @@
                 </div>
             </ExpandBarTemplate>
         </dx:ASPxPanel>
-
+         
         <script type="text/javascript">
             function updateHeaderMenuOrientation(){
                 var orientation = headerPane.IsExpandable() ? 'Vertical' : 'Horizontal';
@@ -161,9 +161,7 @@
                 </dx:PanelContent>
             </PanelCollection>
         </dx:ASPxPanel>
-
-        
-
+ 
 
         <dx:ASPxPopupControl ID="popupThongBao" ClientInstanceName="popupThongBao" runat="server" 
             Height="150px" ShowHeader="False" Width="150px" 

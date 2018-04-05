@@ -22,19 +22,19 @@
       <Column Name="DaXoa" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.nvNhanVien" Member="nvNhanVien1s">
-    <Type Name="nvNhanVien1">
-      <Column Name="IDNhanVien" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TenDangNhap" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="MatKhau" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="HoTen" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="DienThoai" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="NhomID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+  <Table Name="dbo.hhBarcode" Member="hhBarcodes">
+    <Type Name="hhBarcode">
+      <Column Name="IDBarcode" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IDHangHoa" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="DaXoa" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="NgayTao" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
-      <Column Name="IDChiNhanh" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Barcode" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.hhLoaiHangHoa" Member="hhLoaiHangHoas">
+    <Type Name="hhLoaiHangHoa">
+      <Column Name="IDLoaiHangHoa" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenLoai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DaXoa" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.hhNhomHang" Member="hhNhomHangs">
@@ -44,11 +44,37 @@
       <Column Name="DaXoa" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.kTheKho" Member="kTheKhos">
+    <Type Name="kTheKho">
+      <Column Name="IDTheKho" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NgayNhap" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="DienGiai" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Nhap" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Xuat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Ton" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.hhDonViTinh" Member="hhDonViTinhs">
     <Type Name="hhDonViTinh">
       <Column Name="IDDonViTinh" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TenDonViTinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="NgayNhap" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="DaXoa" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.hhHangHoa" Member="hhHangHoas">
+    <Type Name="hhHangHoa">
+      <Column Name="IDHangHoa" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MaHang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TenHangHoa" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TrongLuong" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="NgayNhap" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="NhomHHID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DonViTinhID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LoaiHHID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GiaBan" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="GiaVon" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TonKho" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="DaXoa" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
