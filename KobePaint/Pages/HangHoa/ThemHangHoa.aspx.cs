@@ -1,11 +1,15 @@
-﻿using DevExpress.Web;
+﻿using DevExpress.Export;
+using DevExpress.Web;
+using DevExpress.XtraPrinting;
 using KobePaint.App_Code;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
 
 namespace KobePaint.Pages.HangHoa
 {
@@ -13,6 +17,7 @@ namespace KobePaint.Pages.HangHoa
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
         }
 
         private void Save()
@@ -64,6 +69,44 @@ namespace KobePaint.Pages.HangHoa
                 }
             }
         }
+
+      
+
+        protected void gridDVT_CustomColumnDisplayText(object sender, ASPxGridViewColumnDisplayTextEventArgs e)
+        {
+            Formats.InitDisplayIndexColumn(e);
+        }
+
+        protected void ccbDVT_Callback(object sender, CallbackEventArgsBase e)
+        {
+           // ccbDVT.DataSource = null;
+            ccbDVT.DataBind();
+        }
+
+        protected void btnXuatExcel_NhomHang_Click(object sender, EventArgs e)
+        {
+            exproter_NhomHang.WriteXlsxToResponse(new XlsxExportOptionsEx { ExportType = ExportType.WYSIWYG });
+        }
+
+        protected void ccbNhomHH_Callback(object sender, CallbackEventArgsBase e)
+        {
+            ccbNhomHH.DataBind();
+        }
+
+        protected void btnXuatExcel_DVT_Click(object sender, EventArgs e)
+        {
+            exproter_DVT.WriteXlsxToResponse(new XlsxExportOptionsEx { ExportType = ExportType.WYSIWYG });
+        }
+
+        protected void gridNhomHang_CustomColumnDisplayText(object sender, ASPxGridViewColumnDisplayTextEventArgs e)
+        {
+            Formats.InitDisplayIndexColumn(e);
+        }
+
+       
+    
+
+       
         
 
         

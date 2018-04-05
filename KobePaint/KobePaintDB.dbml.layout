@@ -26,5 +26,11 @@
         <elementListCompartment Id="adafbdb7-2fe5-45c4-83df-391f50b359b6" absoluteBounds="2.765, 0.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="5368287b-4074-4fd9-adc4-a50e5c654671" absoluteBounds="4.375, 3.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/KobePaintDBDataContext/hhDonViTinh" />
+      <nestedChildShapes>
+        <elementListCompartment Id="23adb6f5-7f49-43fd-8322-12040a7bc64c" absoluteBounds="4.39, 3.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

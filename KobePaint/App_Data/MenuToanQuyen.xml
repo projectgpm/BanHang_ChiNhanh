@@ -10,13 +10,8 @@
     <item Text="Lập phiếu trả hàng" NavigateUrl="~/Pages/TraHang/LapPhieu.aspx" />
     <item Text="Danh sách trả hàng" NavigateUrl="~/Pages/TraHang/DanhSachTraHang.aspx" />
   </item>
-  <item Text="Hàng hóa">
-    <item Text="Danh sách nhóm hàng" NavigateUrl="~/Pages/HangHoa/NhomHang.aspx" />
-    <item Text="Danh sách mã số màu" NavigateUrl="~/Pages/HangHoa/MaSoMau.aspx" />
-    <item Text="Thêm hàng hóa" NavigateUrl="~/Pages/HangHoa/ThemHangHoa.aspx" />
-    <item Text="Danh sách hàng hóa" NavigateUrl="~/Pages/HangHoa/HangHoa.aspx" />
-    <item Text="Danh sách áp giá" NavigateUrl="~/Pages/HangHoa/DanhSachHangApGia.aspx" />
-    <item Text="Danh sách chiết khấu NV" NavigateUrl="~/Pages/HangHoa/ApChietKhauNV.aspx" />
+  <item Text="Hàng hóa" NavigateUrl="~/Pages/HangHoa/HangHoa.aspx" >
+    
   </item>
   <item Text="Khách hàng">
     <item Text="Lập phiếu giao hàng" NavigateUrl="~/Pages/GiaoHang/LapPhieu.aspx" />

@@ -42,6 +42,9 @@ namespace KobePaint
     partial void InserthhNhomHang(hhNhomHang instance);
     partial void UpdatehhNhomHang(hhNhomHang instance);
     partial void DeletehhNhomHang(hhNhomHang instance);
+    partial void InserthhDonViTinh(hhDonViTinh instance);
+    partial void UpdatehhDonViTinh(hhDonViTinh instance);
+    partial void DeletehhDonViTinh(hhDonViTinh instance);
     #endregion
 		
 		public KobePaintDBDataContext() : 
@@ -103,6 +106,14 @@ namespace KobePaint
 			get
 			{
 				return this.GetTable<hhNhomHang>();
+			}
+		}
+		
+		public System.Data.Linq.Table<hhDonViTinh> hhDonViTinhs
+		{
+			get
+			{
+				return this.GetTable<hhDonViTinh>();
 			}
 		}
 	}
@@ -886,6 +897,140 @@ namespace KobePaint
 					this._TenNhom = value;
 					this.SendPropertyChanged("TenNhom");
 					this.OnTenNhomChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DaXoa", DbType="Bit")]
+		public System.Nullable<bool> DaXoa
+		{
+			get
+			{
+				return this._DaXoa;
+			}
+			set
+			{
+				if ((this._DaXoa != value))
+				{
+					this.OnDaXoaChanging(value);
+					this.SendPropertyChanging();
+					this._DaXoa = value;
+					this.SendPropertyChanged("DaXoa");
+					this.OnDaXoaChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.hhDonViTinh")]
+	public partial class hhDonViTinh : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _IDDonViTinh;
+		
+		private string _TenDonViTinh;
+		
+		private System.Nullable<System.DateTime> _NgayNhap;
+		
+		private System.Nullable<bool> _DaXoa;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDDonViTinhChanging(int value);
+    partial void OnIDDonViTinhChanged();
+    partial void OnTenDonViTinhChanging(string value);
+    partial void OnTenDonViTinhChanged();
+    partial void OnNgayNhapChanging(System.Nullable<System.DateTime> value);
+    partial void OnNgayNhapChanged();
+    partial void OnDaXoaChanging(System.Nullable<bool> value);
+    partial void OnDaXoaChanged();
+    #endregion
+		
+		public hhDonViTinh()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDDonViTinh", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int IDDonViTinh
+		{
+			get
+			{
+				return this._IDDonViTinh;
+			}
+			set
+			{
+				if ((this._IDDonViTinh != value))
+				{
+					this.OnIDDonViTinhChanging(value);
+					this.SendPropertyChanging();
+					this._IDDonViTinh = value;
+					this.SendPropertyChanged("IDDonViTinh");
+					this.OnIDDonViTinhChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenDonViTinh", DbType="NVarChar(50)")]
+		public string TenDonViTinh
+		{
+			get
+			{
+				return this._TenDonViTinh;
+			}
+			set
+			{
+				if ((this._TenDonViTinh != value))
+				{
+					this.OnTenDonViTinhChanging(value);
+					this.SendPropertyChanging();
+					this._TenDonViTinh = value;
+					this.SendPropertyChanged("TenDonViTinh");
+					this.OnTenDonViTinhChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayNhap", DbType="SmallDateTime")]
+		public System.Nullable<System.DateTime> NgayNhap
+		{
+			get
+			{
+				return this._NgayNhap;
+			}
+			set
+			{
+				if ((this._NgayNhap != value))
+				{
+					this.OnNgayNhapChanging(value);
+					this.SendPropertyChanging();
+					this._NgayNhap = value;
+					this.SendPropertyChanged("NgayNhap");
+					this.OnNgayNhapChanged();
 				}
 			}
 		}

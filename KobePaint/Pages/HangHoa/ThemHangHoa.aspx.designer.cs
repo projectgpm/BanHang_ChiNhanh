@@ -49,13 +49,13 @@ namespace KobePaint.Pages.HangHoa {
         protected global::DevExpress.Web.ASPxTextBox txtMaHH;
         
         /// <summary>
-        /// formThemHH_E3 control.
+        /// spSoLuong control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxSpinEdit formThemHH_E3;
+        protected global::DevExpress.Web.ASPxSpinEdit spSoLuong;
         
         /// <summary>
         /// ccbNhomHH control.
@@ -76,6 +76,15 @@ namespace KobePaint.Pages.HangHoa {
         protected global::System.Web.UI.WebControls.SqlDataSource dsNhomHH;
         
         /// <summary>
+        /// btn_ThemNhomHH control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton btn_ThemNhomHH;
+        
+        /// <summary>
         /// ccbDVT control.
         /// </summary>
         /// <remarks>
@@ -94,13 +103,13 @@ namespace KobePaint.Pages.HangHoa {
         protected global::System.Web.UI.WebControls.SqlDataSource dsDVT;
         
         /// <summary>
-        /// btnThemDVT control.
+        /// btnPreview control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnThemDVT;
+        protected global::DevExpress.Web.ASPxButton btnPreview;
         
         /// <summary>
         /// spGiaVon control.
@@ -119,6 +128,15 @@ namespace KobePaint.Pages.HangHoa {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxSpinEdit spGiaBan;
+        
+        /// <summary>
+        /// tkBarcode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTokenBox tkBarcode;
         
         /// <summary>
         /// btnSave control.
@@ -146,5 +164,122 @@ namespace KobePaint.Pages.HangHoa {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxButton btnRenew;
+        
+        /// <summary>
+        /// pcDVT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxPopupControl pcDVT;
+        
+        /// <summary>
+        /// PopupControlContentControl1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.PopupControlContentControl PopupControlContentControl1;
+        
+        /// <summary>
+        /// btnXuatExcel_DVT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton btnXuatExcel_DVT;
+        
+        /// <summary>
+        /// exproter_DVT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxGridViewExporter exproter_DVT;
+        
+        /// <summary>
+        /// gridDVT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxGridView gridDVT;
+        
+        /// <summary>
+        /// dsDonVT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource dsDonVT;
+        
+        /// <summary>
+        /// globalEventGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxGlobalEvents globalEventGrid;
+        
+        /// <summary>
+        /// pcNhomHang control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxPopupControl pcNhomHang;
+        
+        /// <summary>
+        /// PopupControlContentControl2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.PopupControlContentControl PopupControlContentControl2;
+        
+        /// <summary>
+        /// btnXuatExcel_NhomHang control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton btnXuatExcel_NhomHang;
+        
+        /// <summary>
+        /// exproter_NhomHang control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxGridViewExporter exproter_NhomHang;
+        
+        /// <summary>
+        /// gridNhomHang control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxGridView gridNhomHang;
+        
+        /// <summary>
+        /// dsNhomHang control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource dsNhomHang;
     }
 }
