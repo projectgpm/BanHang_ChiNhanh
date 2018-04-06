@@ -32,12 +32,6 @@
         <elementListCompartment Id="83bf514a-7499-409d-9134-fec1f40878d6" absoluteBounds="0.515, 3.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="bc0b1b55-971b-4eb1-9c33-a3ea76fc8f59" isExpanded="false" absoluteBounds="0.5, 2.375, 2, 0.45">
-      <DataClassMoniker Name="/KobePaintDBDataContext/kTheKho" />
-      <nestedChildShapes>
-        <elementListCompartment Id="4f03a574-e71e-4a64-aaad-984b210fcd08" absoluteBounds="0.515, 2.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="1e2047bd-6d34-458f-b4a2-6e8516df5f06" isExpanded="false" absoluteBounds="0.5, 1, 2, 0.45">
       <DataClassMoniker Name="/KobePaintDBDataContext/hhDonViTinh" />
       <nestedChildShapes>
@@ -48,6 +42,12 @@
       <DataClassMoniker Name="/KobePaintDBDataContext/hhHangHoa" />
       <nestedChildShapes>
         <elementListCompartment Id="cc510990-6c4d-474e-a08e-ad4311827edd" absoluteBounds="2.6399999999999997, 2.21, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="092bf158-a51d-4ac6-8dd4-85ee08cc5724" isExpanded="false" absoluteBounds="0.5, 2.5, 2, 0.45">
+      <DataClassMoniker Name="/KobePaintDBDataContext/kTheKho" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3db7a8c5-c17f-4f5b-a50a-339fab5856a1" absoluteBounds="0.51500000000000012, 2.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

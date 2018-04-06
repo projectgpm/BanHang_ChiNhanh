@@ -1,21 +1,18 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.master" AutoEventWireup="true" CodeBehind="ThemHangHoa.aspx.cs" Inherits="KobePaint.Pages.HangHoa.ThemHangHoa" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.master" AutoEventWireup="true" CodeBehind="CapNhat.aspx.cs" Inherits="KobePaint.Pages.HangHoa.CapNhat" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <script>
         function gridEndCallBack(s, e) {
-            if (s.cpIsDelete == true)
-            {
+            if (s.cpIsDelete == true) {
                 s.AddNewRow();
                 delete (s.cpIsDelete);
             }
         }
-        function onSaveClick()
-        {
+        function onSaveClick() {
             if (ASPxClientEdit.ValidateGroup('checkInput'))
                 cbpThemHH.PerformCallback('Save');
         }
-        
-        function onRenewClick()
-        {
+
+        function onRenewClick() {
             cbpThemHH.PerformCallback('Renew');
         }
         //popup
@@ -37,10 +34,10 @@
  
     <dx:ASPxCallbackPanel ID="cbpThemHH" ClientInstanceName="cbpThemHH" runat="server" Width="100%" OnCallback="cbpThemHH_Callback">
         <PanelCollection>
-            <dx:PanelContent runat="server">
+            <dx:PanelContent ID="PanelContent1" runat="server">
                 <dx:ASPxFormLayout ID="formThemHH" runat="server" Width="100%">
                     <Items>
-                        <dx:LayoutGroup Caption="Thêm hàng hóa" GroupBoxDecoration="HeadingLine" HorizontalAlign="Center" ColCount="2">
+                        <dx:LayoutGroup Caption="Cập nhật hàng hóa" GroupBoxDecoration="HeadingLine" HorizontalAlign="Center" ColCount="2">
                             <Items>
                                 <dx:LayoutItem Caption="" ColSpan="2">
                                     <LayoutItemNestedControlCollection>
@@ -53,7 +50,7 @@
                                 </dx:LayoutItem>
                                 <dx:LayoutItem Caption="Tên hàng hóa" ColSpan="2">
                                     <LayoutItemNestedControlCollection>
-                                        <dx:LayoutItemNestedControlContainer runat="server">
+                                        <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer2" runat="server">
                                             <dx:ASPxTextBox ID="txtTenHH" runat="server" Width="100%">
                                                 <ValidationSettings Display="Dynamic" ErrorTextPosition="Bottom" ValidationGroup="checkInput">
                                                     <RequiredField ErrorText="Vui lòng nhập tên hàng hóa" IsRequired="True" />
@@ -62,28 +59,9 @@
                                         </dx:LayoutItemNestedControlContainer>
                                     </LayoutItemNestedControlCollection>
                                 </dx:LayoutItem>
-                                <dx:LayoutItem Caption="Mã hàng hóa">
-                                    <LayoutItemNestedControlCollection>
-                                        <dx:LayoutItemNestedControlContainer runat="server">
-                                            <dx:ASPxTextBox ID="txtMaHH" runat="server" Width="100%" NullText="Hệ thống tự tạo nếu để trống.">
-                                            </dx:ASPxTextBox>
-                                        </dx:LayoutItemNestedControlContainer>
-                                    </LayoutItemNestedControlCollection>
-                                </dx:LayoutItem>
-                                <dx:LayoutItem Caption="Số lượng">
-                                    <LayoutItemNestedControlCollection>
-                                        <dx:LayoutItemNestedControlContainer runat="server">
-                                            <dx:ASPxSpinEdit ID="spSoLuong" runat="server" Number="0" Width="100%" >
-                                                 <ValidationSettings Display="Dynamic" ErrorTextPosition="Bottom" ValidationGroup="checkInput">
-                                                    <RequiredField ErrorText="Vui lòng nhập số lượng" IsRequired="True" />
-                                                </ValidationSettings>
-                                            </dx:ASPxSpinEdit>
-                                        </dx:LayoutItemNestedControlContainer>
-                                    </LayoutItemNestedControlCollection>
-                                </dx:LayoutItem>
                                 <dx:LayoutItem Caption="Nhóm hàng hóa">
                                     <LayoutItemNestedControlCollection>
-                                        <dx:LayoutItemNestedControlContainer runat="server">
+                                        <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer5" runat="server">
                                             <table style="width:100%">
                                                 <tr>
                                                     <td style="padding-right:10px;width:100%;">
@@ -113,7 +91,7 @@
                                 </dx:LayoutItem>
                                 <dx:LayoutItem Caption="ĐVT">
                                     <LayoutItemNestedControlCollection>
-                                        <dx:LayoutItemNestedControlContainer runat="server">
+                                        <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer6" runat="server">
                                             <table style="width:100%">
                                                 <tr>
                                                     <td style="padding-right:10px;width:100%;">
@@ -150,7 +128,7 @@
                                 </dx:LayoutItem>
                                 <dx:LayoutItem Caption="Giá vốn">
                                     <LayoutItemNestedControlCollection>
-                                        <dx:LayoutItemNestedControlContainer runat="server">
+                                        <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer7" runat="server">
                                             <dx:ASPxSpinEdit ID="spGiaVon" runat="server" Width="100%" Number="0" DisplayFormatString="N0" Increment="5000">
                                             </dx:ASPxSpinEdit>
                                         </dx:LayoutItemNestedControlContainer>
@@ -158,7 +136,7 @@
                                 </dx:LayoutItem>
                                 <dx:LayoutItem Caption="Giá bán">
                                     <LayoutItemNestedControlCollection>
-                                        <dx:LayoutItemNestedControlContainer runat="server">
+                                        <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer8" runat="server">
                                             <dx:ASPxSpinEdit ID="spGiaBan" runat="server" DisplayFormatString="N0" Increment="5000" Number="0" Width="100%">
                                                 <ValidationSettings Display="Dynamic" ErrorTextPosition="Bottom" ValidationGroup="checkInput">
                                                     <RequiredField ErrorText="Chưa nhập thông tin" IsRequired="True" />
@@ -169,7 +147,7 @@
                                 </dx:LayoutItem>
                                 <dx:LayoutItem Caption="Barcode" ColSpan="2" RowSpan="5">
                                     <LayoutItemNestedControlCollection>
-                                        <dx:LayoutItemNestedControlContainer runat="server">
+                                        <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer9" runat="server">
                                             <dx:ASPxTokenBox ID="tkBarcode" runat="server" AllowMouseWheel="True" Height="100px" Tokens="" Width="100%" NullText="Hệ thống tự tạo barcode giống với mã hàng hóa nếu bỏ trống.">
                                             </dx:ASPxTokenBox>
                                         </dx:LayoutItemNestedControlContainer>
@@ -177,11 +155,11 @@
                                 </dx:LayoutItem>
                                 <dx:LayoutItem HorizontalAlign="Center" ShowCaption="False" ColSpan="2">
                                     <LayoutItemNestedControlCollection>
-                                        <dx:LayoutItemNestedControlContainer runat="server">
+                                        <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer10" runat="server">
                                             <table >
                                                 <tr>
                                                     <td style="padding-right:10px;width:110px;">
-                                                        <dx:ASPxButton ID="btnSave" runat="server" Text="Lưu" ValidationGroup="checkInput" AutoPostBack="false">
+                                                        <dx:ASPxButton ID="btnSave" runat="server" Text="Lưu lại" ValidationGroup="checkInput" AutoPostBack="false">
                                                             <ClientSideEvents Click="onSaveClick" />
                                                         </dx:ASPxButton>
                                                     </td>

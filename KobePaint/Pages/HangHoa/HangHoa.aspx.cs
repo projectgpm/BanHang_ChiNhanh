@@ -43,5 +43,8 @@ namespace KobePaint.Pages.HangHoa
         {
             exproter.WriteXlsxToResponse(new XlsxExportOptionsEx { ExportType = ExportType.WYSIWYG });
         }
+
+        
+       
     }
 }

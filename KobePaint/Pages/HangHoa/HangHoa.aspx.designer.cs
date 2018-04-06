@@ -85,6 +85,24 @@ namespace KobePaint.Pages.HangHoa {
         protected global::DevExpress.Web.ASPxGridView gridHangHoa;
         
         /// <summary>
+        /// dsDVT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource dsDVT;
+        
+        /// <summary>
+        /// dsNhomHang control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource dsNhomHang;
+        
+        /// <summary>
         /// dsHangHoa control.
         /// </summary>
         /// <remarks>

@@ -64,6 +64,12 @@ namespace KobePaint.Pages.HangHoa
                 hanghoa.NgayNhap = DateTime.Now;
                 hanghoa.LoaiHHID = 1;
                 int SL = Convert.ToInt32(spSoLuong.Number);
+                
+                hanghoa.TonKho = SL;
+                DBDataProvider.DB.hhHangHoas.InsertOnSubmit(hanghoa);
+                DBDataProvider.DB.SubmitChanges();
+                int IDHangHoa = hanghoa.IDHangHoa;
+
                 if (SL > 0)
                 {
                     #region Trường hợp số lượng > 0 thì tiến hành ghi thẻ kho
@@ -73,13 +79,11 @@ namespace KobePaint.Pages.HangHoa
                     thekho.Nhap = SL;
                     thekho.Xuat = 0;
                     thekho.Ton = SL;
+                    thekho.HangHoaID = IDHangHoa;
                     DBDataProvider.DB.kTheKhos.InsertOnSubmit(thekho);
                     #endregion
                 }
-                hanghoa.TonKho = SL;
-                DBDataProvider.DB.hhHangHoas.InsertOnSubmit(hanghoa);
-                DBDataProvider.DB.SubmitChanges();
-                int IDHangHoa = hanghoa.IDHangHoa;
+
                 List<string> ListBarCode = GetListBarCode();
                 if (ListBarCode.Count > 0)
                 {

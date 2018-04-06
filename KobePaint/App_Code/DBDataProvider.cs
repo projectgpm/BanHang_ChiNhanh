@@ -24,6 +24,10 @@ namespace KobePaint.App_Code
             return HttpContext.Current.User.Identity.Name.Split('-');
         }
 
-       
+        //danh sách barcode 
+        public static List<hhBarcode> GetDanhSach(int IDHangHoa)
+        {
+            return DB.hhBarcodes.Where(x => x.IDHangHoa == IDHangHoa).ToList();
+        }
     }
 }

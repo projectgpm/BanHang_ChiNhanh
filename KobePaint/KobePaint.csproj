@@ -123,7 +123,9 @@
     <Content Include="Main.master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Pages\HangHoa\CapNhat.aspx" />
     <Content Include="Pages\HangHoa\HangHoa.aspx" />
+    <Content Include="Pages\HangHoa\NgungKinhDoanh.aspx" />
     <Content Include="Pages\HangHoa\NhomHang.aspx" />
     <Content Include="Pages\HangHoa\ThemHangHoa.aspx" />
     <Content Include="Pages\TaiKhoan\DangNhap.aspx" />
@@ -221,12 +223,26 @@
     <Compile Include="Main.master.designer.cs">
       <DependentUpon>Main.master</DependentUpon>
     </Compile>
+    <Compile Include="Pages\HangHoa\CapNhat.aspx.cs">
+      <DependentUpon>CapNhat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\HangHoa\CapNhat.aspx.designer.cs">
+      <DependentUpon>CapNhat.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\HangHoa\HangHoa.aspx.cs">
       <DependentUpon>HangHoa.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\HangHoa\HangHoa.aspx.designer.cs">
       <DependentUpon>HangHoa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\HangHoa\NgungKinhDoanh.aspx.cs">
+      <DependentUpon>NgungKinhDoanh.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\HangHoa\NgungKinhDoanh.aspx.designer.cs">
+      <DependentUpon>NgungKinhDoanh.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\HangHoa\NhomHang.aspx.cs">
       <DependentUpon>NhomHang.aspx</DependentUpon>
