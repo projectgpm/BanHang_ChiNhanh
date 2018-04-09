@@ -7,126 +7,135 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace KobePaint.Pages.HangHoa {
+namespace KobePaint.Pages.KH_NCC {
     
     
-    public partial class HangHoa {
+    public partial class ThemKH {
         
         /// <summary>
-        /// formThongTin control.
+        /// formThemKH control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxFormLayout formThongTin;
+        protected global::DevExpress.Web.ASPxFormLayout formThemKH;
         
         /// <summary>
-        /// btnThemHangHoa control.
+        /// txtMaKH control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnThemHangHoa;
+        protected global::DevExpress.Web.ASPxTextBox txtMaKH;
         
         /// <summary>
-        /// btnInMaVach control.
+        /// ccbLoaiKH control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnInMaVach;
+        protected global::DevExpress.Web.ASPxComboBox ccbLoaiKH;
         
         /// <summary>
-        /// LayoutItemNestedControlContainer1 control.
+        /// dsLoaiKH control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer1;
+        protected global::System.Web.UI.WebControls.SqlDataSource dsLoaiKH;
         
         /// <summary>
-        /// btnXuatExcel control.
+        /// txtMaSoThue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnXuatExcel;
+        protected global::DevExpress.Web.ASPxTextBox txtMaSoThue;
         
         /// <summary>
-        /// ccbLoaiHangHoa control.
+        /// txtTenKH control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ccbLoaiHangHoa;
+        protected global::DevExpress.Web.ASPxTextBox txtTenKH;
         
         /// <summary>
-        /// LayoutItemNestedControlContainer2 control.
+        /// txtDienThoai control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer2;
+        protected global::DevExpress.Web.ASPxTextBox txtDienThoai;
         
         /// <summary>
-        /// exproter control.
+        /// txtDiaChi control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridViewExporter exproter;
+        protected global::DevExpress.Web.ASPxTextBox txtDiaChi;
         
         /// <summary>
-        /// gridHangHoa control.
+        /// txtEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView gridHangHoa;
+        protected global::DevExpress.Web.ASPxTextBox txtEmail;
         
         /// <summary>
-        /// dsDVT control.
+        /// txtGhiChu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dsDVT;
+        protected global::DevExpress.Web.ASPxMemo txtGhiChu;
         
         /// <summary>
-        /// dsNhomHang control.
+        /// btnLuu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dsNhomHang;
+        protected global::DevExpress.Web.ASPxButton btnLuu;
         
         /// <summary>
-        /// dsHangHoa control.
+        /// btnLapMoi control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dsHangHoa;
+        protected global::DevExpress.Web.ASPxButton btnLapMoi;
         
         /// <summary>
-        /// globalEventGrid control.
+        /// btnTroVe control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGlobalEvents globalEventGrid;
+        protected global::DevExpress.Web.ASPxButton btnTroVe;
+        
+        /// <summary>
+        /// dsKhachHang control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource dsKhachHang;
     }
 }

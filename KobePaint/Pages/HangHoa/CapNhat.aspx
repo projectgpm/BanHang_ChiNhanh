@@ -48,7 +48,7 @@
                                         </dx:LayoutItemNestedControlContainer>
                                     </LayoutItemNestedControlCollection>
                                 </dx:LayoutItem>
-                                <dx:LayoutItem Caption="Tên hàng hóa" ColSpan="2">
+                                <dx:LayoutItem Caption="Tên hàng hóa">
                                     <LayoutItemNestedControlCollection>
                                         <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer2" runat="server">
                                             <dx:ASPxTextBox ID="txtTenHH" runat="server" Width="100%">
@@ -56,6 +56,21 @@
                                                     <RequiredField ErrorText="Vui lòng nhập tên hàng hóa" IsRequired="True" />
                                                 </ValidationSettings>
                                             </dx:ASPxTextBox>
+                                        </dx:LayoutItemNestedControlContainer>
+                                    </LayoutItemNestedControlCollection>
+                                </dx:LayoutItem>
+                                <dx:LayoutItem Caption="Loại hàng hóa">
+                                    <LayoutItemNestedControlCollection>
+                                        <dx:LayoutItemNestedControlContainer runat="server">
+                                            <dx:ASPxComboBox ID="ccbLoaiHangHoa" runat="server" Width="100%">
+                                                <Items>
+                                                    <dx:ListEditItem Text="Đang kinh doanh" Value="0" />
+                                                    <dx:ListEditItem Text="Ngừng kinh doanh" Value="1" />
+                                                </Items>
+                                                <ValidationSettings Display="Dynamic" ErrorTextPosition="Bottom" ValidationGroup="checkInput">
+                                                    <RequiredField ErrorText="Chọn thông tin" IsRequired="True" />
+                                                </ValidationSettings>
+                                            </dx:ASPxComboBox>
                                         </dx:LayoutItemNestedControlContainer>
                                     </LayoutItemNestedControlCollection>
                                 </dx:LayoutItem>

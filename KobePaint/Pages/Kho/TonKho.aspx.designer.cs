@@ -7,10 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace KobePaint.Pages.HangHoa {
+namespace KobePaint.Pages.Kho {
     
     
-    public partial class HangHoa {
+    public partial class TonKho {
+        
+        /// <summary>
+        /// cbpTonKho control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxCallbackPanel cbpTonKho;
+        
+        /// <summary>
+        /// PanelContent1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.PanelContent PanelContent1;
         
         /// <summary>
         /// formThongTin control.
@@ -20,24 +38,6 @@ namespace KobePaint.Pages.HangHoa {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxFormLayout formThongTin;
-        
-        /// <summary>
-        /// btnThemHangHoa control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnThemHangHoa;
-        
-        /// <summary>
-        /// btnInMaVach control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnInMaVach;
         
         /// <summary>
         /// LayoutItemNestedControlContainer1 control.
@@ -58,15 +58,6 @@ namespace KobePaint.Pages.HangHoa {
         protected global::DevExpress.Web.ASPxButton btnXuatExcel;
         
         /// <summary>
-        /// ccbLoaiHangHoa control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ccbLoaiHangHoa;
-        
-        /// <summary>
         /// LayoutItemNestedControlContainer2 control.
         /// </summary>
         /// <remarks>
@@ -74,6 +65,24 @@ namespace KobePaint.Pages.HangHoa {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer2;
+        
+        /// <summary>
+        /// ccbLoaiTonKho control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox ccbLoaiTonKho;
+        
+        /// <summary>
+        /// LayoutItemNestedControlContainer3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer3;
         
         /// <summary>
         /// exproter control.
@@ -85,22 +94,13 @@ namespace KobePaint.Pages.HangHoa {
         protected global::DevExpress.Web.ASPxGridViewExporter exproter;
         
         /// <summary>
-        /// gridHangHoa control.
+        /// gridTonKho control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView gridHangHoa;
-        
-        /// <summary>
-        /// dsDVT control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dsDVT;
+        protected global::DevExpress.Web.ASPxGridView gridTonKho;
         
         /// <summary>
         /// dsNhomHang control.
@@ -112,13 +112,13 @@ namespace KobePaint.Pages.HangHoa {
         protected global::System.Web.UI.WebControls.SqlDataSource dsNhomHang;
         
         /// <summary>
-        /// dsHangHoa control.
+        /// dsTonKho control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dsHangHoa;
+        protected global::System.Web.UI.WebControls.SqlDataSource dsTonKho;
         
         /// <summary>
         /// globalEventGrid control.

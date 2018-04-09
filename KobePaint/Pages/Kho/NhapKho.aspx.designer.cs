@@ -7,37 +7,118 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace KobePaint.Pages.HangHoa {
+namespace KobePaint.Pages.Kho {
     
     
-    public partial class CapNhat {
+    public partial class NhapKho {
         
         /// <summary>
-        /// cbpThemHH control.
+        /// panelImport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxCallbackPanel cbpThemHH;
+        protected global::DevExpress.Web.ASPxPanel panelImport;
         
         /// <summary>
-        /// PanelContent1 control.
+        /// splImport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.PanelContent PanelContent1;
+        protected global::DevExpress.Web.ASPxSplitter splImport;
         
         /// <summary>
-        /// formThemHH control.
+        /// flayoutInfoNCC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxFormLayout formThemHH;
+        protected global::DevExpress.Web.ASPxFormLayout flayoutInfoNCC;
+        
+        /// <summary>
+        /// flayoutInfoNCC_E2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox flayoutInfoNCC_E2;
+        
+        /// <summary>
+        /// ccbNhaCungCap control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox ccbNhaCungCap;
+        
+        /// <summary>
+        /// dsNhaCungCap control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource dsNhaCungCap;
+        
+        /// <summary>
+        /// hpThemNCC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxHyperLink hpThemNCC;
+        
+        /// <summary>
+        /// dateOrder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxDateEdit dateOrder;
+        
+        /// <summary>
+        /// txtReceiptNum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox txtReceiptNum;
+        
+        /// <summary>
+        /// txtNguoiNhap control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox txtNguoiNhap;
+        
+        /// <summary>
+        /// memoAdditionInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxMemo memoAdditionInfo;
+        
+        /// <summary>
+        /// flayoutInfoThanhToan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxFormLayout flayoutInfoThanhToan;
         
         /// <summary>
         /// LayoutItemNestedControlContainer1 control.
@@ -49,13 +130,13 @@ namespace KobePaint.Pages.HangHoa {
         protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer1;
         
         /// <summary>
-        /// lblthongbao control.
+        /// spTongCong control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxLabel lblthongbao;
+        protected global::DevExpress.Web.ASPxSpinEdit spTongCong;
         
         /// <summary>
         /// LayoutItemNestedControlContainer2 control.
@@ -67,157 +148,121 @@ namespace KobePaint.Pages.HangHoa {
         protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer2;
         
         /// <summary>
-        /// txtTenHH control.
+        /// spThanhToan control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxTextBox txtTenHH;
+        protected global::DevExpress.Web.ASPxSpinEdit spThanhToan;
         
         /// <summary>
-        /// ccbLoaiHangHoa control.
+        /// LayoutItemNestedControlContainer3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ccbLoaiHangHoa;
+        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer3;
         
         /// <summary>
-        /// LayoutItemNestedControlContainer5 control.
+        /// spCongNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer5;
+        protected global::DevExpress.Web.ASPxSpinEdit spCongNo;
         
         /// <summary>
-        /// ccbNhomHH control.
+        /// cbpInfoImport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ccbNhomHH;
+        protected global::DevExpress.Web.ASPxCallbackPanel cbpInfoImport;
         
         /// <summary>
-        /// dsNhomHH control.
+        /// flayoutInfosImport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dsNhomHH;
+        protected global::DevExpress.Web.ASPxFormLayout flayoutInfosImport;
         
         /// <summary>
-        /// btn_ThemNhomHH control.
+        /// ccbProduct control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btn_ThemNhomHH;
+        protected global::DevExpress.Web.ASPxComboBox ccbProduct;
         
         /// <summary>
-        /// LayoutItemNestedControlContainer6 control.
+        /// ccbColor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer6;
+        protected global::DevExpress.Web.ASPxComboBox ccbColor;
         
         /// <summary>
-        /// ccbDVT control.
+        /// speUnits control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox ccbDVT;
+        protected global::DevExpress.Web.ASPxSpinEdit speUnits;
         
         /// <summary>
-        /// dsDVT control.
+        /// speReceiptPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dsDVT;
+        protected global::DevExpress.Web.ASPxSpinEdit speReceiptPrice;
         
         /// <summary>
-        /// btnPreview control.
+        /// speIssuePrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnPreview;
+        protected global::DevExpress.Web.ASPxSpinEdit speIssuePrice;
         
         /// <summary>
-        /// LayoutItemNestedControlContainer7 control.
+        /// btnImportToList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer7;
+        protected global::DevExpress.Web.ASPxButton btnImportToList;
         
         /// <summary>
-        /// spGiaVon control.
+        /// hiddenFields control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxSpinEdit spGiaVon;
+        protected global::DevExpress.Web.ASPxHiddenField hiddenFields;
         
         /// <summary>
-        /// LayoutItemNestedControlContainer8 control.
+        /// gridImportPro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer8;
-        
-        /// <summary>
-        /// spGiaBan control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxSpinEdit spGiaBan;
-        
-        /// <summary>
-        /// LayoutItemNestedControlContainer9 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer9;
-        
-        /// <summary>
-        /// tkBarcode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxTokenBox tkBarcode;
-        
-        /// <summary>
-        /// LayoutItemNestedControlContainer10 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer10;
+        protected global::DevExpress.Web.ASPxGridView gridImportPro;
         
         /// <summary>
         /// btnSave control.
@@ -229,78 +274,6 @@ namespace KobePaint.Pages.HangHoa {
         protected global::DevExpress.Web.ASPxButton btnSave;
         
         /// <summary>
-        /// btnRenew control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnRenew;
-        
-        /// <summary>
-        /// btnTroVe control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnTroVe;
-        
-        /// <summary>
-        /// pcDVT control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxPopupControl pcDVT;
-        
-        /// <summary>
-        /// PopupControlContentControl1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.PopupControlContentControl PopupControlContentControl1;
-        
-        /// <summary>
-        /// btnXuatExcel_DVT control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnXuatExcel_DVT;
-        
-        /// <summary>
-        /// exproter_DVT control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxGridViewExporter exproter_DVT;
-        
-        /// <summary>
-        /// gridDVT control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView gridDVT;
-        
-        /// <summary>
-        /// dsDonVT control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dsDonVT;
-        
-        /// <summary>
         /// globalEventGrid control.
         /// </summary>
         /// <remarks>
@@ -308,59 +281,5 @@ namespace KobePaint.Pages.HangHoa {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxGlobalEvents globalEventGrid;
-        
-        /// <summary>
-        /// pcNhomHang control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxPopupControl pcNhomHang;
-        
-        /// <summary>
-        /// PopupControlContentControl2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.PopupControlContentControl PopupControlContentControl2;
-        
-        /// <summary>
-        /// btnXuatExcel_NhomHang control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnXuatExcel_NhomHang;
-        
-        /// <summary>
-        /// exproter_NhomHang control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxGridViewExporter exproter_NhomHang;
-        
-        /// <summary>
-        /// gridNhomHang control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView gridNhomHang;
-        
-        /// <summary>
-        /// dsNhomHang control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dsNhomHang;
     }
 }

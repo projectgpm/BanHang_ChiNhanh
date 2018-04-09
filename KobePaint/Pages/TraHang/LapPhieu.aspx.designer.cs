@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace KobePaint.Pages.HangHoa
+namespace KobePaint.Pages.TraHang
 {
 
 
-    public partial class NgungKinhDoanh
+    public partial class LapPhieu
     {
     }
 }

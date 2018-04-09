@@ -55,7 +55,7 @@ namespace KobePaint.Pages.HangHoa
                 hanghoa.GiaVon = Convert.ToDouble(spGiaVon.Number);
                 hanghoa.NhomHHID = Convert.ToInt32(ccbNhomHH.Value);
                 hanghoa.DonViTinhID = Convert.ToInt32(ccbDVT.Value);
-
+                hanghoa.DaXoa = Convert.ToInt32(ccbLoaiHangHoa.Value);
                 //List<hhBarcode> r_barcode = DBDataProvider.DB.hhBarcodes.Where(x => x.IDHangHoa == HangHoaID).ToList();
                 //foreach (var bc in r_barcode)
                 //{
@@ -124,6 +124,7 @@ namespace KobePaint.Pages.HangHoa
                 spGiaBan.Text = hanghoa.GiaBan.ToString();
                 spGiaVon.Text = hanghoa.GiaVon.ToString();
                 tkBarcode.Tokens = LoadListBarCode(HangHoaID);
+                ccbLoaiHangHoa.Value = hanghoa.DaXoa.ToString();
             }
             else
                 Response.Redirect("~/Pages/HangHoa/HangHoa.aspx");

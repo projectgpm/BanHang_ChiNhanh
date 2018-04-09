@@ -19,11 +19,24 @@
                             </dx:LayoutItemNestedControlContainer>
                         </LayoutItemNestedControlCollection>
                     </dx:LayoutItem>
-                    <dx:LayoutItem HorizontalAlign="Right" ShowCaption="False" Width="100%">
+                    <dx:LayoutItem ShowCaption="False">
                         <LayoutItemNestedControlCollection>
                             <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer1" runat="server">
                                 <dx:ASPxButton ID="btnXuatExcel" runat="server" OnClick="btnXuatExcel_Click" Text="Xuất Excel">
                                 </dx:ASPxButton>
+                            </dx:LayoutItemNestedControlContainer>
+                        </LayoutItemNestedControlCollection>
+                    </dx:LayoutItem>
+                    <dx:LayoutItem Caption="Loại hàng hóa" Width="100%">
+                        <LayoutItemNestedControlCollection>
+                            <dx:LayoutItemNestedControlContainer runat="server">
+                                <dx:ASPxComboBox ID="ccbLoaiHangHoa" runat="server" SelectedIndex="0">
+                                    <Items>
+                                        <dx:ListEditItem Selected="True" Text="Đang kinh doanh" Value="0" />
+                                        <dx:ListEditItem Text="Ngừng kinh doanh" Value="1" />
+                                    </Items>
+                                     <ClientSideEvents SelectedIndexChanged="function(s, e){ gridHangHoa.Refresh(); }" />
+                                </dx:ASPxComboBox>
                             </dx:LayoutItemNestedControlContainer>
                         </LayoutItemNestedControlCollection>
                     </dx:LayoutItem>
@@ -155,11 +168,11 @@
                 </Image>
             </NewButton>
             <UpdateButton ButtonType="Image" RenderMode="Image">
-                <Image IconID="save_save_32x32">
+                <Image IconID="save_save_32x32" ToolTip="Lưu">
                 </Image>
             </UpdateButton>
             <CancelButton ButtonType="Image" RenderMode="Image">
-                <Image IconID="actions_close_32x32">
+                <Image IconID="actions_close_32x32" ToolTip="Hủy">
                 </Image>
             </CancelButton>
             <EditButton ButtonType="Image" RenderMode="Image" Text="Cập nhật tên và giá">
@@ -244,7 +257,7 @@
         DeleteCommand="UPDATE [hhHangHoa] SET [DaXoa] = 1 WHERE [IDHangHoa] = @IDHangHoa"
         >
         <SelectParameters>
-            <asp:Parameter DefaultValue="false" Name="DaXoa" Type="Boolean" />
+           <asp:ControlParameter ControlID="formThongTin$ccbLoaiHangHoa" Name="DaXoa" PropertyName="Value" Type="Int32" />
         </SelectParameters>
         <UpdateParameters>
             <asp:Parameter Name="IDHangHoa" Type="Int32" />
