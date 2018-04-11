@@ -154,23 +154,23 @@
                                             <CellStyle HorizontalAlign="Center">
                                             </CellStyle>
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataTextColumn Caption="Mã hàng hóa" FieldName="MaHang" ShowInCustomizationForm="True" VisibleIndex="2">
+                                        <dx:GridViewDataTextColumn Caption="Mã hàng hóa" FieldName="MaHang" ShowInCustomizationForm="True" VisibleIndex="2"  Width="100px">
                                         </dx:GridViewDataTextColumn>
                                         <dx:GridViewDataTextColumn Caption="Tên hàng hóa" FieldName="TenHangHoa" ShowInCustomizationForm="True" VisibleIndex="3">
                                         </dx:GridViewDataTextColumn>
-                                        <dx:GridViewDataSpinEditColumn Caption="Vốn tồn kho" FieldName="VonTonKho" ShowInCustomizationForm="True" VisibleIndex="6">
+                                        <dx:GridViewDataSpinEditColumn Caption="Vốn tồn kho" FieldName="VonTonKho" ShowInCustomizationForm="True" VisibleIndex="6" Width="200px">
                                             <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                                             </PropertiesSpinEdit>
                                         </dx:GridViewDataSpinEditColumn>
-                                        <dx:GridViewDataSpinEditColumn Settings-FilterMode="Value" Caption="SL" FieldName="TonKho" ShowInCustomizationForm="True" VisibleIndex="5">
+                                        <dx:GridViewDataSpinEditColumn Settings-FilterMode="Value" Caption="SL" CellStyle-HorizontalAlign="Center" FieldName="TonKho" ShowInCustomizationForm="True" VisibleIndex="5" Width="100px">
                                             <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                                             </PropertiesSpinEdit>
                                         </dx:GridViewDataSpinEditColumn>
-                                        <dx:GridViewDataSpinEditColumn Caption="Giá trị tồn kho" FieldName="GiaTriTonKho" ShowInCustomizationForm="True" VisibleIndex="7">
+                                        <dx:GridViewDataSpinEditColumn Caption="Giá trị tồn kho" FieldName="GiaTriTonKho" ShowInCustomizationForm="True" VisibleIndex="7" Width="200px">
                                             <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                                             </PropertiesSpinEdit>
                                         </dx:GridViewDataSpinEditColumn>
-                                        <dx:GridViewDataComboBoxColumn Caption="Nhóm hàng" FieldName="NhomHHID" ShowInCustomizationForm="True" VisibleIndex="4">
+                                        <dx:GridViewDataComboBoxColumn Caption="Nhóm hàng" FieldName="NhomHHID" ShowInCustomizationForm="True" VisibleIndex="4" Width="250px">
                                             <PropertiesComboBox DataSourceID="dsNhomHang" TextField="TenNhom" ValueField="IDNhomHH">
                                             </PropertiesComboBox>
                                         </dx:GridViewDataComboBoxColumn>

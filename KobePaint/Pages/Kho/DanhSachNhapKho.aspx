@@ -21,32 +21,38 @@
                         </HideAdaptiveDetailButton>
                     </SettingsCommandButton>
                     <Columns>
-                        <dx:GridViewDataTextColumn FieldName="ID" ReadOnly="True" VisibleIndex="0" Caption="STT" Width="50px">
+                        <dx:GridViewDataTextColumn FieldName="ID" ReadOnly="True" VisibleIndex="0" Caption="STT" Width="50px" ShowInCustomizationForm="True">
                             <EditFormSettings Visible="False" />
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="TenHangHoa" VisibleIndex="1" Caption="Hàng hóa">
+                        <dx:GridViewDataTextColumn FieldName="TenHangHoa" VisibleIndex="2" Caption="Hàng hóa" ShowInCustomizationForm="True">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="MaSoMau" VisibleIndex="3" Caption="Mã số màu" Width="80px">
+                        <dx:GridViewDataTextColumn FieldName="MaHang" VisibleIndex="1" Caption="Mã HH" Width="80px" ShowInCustomizationForm="True">
                         </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="DonGia" VisibleIndex="6" Caption="Đơn giá" Width="80px">
-                            <PropertiesTextEdit DisplayFormatString="N0">
-                            </PropertiesTextEdit>
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="GiaBan" VisibleIndex="5" Caption="Giá bán" Width="80px">
-                            <PropertiesTextEdit DisplayFormatString="N0">
-                            </PropertiesTextEdit>
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="SoLuong" VisibleIndex="7" Caption="Số lượng" Width="80px">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="TongTien" VisibleIndex="8" Caption="Tổng tiền" Width="80px">
-                            <PropertiesTextEdit DisplayFormatString="N0">
-                            </PropertiesTextEdit>
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="Mã HH" FieldName="MaSo" VisibleIndex="2" Width="80px">
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn Caption="ĐVT" FieldName="QuiCach" VisibleIndex="4" Width="60px">
-                        </dx:GridViewDataTextColumn>
+                        <dx:GridViewDataSpinEditColumn Caption="Tổng tiền" FieldName="ThanhTien" VisibleIndex="7" Width="80px">
+                            <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
+                            </PropertiesSpinEdit>
+                        </dx:GridViewDataSpinEditColumn>
+                        <dx:GridViewDataSpinEditColumn Caption="Số lượng" FieldName="SoLuong" VisibleIndex="6" Width="80px">
+                            <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
+                            </PropertiesSpinEdit>
+                        </dx:GridViewDataSpinEditColumn>
+                        <dx:GridViewDataSpinEditColumn Caption="Giá vốn" FieldName="GiaVon" VisibleIndex="5" Width="80px">
+                            <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
+                            </PropertiesSpinEdit>
+                        </dx:GridViewDataSpinEditColumn>
+                        <dx:GridViewDataSpinEditColumn Caption="Tồn kho" FieldName="TonKho" VisibleIndex="4" Width="80px">
+                            <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
+                            </PropertiesSpinEdit>
+                        </dx:GridViewDataSpinEditColumn>
                     </Columns>
+
+                    <FormatConditions>
+                        <dx:GridViewFormatConditionHighlight FieldName="TonKho" Expression="[TonKho] < 1" Format="LightRedFillWithDarkRedText" />
+                            <dx:GridViewFormatConditionHighlight FieldName="TonKho" Expression="[TonKho] > 0" Format="GreenFillWithDarkGreenText" />
+                        <dx:GridViewFormatConditionTopBottom FieldName="TonKho" Rule="TopItems" Threshold="15" Format="BoldText"  CellStyle-HorizontalAlign="Center">
+    <CellStyle HorizontalAlign="Center"></CellStyle>
+                            </dx:GridViewFormatConditionTopBottom>
+                    </FormatConditions>
                     <Styles>
                         <AlternatingRow Enabled="True">
                         </AlternatingRow>                    
@@ -60,7 +66,9 @@
                     <Border BorderColor="Silver" BorderStyle="Solid" />
                     <Border BorderStyle="Solid" />
                 </dx:ASPxGridView>
-                <asp:SqlDataSource ID="dsChiTietNhapKho" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT kNhapKhoChiTiet.ID, kNhapKhoChiTiet.HangHoaID, kNhapKhoChiTiet.MaSoMauID, kNhapKhoChiTiet.DonGia, kNhapKhoChiTiet.GiaBan, kNhapKhoChiTiet.SoLuong, kNhapKhoChiTiet.TongTien, hhMaSoMau.MaSoMau, hhHangHoa.TenHangHoa, hhHangHoa.MaSo, hhHangHoa.QuiCach FROM kNhapKhoChiTiet INNER JOIN hhHangHoa ON kNhapKhoChiTiet.HangHoaID = hhHangHoa.IDHangHoa INNER JOIN hhMaSoMau ON kNhapKhoChiTiet.MaSoMauID = hhMaSoMau.IDMaMau WHERE (kNhapKhoChiTiet.NhapKhoID = @NhapKhoID)">
+                <asp:SqlDataSource ID="dsChiTietNhapKho" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
+                    SelectCommand="SELECT kNhapKhoChiTiet.ID, kNhapKhoChiTiet.HangHoaID, kNhapKhoChiTiet.GiaVon,kNhapKhoChiTiet.TonKho, kNhapKhoChiTiet.SoLuong, kNhapKhoChiTiet.ThanhTien,hhHangHoa.TenHangHoa, hhHangHoa.MaHang
+FROM kNhapKhoChiTiet INNER JOIN hhHangHoa ON kNhapKhoChiTiet.HangHoaID = hhHangHoa.IDHangHoa WHERE (kNhapKhoChiTiet.NhapKhoID =@NhapKhoID) ">
                     <SelectParameters>
                         <asp:SessionParameter Name="NhapKhoID" SessionField="IDNhapKho" Type="Int32" />
                     </SelectParameters>
@@ -101,11 +109,11 @@
                 </Image>
             </NewButton>
             <UpdateButton ButtonType="Image" RenderMode="Image">
-                <Image IconID="save_save_32x32">
+                <Image IconID="save_save_32x32" ToolTip="Lưu">
                 </Image>
             </UpdateButton>
             <CancelButton ButtonType="Image" RenderMode="Image">
-                <Image IconID="actions_close_32x32">
+                <Image IconID="actions_close_32x32" ToolTip="Hủy">
                 </Image>
             </CancelButton>
             <EditButton ButtonType="Image" RenderMode="Image">
@@ -117,65 +125,95 @@
                 </Image>
             </DeleteButton>
         </SettingsCommandButton>
+        <EditFormLayoutProperties ColCount="2">
+            <Items>
+                <dx:GridViewColumnLayoutItem ColumnName="Số hóa đơn">
+                </dx:GridViewColumnLayoutItem>
+                <dx:GridViewColumnLayoutItem ColumnName="Ghi chú">
+                </dx:GridViewColumnLayoutItem>
+                <dx:EditModeCommandLayoutItem ColSpan="2" HorizontalAlign="Right">
+                </dx:EditModeCommandLayoutItem>
+            </Items>
+        </EditFormLayoutProperties>
         <Columns>
-            <dx:GridViewDataTextColumn Caption="STT" ReadOnly="True" VisibleIndex="0" FieldName="IDNhapKho">
+            <dx:GridViewDataTextColumn Caption="STT" ReadOnly="True" VisibleIndex="0" FieldName="IDNhapKho" Width="50px">
                 <Settings AllowAutoFilter="False" AllowHeaderFilter="False" />
                 <EditFormSettings Visible="False" />
                 <HeaderStyle HorizontalAlign="Center" />
                 <CellStyle HorizontalAlign="Center">
                 </CellStyle>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="Mã hóa đơn" FieldName="MaHoaDon" VisibleIndex="3">
-                <Settings AutoFilterCondition="Contains" />
-            </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="Số nhập kho" FieldName="MaPhieu" VisibleIndex="4">
-                <Settings AutoFilterCondition="Contains" />
-            </dx:GridViewDataTextColumn>
-            <dx:GridViewDataDateColumn Caption="Ngày nhập kho" FieldName="NgayDonHang" VisibleIndex="1">
-                <EditFormSettings Visible="False" />
-                <CellStyle HorizontalAlign="Center">
-                </CellStyle>
-                <PropertiesDateEdit DisplayFormatString="dd/MM/yyyy" EditFormat="Custom" EditFormatString="dd/MM/yyyy">
-                    <CalendarProperties FirstDayOfWeek="Monday" ShowClearButton="False" ShowTodayButton="False" ShowWeekNumbers="False" ClearButtonText="Hủy">
-                        <FastNavProperties Enabled="False" />
-                    </CalendarProperties>
-                </PropertiesDateEdit>
-            </dx:GridViewDataDateColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Tổng tiền" FieldName="TongDonHang" VisibleIndex="6">
-                <EditFormSettings Visible="False" />
-                <PropertiesSpinEdit DisplayFormatString="N0">
-                </PropertiesSpinEdit>
-            </dx:GridViewDataSpinEditColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Số lượng hàng" FieldName="TongSoLuong" VisibleIndex="7">
-                <EditFormSettings Visible="False" />
-                <PropertiesSpinEdit DisplayFormatString="N0">
-                </PropertiesSpinEdit>
-            </dx:GridViewDataSpinEditColumn>
-            <dx:GridViewDataTextColumn Caption="Ghi chú" FieldName="GhiChu" VisibleIndex="8">
-                <Settings AutoFilterCondition="Contains" />
-            </dx:GridViewDataTextColumn>
-            <dx:GridViewCommandColumn Caption="Cập nhật Số HĐ" ShowEditButton="True" VisibleIndex="9">
+            <dx:GridViewCommandColumn Caption="Cập nhật" ShowEditButton="True" VisibleIndex="9" Width="100px">
+                 
             </dx:GridViewCommandColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Nhà cung cấp" FieldName="NCCID" GroupIndex="0" SortIndex="0" SortOrder="Ascending" VisibleIndex="2">
+            <dx:GridViewDataTextColumn Caption="Mã phiếu" FieldName="MaPhieu" VisibleIndex="1" Width="90px" CellStyle-Font-Bold="true" CellStyle-HorizontalAlign="Center">
+                <DataItemTemplate>
+                     <a target="_blank" href="CapNhat.aspx?id=<%# Container.KeyValue %>" > <%# Eval("MaPhieu") %></a>
+                </DataItemTemplate>
+
+<CellStyle HorizontalAlign="Center" Font-Bold="True"></CellStyle>
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataComboBoxColumn Caption="Nhà cung cấp" FieldName="NCCID" VisibleIndex="5">
                 <PropertiesComboBox DataSourceID="dsNhaCC" TextField="HoTen" ValueField="IDKhachHang">
                 </PropertiesComboBox>
-                <EditFormSettings Visible="False" />
             </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataComboBoxColumn Caption="NV nhập kho" FieldName="NguoiNhapID" VisibleIndex="5">
+            <dx:GridViewDataDateColumn Caption="Ngày nhập" FieldName="NgayNhap" VisibleIndex="3" Width="120px">
+                <PropertiesDateEdit DisplayFormatString="dd/MM/yyyy" DisplayFormatInEditMode="True">
+                </PropertiesDateEdit>
+            </dx:GridViewDataDateColumn>
+            <dx:GridViewDataComboBoxColumn Caption="Người nhập" FieldName="NguoiNhapID" VisibleIndex="4">
                 <PropertiesComboBox DataSourceID="dsNhanVien" TextField="HoTen" ValueField="IDNhanVien">
                 </PropertiesComboBox>
-                <EditFormSettings Visible="False" />
-                <CellStyle HorizontalAlign="Center">
-                </CellStyle>
             </dx:GridViewDataComboBoxColumn>
+            <dx:GridViewDataSpinEditColumn Caption="SL" FieldName="TongSoLuong" VisibleIndex="6" Width="50px" CellStyle-HorizontalAlign="Center">
+                <PropertiesSpinEdit DisplayFormatString="N0">
+                </PropertiesSpinEdit>
+
+<CellStyle HorizontalAlign="Center"></CellStyle>
+            </dx:GridViewDataSpinEditColumn>
+            <dx:GridViewDataSpinEditColumn Caption="Tổng tiền" FieldName="TongTien" VisibleIndex="7" CellStyle-Font-Bold="true" Width="100px"> 
+                <PropertiesSpinEdit DisplayFormatString="N0" >
+                </PropertiesSpinEdit>
+
+<CellStyle Font-Bold="True"></CellStyle>
+            </dx:GridViewDataSpinEditColumn>
+            <dx:GridViewDataSpinEditColumn Caption="Nợ" FieldName="CongNo" VisibleIndex="8" Width="100px">
+                <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
+                </PropertiesSpinEdit>
+            </dx:GridViewDataSpinEditColumn>
+            <dx:GridViewDataComboBoxColumn Caption="Trạng thái" FieldName="TrangThaiPhieu" VisibleIndex="2" Width="100px" CellStyle-HorizontalAlign="Center">
+                <PropertiesComboBox>
+                    <Items>
+                        <dx:ListEditItem Text="Hoàn thành" Value="0" />
+                        <dx:ListEditItem Text="Phiếu tạm" Value="1" />
+                        <dx:ListEditItem Text="Đã xóa" Value="2" />
+                    </Items>
+                </PropertiesComboBox>
+
+<CellStyle HorizontalAlign="Center"></CellStyle>
+            </dx:GridViewDataComboBoxColumn>
+            <dx:GridViewDataTextColumn Caption="Số hóa đơn" FieldName="SoHoaDon" Visible="False" VisibleIndex="10">
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataMemoColumn Caption="Ghi chú" FieldName="GhiChu" Visible="False" VisibleIndex="11">
+            </dx:GridViewDataMemoColumn>
         </Columns>
+
+        <FormatConditions>
+            <dx:GridViewFormatConditionHighlight FieldName="TrangThaiPhieu" Expression="[TrangThaiPhieu] = 0" Format="GreenFillWithDarkGreenText" />
+            <dx:GridViewFormatConditionHighlight FieldName="TrangThaiPhieu" Expression="[TrangThaiPhieu] = 1" Format="YellowFillWithDarkYellowText" />
+            <dx:GridViewFormatConditionHighlight FieldName="TrangThaiPhieu" Expression="[TrangThaiPhieu] = 2" Format="LightRedFillWithDarkRedText" />
+            <dx:GridViewFormatConditionHighlight FieldName="CongNo" Expression="[CongNo] > 0" Format="RedText" />
+
+            <dx:GridViewFormatConditionTopBottom FieldName="TonKho" Rule="TopItems" Threshold="15" Format="BoldText"  CellStyle-HorizontalAlign="Center">
+                <CellStyle HorizontalAlign="Center"></CellStyle>
+                </dx:GridViewFormatConditionTopBottom>
+        </FormatConditions>
     </dx:ASPxGridView>
     <asp:SqlDataSource ID="dsNhapKho" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
-        SelectCommand="SELECT [IDNhapKho], [NCCID], [MaHoaDon], [MaPhieu], [NgayDonHang], [NgayNhap], [NguoiNhapID], [TongDonHang], [TongSoLuong], [GhiChu] FROM [kNhapKho]" 
-        UpdateCommand="UPDATE [kNhapKho] SET [MaHoaDon] = @MaHoaDon, [MaPhieu] = @MaPhieu, [GhiChu] = @GhiChu WHERE [IDNhapKho] = @IDNhapKho">
+        SelectCommand="SELECT * FROM [kNhapKho] ORDER BY IDNhapKho DESC" 
+        UpdateCommand="UPDATE [kNhapKho] SET [GhiChu] = @GhiChu, [SoHoaDon] = @SoHoaDon WHERE [IDNhapKho] = @IDNhapKho">
         <UpdateParameters>
-            <asp:Parameter Name="MaHoaDon" Type="String" />
-            <asp:Parameter Name="MaPhieu" Type="String" />
+            <asp:Parameter Name="SoHoaDon" Type="String" />
             <asp:Parameter Name="GhiChu" Type="String" />
             <asp:Parameter Name="IDNhapKho" Type="Int32" />
         </UpdateParameters>

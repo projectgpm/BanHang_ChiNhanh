@@ -30,6 +30,14 @@
         function LoadNhomHang(s, e) {
             ccbNhomHH.PerformCallback();
         }
+        // thong bao
+        function endCallBack(s, e) {
+            if (s.cp_Reset) {
+                cbpThemHH.PerformCallback('Reset');
+                delete (s.cp_Reset);
+                ShowPopup(4000);
+            }
+        }
     </script>
  
     <dx:ASPxCallbackPanel ID="cbpThemHH" ClientInstanceName="cbpThemHH" runat="server" Width="100%" OnCallback="cbpThemHH_Callback">
@@ -39,15 +47,7 @@
                     <Items>
                         <dx:LayoutGroup Caption="Cập nhật hàng hóa" GroupBoxDecoration="HeadingLine" HorizontalAlign="Center" ColCount="2">
                             <Items>
-                                <dx:LayoutItem Caption="" ColSpan="2">
-                                    <LayoutItemNestedControlCollection>
-                                        <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer1" runat="server">
-                                            <div style="width:100%; background-color:#5cb85c;">
-                                                 <div style="padding-left:50px;"><dx:ASPxLabel ID="lblthongbao" runat="server" Font-Bold="True" Font-Size="13pt" ForeColor="White" ></dx:ASPxLabel></div>
-                                            </div>
-                                        </dx:LayoutItemNestedControlContainer>
-                                    </LayoutItemNestedControlCollection>
-                                </dx:LayoutItem>
+                               
                                 <dx:LayoutItem Caption="Tên hàng hóa">
                                     <LayoutItemNestedControlCollection>
                                         <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer2" runat="server">
@@ -201,6 +201,7 @@
 
             </dx:PanelContent>
         </PanelCollection>
+         <ClientSideEvents EndCallback="endCallBack" />
     </dx:ASPxCallbackPanel>
 
     <dx:ASPxPopupControl ID="pcDVT" ClientInstanceName="pcDVT" runat="server" HeaderText="Đơn vị tính" Width="500px" Height="600px" ScrollBars="Auto" PopupHorizontalAlign="WindowCenter"

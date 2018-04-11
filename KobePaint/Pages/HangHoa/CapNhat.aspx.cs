@@ -94,7 +94,7 @@ namespace KobePaint.Pages.HangHoa
 
                 }
                 DBDataProvider.DB.SubmitChanges();
-                lblthongbao.Text = "Cập nhật thành công.";
+                cbpThemHH.JSProperties["cp_Reset"] = true;
             }
             else
             {

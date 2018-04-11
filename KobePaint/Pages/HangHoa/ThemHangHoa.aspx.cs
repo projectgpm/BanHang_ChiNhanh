@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Transactions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -34,91 +35,103 @@ namespace KobePaint.Pages.HangHoa
 
         private void Save()
         {
-            int KT = DBDataProvider.DB.hhHangHoas.Where(x => x.TenHangHoa == txtTenHH.Text).Count();
-            if (KT == 0)
+            using (var scope = new TransactionScope())
             {
-                hhHangHoa hanghoa = new hhHangHoa();
-                hanghoa.TenHangHoa = txtTenHH.Text;
-                string MaHangHoa = null;
-                if (txtMaHH.Text == "")
+                try
                 {
-                    string strMaHang = "SP";
-                    string MAX = (DBDataProvider.DB.hhHangHoas.Count() + 1).ToString();
-                    for (int i = 1; i < (6 - MAX.Length); i++)
+                    int KT = DBDataProvider.DB.hhHangHoas.Where(x => x.TenHangHoa == txtTenHH.Text).Count();
+                    if (KT == 0)
                     {
-                        strMaHang += "0";
-                    }
-                    MaHangHoa = strMaHang + MAX;
-                }
-                else
-                {
-                    MaHangHoa = txtMaHH.Text;
-                }
-                hanghoa.MaHang = MaHangHoa;
-                hanghoa.NhomHHID = Convert.ToInt32(ccbNhomHH.Value);
-                hanghoa.DonViTinhID = Convert.ToInt32(ccbDVT.Value);
-                hanghoa.TrongLuong = 0;
-                hanghoa.GiaBan = Convert.ToDouble(spGiaBan.Number);
-                hanghoa.GiaVon = Convert.ToDouble(spGiaVon.Number);
-                hanghoa.DaXoa = 0;
-                hanghoa.NgayNhap = DateTime.Now;
-                hanghoa.LoaiHHID = 1;
-                int SL = Convert.ToInt32(spSoLuong.Number);
-                
-                hanghoa.TonKho = SL;
-                DBDataProvider.DB.hhHangHoas.InsertOnSubmit(hanghoa);
-                DBDataProvider.DB.SubmitChanges();
-                int IDHangHoa = hanghoa.IDHangHoa;
-
-                if (SL > 0)
-                {
-                    #region Trường hợp số lượng > 0 thì tiến hành ghi thẻ kho
-                    kTheKho thekho = new kTheKho();
-                    thekho.NgayNhap = DateTime.Now;
-                    thekho.DienGiai = "Khai báo hàng hóa";
-                    thekho.Nhap = SL;
-                    thekho.Xuat = 0;
-                    thekho.Ton = SL;
-                    thekho.HangHoaID = IDHangHoa;
-                    DBDataProvider.DB.kTheKhos.InsertOnSubmit(thekho);
-                    #endregion
-                }
-
-                List<string> ListBarCode = GetListBarCode();
-                if (ListBarCode.Count > 0)
-                {
-                    foreach (string barCode in ListBarCode)
-                    {
-                        int KT_barcode = DBDataProvider.DB.hhBarcodes.Where(x => x.Barcode == barCode).Count();
-                        if (KT_barcode == 0)
+                        hhHangHoa hanghoa = new hhHangHoa();
+                        hanghoa.TenHangHoa = txtTenHH.Text;
+                        string MaHangHoa = null;
+                        if (txtMaHH.Text == "")
                         {
-                            hhBarcode bc = new hhBarcode();
-                            bc.IDHangHoa = IDHangHoa;
-                            bc.Barcode = barCode;
-                            bc.DaXoa = false;
-                            DBDataProvider.DB.hhBarcodes.InsertOnSubmit(bc);
+                            string strMaHang = "SP";
+                            string MAX = (DBDataProvider.DB.hhHangHoas.Count() + 1).ToString();
+                            for (int i = 1; i < (6 - MAX.Length); i++)
+                            {
+                                strMaHang += "0";
+                            }
+                            MaHangHoa = strMaHang + MAX;
                         }
                         else
                         {
-                            throw new Exception("Barcode tồn tại đã bỏ qua!!");
+                            MaHangHoa = txtMaHH.Text;
                         }
+                        hanghoa.MaHang = MaHangHoa;
+                        hanghoa.NhomHHID = Convert.ToInt32(ccbNhomHH.Value);
+                        hanghoa.DonViTinhID = Convert.ToInt32(ccbDVT.Value);
+                        hanghoa.TrongLuong = 0;
+                        hanghoa.GiaBan = Convert.ToDouble(spGiaBan.Number);
+                        hanghoa.GiaVon = Convert.ToDouble(spGiaVon.Number);
+                        hanghoa.DaXoa = 0;
+                        hanghoa.NgayNhap = DateTime.Now;
+                        hanghoa.LoaiHHID = 1;
+                        int SL = Convert.ToInt32(spSoLuong.Number);
+
+                        hanghoa.TonKho = SL;
+                        DBDataProvider.DB.hhHangHoas.InsertOnSubmit(hanghoa);
+                        DBDataProvider.DB.SubmitChanges();
+                        int IDHangHoa = hanghoa.IDHangHoa;
+
+                        if (SL > 0)
+                        {
+                            #region Trường hợp số lượng > 0 thì tiến hành ghi thẻ kho
+                            kTheKho thekho = new kTheKho();
+                            thekho.NgayNhap = DateTime.Now;
+                            thekho.DienGiai = "Khai báo hàng hóa";
+                            thekho.Nhap = SL;
+                            thekho.Xuat = 0;
+                            thekho.Ton = SL;
+                            thekho.NhanVienID = Formats.IDUser();
+                            thekho.HangHoaID = IDHangHoa;
+                            DBDataProvider.DB.kTheKhos.InsertOnSubmit(thekho);
+                            #endregion
+                        }
+
+                        List<string> ListBarCode = GetListBarCode();
+                        if (ListBarCode.Count > 0)
+                        {
+                            foreach (string barCode in ListBarCode)
+                            {
+                                int KT_barcode = DBDataProvider.DB.hhBarcodes.Where(x => x.Barcode == barCode).Count();
+                                if (KT_barcode == 0)
+                                {
+                                    hhBarcode bc = new hhBarcode();
+                                    bc.IDHangHoa = IDHangHoa;
+                                    bc.Barcode = barCode;
+                                    bc.DaXoa = false;
+                                    DBDataProvider.DB.hhBarcodes.InsertOnSubmit(bc);
+                                }
+                                else
+                                {
+                                    throw new Exception("Barcode tồn tại đã bỏ qua!!");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            hhBarcode bc = new hhBarcode();
+                            bc.IDHangHoa = IDHangHoa;
+                            bc.Barcode = MaHangHoa;
+                            bc.DaXoa = false;
+                            DBDataProvider.DB.hhBarcodes.InsertOnSubmit(bc);
+                        }
+                        DBDataProvider.DB.SubmitChanges();
+                        scope.Complete();
+                        cbpThemHH.JSProperties["cp_Reset"] = true;
+                    }
+                    else
+                    {
+                        throw new Exception("Tên hàng hóa đã tồn tại!!");
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    hhBarcode bc = new hhBarcode();
-                    bc.IDHangHoa = IDHangHoa;
-                    bc.Barcode = MaHangHoa;
-                    bc.DaXoa = false;
-                    DBDataProvider.DB.hhBarcodes.InsertOnSubmit(bc);
+                    throw ex;
                 }
-                DBDataProvider.DB.SubmitChanges();
-                lblthongbao.Text = "Thêm thành công.";
-            }
-            else
-            {
-                throw new Exception("Tên hàng hóa đã tồn tại!!");
-            }
+            }    
         }
 
         protected List<string> GetListBarCode()

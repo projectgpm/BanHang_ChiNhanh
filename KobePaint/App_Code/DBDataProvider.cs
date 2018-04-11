@@ -29,5 +29,7 @@ namespace KobePaint.App_Code
         {
             return DB.hhBarcodes.Where(x => x.IDHangHoa == IDHangHoa).ToList();
         }
+        
+        
     }
 }
