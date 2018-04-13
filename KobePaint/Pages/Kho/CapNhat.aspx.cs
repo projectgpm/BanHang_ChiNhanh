@@ -25,20 +25,6 @@ namespace KobePaint.Pages.Kho
                 Session["sslistReceiptProducts"] = value;
             }
         }
-
-        public List<oImportProduct_NhapHang> NhapHang
-        {
-            get
-            {
-                if (Session["sslistReceiptNhapHang"] == null)
-                    Session["sslistReceiptNhapHang"] = new List<oImportProduct_ChiTietNhapHang>();
-                return (List<oImportProduct_NhapHang>)Session["sslistReceiptNhapHang"];
-            }
-            set
-            {
-                Session["sslistReceiptNhapHang"] = value;
-            }
-        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Context.User.Identity.IsAuthenticated)
@@ -301,23 +287,6 @@ namespace KobePaint.Pages.Kho
 
             string[] infoUser = Context.User.Identity.Name.Split('-');
             int ID = Convert.ToInt32(infoUser[0]);
-
-            var exitNhapHang = NhapHang.Where(r => r.IDNhanVien == ID).FirstOrDefault();
-            if (exitNhapHang == null)
-            {
-
-                oImportProduct_NhapHang nh = new oImportProduct_NhapHang(ID, TongTien, TongTien, 0);
-                NhapHang.Add(nh);
-            }
-            else
-            {
-                exitNhapHang.TongTien = TongTien;
-                exitNhapHang.ThanhToan = TongTien;
-            }
-
-            flThanhToan.DataSource = NhapHang[0];
-            flThanhToan.DataBind();
-
             gridImportPro.DataSource = listReceiptProducts;
             gridImportPro.DataBind();
         }

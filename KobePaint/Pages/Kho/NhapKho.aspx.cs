@@ -26,30 +26,16 @@ namespace KobePaint.Pages.Kho
                 Session["sslistReceiptProducts"] = value;
             }
         }
-
-        public List<oImportProduct_NhapHang> NhapHang
-        {
-            get
-            {
-                if (Session["sslistReceiptNhapHang"] == null)
-                    Session["sslistReceiptNhapHang"] = new List<oImportProduct_ChiTietNhapHang>();
-                return (List<oImportProduct_NhapHang>)Session["sslistReceiptNhapHang"];
-            }
-            set
-            {
-                Session["sslistReceiptNhapHang"] = value;
-            }
-        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Context.User.Identity.IsAuthenticated)
             {
                 if (!IsPostBack)
                 {
+                    //hfThanhToan["TongTien"] = 0;
                     string[] infoUser = Context.User.Identity.Name.Split('-');
                     txtNguoiNhap.Text = infoUser[1];
                     listReceiptProducts = new List<oImportProduct_ChiTietNhapHang>();
-                    NhapHang = new List<oImportProduct_NhapHang>();
                 }
             }
             else
@@ -83,6 +69,7 @@ namespace KobePaint.Pages.Kho
                     break;
                 default:
                     InsertIntoGrid();
+                    BindGrid();
                     break;
             }
         }
@@ -147,6 +134,9 @@ namespace KobePaint.Pages.Kho
             ccbBarcode.Text = "";
             ccbBarcode.Focus();
         }
+
+
+        #region InsertHang
         protected void InsertIntoGrid()
         {
             if (ccbBarcode.Text.Trim() != "")
@@ -186,8 +176,8 @@ namespace KobePaint.Pages.Kho
                     }
                 }
             }
-            BindGrid();
         }
+
         public void Insert_Hang(int ID)
         {
             int tblHangHoa_Count = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == ID && x.DaXoa == 0).Count();
@@ -222,15 +212,20 @@ namespace KobePaint.Pages.Kho
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Mã hàng không tồn tại!!');", true);
             }
         }
+        #endregion
+
+
+
         protected void Reset()
         {
             listReceiptProducts = new List<oImportProduct_ChiTietNhapHang>();
             gridImportPro.DataSource = listReceiptProducts;
             gridImportPro.DataBind();
-
+            ccbNhaCungCap.SelectedIndex = -1;
             ccbNhaCungCap.Text = "";
             txtSoHoaDon.Text = "";
             memoGhiChu.Text = "";
+            spThanhToan.Text = "";
             dateNgayNhap.Date = DateTime.Now;
             ccbBarcode.Text = "";
         }
@@ -262,7 +257,7 @@ namespace KobePaint.Pages.Kho
                     }
 
                     double ThanhToan = Convert.ToDouble(spThanhToan.Number);
-                    double ConLai = Convert.ToDouble(spConNo.Number);
+                    double ConLai = TongTien - ThanhToan;
 
                     string MaPhieu = null, strMaPhieu = "PN";
                     string MAX = (DBDataProvider.DB.kNhapKhos.Where(r => r.TrangThaiPhieu == 0).Count() + 1).ToString();
@@ -286,7 +281,8 @@ namespace KobePaint.Pages.Kho
                     nhapKho.GhiChu = memoGhiChu.Text;
                     nhapKho.NgayTao = DateTime.Now;
                     nhapKho.DaXoa = 0;
-                    nhapKho.ThanhToan = Convert.ToDouble(spThanhToan.Number);
+                    nhapKho.ThanhToan = ThanhToan;
+                    nhapKho.CongNo = ConLai;// nợ đơn hàng
                     DBDataProvider.DB.kNhapKhos.InsertOnSubmit(nhapKho);
                     DBDataProvider.DB.SubmitChanges();
                     int IDNhap = nhapKho.IDNhapKho;
@@ -360,7 +356,7 @@ namespace KobePaint.Pages.Kho
             ccbNhaCungCap.DataBind();
         }
 
-        #region value datasource
+        #region bind data hàng hóa
         protected void ccbBarcode_ItemRequestedByValue(object source, ListEditItemRequestedByValueEventArgs e)
         {
             long value = 0;
@@ -431,37 +427,23 @@ namespace KobePaint.Pages.Kho
             BindGrid();
         }
         #endregion
+
         private void BindGrid()
         {
-            double TongTien = 0;
-            foreach (var prod in listReceiptProducts)
-            {
-                TongTien += prod.ThanhTien;
-            }
+            //double TongTien = 0;
+            //foreach (var prod in listReceiptProducts)
+            //{
+            //    TongTien += prod.ThanhTien;
+            //}
 
-            string[] infoUser = Context.User.Identity.Name.Split('-');
-            int ID = Convert.ToInt32(infoUser[0]);
-
-            var exitNhapHang = NhapHang.Where(r => r.IDNhanVien == ID).FirstOrDefault();
-            if (exitNhapHang == null)
-            {
-
-                oImportProduct_NhapHang nh = new oImportProduct_NhapHang(ID, TongTien, TongTien, 0);
-                NhapHang.Add(nh);
-            }
-            else
-            {
-                exitNhapHang.TongTien = TongTien;
-                exitNhapHang.ThanhToan = TongTien;
-            }
-
-            flThanhToan.DataSource = NhapHang[0];
-            flThanhToan.DataBind();
+            //Hidden_TongTien.Value = TongTien.ToString();
+            //hfThanhToan["TongTien"] = TongTien;
 
             gridImportPro.DataSource = listReceiptProducts;
             gridImportPro.DataBind();
         }
 
+       
 
         protected void SaveTemp()
         {
@@ -485,6 +467,11 @@ namespace KobePaint.Pages.Kho
                     {
                         strMaPhieu += "0";
                     }
+
+
+                    double ThanhToan = Convert.ToDouble(spThanhToan.Number);
+                    double ConLai = TongTien - ThanhToan;
+
                     MaPhieu = strMaPhieu + MAX;
                     int IDNCC = Int32.Parse(ccbNhaCungCap.Value.ToString());
                     //Insert vào bảng nhập kho
@@ -497,9 +484,7 @@ namespace KobePaint.Pages.Kho
                     nhapKho.TongTien = TongTien;
                     nhapKho.TongSoLuong = TongSoLuong;
                     nhapKho.GhiChu = memoGhiChu.Text;
-                    nhapKho.ThanhToan = Convert.ToDouble(spThanhToan.Number);
-                    nhapKho.CongNoCu = 0;
-                    nhapKho.CongNoMoi = 0;
+                    nhapKho.ThanhToan = ThanhToan;
                     nhapKho.TrangThaiPhieu = 1;// 1 phiếu tạm, 2 phiếu xóa, 0 phiếu nhập
                     DBDataProvider.DB.kNhapKhos.InsertOnSubmit(nhapKho);
                     DBDataProvider.DB.SubmitChanges();
@@ -517,6 +502,13 @@ namespace KobePaint.Pages.Kho
                         detailNhapKho.TonKho = prod.TonKho;
                         DBDataProvider.DB.kNhapKhoChiTiets.InsertOnSubmit(detailNhapKho);
                     }
+                    //update công nợ
+                    khKhachHang Supplier = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == IDNCC).FirstOrDefault();
+                    if (Supplier != null)
+                    {
+                        nhapKho.CongNoCu = Supplier.CongNo;
+                        nhapKho.CongNoMoi = Supplier.CongNo + ConLai;
+                    }
                     DBDataProvider.DB.SubmitChanges();
                     scope.Complete();
                     Reset();
@@ -528,5 +520,7 @@ namespace KobePaint.Pages.Kho
                 }
             }
         }
+
+       
     }
 }

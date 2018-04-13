@@ -2266,6 +2266,8 @@ namespace KobePaint
 		
 		private System.Nullable<double> _ThanhToan;
 		
+		private System.Nullable<double> _CongNo;
+		
 		private System.Nullable<double> _CongNoCu;
 		
 		private System.Nullable<double> _CongNoMoi;
@@ -2300,6 +2302,8 @@ namespace KobePaint
     partial void OnTongTienChanged();
     partial void OnThanhToanChanging(System.Nullable<double> value);
     partial void OnThanhToanChanged();
+    partial void OnCongNoChanging(System.Nullable<double> value);
+    partial void OnCongNoChanged();
     partial void OnCongNoCuChanging(System.Nullable<double> value);
     partial void OnCongNoCuChanged();
     partial void OnCongNoMoiChanging(System.Nullable<double> value);
@@ -2477,6 +2481,26 @@ namespace KobePaint
 					this._ThanhToan = value;
 					this.SendPropertyChanged("ThanhToan");
 					this.OnThanhToanChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CongNo", DbType="Float")]
+		public System.Nullable<double> CongNo
+		{
+			get
+			{
+				return this._CongNo;
+			}
+			set
+			{
+				if ((this._CongNo != value))
+				{
+					this.OnCongNoChanging(value);
+					this.SendPropertyChanging();
+					this._CongNo = value;
+					this.SendPropertyChanged("CongNo");
+					this.OnCongNoChanged();
 				}
 			}
 		}

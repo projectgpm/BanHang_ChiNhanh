@@ -103,42 +103,6 @@ namespace KobePaint.Pages.Kho {
         protected global::DevExpress.Web.ASPxTextBox txtNguoiNhap;
         
         /// <summary>
-        /// memoGhiChu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxMemo memoGhiChu;
-        
-        /// <summary>
-        /// flThanhToan control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxFormLayout flThanhToan;
-        
-        /// <summary>
-        /// LayoutItemNestedControlContainer1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer1;
-        
-        /// <summary>
-        /// spTongCong control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxSpinEdit spTongCong;
-        
-        /// <summary>
         /// LayoutItemNestedControlContainer2 control.
         /// </summary>
         /// <remarks>
@@ -157,22 +121,13 @@ namespace KobePaint.Pages.Kho {
         protected global::DevExpress.Web.ASPxSpinEdit spThanhToan;
         
         /// <summary>
-        /// LayoutItemNestedControlContainer3 control.
+        /// memoGhiChu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer3;
-        
-        /// <summary>
-        /// spConNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxSpinEdit spConNo;
+        protected global::DevExpress.Web.ASPxMemo memoGhiChu;
         
         /// <summary>
         /// cbpInfoImport control.

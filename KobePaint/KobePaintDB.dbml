@@ -120,6 +120,7 @@
       <Column Name="NguoiNhapID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TongTien" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="ThanhToan" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CongNo" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="CongNoCu" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="CongNoMoi" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="TongSoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />

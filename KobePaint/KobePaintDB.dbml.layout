@@ -62,10 +62,10 @@
         <elementListCompartment Id="e1c639a8-452e-43fb-a858-84209921d036" absoluteBounds="0.51500000000000012, 2.835, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="deb91edc-51e7-450f-a885-edd7f500bf42" isExpanded="false" absoluteBounds="5, 1.625, 2, 0.45">
+    <classShape Id="d68f885d-75d7-4341-8a34-f5c146211ee4" isExpanded="false" absoluteBounds="5, 1.625, 2, 0.45">
       <DataClassMoniker Name="/KobePaintDBDataContext/kNhapKho" />
       <nestedChildShapes>
-        <elementListCompartment Id="ec0156b8-87da-4fe4-b00f-829213b8e469" absoluteBounds="5.015, 2.085, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="1991c6f8-f311-46a3-8b9d-1207d758f225" absoluteBounds="5.015, 2.085, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

@@ -7,22 +7,6 @@ namespace KobePaint.App_Code
 {
     #region Nhập hàng
     [Serializable]
-    public class oImportProduct_NhapHang
-    {
-       
-        public double TongTien { get; set; }
-        public double ThanhToan { get; set; }
-        public double ConLai { get; set; }
-        public int IDNhanVien { get; set; }
-        public oImportProduct_NhapHang(int idNhanVien, double tongTien, double thanhToan,double conLai)
-        {
-            this.TongTien = tongTien;
-            this.ThanhToan = thanhToan;
-            this.ConLai = conLai;
-            this.IDNhanVien = idNhanVien;
-        }
-    }
-
     public class oImportProduct_ChiTietNhapHang
     {
         public int STT { get; set; }

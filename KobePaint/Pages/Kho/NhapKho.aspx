@@ -29,19 +29,33 @@
                 alert('Vui lòng chọn nhà cung cấp');
                 return;
             }
-            
             cbpInfoImport.PerformCallback("import");
+            //spConNo.SetText() = "222222";
         }
 
         function LoadNhacCungCap() {
             ccbNhaCungCap.PerformCallback();
         }
         function onSaveClick() {
-            cbpInfoImport.PerformCallback('Save');
+            if (checkInput())
+                cbpInfoImport.PerformCallback('Save');
         }
         function onSaveTempClick() {
-            cbpInfoImport.PerformCallback('SaveTemp');
+            if (checkInput())
+                cbpInfoImport.PerformCallback('SaveTemp');
         }
+
+
+        function checkInput() {
+            if (spThanhToan.GetValue() == null) {
+                spThanhToan.Focus();
+                alert('Vui lòng nhập số tiền thanh toán');
+                return false;
+            };
+            return true;
+        }
+
+
         function onReviewClick() {
             cbpInfoImport.PerformCallback('Review');
         }
@@ -88,7 +102,7 @@
         <Panes>
             <dx:SplitterPane Name="splpInfo">
                 <Panes>
-                    <dx:SplitterPane MaxSize="300px" Name="splpInfoNCC" AutoHeight="true">
+                    <dx:SplitterPane MaxSize="300px" Name="splpInfoNCC" >
                         <ContentCollection>
                             <dx:SplitterContentControl runat="server">
                                 <dx:ASPxFormLayout ID="flayoutInfoNCC" runat="server" Width="100%">
@@ -164,7 +178,16 @@
                                                         </dx:LayoutItemNestedControlContainer>
                                                     </LayoutItemNestedControlCollection>
                                                 </dx:LayoutItem>
-                                              
+                                                 <dx:LayoutItem Caption="Thanh toán" FieldName="ThanhToan" >
+                                                    <LayoutItemNestedControlCollection>
+                                                        <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer2" runat="server">
+                                                            <dx:ASPxSpinEdit ID="spThanhToan" ClientInstanceName="spThanhToan" DisplayFormatString="N0" Increment ="5000" HorizontalAlign="Right" Width="100%" runat="server" Font-Bold="true" ForeColor="Blue" >
+                                                            </dx:ASPxSpinEdit>
+                                                           <%-- <dx:ASPxHiddenField runat="server" ClientInstanceName="hfThanhToan" ID="hfThanhToan">
+                                                            </dx:ASPxHiddenField>--%>
+                                                        </dx:LayoutItemNestedControlContainer>
+                                                    </LayoutItemNestedControlCollection>
+                                                </dx:LayoutItem>
                                                 <dx:LayoutItem Caption="Thông tin khác">
                                                     <LayoutItemNestedControlCollection>
                                                         <dx:LayoutItemNestedControlContainer runat="server">
@@ -178,45 +201,7 @@
                                     </Items>
                                     <SettingsItemCaptions Location="Top" />
                                 </dx:ASPxFormLayout>
-                                 <dx:ASPxFormLayout ID="flThanhToan" ClientInstanceName="flThanhToan" runat="server" Width="100%">
-                                    <Items>
-                                        <dx:LayoutGroup Caption="Thông tin thanh toán" GroupBoxDecoration="HeadingLine">
-                                            <CellStyle>
-                                                <Paddings Padding="0px" />
-                                            </CellStyle>
-                                            <ParentContainerStyle>
-                                                <Paddings Padding="0px" />
-                                            </ParentContainerStyle>
-                                            <Items>
-                                                <dx:LayoutItem Caption="Tổng cộng" FieldName="TongTien">
-                                                    <LayoutItemNestedControlCollection>
-                                                        <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer1" runat="server">
-                                                            <dx:ASPxSpinEdit ID="spTongCong" DisplayFormatString="N0" Enabled="false" HorizontalAlign="Right" Number="0" Width="100%" runat="server">
-                                                            </dx:ASPxSpinEdit>
-                                                        </dx:LayoutItemNestedControlContainer>
-                                                    </LayoutItemNestedControlCollection>
-                                                </dx:LayoutItem>
-                                                <dx:LayoutItem Caption="Thanh toán" FieldName="ThanhToan">
-                                                    <LayoutItemNestedControlCollection>
-                                                        <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer2" runat="server">
-                                                            <dx:ASPxSpinEdit ID="spThanhToan" DisplayFormatString="N0" Increment ="5000" HorizontalAlign="Right" Number="0" Width="100%" runat="server" Font-Bold="true" ForeColor="Blue" >
-                                                            </dx:ASPxSpinEdit>
-                                                        </dx:LayoutItemNestedControlContainer>
-                                                    </LayoutItemNestedControlCollection>
-                                                </dx:LayoutItem>
-                                                <dx:LayoutItem Caption="Còn nợ" FieldName="ConLai">
-                                                    <LayoutItemNestedControlCollection>
-                                                        <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer3" runat="server">
-                                                            <dx:ASPxSpinEdit ID="spConNo" DisplayFormatString="N0"  Enabled="false" HorizontalAlign="Right" Number="0" Width="100%"  runat="server">
-                                                            </dx:ASPxSpinEdit>
-                                                        </dx:LayoutItemNestedControlContainer>
-                                                    </LayoutItemNestedControlCollection>
-                                                </dx:LayoutItem>
-                                            </Items>
-                                        </dx:LayoutGroup>
-                                    </Items>
-                                    <SettingsItemCaptions Location="Top" />
-                                </dx:ASPxFormLayout>
+                               
                             </dx:SplitterContentControl>
                         </ContentCollection>
                     </dx:SplitterPane>
@@ -278,6 +263,7 @@
                                                 <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="0" ShowFooter="True"/>
                                                 <SettingsPager Mode="ShowAllRecords">
                                                 </SettingsPager>
+                                                <SettingsBehavior AllowSort="False" />
                                                 <SettingsCommandButton>
                                                     <ShowAdaptiveDetailButton ButtonType="Image">
                                                     </ShowAdaptiveDetailButton>
@@ -399,5 +385,5 @@
                 </dx:ASPxHiddenField>
             </dx:PopupControlContentControl>
         </ContentCollection>
-    </dx:ASPxPopupControl> 
+    </dx:ASPxPopupControl>
 </asp:Content>
