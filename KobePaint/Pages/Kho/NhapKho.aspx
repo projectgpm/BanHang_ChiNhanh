@@ -286,11 +286,11 @@
                                                     </dx:GridViewCommandColumn>
                                                     <dx:GridViewDataTextColumn Caption="TK" FieldName="TonKho" ShowInCustomizationForm="True" VisibleIndex="3" Width="50px" >
                                                     </dx:GridViewDataTextColumn>
-                                                    <dx:GridViewDataSpinEditColumn Caption="Thành tiền" FieldName="ThanhTien" ShowInCustomizationForm="True" VisibleIndex="8" Width="150px">
+                                                    <dx:GridViewDataSpinEditColumn Caption="Thành tiền" FieldName="ThanhTien" ShowInCustomizationForm="True" VisibleIndex="6" Width="150px">
                                                         <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                                                         </PropertiesSpinEdit>
                                                     </dx:GridViewDataSpinEditColumn>
-                                                    <dx:GridViewDataSpinEditColumn Caption="Giá vốn" FieldName="GiaVon" ShowInCustomizationForm="True" VisibleIndex="7" Width="150px">
+                                                    <dx:GridViewDataSpinEditColumn Caption="Giá vốn" FieldName="GiaVon" ShowInCustomizationForm="True" VisibleIndex="5" Width="150px">
 <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
                                                         <DataItemTemplate>
                                                             <dx:ASPxSpinEdit ID="spGiaVonReturn" runat="server" Number='<%# Convert.ToDouble(Eval("GiaVon")) %>' Width="100%" DisplayFormatString="N0" NumberType="Integer" OnInit="spGiaVonReturn_Init"  Increment="5000" HorizontalAlign="Right">
@@ -300,10 +300,19 @@
                                                             <Paddings Padding="2px" />
                                                         </CellStyle>
                                                     </dx:GridViewDataSpinEditColumn>
-                                                    <dx:GridViewDataSpinEditColumn Caption="Số lượng" FieldName="SoLuong" ShowInCustomizationForm="True" VisibleIndex="6" Width="100px">
+                                                    <dx:GridViewDataSpinEditColumn Caption="Số lượng" FieldName="SoLuong" ShowInCustomizationForm="True" VisibleIndex="4" Width="100px">
 <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
                                                        <DataItemTemplate>
                                                             <dx:ASPxSpinEdit ID="spUnitReturn" runat="server" Number='<%# Convert.ToInt32(Eval("SoLuong")) %>' DisplayFormatString="N0"  Width="100%" NumberType="Integer" OnInit="spUnitReturn_Init" HorizontalAlign="Center">
+                                                            </dx:ASPxSpinEdit>
+                                                        </DataItemTemplate>
+                                                        <CellStyle>
+                                                            <Paddings Padding="2px" />
+                                                        </CellStyle>
+                                                    </dx:GridViewDataSpinEditColumn>
+                                                    <dx:GridViewDataSpinEditColumn Caption="Giá bán" FieldName="GiaBanMoi" ShowInCustomizationForm="True" VisibleIndex="8" Width="150px">
+                                                      <DataItemTemplate>
+                                                            <dx:ASPxSpinEdit ID="spGiaBanReturn" runat="server" Number='<%# Convert.ToInt32(Eval("GiaBanMoi")) %>' DisplayFormatString="N0"  Width="100%" NumberType="Integer" OnInit="spGiaBanReturn_Init" Increment="5000" HorizontalAlign="Right">
                                                             </dx:ASPxSpinEdit>
                                                         </DataItemTemplate>
                                                         <CellStyle>

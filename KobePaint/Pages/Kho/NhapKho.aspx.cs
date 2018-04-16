@@ -55,10 +55,10 @@ namespace KobePaint.Pages.Kho
                 case "price":
                     GetPrice();
                     break;
-                case "UnitChange":
+                case "UnitChange": 
                     Unitchange(para[1]);
                     break;
-                case "SaveTemp":
+                case "SaveTemp": // lưu tạm
                     SaveTemp();
                     break;
                 case "Save":
@@ -194,7 +194,9 @@ namespace KobePaint.Pages.Kho
                          tblHangHoa.TenHangHoa,
                          Convert.ToDouble(tblHangHoa.GiaVon),
                          Convert.ToInt32(tblHangHoa.TonKho),
-                         1, Convert.ToDouble(tblHangHoa.GiaVon));
+                         1, Convert.ToDouble(tblHangHoa.GiaVon),
+                         Convert.ToDouble(tblHangHoa.GiaBan),
+                         Convert.ToDouble(tblHangHoa.GiaBan));
                     listReceiptProducts.Add(newRecpPro);
                 }
                 else
@@ -296,6 +298,7 @@ namespace KobePaint.Pages.Kho
                         detailNhapKho.GiaVon = prod.GiaVon;
                         detailNhapKho.SoLuong = prod.SoLuong;
                         detailNhapKho.ThanhTien = prod.ThanhTien;
+                        detailNhapKho.GiaBan = prod.GiaBanMoi;
                         detailNhapKho.TonKho = prod.TonKho;
                         DBDataProvider.DB.kNhapKhoChiTiets.InsertOnSubmit(detailNhapKho);
                         //Cập nhật || Thêm tồn kho
@@ -314,6 +317,12 @@ namespace KobePaint.Pages.Kho
                                 thekho.NhanVienID = Formats.IDUser();
                                 DBDataProvider.DB.kTheKhos.InsertOnSubmit(thekho);
                             #endregion
+                        }
+                        if (prod.GiaBanMoi != prod.GiaBanCu)
+                        {
+                            // thay đổi giá bán nếu khác giá bán cũ
+                            hhHangHoa hang = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == prod.IDHangHoa).FirstOrDefault();
+                            hang.GiaBan = prod.GiaBanMoi;
                         }
                     }
                     //update công nợ
@@ -401,6 +410,12 @@ namespace KobePaint.Pages.Kho
             GridViewDataRowTemplateContainer container = SpinEdit.NamingContainer as GridViewDataRowTemplateContainer;
             SpinEdit.ClientSideEvents.NumberChanged = String.Format("function(s, e) {{ onUnitReturnChanged({0}); }}", container.KeyValue);
         }
+        protected void spGiaBanReturn_Init(object sender, EventArgs e)
+        {
+            ASPxSpinEdit SpinEdit = sender as ASPxSpinEdit;
+            GridViewDataRowTemplateContainer container = SpinEdit.NamingContainer as GridViewDataRowTemplateContainer;
+            SpinEdit.ClientSideEvents.NumberChanged = String.Format("function(s, e) {{ onUnitReturnChanged({0}); }}", container.KeyValue);
+        }
         protected void spGiaVonReturn_Init(object sender, EventArgs e)
         {
             ASPxSpinEdit SpinEdit = sender as ASPxSpinEdit;
@@ -411,19 +426,27 @@ namespace KobePaint.Pages.Kho
         private void Unitchange(string para)
         {
             int IDProduct = Convert.ToInt32(para);
+
             //sL
             ASPxSpinEdit SpinEdit = gridImportPro.FindRowCellTemplateControlByKey(IDProduct, (GridViewDataColumn)gridImportPro.Columns["Số lượng"], "spUnitReturn") as ASPxSpinEdit;
             int UnitProductNew = Convert.ToInt32(SpinEdit.Number);
-            //GV
+
+            //Giá vốn
             ASPxSpinEdit SpinEdit_GiaVon = gridImportPro.FindRowCellTemplateControlByKey(IDProduct, (GridViewDataColumn)gridImportPro.Columns["Giá vốn"], "spGiaVonReturn") as ASPxSpinEdit;
-            double PriceProductNew = Convert.ToDouble(SpinEdit_GiaVon.Number);
+            double PriceProduct_GiaVon = Convert.ToDouble(SpinEdit_GiaVon.Number);
+
+            //Giá bán 
+            ASPxSpinEdit SpinEdit_GiaBan = gridImportPro.FindRowCellTemplateControlByKey(IDProduct, (GridViewDataColumn)gridImportPro.Columns["Giá bán"], "spGiaBanReturn") as ASPxSpinEdit;
+            double PriceProduct_GiaBan = Convert.ToDouble(SpinEdit_GiaBan.Number);
+
 
             var sourceRow = listReceiptProducts.Where(x => x.STT == IDProduct).SingleOrDefault();
-            //int UnitProductOld = sourceRow.SoLuong;
 
             sourceRow.SoLuong = UnitProductNew;
-            sourceRow.GiaVon = PriceProductNew;
-            sourceRow.ThanhTien = UnitProductNew * PriceProductNew;
+            sourceRow.GiaBanMoi = PriceProduct_GiaBan;
+            sourceRow.GiaVon = PriceProduct_GiaVon;
+            sourceRow.ThanhTien = UnitProductNew * PriceProduct_GiaVon;
+           
             BindGrid();
         }
         #endregion
@@ -497,6 +520,7 @@ namespace KobePaint.Pages.Kho
                         detailNhapKho.NhapKhoID = IDNhap;
                         detailNhapKho.HangHoaID = prod.IDHangHoa;
                         detailNhapKho.GiaVon = prod.GiaVon;
+                        detailNhapKho.GiaBan = prod.GiaBanMoi;
                         detailNhapKho.SoLuong = prod.SoLuong;
                         detailNhapKho.ThanhTien = prod.ThanhTien;
                         detailNhapKho.TonKho = prod.TonKho;

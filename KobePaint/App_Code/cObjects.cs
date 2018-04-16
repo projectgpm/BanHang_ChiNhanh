@@ -7,6 +7,8 @@ namespace KobePaint.App_Code
 {
     #region Nhập hàng
     [Serializable]
+
+   
     public class oImportProduct_ChiTietNhapHang
     {
         public int STT { get; set; }
@@ -17,8 +19,9 @@ namespace KobePaint.App_Code
         public int TonKho { get; set; }
         public int SoLuong { get; set; }
         public double ThanhTien { get; set; }
-     
-        public oImportProduct_ChiTietNhapHang(int iDHangHoa, string maHang, string tenHangHoa, double giaVon, int tonKho, int soLuong, double thanhTien)
+        public double GiaBanMoi { get; set; }
+        public double GiaBanCu { get; set; }
+        public oImportProduct_ChiTietNhapHang(int iDHangHoa, string maHang, string tenHangHoa, double giaVon, int tonKho, int soLuong, double thanhTien,double giaBanMoi, double giaBanCu)
         {
             // TODO: Complete member initialization
             this.IDHangHoa = iDHangHoa;
@@ -28,7 +31,8 @@ namespace KobePaint.App_Code
             this.TonKho = tonKho;
             this.SoLuong = soLuong;
             this.ThanhTien = thanhTien;
- 
+            this.GiaBanMoi = giaBanMoi;
+            this.GiaBanCu = giaBanCu;
         }
     }
     #endregion

@@ -140,7 +140,8 @@ namespace KobePaint.Pages.Kho
                          tblHangHoa.TenHangHoa,
                          Convert.ToDouble(tblHangHoa.GiaVon),
                          Convert.ToInt32(tblHangHoa.TonKho),
-                         1, Convert.ToDouble(tblHangHoa.GiaVon));
+                         1, Convert.ToDouble(tblHangHoa.GiaVon),
+                         Convert.ToDouble(tblHangHoa.GiaBan), Convert.ToDouble(tblHangHoa.GiaBan));
                     listReceiptProducts.Add(newRecpPro);
                 }
                 else
