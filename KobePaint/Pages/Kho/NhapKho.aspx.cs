@@ -3,6 +3,8 @@ using KobePaint.App_Code;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.OleDb;
+using System.IO;
 using System.Linq;
 using System.Transactions;
 using System.Web;
@@ -226,6 +228,7 @@ namespace KobePaint.Pages.Kho
             ccbNhaCungCap.SelectedIndex = -1;
             ccbNhaCungCap.Text = "";
             txtSoHoaDon.Text = "";
+
             memoGhiChu.Text = "";
             spThanhToan.Text = "";
             dateNgayNhap.Date = DateTime.Now;
@@ -439,9 +442,8 @@ namespace KobePaint.Pages.Kho
             ASPxSpinEdit SpinEdit_GiaBan = gridImportPro.FindRowCellTemplateControlByKey(IDProduct, (GridViewDataColumn)gridImportPro.Columns["Giá bán"], "spGiaBanReturn") as ASPxSpinEdit;
             double PriceProduct_GiaBan = Convert.ToDouble(SpinEdit_GiaBan.Number);
 
-
+            // cập nhật
             var sourceRow = listReceiptProducts.Where(x => x.STT == IDProduct).SingleOrDefault();
-
             sourceRow.SoLuong = UnitProductNew;
             sourceRow.GiaBanMoi = PriceProduct_GiaBan;
             sourceRow.GiaVon = PriceProduct_GiaVon;
@@ -545,6 +547,96 @@ namespace KobePaint.Pages.Kho
             }
         }
 
-       
+
+        #region nhập excel
+        public string strFileExcel { get; set; }
+        protected void UploadControl_FileUploadComplete(object sender, FileUploadCompleteEventArgs e)
+        {
+            string folder = null;
+            string filein = null;
+            string ThangNam = null;
+
+            ThangNam = string.Concat(System.DateTime.Now.Month.ToString(), System.DateTime.Now.Year.ToString());
+            if (!Directory.Exists(Server.MapPath("~/Uploads/") + ThangNam))
+            {
+                Directory.CreateDirectory(Server.MapPath("~/Uploads/") + ThangNam);
+            }
+            folder = Server.MapPath("~/Uploads/" + ThangNam + "/");
+
+            if (UploadControl.HasFile)
+            {
+                strFileExcel = Guid.NewGuid().ToString();
+                string theExtension = Path.GetExtension(UploadControl.FileName);
+                strFileExcel += theExtension;
+                filein = folder + strFileExcel;
+                e.UploadedFile.SaveAs(filein);
+                strFileExcel = ThangNam + "/" + strFileExcel;
+
+            }
+
+            //UploadingUtils.RemoveFileWithDelay(uploadedFile.FileName, resFileName, 5);
+
+            string Excel = Server.MapPath("~/Uploads/") + strFileExcel;
+            string excelConnectionString = string.Empty;
+            excelConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Excel + ";Extended Properties=Excel 8.0;";
+            OleDbConnection excelConnection = new OleDbConnection(excelConnectionString);
+            OleDbCommand cmd = new OleDbCommand("Select * from [Sheet1$]", excelConnection);
+            excelConnection.Open();
+            OleDbDataReader dReader = default(OleDbDataReader);
+            dReader = cmd.ExecuteReader();
+            DataTable dataTable = new DataTable();
+            dataTable.Load(dReader);
+            int r = dataTable.Rows.Count;
+            Import_Temp(dataTable);
+            BindGrid();
+            //popupViewExcel.ShowOnPageLoad = false;
+        }
+        private void Import_Temp(DataTable datatable)
+        {
+            int intRow = datatable.Rows.Count;
+            if (datatable.Columns.Contains("Mã hàng hóa") && datatable.Columns.Contains("Số lượng") && datatable.Columns.Contains("Giá vốn") && datatable.Columns.Contains("Giá bán"))
+            {
+                if (intRow != 0)
+                {
+                    for (int i = 0; i <= intRow - 1; i++)
+                    {
+                        DataRow dr = datatable.Rows[i];
+                        string MaHang = dr["Mã hàng hóa"].ToString().Trim();
+                        if (MaHang != "")
+                        {
+                            double GiaVon = Convert.ToDouble(dr["Giá vốn"] == null ? "0" : dr["Giá vốn"].ToString().Trim());
+                            double GiaBan = Convert.ToDouble(dr["Giá bán"] == null ? "0" : dr["Giá bán"].ToString().Trim());
+                            int SoLuong = Convert.ToInt32(dr["Số lượng"] == null ? "0" : dr["Số lượng"].ToString().Trim());
+                            int tblHangHoa_Count = DBDataProvider.DB.hhHangHoas.Where(x => x.MaHang == MaHang && x.DaXoa == 0).Count();
+                            if (tblHangHoa_Count > 0)
+                            {
+                                var tblHangHoa = DBDataProvider.DB.hhHangHoas.Where(x => x.MaHang == MaHang && x.DaXoa == 0).FirstOrDefault();
+                                var exitProdInList = listReceiptProducts.SingleOrDefault(r => r.MaHang == MaHang);
+                                if (exitProdInList == null)
+                                {
+
+                                    oImportProduct_ChiTietNhapHang newRecpPro = new oImportProduct_ChiTietNhapHang(
+                                         tblHangHoa.IDHangHoa,
+                                         tblHangHoa.MaHang,
+                                         tblHangHoa.TenHangHoa,
+                                         GiaVon,
+                                         Convert.ToInt32(tblHangHoa.TonKho),
+                                         SoLuong, GiaVon * SoLuong, GiaBan, GiaBan);
+                                    listReceiptProducts.Add(newRecpPro);
+                                }
+                                UpdateSTT();
+                            }
+
+                        }
+                    }
+
+                }
+            }
+            else
+            {
+                Response.Write("<script language='JavaScript'> alert('Dữ liệu không chính xác? Vui lòng kiểm tra lại.'); </script>"); return;
+            }
+        }
+        #endregion
     }
 }
