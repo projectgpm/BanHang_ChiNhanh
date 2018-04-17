@@ -27,7 +27,6 @@
                 return;
             }
             cbpInfoImport.PerformCallback("import");
-            //spConNo.SetText() = "222222";
         }
 
         function LoadNhacCungCap() {
@@ -60,23 +59,20 @@
         }
        
         function onFileUploadComplete() {
-            //popupViewExcel.Hide();
+            popupViewExcel.Hide();
             gridImportPro.Refresh();
             gridImportPro.DataBind();
         }
 
-        //function btnUpload() {
-        //    if(UploadControl_Excel.GetText() == "")
-        //        alert('Vui lòng chọn file excel.')
-        //    else
-        //        cbpInfoImport.PerformCallback('UploadControll');
-        //}
+        
         ///////////////////////////////////
         function onUnitReturnChanged(key) {
             cbpInfoImport.PerformCallback('UnitChange|' + key);
         }
 
         function endCallBackProduct(s, e) {
+            
+
             if (s.cp_rpView) {
                 hdfViewReport.Set('view', '1');
                 popupViewReport.Show();
@@ -238,7 +234,6 @@
                                                                             EnableCallbackMode="true" CallbackPageSize="20" 
                                                                             OnItemsRequestedByFilterCondition="ccbBarcode_ItemsRequestedByFilterCondition"
                                                                             OnItemRequestedByValue="ccbBarcode_ItemRequestedByValue" 
-                                    
                                                                             >                                    
                                                                             <Columns>
                                                                                 <dx:ListBoxColumn FieldName="MaHang" Width="50px" Caption="Mã Hàng" />
