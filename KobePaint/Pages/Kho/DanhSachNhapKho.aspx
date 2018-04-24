@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.master" AutoEventWireup="true" CodeBehind="DanhSachNhapKho.aspx.cs" Inherits="KobePaint.Pages.Kho.DanhSachNhapKho" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <dx:ASPxGridView ID="gridNhaphang" runat="server" AutoGenerateColumns="False" ClientInstanceName="gridNhaphang" Width="100%" DataSourceID="dsNhapKho" KeyFieldName="IDNhapKho" OnCustomColumnDisplayText="gridNhaphang_CustomColumnDisplayText">
+    <dx:ASPxGridView ID="gridNhaphang" runat="server" AutoGenerateColumns="False" ClientInstanceName="gridNhaphang" Width="100%" DataSourceID="dsNhapKho" KeyFieldName="IDNhapKho" OnCustomColumnDisplayText="gridNhaphang_CustomColumnDisplayText" OnRowDeleting="gridNhaphang_RowDeleting">
         <SettingsEditing EditFormColumnCount="3">
         </SettingsEditing>
-        <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="0" ShowFilterRow="True"/>
+        <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="0" ShowFilterRow="True" ShowTitlePanel="True"/>
         <SettingsDetail ShowDetailRow="True" />
         <Templates>
             <DetailRow>
@@ -78,7 +78,8 @@ FROM kNhapKhoChiTiet INNER JOIN hhHangHoa ON kNhapKhoChiTiet.HangHoaID = hhHangH
         <SettingsPager PageSize="30" AlwaysShowPager="True" >
             <Summary EmptyText="Không có dữ liệu" Text="Trang {0}/{1}" />
         </SettingsPager>
-        <SettingsText EmptyDataRow="Không có dữ liệu !!" HeaderFilterCancelButton="Hủy" HeaderFilterFrom="Từ" HeaderFilterOkButton="Lọc" HeaderFilterTo="Đến" SearchPanelEditorNullText="Nhập thông tin cần tìm..." />
+        <SettingsSearchPanel Visible="True" />
+        <SettingsText EmptyDataRow="Không có dữ liệu !!" HeaderFilterCancelButton="Hủy" HeaderFilterFrom="Từ" HeaderFilterOkButton="Lọc" HeaderFilterTo="Đến" SearchPanelEditorNullText="Nhập thông tin cần tìm..." ConfirmDelete="Xác nhận xóa !!" Title="DANH SÁCH NHẬP KHO" />
         <Styles>
             <Header HorizontalAlign="Center">
             </Header>
@@ -98,7 +99,7 @@ FROM kNhapKhoChiTiet INNER JOIN hhHangHoa ON kNhapKhoChiTiet.HangHoaID = hhHangH
             </SearchPanel>
         </Styles>
         <Paddings Padding="0px" />
-        <SettingsBehavior AutoExpandAllGroups="True" />
+        <SettingsBehavior AutoExpandAllGroups="True" ConfirmDelete="True" />
         <SettingsCommandButton>
             <ShowAdaptiveDetailButton ButtonType="Image">
             </ShowAdaptiveDetailButton>
@@ -117,11 +118,11 @@ FROM kNhapKhoChiTiet INNER JOIN hhHangHoa ON kNhapKhoChiTiet.HangHoaID = hhHangH
                 </Image>
             </CancelButton>
             <EditButton ButtonType="Image" RenderMode="Image">
-                <Image IconID="actions_edit_16x16devav">
+                <Image IconID="actions_edit_16x16devav" ToolTip="Cập nhật số hóa đơn">
                 </Image>
             </EditButton>
             <DeleteButton ButtonType="Image" RenderMode="Image">
-                <Image IconID="actions_cancel_16x16">
+                <Image IconID="actions_cancel_16x16" ToolTip="Xóa phiếu nhập hàng">
                 </Image>
             </DeleteButton>
         </SettingsCommandButton>
@@ -143,14 +144,13 @@ FROM kNhapKhoChiTiet INNER JOIN hhHangHoa ON kNhapKhoChiTiet.HangHoaID = hhHangH
                 <CellStyle HorizontalAlign="Center">
                 </CellStyle>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewCommandColumn Caption="Cập nhật" ShowEditButton="True" VisibleIndex="9" Width="100px">
+            <dx:GridViewCommandColumn Caption="Cập nhật" ShowEditButton="True" VisibleIndex="9" Width="100px" ShowDeleteButton="True">
                  
             </dx:GridViewCommandColumn>
             <dx:GridViewDataTextColumn Caption="Mã phiếu" FieldName="MaPhieu" VisibleIndex="1" Width="90px" CellStyle-Font-Bold="true" CellStyle-HorizontalAlign="Center">
-                <DataItemTemplate>
-                     <a target="_blank" href="CapNhat.aspx?id=<%# Container.KeyValue %>" > <%# Eval("MaPhieu") %></a>
-                </DataItemTemplate>
-
+                <%--<DataItemTemplate>
+                     <a target="_blank" href="<%# Eval("Url") %>" > <%# Eval("MaPhieu") %></a>
+                </DataItemTemplate>--%>
 <CellStyle HorizontalAlign="Center" Font-Bold="True"></CellStyle>
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataComboBoxColumn Caption="Nhà cung cấp" FieldName="NCCID" VisibleIndex="5">

@@ -134,6 +134,7 @@
     <Content Include="Pages\Kho\DanhSachNhapKho.aspx" />
     <Content Include="Pages\Kho\NhapKho.aspx" />
     <Content Include="Pages\Kho\TonKho.aspx" />
+    <Content Include="Pages\Kho\TraHang.aspx" />
     <Content Include="Pages\TaiKhoan\DangNhap.aspx" />
     <Content Include="Pages\TaiKhoan\DangXuat.aspx" />
     <Content Include="Pages\TaiKhoan\DanhSachTaiKhoan.aspx" />
@@ -151,7 +152,7 @@
       <LastGenOutput>KobePaintDB.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="BieuMau\nhapkho.xlt" />
+    <Content Include="BieuMau\nhapkho.xls" />
     <None Include="Properties\PublishProfiles\KobePaint.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -308,6 +309,13 @@
     </Compile>
     <Compile Include="Pages\Kho\TonKho.aspx.designer.cs">
       <DependentUpon>TonKho.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Kho\TraHang.aspx.cs">
+      <DependentUpon>TraHang.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Kho\TraHang.aspx.designer.cs">
+      <DependentUpon>TraHang.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\TaiKhoan\DangNhap.aspx.cs">
       <DependentUpon>DangNhap.aspx</DependentUpon>

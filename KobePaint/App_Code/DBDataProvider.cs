@@ -29,7 +29,10 @@ namespace KobePaint.App_Code
         {
             return DB.hhBarcodes.Where(x => x.IDHangHoa == IDHangHoa).ToList();
         }
-        
-        
+        // danh sách nhập kho chi tiết
+        public static List<kNhapKhoChiTiet> NhapKhoChiTiet(int NhapKhoID)
+        {
+            return DB.kNhapKhoChiTiets.Where(x => x.NhapKhoID == NhapKhoID).ToList();
+        }
     }
 }

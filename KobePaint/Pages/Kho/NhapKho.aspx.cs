@@ -34,7 +34,6 @@ namespace KobePaint.Pages.Kho
             {
                 if (!IsPostBack)
                 {
-                    //hfThanhToan["TongTien"] = 0;
                     string[] infoUser = Context.User.Identity.Name.Split('-');
                     txtNguoiNhap.Text = infoUser[1];
                     listReceiptProducts = new List<oImportProduct_ChiTietNhapHang>();
@@ -54,25 +53,22 @@ namespace KobePaint.Pages.Kho
             string[] para = e.Parameter.Split('|');
             switch (para[0])
             {
-                case "price":
-                    GetPrice();
-                    break;
-                case "UnitChange": 
-                    Unitchange(para[1]);
-                    break;
-                case "SaveTemp": // lưu tạm
-                    SaveTemp();
-                    break;
-                case "Save":
-                    Save();
-                    break;
-                case "Review":
-                    CreateReportReview();
-                    break;
-                default:
-                    InsertIntoGrid();
-                    BindGrid();
-                    break;
+                case "price": GetPrice(); break;
+                case "UnitChange": Unitchange(para[1]); BindGrid(); break;
+                case "SaveTemp": SaveTemp(); break;
+                case "Save": Save(); Reset(); break;
+                case "Review": CreateReportReview(); break;
+                case "importexcel": BindGrid(); break;
+                case "redirect": DevExpress.Web.ASPxWebControl.RedirectOnCallback("~/Pages/Kho/DanhSachNhapKho.aspx"); break;
+                default: InsertIntoGrid(); BindGrid(); break;
+            }
+        }
+        protected void cbpInfo_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
+        {
+            switch (e.Parameter)
+            {
+                case "refresh": BindGrid(); break;
+                default: break;
             }
         }
         #region Report
@@ -162,7 +158,7 @@ namespace KobePaint.Pages.Kho
                 }
                 else
                 {
-                    // value idhanghoa
+                    // idhanghoa
                     int IDProduct;
                     bool isNumeric = Int32.TryParse(ccbBarcode.Value.ToString(), out IDProduct);
                     if (isNumeric)
@@ -230,7 +226,8 @@ namespace KobePaint.Pages.Kho
             txtSoHoaDon.Text = "";
 
             memoGhiChu.Text = "";
-            spThanhToan.Text = "";
+            spThanhToan.Number = 0;
+            spTongTien.Number = 0;
             dateNgayNhap.Date = DateTime.Now;
             ccbBarcode.Text = "";
         }
@@ -291,7 +288,7 @@ namespace KobePaint.Pages.Kho
                     DBDataProvider.DB.kNhapKhos.InsertOnSubmit(nhapKho);
                     DBDataProvider.DB.SubmitChanges();
                     int IDNhap = nhapKho.IDNhapKho;
-
+                    nhapKho.Url = "TraHang.aspx?id=" + IDNhap;
                     foreach (var prod in listReceiptProducts)
                     {
                         //Insert vào chi tiết nhập kho
@@ -331,13 +328,32 @@ namespace KobePaint.Pages.Kho
                     //update công nợ
                     khKhachHang Supplier = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == IDNCC).FirstOrDefault();
                     if (Supplier != null)
-                    {
+                    { 
+                        #region ghi nhật ký nhập kho để xem báo cáo
+                            if (ConLai > 0)
+                            {
+                                khNhatKyCongNo nhatky = new khNhatKyCongNo();
+                                nhatky.NgayNhap = DateTime.Now;
+                                nhatky.DienGiai = "Nhập kho";
+                                nhatky.NoDau = Supplier.CongNo;
+                                nhatky.NhapHang = ConLai;
+                                nhatky.TraHang = 0;
+                                nhatky.NoCuoi = Supplier.CongNo + ConLai;
+                                nhatky.ThanhToan = 0;
+                                nhatky.NhanVienID = Formats.IDUser();
+                                nhatky.SoPhieu = MaPhieu;
+                                nhatky.IDKhachHang = IDNCC;
+                                DBDataProvider.DB.khNhatKyCongNos.InsertOnSubmit(nhatky);
+                                DBDataProvider.DB.SubmitChanges();
+                            }
+                        #endregion
                         nhapKho.CongNoCu = Supplier.CongNo;
                         nhapKho.CongNoMoi = Supplier.CongNo + ConLai;
                         Supplier.TongTienHang += TongTien;
                         Supplier.CongNo += ConLai;
                         Supplier.LanCuoiMuaHang = DateTime.Now;
                     }
+                    
                     DBDataProvider.DB.SubmitChanges();
                     scope.Complete();
                     Reset();
@@ -449,26 +465,24 @@ namespace KobePaint.Pages.Kho
             sourceRow.GiaVon = PriceProduct_GiaVon;
             sourceRow.ThanhTien = UnitProductNew * PriceProduct_GiaVon;
            
-            BindGrid();
+            //BindGrid();
         }
         #endregion
 
         private void BindGrid()
         {
-            //double TongTien = 0;
-            //foreach (var prod in listReceiptProducts)
-            //{
-            //    TongTien += prod.ThanhTien;
-            //}
-
-            //Hidden_TongTien.Value = TongTien.ToString();
-            //hfThanhToan["TongTien"] = TongTien;
-
+            double TongTien = 0;
+            foreach (var prod in listReceiptProducts)
+            {
+                TongTien += prod.ThanhTien;
+            }
+            spTongTien.Text = TongTien.ToString();
+            spThanhToan.Text = TongTien.ToString();
             gridImportPro.DataSource = listReceiptProducts;
             gridImportPro.DataBind();
         }
 
-       
+        
 
         protected void SaveTemp()
         {
@@ -510,11 +524,12 @@ namespace KobePaint.Pages.Kho
                     nhapKho.TongSoLuong = TongSoLuong;
                     nhapKho.GhiChu = memoGhiChu.Text;
                     nhapKho.ThanhToan = ThanhToan;
+                    
                     nhapKho.TrangThaiPhieu = 1;// 1 phiếu tạm, 2 phiếu xóa, 0 phiếu nhập
                     DBDataProvider.DB.kNhapKhos.InsertOnSubmit(nhapKho);
                     DBDataProvider.DB.SubmitChanges();
                     int IDNhap = nhapKho.IDNhapKho;
-
+                    nhapKho.Url = "CapNhat.aspx?id=" + IDNhap;
                     foreach (var prod in listReceiptProducts)
                     {
                         //Insert vào chi tiết nhập kho
@@ -529,12 +544,12 @@ namespace KobePaint.Pages.Kho
                         DBDataProvider.DB.kNhapKhoChiTiets.InsertOnSubmit(detailNhapKho);
                     }
                     //update công nợ
-                    khKhachHang Supplier = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == IDNCC).FirstOrDefault();
-                    if (Supplier != null)
-                    {
-                        nhapKho.CongNoCu = Supplier.CongNo;
-                        nhapKho.CongNoMoi = Supplier.CongNo + ConLai;
-                    }
+                    //khKhachHang Supplier = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == IDNCC).FirstOrDefault();
+                    //if (Supplier != null)
+                    //{
+                    //    nhapKho.CongNoCu = Supplier.CongNo;
+                    //    nhapKho.CongNoMoi = Supplier.CongNo + ConLai;
+                    //}
                     DBDataProvider.DB.SubmitChanges();
                     scope.Complete();
                     Reset();
@@ -588,8 +603,11 @@ namespace KobePaint.Pages.Kho
             dataTable.Load(dReader);
             int r = dataTable.Rows.Count;
             Import_Temp(dataTable);
-            BindGrid();
-            //popupViewExcel.ShowOnPageLoad = false;
+
+            //gridImportPro.DataBind();
+            UpdateSTT();
+            //BindGrid();
+            
         }
         private void Import_Temp(DataTable datatable)
         {
@@ -624,7 +642,7 @@ namespace KobePaint.Pages.Kho
                                          SoLuong, GiaVon * SoLuong, GiaBan, GiaBan);
                                     listReceiptProducts.Add(newRecpPro);
                                 }
-                                UpdateSTT();
+                                
                             }
 
                         }
