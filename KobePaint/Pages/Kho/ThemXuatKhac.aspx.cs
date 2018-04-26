@@ -19,13 +19,13 @@ namespace KobePaint.Pages.Kho
         {
             get
             {
-                if (Session["sslistReceiptProducts"] == null)
-                    Session["sslistReceiptProducts"] = new List<oImportProduct_ChiTietXuatKhac>();
-                return (List<oImportProduct_ChiTietXuatKhac>)Session["sslistReceiptProducts"];
+                if (Session["sslistXuatKhac"] == null)
+                    Session["sslistXuatKhac"] = new List<oImportProduct_ChiTietXuatKhac>();
+                return (List<oImportProduct_ChiTietXuatKhac>)Session["sslistXuatKhac"];
             }
             set
             {
-                Session["sslistReceiptProducts"] = value;
+                Session["sslistXuatKhac"] = value;
             }
         }
         protected void Page_Load(object sender, EventArgs e)

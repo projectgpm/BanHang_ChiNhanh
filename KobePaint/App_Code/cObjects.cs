@@ -66,6 +66,36 @@ namespace KobePaint.App_Code
     }
     #endregion
 
+
+    #region Kiểm kê
+    [Serializable]
+    public class oImportProduct_ChiTietKiemKe
+    {
+        public int STT { get; set; }
+        public int IDHangHoa { get; set; }
+        public string MaHang { get; set; }
+        public string TenHangHoa { get; set; }
+        public int TonKhoHeThong { get; set; }
+        public int TonKhoThucTe { get; set; }
+        public int ChenhLech { get; set; }
+        public int TrangThai { get; set; }
+        public string DienGiai { get; set; }
+
+        public oImportProduct_ChiTietKiemKe(int iDHangHoa, string maHang, string tenHangHoa, int tonKhoHeThong, int tonKhoThucTe, int chenhLech, int trangThai, string dienGiai)
+        {
+            // TODO: Complete member initialization
+            this.IDHangHoa = iDHangHoa;
+            this.MaHang = maHang;
+            this.TenHangHoa = tenHangHoa;
+            this.TonKhoHeThong = tonKhoHeThong;
+            this.TonKhoThucTe = tonKhoThucTe;
+            this.ChenhLech = chenhLech;
+            this.TrangThai = trangThai;
+            this.DienGiai = dienGiai;
+        }
+    }
+    #endregion
+
     //[Serializable]
     //public class oDeliveryNote
     //{

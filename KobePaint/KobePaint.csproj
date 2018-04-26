@@ -131,9 +131,11 @@
     <Content Include="Pages\KhachHang\DanhSachNCC.aspx" />
     <Content Include="Pages\KhachHang\ThemKH.aspx" />
     <Content Include="Pages\Kho\CapNhat.aspx" />
+    <Content Include="Pages\Kho\DanhSachKiemKho.aspx" />
     <Content Include="Pages\Kho\DanhSachNhapKho.aspx" />
     <Content Include="Pages\Kho\DanhSachXuatKhac.aspx" />
     <Content Include="Pages\Kho\NhapKho.aspx" />
+    <Content Include="Pages\Kho\ThemKiemKho.aspx" />
     <Content Include="Pages\Kho\ThemXuatKhac.aspx" />
     <Content Include="Pages\Kho\TonKho.aspx" />
     <Content Include="Pages\Kho\TraHang.aspx" />
@@ -291,6 +293,13 @@
     <Compile Include="Pages\Kho\CapNhat.aspx.designer.cs">
       <DependentUpon>CapNhat.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Kho\DanhSachKiemKho.aspx.cs">
+      <DependentUpon>DanhSachKiemKho.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Kho\DanhSachKiemKho.aspx.designer.cs">
+      <DependentUpon>DanhSachKiemKho.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Kho\DanhSachNhapKho.aspx.cs">
       <DependentUpon>DanhSachNhapKho.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -311,6 +320,13 @@
     </Compile>
     <Compile Include="Pages\Kho\NhapKho.aspx.designer.cs">
       <DependentUpon>NhapKho.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Kho\ThemKiemKho.aspx.cs">
+      <DependentUpon>ThemKiemKho.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Kho\ThemKiemKho.aspx.designer.cs">
+      <DependentUpon>ThemKiemKho.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Kho\ThemXuatKhac.aspx.cs">
       <DependentUpon>ThemXuatKhac.aspx</DependentUpon>

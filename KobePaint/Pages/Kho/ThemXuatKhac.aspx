@@ -40,7 +40,13 @@
         function onUnitReturnChanged(key) {
             cbpInfo.PerformCallback('UnitChange|' + key);
         }
-
+        function endCallBackProduct(s, e) {
+            if (s.cp_Reset) {
+                cbpInfo.PerformCallback('Reset');
+                delete (s.cp_Reset);
+                ShowPopup(4000);
+            }
+        }
     </script>
 
     <style>
@@ -305,6 +311,7 @@
                      </dx:ASPxPanel>
                 </dx:PanelContent>
             </PanelCollection>
+        <ClientSideEvents EndCallback="endCallBackProduct" />
      </dx:ASPxCallbackPanel>
     <dx:ASPxGlobalEvents ID="globalEventGrid" runat="server">
         <ClientSideEvents BrowserWindowResized="AdjustSize" ControlsInitialized="AdjustSize" />
@@ -322,7 +329,7 @@
                             <dx:ASPxLabel ID="ASPxLabel1" runat="server" Text="Tải file mẫu:"></dx:ASPxLabel>
                         </td>
                         <td style="float: left; padding-left: 3px;">
-                            <dx:ASPxHyperLink ID="linkNhapKho" runat="server" Text="xuatkho.xls" NavigateUrl="~/BieuMau/nhapkho.xls">
+                            <dx:ASPxHyperLink ID="linkNhapKho" runat="server" Text="xuatkho.xls" NavigateUrl="~/BieuMau/xuatkho.xls">
                             </dx:ASPxHyperLink>
                         </td>
                     </tr>
