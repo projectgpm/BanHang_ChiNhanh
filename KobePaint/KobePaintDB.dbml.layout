@@ -74,5 +74,17 @@
         <elementListCompartment Id="b4ea1d3f-8b94-4b0b-9b04-21592da85848" absoluteBounds="5.015, 3.585, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="23786a93-771a-4463-8dd9-0c9d887a359c" isExpanded="false" absoluteBounds="2.875, 4.125, 2, 0.45">
+      <DataClassMoniker Name="/KobePaintDBDataContext/kPhieuXuatKhacChiTiet" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e8a0192d-25b8-409f-8efd-f61c45598d11" absoluteBounds="2.89, 4.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="90e77660-0b73-464e-adbc-451e9bb21072" isExpanded="false" absoluteBounds="0.5, 4, 2, 0.45">
+      <DataClassMoniker Name="/KobePaintDBDataContext/kPhieuXuatKhac" />
+      <nestedChildShapes>
+        <elementListCompartment Id="254aee02-c59a-4e15-9863-a579f2312c93" absoluteBounds="0.51500000000000012, 4.46, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

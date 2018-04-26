@@ -133,6 +133,7 @@
     <Content Include="Pages\Kho\CapNhat.aspx" />
     <Content Include="Pages\Kho\DanhSachNhapKho.aspx" />
     <Content Include="Pages\Kho\NhapKho.aspx" />
+    <Content Include="Pages\Kho\ThemXuatKhac.aspx" />
     <Content Include="Pages\Kho\TonKho.aspx" />
     <Content Include="Pages\Kho\TraHang.aspx" />
     <Content Include="Pages\TaiKhoan\DangNhap.aspx" />
@@ -303,6 +304,13 @@
     <Compile Include="Pages\Kho\NhapKho.aspx.designer.cs">
       <DependentUpon>NhapKho.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Kho\ThemXuatKhac.aspx.cs">
+      <DependentUpon>ThemXuatKhac.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Kho\ThemXuatKhac.aspx.designer.cs">
+      <DependentUpon>ThemXuatKhac.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Kho\TonKho.aspx.cs">
       <DependentUpon>TonKho.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -380,6 +388,11 @@
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Pages\BaoCao\" />
+    <Folder Include="Pages\GiaoHang\" />
+    <Folder Include="Pages\ThanhToan\" />
+    <Folder Include="Pages\ThuChi\" />
+    <Folder Include="Pages\TongQuan\" />
     <Folder Include="Reports\" />
     <Folder Include="Uploads\" />
   </ItemGroup>

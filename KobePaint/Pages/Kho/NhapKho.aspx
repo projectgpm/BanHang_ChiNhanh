@@ -245,6 +245,7 @@
                                         </dx:SplitterContentControl>
                                     </ContentCollection>
                                 </dx:SplitterPane>
+
                                 <dx:SplitterPane Name="splpInfoImport">
                                     <ContentCollection>
                                         <dx:SplitterContentControl ID="SplitterContentControl2" runat="server">

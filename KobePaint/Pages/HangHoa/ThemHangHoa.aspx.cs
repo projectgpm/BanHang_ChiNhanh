@@ -25,11 +25,10 @@ namespace KobePaint.Pages.HangHoa
         {
             switch (e.Parameter)
             {
-                case "Save": 
-                    Save(); 
-                    ResetAddProductPanel();
-                    break;
+                case "Save": Save();  ResetAddProductPanel();break;
                 case "Renew": ResetAddProductPanel(); break;
+                case "redirect": DevExpress.Web.ASPxWebControl.RedirectOnCallback("~/Pages/HangHoa/HangHoa.aspx"); break;
+                default: break;
             }
         }
 

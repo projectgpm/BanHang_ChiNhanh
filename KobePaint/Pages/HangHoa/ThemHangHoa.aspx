@@ -10,10 +10,16 @@
         }
         function onSaveClick()
         {
-            if (ASPxClientEdit.ValidateGroup('checkInput'))
+            if (ASPxClientEdit.ValidateGroup('checkInput')) {
                 cbpThemHH.PerformCallback('Save');
+                cbpThemHH.PerformCallback('redirect');
+            }
         }
-        
+        function onLuuTiepTucClick() {
+            if (ASPxClientEdit.ValidateGroup('checkInput')) {
+                cbpThemHH.PerformCallback('Save');
+            }
+        }
         function onRenewClick()
         {
             cbpThemHH.PerformCallback('Renew');
@@ -185,7 +191,11 @@
                                                             <ClientSideEvents Click="onSaveClick" />
                                                         </dx:ASPxButton>
                                                     </td>
-                                                   
+                                                   <td style="padding-right:10px;width:110px;">
+                                                        <dx:ASPxButton ID="btnLuuTiepTuc" runat="server" Text="Lưu & tiếp tục" ValidationGroup="checkInput" AutoPostBack="false">
+                                                            <ClientSideEvents Click="onLuuTiepTucClick" />
+                                                        </dx:ASPxButton>
+                                                    </td>
                                                     <td style="padding-right:10px;width:110px;">
                                                         <dx:ASPxButton ID="btnRenew" runat="server" Text="Lập mới" Width="100" BackColor="#d9534f" AutoPostBack="false">
                                                             <ClientSideEvents Click="onRenewClick" />
