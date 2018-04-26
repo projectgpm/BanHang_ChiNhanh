@@ -262,7 +262,8 @@ namespace KobePaint.Pages.Kho
                     double ConLai = TongTien - ThanhToan;
 
                     string MaPhieu = null, strMaPhieu = "PN";
-                    string MAX = (DBDataProvider.DB.kNhapKhos.Where(r => r.TrangThaiPhieu == 0).Count() + 1).ToString();
+                    //string MAX = (DBDataProvider.DB.kNhapKhos.Where(r => r.TrangThaiPhieu == 0).Count() + 1).ToString();
+                    string MAX = (DBDataProvider.DB.kNhapKhos.Count() + 1).ToString();
                     for (int i = 1; i < (7 - MAX.Length); i++)
                     {
                         strMaPhieu += "0";

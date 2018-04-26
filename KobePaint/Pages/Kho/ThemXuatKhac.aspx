@@ -19,7 +19,6 @@
         function onSaveNextClick() {
             if (checkInput()) {
                 cbpInfo.PerformCallback('Save');
-                cbpInfo.PerformCallback('refresh');
             }
         }
         
@@ -29,12 +28,6 @@
         }
 
         function checkInput() {
-            if (ccbNhaCungCap.GetSelectedIndex() == -1) {
-                ccbBarcode.SetSelectedIndex(-1);
-                ccbNhaCungCap.Focus();
-                alert('Vui lòng chọn nhà cung cấp');
-                return false;
-            }
             return true;
         }
 

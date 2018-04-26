@@ -34,5 +34,10 @@ namespace KobePaint.App_Code
         {
             return DB.kNhapKhoChiTiets.Where(x => x.NhapKhoID == NhapKhoID).ToList();
         }
+        // danh sách phiếu xuất khác chi tiết
+        public static List<kPhieuXuatKhacChiTiet> XuatKhacKhoChiTiet(int PhieuXuatID)
+        {
+            return DB.kPhieuXuatKhacChiTiets.Where(x => x.PhieuXuatID == PhieuXuatID).ToList();
+        }
     }
 }

@@ -132,6 +132,7 @@
     <Content Include="Pages\KhachHang\ThemKH.aspx" />
     <Content Include="Pages\Kho\CapNhat.aspx" />
     <Content Include="Pages\Kho\DanhSachNhapKho.aspx" />
+    <Content Include="Pages\Kho\DanhSachXuatKhac.aspx" />
     <Content Include="Pages\Kho\NhapKho.aspx" />
     <Content Include="Pages\Kho\ThemXuatKhac.aspx" />
     <Content Include="Pages\Kho\TonKho.aspx" />
@@ -296,6 +297,13 @@
     </Compile>
     <Compile Include="Pages\Kho\DanhSachNhapKho.aspx.designer.cs">
       <DependentUpon>DanhSachNhapKho.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Kho\DanhSachXuatKhac.aspx.cs">
+      <DependentUpon>DanhSachXuatKhac.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Kho\DanhSachXuatKhac.aspx.designer.cs">
+      <DependentUpon>DanhSachXuatKhac.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Kho\NhapKho.aspx.cs">
       <DependentUpon>NhapKho.aspx</DependentUpon>

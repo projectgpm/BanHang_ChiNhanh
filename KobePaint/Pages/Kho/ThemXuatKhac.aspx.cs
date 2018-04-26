@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.IO;
 using System.Linq;
+using System.Transactions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -310,6 +311,7 @@ namespace KobePaint.Pages.Kho
                             int tblHangHoa_Count = DBDataProvider.DB.hhHangHoas.Where(x => x.MaHang == MaHang && x.DaXoa == 0).Count();
                             if (tblHangHoa_Count > 0)
                             {
+                                double ThanhTien = SoLuong * GiaVon;
                                 var tblHangHoa = DBDataProvider.DB.hhHangHoas.Where(x => x.MaHang == MaHang && x.DaXoa == 0).FirstOrDefault();
                                 var exitProdInList = listReceiptProducts.SingleOrDefault(r => r.MaHang == MaHang);
                                 if (exitProdInList == null)
@@ -318,10 +320,10 @@ namespace KobePaint.Pages.Kho
                                            tblHangHoa.IDHangHoa,
                                            tblHangHoa.MaHang,
                                            tblHangHoa.TenHangHoa,
-                                           Convert.ToDouble(tblHangHoa.GiaVon),
+                                           GiaVon,
                                            Convert.ToInt32(tblHangHoa.TonKho),
-                                           1,
-                                           GiaVon * SoLuong,
+                                           SoLuong,
+                                           ThanhTien,
                                            3
                                     );
                                           listReceiptProducts.Add(newChiTiet);
@@ -355,103 +357,62 @@ namespace KobePaint.Pages.Kho
                         TongTien += prod.ThanhTien;
                         TongSoLuong += prod.SoLuong;
                     }
-
-                    double ThanhToan = Convert.ToDouble(spThanhToan.Number);
-                    double ConLai = TongTien - ThanhToan;
-
-                    string MaPhieu = null, strMaPhieu = "PN";
-                    string MAX = (DBDataProvider.DB.kNhapKhos.Where(r => r.TrangThaiPhieu == 0).Count() + 1).ToString();
+               
+                    string MaPhieu = null, strMaPhieu = "PX";
+                    string MAX = (DBDataProvider.DB.kPhieuXuatKhacs.Count() + 1).ToString();
                     for (int i = 1; i < (7 - MAX.Length); i++)
                     {
                         strMaPhieu += "0";
                     }
                     MaPhieu = strMaPhieu + MAX;
 
-                    int IDNCC = Int32.Parse(ccbNhaCungCap.Value.ToString());
-                    //Insert vào bảng nhập kho
-                    kNhapKho nhapKho = new kNhapKho();
-                    nhapKho.NCCID = IDNCC;
-                    nhapKho.MaPhieu = MaPhieu;
-                    nhapKho.SoHoaDon = txtSoHoaDon.Text; ;
-                    nhapKho.NgayNhap = Formats.ConvertToDateTime(dateNgayNhap.Text);
-                    nhapKho.NguoiNhapID = Formats.IDUser();
-                    nhapKho.TongTien = TongTien;
-                    nhapKho.TrangThaiPhieu = 0;// 1 phiếu tạm, 2 phiếu xóa, 0 phiếu nhập
-                    nhapKho.TongSoLuong = TongSoLuong;
-                    nhapKho.GhiChu = memoGhiChu.Text;
-                    nhapKho.NgayTao = DateTime.Now;
-                    nhapKho.DaXoa = 0;
-                    nhapKho.ThanhToan = ThanhToan;
-                    nhapKho.CongNo = ConLai;// nợ đơn hàng
-                    DBDataProvider.DB.kNhapKhos.InsertOnSubmit(nhapKho);
+
+                    //Insert vào bảng phiếu xuất khác
+                    kPhieuXuatKhac xuatkho = new kPhieuXuatKhac();
+                    xuatkho.IDNhanVien = Formats.IDUser();
+                    xuatkho.MaPhieuXuat = MaPhieu;
+                    xuatkho.NgayLap = Formats.ConvertToDateTime(dateNgayNhap.Text);
+                    xuatkho.GhiChu = memoGhiChu.Text;
+                    xuatkho.DaXoa = 0;
+                    xuatkho.NgayTao = DateTime.Now;
+                    xuatkho.TongTien = TongTien;
+                    xuatkho.SoLuong = TongSoLuong;
+                    DBDataProvider.DB.kPhieuXuatKhacs.InsertOnSubmit(xuatkho);
                     DBDataProvider.DB.SubmitChanges();
-                    int IDNhap = nhapKho.IDNhapKho;
-                    nhapKho.Url = "TraHang.aspx?id=" + IDNhap;
+
+                    int IDXuat = xuatkho.IDPhieuXuat;
+
                     foreach (var prod in listReceiptProducts)
                     {
-                        //Insert vào chi tiết nhập kho
-                        kNhapKhoChiTiet detailNhapKho = new kNhapKhoChiTiet();
-                        detailNhapKho.NhapKhoID = IDNhap;
-                        detailNhapKho.HangHoaID = prod.IDHangHoa;
-                        detailNhapKho.GiaVon = prod.GiaVon;
-                        detailNhapKho.SoLuong = prod.SoLuong;
-                        detailNhapKho.ThanhTien = prod.ThanhTien;
-                        detailNhapKho.GiaBan = prod.GiaBanMoi;
-                        detailNhapKho.TonKho = prod.TonKho;
-                        DBDataProvider.DB.kNhapKhoChiTiets.InsertOnSubmit(detailNhapKho);
-                        //Cập nhật || Thêm tồn kho
+                        //Insert vào chi tiết xuất kho
+                        kPhieuXuatKhacChiTiet detailXuatKho = new kPhieuXuatKhacChiTiet();
+                        detailXuatKho.PhieuXuatID = IDXuat;
+                        detailXuatKho.HangHoaID = prod.IDHangHoa;
+                        detailXuatKho.TonKho = prod.TonKho;
+                        detailXuatKho.SoLuong = prod.SoLuong;
+                        detailXuatKho.LyDoXuatID = prod.LyDoXuatID;
+                        detailXuatKho.GiaVon = prod.GiaVon;
+                        detailXuatKho.ThanhTien = prod.ThanhTien;
+                        DBDataProvider.DB.kPhieuXuatKhacChiTiets.InsertOnSubmit(detailXuatKho);
+
+                        //Ghi thẻ kho || Trừ tồn kho
                         var TonKhoBanDau = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == prod.IDHangHoa).FirstOrDefault();
                         if (TonKhoBanDau != null)
                         {
-                            TonKhoBanDau.TonKho += prod.SoLuong;
+                            TonKhoBanDau.TonKho -= prod.SoLuong;
                             #region ghi thẻ kho
-                            kTheKho thekho = new kTheKho();
-                            thekho.NgayNhap = DateTime.Now;
-                            thekho.DienGiai = "Nhập hàng #" + MaPhieu;
-                            thekho.Nhap = prod.SoLuong;
-                            thekho.Xuat = 0;
-                            thekho.Ton = prod.SoLuong + prod.TonKho;
-                            thekho.HangHoaID = TonKhoBanDau.IDHangHoa;
-                            thekho.NhanVienID = Formats.IDUser();
-                            DBDataProvider.DB.kTheKhos.InsertOnSubmit(thekho);
+                                kTheKho thekho = new kTheKho();
+                                thekho.NgayNhap = DateTime.Now;
+                                thekho.DienGiai = "Xuất khác #" + MaPhieu;
+                                thekho.Nhap = 0;
+                                thekho.Xuat = prod.SoLuong;
+                                thekho.Ton = prod.TonKho - prod.SoLuong;
+                                thekho.HangHoaID = TonKhoBanDau.IDHangHoa;
+                                thekho.NhanVienID = Formats.IDUser();
+                                DBDataProvider.DB.kTheKhos.InsertOnSubmit(thekho);
                             #endregion
                         }
-                        if (prod.GiaBanMoi != prod.GiaBanCu)
-                        {
-                            // thay đổi giá bán nếu khác giá bán cũ
-                            hhHangHoa hang = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == prod.IDHangHoa).FirstOrDefault();
-                            hang.GiaBan = prod.GiaBanMoi;
-                        }
                     }
-                    //update công nợ
-                    khKhachHang Supplier = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == IDNCC).FirstOrDefault();
-                    if (Supplier != null)
-                    {
-                        #region ghi nhật ký nhập kho để xem báo cáo
-                        if (ConLai > 0)
-                        {
-                            khNhatKyCongNo nhatky = new khNhatKyCongNo();
-                            nhatky.NgayNhap = DateTime.Now;
-                            nhatky.DienGiai = "Nhập kho";
-                            nhatky.NoDau = Supplier.CongNo;
-                            nhatky.NhapHang = ConLai;
-                            nhatky.TraHang = 0;
-                            nhatky.NoCuoi = Supplier.CongNo + ConLai;
-                            nhatky.ThanhToan = 0;
-                            nhatky.NhanVienID = Formats.IDUser();
-                            nhatky.SoPhieu = MaPhieu;
-                            nhatky.IDKhachHang = IDNCC;
-                            DBDataProvider.DB.khNhatKyCongNos.InsertOnSubmit(nhatky);
-                            DBDataProvider.DB.SubmitChanges();
-                        }
-                        #endregion
-                        nhapKho.CongNoCu = Supplier.CongNo;
-                        nhapKho.CongNoMoi = Supplier.CongNo + ConLai;
-                        Supplier.TongTienHang += TongTien;
-                        Supplier.CongNo += ConLai;
-                        Supplier.LanCuoiMuaHang = DateTime.Now;
-                    }
-
                     DBDataProvider.DB.SubmitChanges();
                     scope.Complete();
                     Reset();
