@@ -36,16 +36,16 @@
   </item>
   
   <item Text="Thanh toán" >
+    <item Text="Lập phiếu thanh toán đại lý" NavigateUrl="~/Pages/ThanhToan/LapThanhToan.aspx" />
     <item Text="Lập phiếu thanh toán NCC" NavigateUrl="~/Pages/ThanhToan/LapThanhToanNCC.aspx" />
     <item Text="Danh sách thanh toán" NavigateUrl="~/Pages/ThanhToan/DanhSachThanhToan.aspx" />
-    <item Text="Lập phiếu thanh toán KH" NavigateUrl="~/Pages/ThanhToan/LapThanhToan.aspx" /> 
   </item>
   
   <item Text="Thu chi" >
-    <item Text="Lập phiếu thu chi" NavigateUrl="~/Pages/ThanhToan/LapThanhToan.aspx" />
-    <item Text="Danh sách phiếu thu chi" NavigateUrl="~/Pages/ThanhToan/DanhSachTamUng.aspx" />
-    <item Text="Lập phiếu tạm ứng" NavigateUrl="~/Pages/ThanhToan/LapTamUng.aspx" />
-    <item Text="Danh sách tạm ứng" NavigateUrl="~/Pages/ThanhToan/DanhSachTamUng.aspx" />
+    <item Text="Lập phiếu thu chi" NavigateUrl="" />
+    <item Text="Danh sách phiếu thu chi" NavigateUrl="" />
+    <item Text="Lập phiếu tạm ứng" NavigateUrl="" />
+    <item Text="Danh sách tạm ứng" NavigateUrl="" />
   </item>
   
   <item Text="Báo cáo" >

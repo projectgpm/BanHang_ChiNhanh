@@ -4325,6 +4325,14 @@ namespace KobePaint
 		
 		private string _DienThoai;
 		
+		private string _SoHoaDon;
+		
+		private System.Nullable<int> _TTThanhToan;
+		
+		private System.Nullable<double> _ThanhToan;
+		
+		private System.Nullable<double> _ConLai;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -4357,6 +4365,14 @@ namespace KobePaint
     partial void OnTongTienChanged();
     partial void OnDienThoaiChanging(string value);
     partial void OnDienThoaiChanged();
+    partial void OnSoHoaDonChanging(string value);
+    partial void OnSoHoaDonChanged();
+    partial void OnTTThanhToanChanging(System.Nullable<int> value);
+    partial void OnTTThanhToanChanged();
+    partial void OnThanhToanChanging(System.Nullable<double> value);
+    partial void OnThanhToanChanged();
+    partial void OnConLaiChanging(System.Nullable<double> value);
+    partial void OnConLaiChanged();
     #endregion
 		
 		public ghPhieuGiaoHang()
@@ -4640,6 +4656,86 @@ namespace KobePaint
 					this._DienThoai = value;
 					this.SendPropertyChanged("DienThoai");
 					this.OnDienThoaiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoHoaDon", DbType="NVarChar(50)")]
+		public string SoHoaDon
+		{
+			get
+			{
+				return this._SoHoaDon;
+			}
+			set
+			{
+				if ((this._SoHoaDon != value))
+				{
+					this.OnSoHoaDonChanging(value);
+					this.SendPropertyChanging();
+					this._SoHoaDon = value;
+					this.SendPropertyChanged("SoHoaDon");
+					this.OnSoHoaDonChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TTThanhToan", DbType="Int")]
+		public System.Nullable<int> TTThanhToan
+		{
+			get
+			{
+				return this._TTThanhToan;
+			}
+			set
+			{
+				if ((this._TTThanhToan != value))
+				{
+					this.OnTTThanhToanChanging(value);
+					this.SendPropertyChanging();
+					this._TTThanhToan = value;
+					this.SendPropertyChanged("TTThanhToan");
+					this.OnTTThanhToanChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThanhToan", DbType="Float")]
+		public System.Nullable<double> ThanhToan
+		{
+			get
+			{
+				return this._ThanhToan;
+			}
+			set
+			{
+				if ((this._ThanhToan != value))
+				{
+					this.OnThanhToanChanging(value);
+					this.SendPropertyChanging();
+					this._ThanhToan = value;
+					this.SendPropertyChanged("ThanhToan");
+					this.OnThanhToanChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConLai", DbType="Float")]
+		public System.Nullable<double> ConLai
+		{
+			get
+			{
+				return this._ConLai;
+			}
+			set
+			{
+				if ((this._ConLai != value))
+				{
+					this.OnConLaiChanging(value);
+					this.SendPropertyChanging();
+					this._ConLai = value;
+					this.SendPropertyChanged("ConLai");
+					this.OnConLaiChanged();
 				}
 			}
 		}

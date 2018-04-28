@@ -39,5 +39,11 @@ namespace KobePaint.App_Code
         {
             return DB.kPhieuXuatKhacChiTiets.Where(x => x.PhieuXuatID == PhieuXuatID).ToList();
         }
+
+        // danh sách phiếu giao hàng chưa thanh toán
+        public static List<ghPhieuGiaoHang> ListPhieuGiaoHang(int IDKhachHang)
+        {
+            return DB.ghPhieuGiaoHangs.Where(x => x.KhachHangID == IDKhachHang && x.TrangThai == 1 && x.TTThanhToan == 0).OrderBy(x => x.IDPhieuGiaoHang).ToList();
+        }
     }
 }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="KobePaintDB">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 9.375" name="KobePaintDB">
   <DataContextMoniker Name="/KobePaintDBDataContext" />
   <nestedChildShapes>
     <classShape Id="9dfe940d-6f0a-4d6d-935e-717588171cb2" isExpanded="false" absoluteBounds="2.625, 3.125, 2, 0.45">
@@ -104,10 +104,10 @@
         <elementListCompartment Id="f7106e77-051f-46f0-a0e9-6a139daef303" absoluteBounds="5.015, 5.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="23f30aa4-06bb-4b2e-b62b-b6f580b1d100" isExpanded="false" absoluteBounds="2.625, 4.625, 2, 0.45">
+    <classShape Id="de8a44c3-1678-44b7-aaf3-135470ffc90b" absoluteBounds="3.125, 4.875, 2, 4.2708154296875">
       <DataClassMoniker Name="/KobePaintDBDataContext/ghPhieuGiaoHang" />
       <nestedChildShapes>
-        <elementListCompartment Id="dc82283f-9a9d-4536-8b88-8e4e0ef0de5d" absoluteBounds="2.64, 5.085, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="bc0900f6-e177-4134-bd9f-c780dcb1910b" absoluteBounds="3.14, 5.335, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

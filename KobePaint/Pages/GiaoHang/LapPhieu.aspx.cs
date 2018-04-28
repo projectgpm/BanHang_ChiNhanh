@@ -223,10 +223,15 @@ namespace KobePaint.Pages.GiaoHang
                     giaohang.NguoiGiao = txtNguoiGiaoHang.Text;
                     giaohang.DiaChiGiaoHang = memoDiaChiKH.Text;
                     giaohang.DaXoa = 0;
+                    giaohang.TTThanhToan = 0; //0 chưa thanh toán. 1 đã thanh toán
                     giaohang.TrangThai = 0;// chưa duyệt, 1 đã duyệt
                     giaohang.TongSoLuong = TongSoLuong;
                     giaohang.DienThoai = txtDienThoai.Text;
                     giaohang.TongTien = TongTien;
+                    giaohang.ThanhToan = 0;
+                    giaohang.ConLai = TongTien;
+
+
                     DBDataProvider.DB.ghPhieuGiaoHangs.InsertOnSubmit(giaohang);
                     DBDataProvider.DB.SubmitChanges();
 

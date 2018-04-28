@@ -138,7 +138,9 @@
                 </dx:GridViewColumnLayoutItem>
                 <dx:GridViewColumnLayoutItem ColumnName="Ghi chú đơn hàng">
                 </dx:GridViewColumnLayoutItem>
-                <dx:GridViewColumnLayoutItem ColumnName="Địa chỉ giao hàng">
+                <dx:GridViewColumnLayoutItem ColumnName="Số hóa đơn">
+                </dx:GridViewColumnLayoutItem>
+                <dx:GridViewColumnLayoutItem ColSpan="2" ColumnName="Địa chỉ giao hàng">
                 </dx:GridViewColumnLayoutItem>
                 <dx:EditModeCommandLayoutItem ColSpan="2" HorizontalAlign="Right">
                 </dx:EditModeCommandLayoutItem>
@@ -203,6 +205,8 @@
             </dx:GridViewDataMemoColumn>
             <dx:GridViewDataTextColumn Caption="Điện thoại" FieldName="DienThoai" VisibleIndex="3" Width="100px">
             </dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn Caption="Số hóa đơn" FieldName="SoHoaDon" Visible="False" VisibleIndex="13">
+            </dx:GridViewDataTextColumn>
         </Columns>
 
         <FormatConditions>
@@ -217,9 +221,10 @@
      </asp:SqlDataSource>
      <asp:SqlDataSource ID="dsGiaohang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
          SelectCommand="SELECT * FROM [ghPhieuGiaoHang] ORDER BY [IDPhieuGiaoHang] DESC" 
-         UpdateCommand="UPDATE ghPhieuGiaoHang SET DienThoai = @DienThoai,NgayGiao = @NgayGiao, DiaChiGiaoHang = @DiaChiGiaoHang, GhiChuGiaoHang = @GhiChuGiaoHang WHERE (IDPhieuGiaoHang = @IDPhieuGiaoHang)">
+         UpdateCommand="UPDATE ghPhieuGiaoHang SET   SoHoaDon = @SoHoaDon,DienThoai = @DienThoai,NgayGiao = @NgayGiao, DiaChiGiaoHang = @DiaChiGiaoHang, GhiChuGiaoHang = @GhiChuGiaoHang WHERE (IDPhieuGiaoHang = @IDPhieuGiaoHang)">
          <UpdateParameters>
              <asp:Parameter Name="DienThoai" />
+             <asp:Parameter Name="SoHoaDon" />
              <asp:Parameter Name="NgayGiao" />
              <asp:Parameter Name="DiaChiGiaoHang" />
              <asp:Parameter Name="GhiChuGiaoHang" />
