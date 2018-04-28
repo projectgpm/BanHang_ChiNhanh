@@ -7,9 +7,10 @@
         {
             cbpThanhToan.PerformCallback('Customer');
         }
-        function onCCBPhieuThanhToanChanged()
+        function onCCBPhieuThanhToanChanged(s,e)
         {
-            cbpSoTienDaTT.PerformCallback('PhieuTT');
+            cbpThanhToan.PerformCallback('PhieuTT');
+            onCCBHinhThucChanged(s, e);
         }
         function initCCBHinhThuc(s, e)
         {
@@ -23,68 +24,71 @@
         function onCCBHinhThucChanged(s, e)
         {
             if (s.GetSelectedIndex() == 0) {
+                formThanhToan.GetItemByName('itemSoTienTT').SetVisible(true);
                 SetVisiblePhieuTT(false);
             }
             else
             {
                 SetVisiblePhieuTT(true);
+                formThanhToan.GetItemByName('itemSoTienTT').SetVisible(false);
             }
         }
         function SetVisiblePhieuTT(bVisible)
         {
             formThanhToan.GetItemByName('itemPhieuTT').SetVisible(bVisible);
             formThanhToan.GetItemByName('itemSoTienDaTT').SetVisible(bVisible);
+            formThanhToan.GetItemByName('itemspCanThanhToan').SetVisible(bVisible);
         }
         function onClickSavePrint()
         {
-            if (speSoTienTT.GetValue() == 0)
-            {
-                alert("Chưa nhập số tiền thanh toán");
-                return;
-            }
-            if (rdlHinhThuc.GetSelectedIndex() == 0)
-            {
-                var TongNo = Number(txtCongNoHienTai.GetText());
-                var Tra = Number(speSoTienTT.GetValue());
-                if (Tra > TongNo) {
-                    var r = confirm("Số tiền thanh toán không được nhập quá số tổng công nợ /n Bạn có muốn sửa số tiền thanh toán và lưu?");
-                    if (r == true) {
-                        speSoTienTT.SetValue(TongNo);
-                        SavePrint();
-                    }
-                }
-                else {
-                    SavePrint();
-                }
-            }
-            else
-            {
-                var PhieuNo = Number(hiddenfield.Get("TienNo"));
-                var Tra = Number(speSoTienTT.GetValue());
-                if (Tra > PhieuNo) {
-                    var r = confirm("Số tiền thanh toán không được nhập quá số công nợ trên phiếu /n Bạn có muốn sửa số tiền thanh toán và lưu?");
-                    if (r == true) {
-                        speSoTienTT.SetValue(PhieuNo);
-                        SavePrint();
-                    }
-                }
-                else
-                {
-                    SavePrint();
-                }
-            }
+            //if (speSoTienTT.GetValue() == 0)
+            //{
+            //    alert("Chưa nhập số tiền thanh toán");
+            //    return;
+            //}
+            //if (rdlHinhThuc.GetSelectedIndex() == 0)
+            //{
+            //    var TongNo = Number(txtCongNoHienTai.GetText());
+            //    var Tra = Number(speSoTienTT.GetValue());
+            //    if (Tra > TongNo) {
+            //        var r = confirm("Số tiền thanh toán không được nhập quá số tổng công nợ /n Bạn có muốn sửa số tiền thanh toán và lưu?");
+            //        if (r == true) {
+            //            speSoTienTT.SetValue(TongNo);
+            //            SavePrint();
+            //        }
+            //    }
+            //    else {
+            //        SavePrint();
+            //    }
+            //}
+            //else
+            //{
+            //    var PhieuNo = Number(hiddenfield.Get("TienNo"));
+            //    var Tra = Number(speSoTienTT.GetValue());
+            //    if (Tra > PhieuNo) {
+            //        var r = confirm("Số tiền thanh toán không được nhập quá số công nợ trên phiếu /n Bạn có muốn sửa số tiền thanh toán và lưu?");
+            //        if (r == true) {
+            //            speSoTienTT.SetValue(PhieuNo);
+            //            SavePrint();
+            //        }
+            //    }
+            //    else
+            //    {
+            //        SavePrint();
+            //    }
+            //}
         }
         function SavePrint() {
-            cbpThanhToan.PerformCallback('SavePrint');
+            //cbpThanhToan.PerformCallback('SavePrint');
         }
         function onReviewClick()
         {
-            if (ccbKhachHang.GetSelectedIndex() == -1)
-            {
-                alert("Chưa chọn khách hàng");
-                return;
-            }
-            cbpThanhToan.PerformCallback('Review');
+            //if (ccbKhachHang.GetSelectedIndex() == -1)
+            //{
+            //    alert("Chưa chọn khách hàng");
+            //    return;
+            //}
+            //cbpThanhToan.PerformCallback('Review');
         }
         function onEndCallBack(s, e)
         {
@@ -101,7 +105,7 @@
             <dx:PanelContent runat="server">
                 <dx:ASPxFormLayout ID="formThanhToan" ClientInstanceName="formThanhToan" runat="server" Width="100%">
                     <Items>
-                        <dx:LayoutGroup Caption="Lập phiếu thanh toán đại lý" ColCount="2" GroupBoxDecoration="HeadingLine" HorizontalAlign="Center">
+                        <dx:LayoutGroup Caption="Lập phiếu đại lý thanh toán" ColCount="2" GroupBoxDecoration="HeadingLine" HorizontalAlign="Center">
                             <Items>
                                 <dx:LayoutItem Caption="Khách hàng">
                                     <LayoutItemNestedControlCollection>
@@ -150,24 +154,38 @@
                                         </dx:LayoutItemNestedControlContainer>
                                     </LayoutItemNestedControlCollection>
                                 </dx:LayoutItem>
+
                                 <dx:LayoutItem Caption="Số tiền đã thanh toán" HelpText="(Đvt: đồng)" Name="itemSoTienDaTT" ClientVisible="false">
                                     <LayoutItemNestedControlCollection>
                                         <dx:LayoutItemNestedControlContainer runat="server">
-                                            <dx:ASPxCallbackPanel ID="cbpSoTienDaTT" ClientInstanceName="cbpSoTienDaTT" runat="server" Width="100%" OnCallback="cbpSoTienDaTT_Callback">
-                                                <PanelCollection>
-                                                    <dx:PanelContent runat="server">
-                                                        <dx:ASPxTextBox ID="txtSoTienDaTT" runat="server" Width="100%" ReadOnly="true" DisplayFormatString="N0">
+                                                        <dx:ASPxTextBox ID="txtSoTienDaTT" runat="server" Width="100%"  Enabled="false" DisplayFormatString="N0">
                                                         </dx:ASPxTextBox>
                                                         <dx:ASPxHiddenField ID="hiddenfield" ClientInstanceName="hiddenfield" runat="server"></dx:ASPxHiddenField>
-                                                    </dx:PanelContent>
-                                                </PanelCollection>
-                                            </dx:ASPxCallbackPanel>
+     
                                         </dx:LayoutItemNestedControlContainer>
                                     </LayoutItemNestedControlCollection>
                                     <HelpTextSettings Position="Right" VerticalAlign="Middle" />
                                     <HelpTextStyle ForeColor="#00CC00" Wrap="False"></HelpTextStyle>
                                 </dx:LayoutItem>
-                                <dx:LayoutItem Caption="Số tiền thanh toán" ColSpan="2" HelpText="(Đvt: đồng)">
+                            
+
+
+
+
+
+                                <dx:LayoutItem Caption="Số tiền cần thanh toán" ColSpan="2" HelpText="(Đvt: đồng)"  Name="itemspCanThanhToan" ClientVisible="false">
+                                    <LayoutItemNestedControlCollection>
+                                        <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer1" runat="server">
+                                            <dx:ASPxSpinEdit ID="spCanThanhToan" ClientInstanceName="spCanThanhToan" runat="server" Number="0" DecimalPlaces="2" Increment="5000" Width="100%" DisplayFormatString="N0"  Enabled ="false">
+                                            </dx:ASPxSpinEdit>
+                                        </dx:LayoutItemNestedControlContainer>
+                                    </LayoutItemNestedControlCollection>
+                                    <HelpTextSettings Position="Right" VerticalAlign="Middle" />
+                                    <HelpTextStyle ForeColor="#00CC00" Wrap="False"></HelpTextStyle>
+                                </dx:LayoutItem>
+
+
+                                <dx:LayoutItem Caption="Số tiền thanh toán" ColSpan="2" HelpText="(Đvt: đồng)" Name="itemSoTienTT" ClientVisible="true">
                                     <LayoutItemNestedControlCollection>
                                         <dx:LayoutItemNestedControlContainer runat="server">
                                             <dx:ASPxSpinEdit ID="speSoTienTT" ClientInstanceName="speSoTienTT" runat="server" Number="0" DecimalPlaces="2" Increment="5000" Width="100%" DisplayFormatString="N0">

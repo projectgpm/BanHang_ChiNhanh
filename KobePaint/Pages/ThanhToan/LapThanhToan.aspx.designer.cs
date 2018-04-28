@@ -76,15 +76,6 @@ namespace KobePaint.Pages.ThanhToan {
         protected global::DevExpress.Web.ASPxComboBox ccbPhieuThanhToan;
         
         /// <summary>
-        /// cbpSoTienDaTT control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxCallbackPanel cbpSoTienDaTT;
-        
-        /// <summary>
         /// txtSoTienDaTT control.
         /// </summary>
         /// <remarks>
@@ -101,6 +92,24 @@ namespace KobePaint.Pages.ThanhToan {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxHiddenField hiddenfield;
+        
+        /// <summary>
+        /// LayoutItemNestedControlContainer1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer1;
+        
+        /// <summary>
+        /// spCanThanhToan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxSpinEdit spCanThanhToan;
         
         /// <summary>
         /// speSoTienTT control.

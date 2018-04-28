@@ -26,36 +26,32 @@ namespace KobePaint.Pages.ThanhToan
 
         protected void cbpThanhToan_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
-            if(e.Parameter == "Customer")
+            switch (e.Parameter)
             {
-                int IDKhachHang = int.Parse(ccbKhachHang.Value.ToString());
-                var KhachHang = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == IDKhachHang).FirstOrDefault();
-                txtCongNoHienTai.Text = KhachHang.CongNo.ToString();
-                memoNoiDungTT.Text = KhachHang.HoTen.ToUpper() + " THANH TOÁN";
-                var ListDonHang = DBDataProvider.ListPhieuGiaoHang(IDKhachHang);
-                ccbPhieuThanhToan.DataSource = ListDonHang;
-                ccbPhieuThanhToan.DataBind();
-            }
-            else
-            {
-                if (e.Parameter == "Review")
-                {
-                   
-                }
-                else
-                {
+                case "PhieuTT": 
+                        int IDPhieuThanhToan = int.Parse(ccbPhieuThanhToan.Value.ToString());
+                        var PhieuTT = DBDataProvider.DB.ghPhieuGiaoHangs.Where(x => x.IDPhieuGiaoHang == IDPhieuThanhToan).FirstOrDefault();
+                        txtSoTienDaTT.Text = PhieuTT.ThanhToan.ToString();
+                        spCanThanhToan.Text = PhieuTT.ConLai.ToString();
+                        memoNoiDungTT.Text += PhieuTT.ConLai.ToString();
+                    break;
+                case "Customer":
+                        int IDKhachHang = int.Parse(ccbKhachHang.Value.ToString());
+                        var KhachHang = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == IDKhachHang).FirstOrDefault();
+                        txtCongNoHienTai.Text = KhachHang.CongNo.ToString();
+                        memoNoiDungTT.Text = KhachHang.HoTen.ToUpper() + " THANH TOÁN: ";
+                        var ListDonHang = DBDataProvider.ListPhieuGiaoHang(IDKhachHang);
+                        ccbPhieuThanhToan.DataSource = ListDonHang;
+                        ccbPhieuThanhToan.DataBind();
+                    break;
+                case "Review": break;
+                default :
                     LuuThanhToan();
                     Reset();
-                }
+                    break;
             }
         }
-        protected void cbpSoTienDaTT_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
-        {
-            int IDPhieuThanhToan = int.Parse(ccbPhieuThanhToan.Value.ToString());
-            var PhieuTT = DBDataProvider.DB.ghPhieuGiaoHangs.Where(x => x.IDPhieuGiaoHang == IDPhieuThanhToan).FirstOrDefault();
-            txtSoTienDaTT.Text = PhieuTT.ThanhToan.ToString();
-            hiddenfield["TienNo"] = PhieuTT.ConLai;
-        }
+        
 
         protected void dateEditControl_Init(object sender, EventArgs e)
         {

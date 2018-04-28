@@ -451,6 +451,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\BaoCao\" />
+    <Folder Include="Pages\POST\" />
     <Folder Include="Pages\ThuChi\" />
     <Folder Include="Pages\TongQuan\" />
     <Folder Include="Uploads\" />
