@@ -123,6 +123,8 @@
     <Content Include="Main.master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Pages\GiaoHang\DanhSachGiaoHang.aspx" />
+    <Content Include="Pages\GiaoHang\LapPhieu.aspx" />
     <Content Include="Pages\HangHoa\CapNhat.aspx" />
     <Content Include="Pages\HangHoa\HangHoa.aspx" />
     <Content Include="Pages\HangHoa\NhomHang.aspx" />
@@ -236,6 +238,20 @@
     </Compile>
     <Compile Include="Main.master.designer.cs">
       <DependentUpon>Main.master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\GiaoHang\DanhSachGiaoHang.aspx.cs">
+      <DependentUpon>DanhSachGiaoHang.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\GiaoHang\DanhSachGiaoHang.aspx.designer.cs">
+      <DependentUpon>DanhSachGiaoHang.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\GiaoHang\LapPhieu.aspx.cs">
+      <DependentUpon>LapPhieu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\GiaoHang\LapPhieu.aspx.designer.cs">
+      <DependentUpon>LapPhieu.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\HangHoa\CapNhat.aspx.cs">
       <DependentUpon>CapNhat.aspx</DependentUpon>
@@ -413,7 +429,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\BaoCao\" />
-    <Folder Include="Pages\GiaoHang\" />
     <Folder Include="Pages\ThanhToan\" />
     <Folder Include="Pages\ThuChi\" />
     <Folder Include="Pages\TongQuan\" />

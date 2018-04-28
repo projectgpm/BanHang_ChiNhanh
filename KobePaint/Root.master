@@ -94,7 +94,7 @@
                 <dx:PanelContent runat="server" SupportsDisabledAttribute="True">
                         <div class="headerTop">
                             <div class="logo">
-                                <asp:Image ID="imgLogo" runat="server" ImageUrl="~/Content/Images/logo.png" CssClass="imglogo" />
+                               <%-- <asp:Image ID="imgLogo" runat="server" ImageUrl="~/Content/Images/logo.png" CssClass="imglogo" />--%>
                             </div>
                             <div class="templateTitle">
                                 <a id="TitleLink" href="~/" runat="server">QUẢN LÝ BÁN HÀNG</a>

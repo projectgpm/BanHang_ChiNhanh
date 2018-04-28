@@ -13,6 +13,7 @@
          function onSaveClick() {
              if (checkInput()) {
                  cbpInfo.PerformCallback('Save');
+                 cbpInfo.PerformCallback('redirect');
              }
          }
          function onExcelClick() {
@@ -113,6 +114,7 @@
                                                                                 </dx:LayoutItemNestedControlContainer>
                                                                             </LayoutItemNestedControlCollection>
                                                                         </dx:LayoutItem>
+                                                                        
                                                                     </Items>
                                                                 </dx:LayoutGroup>
                                                             </Items>
@@ -208,6 +210,8 @@
                                                                     </dx:GridViewCommandColumn>
                                                                     <dx:GridViewDataSpinEditColumn Caption="Chênh lệch" FieldName="ChenhLech" ShowInCustomizationForm="True" VisibleIndex="6" Width="100px" CellStyle-Font-Bold="true" CellStyle-HorizontalAlign="Center">
                                                                         <PropertiesSpinEdit DisplayFormatString="N0"></PropertiesSpinEdit>
+
+<CellStyle HorizontalAlign="Center" Font-Bold="True"></CellStyle>
                                                                     </dx:GridViewDataSpinEditColumn>
                                                                     <dx:GridViewDataSpinEditColumn Caption="Tồn kho tế" FieldName="TonKhoThucTe" ShowInCustomizationForm="True" VisibleIndex="4" Width="100px">
                                                                         <PropertiesSpinEdit DisplayFormatString="N0"></PropertiesSpinEdit>
@@ -233,37 +237,41 @@
                                                                     </dx:GridViewDataComboBoxColumn>
                                                                                            
                                                                     <dx:GridViewDataSpinEditColumn Caption="Tồn hệ thống" FieldName="TonKhoHeThong" ShowInCustomizationForm="True" CellStyle-Font-Bold="true" CellStyle-Font-Italic="true" CellStyle-HorizontalAlign="Center" VisibleIndex="3" Width="100px">
-                                                                        <PropertiesSpinEdit DisplayFormatString="g">
-                                                                        </PropertiesSpinEdit>
                                                                         <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                                                                         </PropertiesSpinEdit>
+                                                                        <PropertiesSpinEdit DisplayFormatString="g">
+                                                                        </PropertiesSpinEdit>
+
+<CellStyle HorizontalAlign="Center" Font-Bold="True" Font-Italic="True"></CellStyle>
                                                                     </dx:GridViewDataSpinEditColumn>
-                                                                    <dx:GridViewDataMemoColumn Caption="Diễn giải" FieldName="DienGiai" ShowInCustomizationForm="True" VisibleIndex="8" Width="100px">
+                                                                    <dx:GridViewDataMemoColumn Caption="Diễn giải" FieldName="DienGiai" ShowInCustomizationForm="True" VisibleIndex="8" Width="150px">
                                                                         <PropertiesMemoEdit >
                                                                         </PropertiesMemoEdit>
                                                                         <DataItemTemplate>
-                                                                            <dx:ASPxMemo ID="memoDienGiai" runat="server" Height="20px" Text='<%# Eval("DienGiai") %>' Width="100%" OnInit="memoDienGiai_Init">
+                                                                            <dx:ASPxMemo ID="memoDienGiai" NullText="Nhập nguyên nhân" runat="server" Height="20px" Text='<%# Eval("DienGiai") %>' Width="100%" OnInit="memoDienGiai_Init">
 
                                                                             </dx:ASPxMemo>
                                                                         </DataItemTemplate>
+                                                                        <CellStyle>
+                                                                            <Paddings Padding="2px" />
+                                                                        </CellStyle>
                                                                     </dx:GridViewDataMemoColumn>
                                                                                            
                                                                 </Columns>
                                                                 <FormatConditions>
                                                                     <dx:GridViewFormatConditionHighlight FieldName="TrangThai" Expression="[TrangThai] = 0" Format="YellowFillWithDarkYellowText" />
-                                                                    <dx:GridViewFormatConditionHighlight FieldName="TrangThai" Expression="[TrangThai] = 1" Format="GreenFillWithDarkGreenText"  CellStyle-Font-Italic="true" />
-
+                                                                    <dx:GridViewFormatConditionHighlight FieldName="TrangThai" Expression="[TrangThai] = 1" Format="GreenFillWithDarkGreenText"  CellStyle-Font-Italic="true" >
+                                                                    <CellStyle Font-Italic="True"></CellStyle>
+                                                                    </dx:GridViewFormatConditionHighlight>
                                                                     <dx:GridViewFormatConditionHighlight FieldName="ChenhLech" Expression="[ChenhLech] = 0" Format="GreenFillWithDarkGreenText" />
                                                                     <dx:GridViewFormatConditionHighlight FieldName="ChenhLech" Expression="[ChenhLech] < 0" Format="LightRedFillWithDarkRedText" />
                                                                     <dx:GridViewFormatConditionHighlight FieldName="ChenhLech" Expression="[ChenhLech] > 0" Format="YellowFillWithDarkYellowText" />
-                                                                   
-                                                                 
-
                                                                 </FormatConditions>
                                                                 <TotalSummary>
                                                                     <dx:ASPxSummaryItem DisplayFormat="Tổng mặt hàng: {0:N0}" FieldName="MaHang" ShowInColumn="Mã HH" SummaryType="Count" />
-                                                                    <dx:ASPxSummaryItem DisplayFormat="Tổng tiền: {0:N0}" FieldName="ThanhTien" ShowInColumn="Thành tiền" SummaryType="Sum" />
-                                                                    <dx:ASPxSummaryItem DisplayFormat="Tổng: {0:N0}" FieldName="SoLuong" ShowInColumn="Số lượng" SummaryType="Sum" />
+                                                                    <dx:ASPxSummaryItem DisplayFormat="Tổng = {0:N0}" FieldName="TonKhoThucTe" ShowInColumn="Tồn kho tế" SummaryType="Sum" />
+                                                                    <dx:ASPxSummaryItem DisplayFormat="Tổng = {0:N0}" FieldName="TonKhoHeThong" ShowInColumn="Tồn hệ thống" SummaryType="Sum" />
+                                                                    <dx:ASPxSummaryItem DisplayFormat="Tổng = {0:N0}" FieldName="ChenhLech" ShowInColumn="Chênh lệch" SummaryType="Sum" />
                                                                 </TotalSummary>
                                                             </dx:ASPxGridView>    
                                                         </dx:SplitterContentControl>
@@ -281,14 +289,14 @@
                                                         <table style="margin: 0 auto;">
                                                             <tr>
                                                                 <td style="padding-left: 10px">
-                                                                    <dx:ASPxButton ID="btnLuuVaIn" runat="server" Text="Cân Bằng" AutoPostBack="false" UseSubmitBehavior="false">
+                                                                    <dx:ASPxButton ID="btnCanBang" runat="server" Text="Cân Bằng" AutoPostBack="false" UseSubmitBehavior="false">
                                                                         <ClientSideEvents Click="onSaveClick" />
                                                                     </dx:ASPxButton>
                                                                 </td>
                                                                 <td style="padding-left: 10px">
                                                                     &nbsp;</td>
                                                                 <td style="padding-left: 10px;">
-                                                                    <dx:ASPxButton ID="btnRenew" runat="server" Text="Trở về" BackColor="#d9534f" AutoPostBack="true" PostBackUrl="~/Pages/Kho/DanhSachXuatKhac.aspx" UseSubmitBehavior="false">
+                                                                    <dx:ASPxButton ID="btnRenew" runat="server" Text="Trở về" BackColor="#d9534f" AutoPostBack="true" PostBackUrl="~/Pages/Kho/DanhSachKiemKho.aspx" UseSubmitBehavior="false">
                                                                     </dx:ASPxButton>
                                                                 </td>
                                                             </tr>

@@ -26,8 +26,8 @@
     <item Text="Danh sách kiểm kê" NavigateUrl="~/Pages/Kho/DanhSachKiemKho.aspx" />
   </item>
   <item Text="Giao - Trả hàng">
-    <item Text="Lập phiếu giao hàng" NavigateUrl="~/Pages/Kho/TonKho.aspx" />
-    <item Text="Danh sách giao hàng" NavigateUrl="~/Pages/Kho/NhapKho.aspx" />
+    <item Text="Lập phiếu giao hàng" NavigateUrl="~/Pages/GiaoHang/LapPhieu.aspx" />
+    <item Text="Danh sách giao hàng" NavigateUrl="~/Pages/GiaoHang/DanhSachGiaoHang.aspx" />
     <item Text="Lập phiếu trả hàng" NavigateUrl="~/Pages/Kho/DanhSachNhapKho.aspx" />
     <item Text="Danh sách trả hàng" NavigateUrl="~/Pages/Kho/ThemXuatKhac.aspx" />
     <item Text="Lập phiếu trả hàng NCC" NavigateUrl="~/Pages/Kho/DanhSachNhapKho.aspx" />
