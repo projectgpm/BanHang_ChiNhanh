@@ -175,6 +175,15 @@ namespace KobePaint.Pages.GiaoHang {
         protected global::System.Web.UI.WebControls.SqlDataSource dsKhachHang;
         
         /// <summary>
+        /// txtDienThoai control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxTextBox txtDienThoai;
+        
+        /// <summary>
         /// LayoutItemNestedControlContainer6 control.
         /// </summary>
         /// <remarks>

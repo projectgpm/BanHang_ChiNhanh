@@ -129,6 +129,7 @@
     <Content Include="Pages\HangHoa\HangHoa.aspx" />
     <Content Include="Pages\HangHoa\NhomHang.aspx" />
     <Content Include="Pages\HangHoa\ThemHangHoa.aspx" />
+    <Content Include="Pages\KhachHang\DanhSachDaiLy.aspx" />
     <Content Include="Pages\KhachHang\DanhSachKH.aspx" />
     <Content Include="Pages\KhachHang\DanhSachNCC.aspx" />
     <Content Include="Pages\KhachHang\ThemKH.aspx" />
@@ -280,6 +281,13 @@
     </Compile>
     <Compile Include="Pages\HangHoa\ThemHangHoa.aspx.designer.cs">
       <DependentUpon>ThemHangHoa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\KhachHang\DanhSachDaiLy.aspx.cs">
+      <DependentUpon>DanhSachDaiLy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\KhachHang\DanhSachDaiLy.aspx.designer.cs">
+      <DependentUpon>DanhSachDaiLy.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\KhachHang\DanhSachKH.aspx.cs">
       <DependentUpon>DanhSachKH.aspx</DependentUpon>

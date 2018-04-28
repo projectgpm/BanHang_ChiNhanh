@@ -178,6 +178,15 @@
                                                                                 </dx:LayoutItemNestedControlContainer>
                                                                             </LayoutItemNestedControlCollection>
                                                                         </dx:LayoutItem>
+                                                                        <dx:LayoutItem Caption="Điện thoại">
+                                                                            <LayoutItemNestedControlCollection>
+                                                                                <dx:LayoutItemNestedControlContainer runat="server">
+                                                                                    <dx:ASPxTextBox ID="txtDienThoai" runat="server" Width="100%">
+                                                                                    </dx:ASPxTextBox>
+                                                                                </dx:LayoutItemNestedControlContainer>
+                                                                            </LayoutItemNestedControlCollection>
+                                                                            <CaptionSettings Location="Left" />
+                                                                        </dx:LayoutItem>
                                                                         <dx:LayoutItem Caption="Ngày giao">
                                                                             <LayoutItemNestedControlCollection>
                                                                                 <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer6" runat="server">

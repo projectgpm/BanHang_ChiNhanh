@@ -132,11 +132,13 @@
         </SettingsCommandButton>
         <EditFormLayoutProperties ColCount="2">
             <Items>
+                <dx:GridViewColumnLayoutItem ColumnName="Điện thoại">
+                </dx:GridViewColumnLayoutItem>
                 <dx:GridViewColumnLayoutItem ColumnName="Ngày giao">
                 </dx:GridViewColumnLayoutItem>
                 <dx:GridViewColumnLayoutItem ColumnName="Ghi chú đơn hàng">
                 </dx:GridViewColumnLayoutItem>
-                <dx:GridViewColumnLayoutItem ColSpan="2" ColumnName="Địa chỉ giao hàng">
+                <dx:GridViewColumnLayoutItem ColumnName="Địa chỉ giao hàng">
                 </dx:GridViewColumnLayoutItem>
                 <dx:EditModeCommandLayoutItem ColSpan="2" HorizontalAlign="Right">
                 </dx:EditModeCommandLayoutItem>
@@ -150,33 +152,33 @@
                 <CellStyle HorizontalAlign="Center">
                 </CellStyle>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewCommandColumn Caption="Cập nhật" ShowEditButton="True" VisibleIndex="10" Width="100px">
+            <dx:GridViewCommandColumn Caption="Cập nhật" ShowEditButton="True" VisibleIndex="11" Width="100px">
                  
             </dx:GridViewCommandColumn>
             <dx:GridViewDataTextColumn Caption="Mã phiếu" FieldName="MaPhieu" VisibleIndex="1" Width="90px" CellStyle-Font-Bold="true" CellStyle-HorizontalAlign="Center">
 <CellStyle HorizontalAlign="Center" Font-Bold="True"></CellStyle>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataDateColumn Caption="Ngày tạo" FieldName="NgayTao" VisibleIndex="3" Width="120px">
+            <dx:GridViewDataDateColumn Caption="Ngày tạo" FieldName="NgayTao" VisibleIndex="4" Width="120px">
                 <PropertiesDateEdit DisplayFormatString="dd/MM/yyyy" DisplayFormatInEditMode="True">
                 </PropertiesDateEdit>
             </dx:GridViewDataDateColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Người bán" FieldName="NhanVienID" VisibleIndex="4" Width="100px">
+            <dx:GridViewDataComboBoxColumn Caption="Người bán" FieldName="NhanVienID" VisibleIndex="5" Width="100px">
                 <PropertiesComboBox DataSourceID="dsNhanVien" TextField="HoTen" ValueField="IDNhanVien">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataSpinEditColumn Caption="SL" FieldName="TongSoLuong" VisibleIndex="5" Width="50px" CellStyle-HorizontalAlign="Center">
+            <dx:GridViewDataSpinEditColumn Caption="SL" FieldName="TongSoLuong" VisibleIndex="6" Width="50px" CellStyle-HorizontalAlign="Center">
                 <PropertiesSpinEdit DisplayFormatString="N0">
                 </PropertiesSpinEdit>
 
 <CellStyle HorizontalAlign="Center"></CellStyle>
             </dx:GridViewDataSpinEditColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Tổng tiền" FieldName="TongTien" VisibleIndex="6" CellStyle-Font-Bold="true" Width="100px"> 
+            <dx:GridViewDataSpinEditColumn Caption="Tổng tiền" FieldName="TongTien" VisibleIndex="7" CellStyle-Font-Bold="true" Width="100px"> 
                 <PropertiesSpinEdit DisplayFormatString="N0" >
                 </PropertiesSpinEdit>
 
 <CellStyle Font-Bold="True"></CellStyle>
             </dx:GridViewDataSpinEditColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Trạng thái" FieldName="TrangThai" VisibleIndex="9" Width="100px" CellStyle-HorizontalAlign="Center">
+            <dx:GridViewDataComboBoxColumn Caption="Trạng thái" FieldName="TrangThai" VisibleIndex="10" Width="100px" CellStyle-HorizontalAlign="Center">
                 <PropertiesComboBox>
                     <Items>
                         <dx:ListEditItem Text="Đã đặt" Value="0" />
@@ -191,14 +193,16 @@
                 <PropertiesComboBox DataSourceID="dsKhachHang" TextField="HoTen" ValueField="IDKhachHang">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataTextColumn Caption="Ghi chú đơn hàng" FieldName="GhiChuGiaoHang" VisibleIndex="11" Visible="False">
+            <dx:GridViewDataTextColumn Caption="Ghi chú đơn hàng" FieldName="GhiChuGiaoHang" VisibleIndex="12" Visible="False">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataDateColumn Caption="Ngày giao" FieldName="NgayGiao" VisibleIndex="8" Width="120px">
+            <dx:GridViewDataDateColumn Caption="Ngày giao" FieldName="NgayGiao" VisibleIndex="9" Width="120px">
                 <PropertiesDateEdit DisplayFormatString="dd/MM/yyyy">
                 </PropertiesDateEdit>
             </dx:GridViewDataDateColumn>
-            <dx:GridViewDataMemoColumn Caption="Địa chỉ giao hàng" FieldName="DiaChiGiaoHang" VisibleIndex="7" Width="100%">
+            <dx:GridViewDataMemoColumn Caption="Địa chỉ giao hàng" FieldName="DiaChiGiaoHang" VisibleIndex="8" Width="100%">
             </dx:GridViewDataMemoColumn>
+            <dx:GridViewDataTextColumn Caption="Điện thoại" FieldName="DienThoai" VisibleIndex="3" Width="100px">
+            </dx:GridViewDataTextColumn>
         </Columns>
 
         <FormatConditions>
@@ -207,9 +211,15 @@
             <dx:GridViewFormatConditionHighlight FieldName="TrangThai" Expression="[TrangThai] = 2" Format="LightRedFillWithDarkRedText" />
         </FormatConditions>
     </dx:ASPxGridView>
-     <asp:SqlDataSource ID="dsKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDKhachHang], ([HoTen] +'-'+ [DienThoai]) as HoTen FROM [khKhachHang] ORDER BY [IDKhachHang] DESC"></asp:SqlDataSource>
-     <asp:SqlDataSource ID="dsGiaohang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT * FROM [ghPhieuGiaoHang] ORDER BY [IDPhieuGiaoHang] DESC" UpdateCommand="UPDATE ghPhieuGiaoHang SET NgayGiao = @NgayGiao, DiaChiGiaoHang = @DiaChiGiaoHang, GhiChuGiaoHang = @GhiChuGiaoHang WHERE (IDPhieuGiaoHang = @IDPhieuGiaoHang)">
+     <asp:SqlDataSource ID="dsKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
+         SelectCommand="SELECT [IDKhachHang], [HoTen] FROM [khKhachHang] WHERE LoaiKhachHangID = 3 ORDER BY [IDKhachHang] DESC ">
+
+     </asp:SqlDataSource>
+     <asp:SqlDataSource ID="dsGiaohang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
+         SelectCommand="SELECT * FROM [ghPhieuGiaoHang] ORDER BY [IDPhieuGiaoHang] DESC" 
+         UpdateCommand="UPDATE ghPhieuGiaoHang SET DienThoai = @DienThoai,NgayGiao = @NgayGiao, DiaChiGiaoHang = @DiaChiGiaoHang, GhiChuGiaoHang = @GhiChuGiaoHang WHERE (IDPhieuGiaoHang = @IDPhieuGiaoHang)">
          <UpdateParameters>
+             <asp:Parameter Name="DienThoai" />
              <asp:Parameter Name="NgayGiao" />
              <asp:Parameter Name="DiaChiGiaoHang" />
              <asp:Parameter Name="GhiChuGiaoHang" />

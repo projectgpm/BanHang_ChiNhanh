@@ -12,9 +12,10 @@
     <item Text="Danh sách hàng hóa" NavigateUrl="~/Pages/HangHoa/HangHoa.aspx" ></item>
   </item>
   <item Text="Khách hàng">
-    <item Text="Thêm khách hàng - NCC" NavigateUrl="~/Pages/KhachHang/ThemKH.aspx" />
+    <item Text="Thêm khách hàng - NCC - ĐL" NavigateUrl="~/Pages/KhachHang/ThemKH.aspx" />
     <item Text="Danh sách khách hàng" NavigateUrl="~/Pages/KhachHang/DanhSachKH.aspx" />
     <item Text="Danh sách nhà cung cấp" NavigateUrl="~/Pages/KhachHang/DanhSachNCC.aspx" />
+    <item Text="Danh sách đại lý" NavigateUrl="~/Pages/KhachHang/DanhSachDaiLy.aspx" />
   </item>
   <item Text="Kho">
     <item Text="Tồn kho" NavigateUrl="~/Pages/Kho/TonKho.aspx" />

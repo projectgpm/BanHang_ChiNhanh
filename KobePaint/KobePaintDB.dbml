@@ -197,6 +197,18 @@
       <Column Name="DienGiai" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.ghPhieuGiaoHangChiTiet" Member="ghPhieuGiaoHangChiTiets">
+    <Type Name="ghPhieuGiaoHangChiTiet">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PhieuGiaoHangID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HangHoaID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TonKho" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GiaBan" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ThanhTien" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="GiaVon" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.ghPhieuGiaoHang" Member="ghPhieuGiaoHangs">
     <Type Name="ghPhieuGiaoHang">
       <Column Name="IDPhieuGiaoHang" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -212,18 +224,7 @@
       <Column Name="TrangThai" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TongSoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TongTien" Type="System.Double" DbType="Float" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ghPhieuGiaoHangChiTiet" Member="ghPhieuGiaoHangChiTiets">
-    <Type Name="ghPhieuGiaoHangChiTiet">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="PhieuGiaoHangID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="HangHoaID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TonKho" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="GiaBan" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="ThanhTien" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="GiaVon" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DienThoai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

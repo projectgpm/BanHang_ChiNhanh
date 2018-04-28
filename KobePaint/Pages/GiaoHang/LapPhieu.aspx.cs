@@ -216,6 +216,7 @@ namespace KobePaint.Pages.GiaoHang
                     giaohang.DaXoa = 0;
                     giaohang.TrangThai = 0;// chưa duyệt, 1 đã duyệt
                     giaohang.TongSoLuong = TongSoLuong;
+                    giaohang.DienThoai = txtDienThoai.Text;
                     giaohang.TongTien = TongTien;
                     DBDataProvider.DB.ghPhieuGiaoHangs.InsertOnSubmit(giaohang);
                     DBDataProvider.DB.SubmitChanges();
@@ -458,7 +459,7 @@ namespace KobePaint.Pages.GiaoHang
             ASPxComboBox comboBox = (ASPxComboBox)source;
             dsKhachHang.SelectCommand = @"SELECT MaKhachHang,HoTen,DienThoai,IDKhachHang
                                         FROM khKhachHang
-                                        WHERE (IDKhachHang = @IDKhachHang) AND (DaXoa = 0)";
+                                        WHERE (IDKhachHang = @IDKhachHang) AND (DaXoa = 0) AND LoaiKhachHangID = 3";
             dsKhachHang.SelectParameters.Clear();
             dsKhachHang.SelectParameters.Add("IDKhachHang", TypeCode.Int64, e.Value.ToString());
             comboBox.DataSource = dsKhachHang;
@@ -473,7 +474,7 @@ namespace KobePaint.Pages.GiaoHang
 	                                        SELECT MaKhachHang,HoTen,DienThoai,IDKhachHang,
 	                                        row_number()over(order by IDKhachHang) as [rn] 
 	                                        FROM khKhachHang 
-	                                        WHERE ((khKhachHang.MaKhachHang LIKE @MaKhachHang) OR (khKhachHang.HoTen LIKE @HoTen)) AND khKhachHang.DaXoa = 0	
+	                                        WHERE ((khKhachHang.MaKhachHang LIKE @MaKhachHang) OR (khKhachHang.HoTen LIKE @HoTen)) AND khKhachHang.DaXoa = 0 AND LoaiKhachHangID = 3	
 	                                        ) as st 
                                         where st.[rn] between @startIndex and @endIndex";
             dsKhachHang.SelectParameters.Clear();
