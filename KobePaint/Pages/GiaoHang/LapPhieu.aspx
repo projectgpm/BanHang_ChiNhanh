@@ -26,6 +26,9 @@
                 cbpInfo.PerformCallback('refresh');
             }
         }
+        function onccbKhachHangChange() {
+            cbpInfo.PerformCallback('DienThoai');
+        }
         function onExcelClick() {
             popupViewExcel.Show();
         }
@@ -94,7 +97,7 @@
                     <Panes>
                         <dx:SplitterPane Name="splpInfo">
                             <Panes>
-                                <dx:SplitterPane MaxSize="300px" Name="splpInfoNCC"  >
+                                <dx:SplitterPane MaxSize="300px" Name="splpInfoNCC">
                                     <ContentCollection>
                                         <dx:SplitterContentControl ID="SplitterContentControl1" runat="server">
                                              <dx:ASPxCallbackPanel ID="cbpInfo" ClientInstanceName="cbpInfo" runat="server" Width="100%" OnCallback="cbpInfo_Callback">
@@ -166,6 +169,7 @@
                                                                                         </Columns>
                                                                                         <DropDownButton Visible="False">
                                                                                         </DropDownButton>
+                                                                                        <ClientSideEvents SelectedIndexChanged="onccbKhachHangChange" />
                                                                                     </dx:ASPxComboBox>
                                                                                     <asp:SqlDataSource ID="dsKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>">
                                                                                         <SelectParameters>

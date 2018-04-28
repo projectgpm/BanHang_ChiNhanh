@@ -65,8 +65,17 @@ namespace KobePaint.Pages.GiaoHang
             switch (e.Parameter)
             {
                 case "refresh": Reset(); BindGrid(); break;
+                case "DienThoai": LoadDienThoai(); break;
                 default: break;
             }
+        }
+
+        private void LoadDienThoai()
+        {
+            int IDKhachHang = Convert.ToInt32(ccbKhachHang.Value.ToString());
+            var KH = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == IDKhachHang).FirstOrDefault();
+            txtDienThoai.Text = KH.DienThoai;
+            memoDiaChiKH.Text = KH.DiaChi;
         }
       
 
