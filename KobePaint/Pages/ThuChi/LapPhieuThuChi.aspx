@@ -71,7 +71,7 @@
                                 <dx:LayoutItem Caption="Loại phiếu">
                                     <LayoutItemNestedControlCollection>
                                         <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer2" runat="server">
-                                            <dx:ASPxComboBox ID="ccbLoaiPhieu" runat="server" ClientInstanceName="ccbLoaiPhieu" Width="100%" >
+                                            <dx:ASPxComboBox ID="ccbLoaiPhieu" runat="server" ClientInstanceName="ccbLoaiPhieu" Width="100%" NullText="-- Chọn loại phiếu --" >
                                                 <Items>
                                                     <dx:ListEditItem Text="Phiếu thu" Value="0" />
                                                     <dx:ListEditItem Text="Phiếu chi" Value="1" />
@@ -122,7 +122,7 @@
                                 <dx:LayoutItem Caption="Tên người Nộp/Nhận">
                                     <LayoutItemNestedControlCollection>
                                         <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer1" runat="server">
-                                             <dx:ASPxTextBox ID="txtKhachHang" runat="server" Width="100%">
+                                             <dx:ASPxTextBox ID="txtKhachHang" runat="server" Width="100%" NullText="-- Nhập họ và tên --">
                                             </dx:ASPxTextBox>
                                             
                                         </dx:LayoutItemNestedControlContainer>

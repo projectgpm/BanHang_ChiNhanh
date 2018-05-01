@@ -232,4 +232,39 @@
       <Column Name="TTThanhToan" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.pLoaiThuChi" Member="pLoaiThuChis">
+    <Type Name="pLoaiThuChi">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenPhieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DaXoa" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.pPhieuThuChi" Member="pPhieuThuChis">
+    <Type Name="pPhieuThuChi">
+      <Column Name="IDPhieu" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MaPhieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NgayLap" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NhanVienID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NguoiNop" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NoiDung" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="DuDau" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SoTien" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DuCuoi" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LoaiThuChiID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LoaiPhieu" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NgayLuu" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.chChiNhanh" Member="chChiNhanhs">
+    <Type Name="chChiNhanh">
+      <Column Name="IDChiNhanh" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenChiNhanh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DienThoai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MST" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="QuyThuChi" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DaXoa" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NgayDangKy" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

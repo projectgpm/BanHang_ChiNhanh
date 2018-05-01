@@ -32,8 +32,8 @@ namespace KobePaint.Pages.ThuChi
                     memoNoiDung.Text = "";
                     memoNoiDung.Text = ccbLoaiPhieu.Text.ToUpper() + " " + ccbLoaiThuChi.Text.ToUpper() + " SỐ TIỀN: " + spSoTien.Text + " ĐỒNG";
                     break;
-                case "Save": Save(); break;
-                case "redirect": DevExpress.Web.ASPxWebControl.RedirectOnCallback("~/Pages/HangHoa/HangHoa.aspx"); break;
+                case "Save": Save(); Rest(); break;
+                case "redirect": DevExpress.Web.ASPxWebControl.RedirectOnCallback("~/Pages/ThuChi/DanhSachThuChi.aspx"); break;
                 default: break;
             }
         }
@@ -44,13 +44,64 @@ namespace KobePaint.Pages.ThuChi
             {
                 try
                 {
+                    int LoaiPhieu = Convert.ToInt32(ccbLoaiPhieu.Value.ToString());
+                    pPhieuThuChi item = new pPhieuThuChi();
+                    item.NgayLap = Convert.ToDateTime(dateNgayLap.Date);
+                    item.NhanVienID = Formats.IDUser();
+                    item.NguoiNop = txtKhachHang.Text;
+                    item.NoiDung = memoNoiDung.Text;
+                    item.SoTien = Convert.ToDouble(spSoTien.Number);
+                    item.LoaiThuChiID = Convert.ToInt32(ccbLoaiThuChi.Value.ToString());
+                    item.LoaiPhieu = LoaiPhieu;
+                    item.NgayLuu = DateTime.Now;
+                    string MaPhieu = "";
+                    string MAX = (DBDataProvider.DB.pPhieuThuChis.Where(x => x.LoaiPhieu == LoaiPhieu).Count() + 1).ToString();
 
+                    var ChiNhanh = DBDataProvider.DB.chChiNhanhs.Where(x => x.IDChiNhanh == Formats.IDChiNhanh()).FirstOrDefault();
+                    item.DuDau = ChiNhanh.QuyThuChi;
+                   
+                    if (LoaiPhieu == 0)
+                    {
+                        //phiếu thu
+                        MaPhieu = "PT";
+                        for (int i = 1; i < (9 - MAX.Length); i++)
+                        {
+                            MaPhieu += "0";
+                        }
+                        MaPhieu += MAX;
+                        item.DuCuoi = ChiNhanh.QuyThuChi += Convert.ToDouble(spSoTien.Number);
+                    }
+                    else
+                    {
+                        //phiếu chi
+                        MaPhieu = "PC";
+                        for (int i = 1; i < (9 - MAX.Length); i++)
+                        {
+                            MaPhieu += "0";
+                        }
+                        MaPhieu += MAX;
+                        item.DuCuoi = ChiNhanh.QuyThuChi -= Convert.ToDouble(spSoTien.Number);
+                    }
+
+                    item.MaPhieu = MaPhieu;
+                    DBDataProvider.DB.pPhieuThuChis.InsertOnSubmit(item);
+                    DBDataProvider.DB.SubmitChanges();
+                    scope.Complete();
+                    cbpThem.JSProperties["cp_Reset"] = true;
                 }
                 catch (Exception ex)
                 {
                     throw ex;
                 }
             }    
+        }
+        private void Rest()
+        {
+            ccbLoaiPhieu.Text = "";
+            ccbLoaiThuChi.Text = "";
+            spSoTien.Number = 0;
+            txtKhachHang.Text = "";
+            memoNoiDung.Text = "";
         }
         protected void gridLoaiThuChi_CustomColumnDisplayText(object sender, DevExpress.Web.ASPxGridViewColumnDisplayTextEventArgs e)
         {

@@ -141,7 +141,6 @@
     <Content Include="Pages\Kho\ThemKiemKho.aspx" />
     <Content Include="Pages\Kho\ThemXuatKhac.aspx" />
     <Content Include="Pages\Kho\TonKho.aspx" />
-    <Content Include="Pages\Kho\TraHang.aspx" />
     <Content Include="Pages\TaiKhoan\DangNhap.aspx" />
     <Content Include="Pages\TaiKhoan\DangXuat.aspx" />
     <Content Include="Pages\TaiKhoan\DanhSachTaiKhoan.aspx" />
@@ -371,13 +370,6 @@
     </Compile>
     <Compile Include="Pages\Kho\TonKho.aspx.designer.cs">
       <DependentUpon>TonKho.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Kho\TraHang.aspx.cs">
-      <DependentUpon>TraHang.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Kho\TraHang.aspx.designer.cs">
-      <DependentUpon>TraHang.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\TaiKhoan\DangNhap.aspx.cs">
       <DependentUpon>DangNhap.aspx</DependentUpon>
