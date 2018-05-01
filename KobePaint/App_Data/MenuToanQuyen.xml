@@ -37,7 +37,7 @@
   </item>
   
   <item Text="Thanh toán" >
-    <item Text="Lập phiếu thanh toán đại lý" NavigateUrl="~/Pages/ThanhToan/LapThanhToan.aspx" />
+    <item Text="Lập phiếu đại lý thanh toán" NavigateUrl="~/Pages/ThanhToan/LapThanhToan.aspx" />
     <item Text="Lập phiếu thanh toán NCC" NavigateUrl="~/Pages/ThanhToan/LapThanhToanNCC.aspx" />
     <item Text="Danh sách thanh toán" NavigateUrl="~/Pages/ThanhToan/DanhSachThanhToan.aspx" />
   </item>
