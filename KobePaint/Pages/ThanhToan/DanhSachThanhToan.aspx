@@ -80,15 +80,12 @@
                 <CellStyle HorizontalAlign="Center">
                 </CellStyle>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Loại TT" FieldName="HinhThucTTID" VisibleIndex="8" Width="200px">
-                <PropertiesComboBox DataSourceID="dsLoaiTT" TextField="TenHinhThuc" ValueField="IDHinhThucTT">
-                </PropertiesComboBox>
-            </dx:GridViewDataComboBoxColumn>
+            
         </Columns>
     </dx:ASPxGridView>
     <asp:SqlDataSource ID="dsPhieuThu" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDPhieuThu], [STTPhieuThu], [SoHoaDon], [KhachHangID], [SoTienThu], [NoiDung], [NgayThu], [NhanVienThuID], [HinhThucTTID] FROM [gPhieuThu]"></asp:SqlDataSource>
     <asp:SqlDataSource ID="dsKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDKhachHang], [HoTen] FROM [khKhachHang]"></asp:SqlDataSource>
-    <asp:SqlDataSource ID="dsLoaiTT" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDHinhThucTT], [TenHinhThuc] FROM [gHinhThucThanhToan]"></asp:SqlDataSource>
+
     <asp:SqlDataSource ID="dsNhanVien" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDNhanVien], [HoTen] FROM [nvNhanVien]"></asp:SqlDataSource>
     <dx:ASPxGlobalEvents ID="globalEventGrid" runat="server">
         <ClientSideEvents BrowserWindowResized="function(s, e) {

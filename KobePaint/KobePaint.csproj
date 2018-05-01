@@ -146,9 +146,14 @@
     <Content Include="Pages\TaiKhoan\DangXuat.aspx" />
     <Content Include="Pages\TaiKhoan\DanhSachTaiKhoan.aspx" />
     <Content Include="Pages\TaiKhoan\ThongTinTaiKhoan.aspx" />
+    <Content Include="Pages\ThanhToan\DanhSachThanhToan.aspx" />
     <Content Include="Pages\ThanhToan\LapThanhToan.aspx" />
+    <Content Include="Pages\ThanhToan\LapThanhToanNCC.aspx" />
+    <Content Include="Pages\ThuChi\DanhSachThuChi.aspx" />
+    <Content Include="Pages\ThuChi\LapPhieuThuChi.aspx" />
     <Content Include="Pages\TraHang\DanhSachTraHang.aspx" />
     <Content Include="Pages\TraHang\LapPhieu.aspx" />
+    <Content Include="Pages\TraHang\TraHangNCC.aspx" />
     <Content Include="Root.master" />
   </ItemGroup>
   <ItemGroup>
@@ -402,12 +407,40 @@
     <Compile Include="Pages\TaiKhoan\ThongTinTaiKhoan.aspx.designer.cs">
       <DependentUpon>ThongTinTaiKhoan.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ThanhToan\DanhSachThanhToan.aspx.cs">
+      <DependentUpon>DanhSachThanhToan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ThanhToan\DanhSachThanhToan.aspx.designer.cs">
+      <DependentUpon>DanhSachThanhToan.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ThanhToan\LapThanhToan.aspx.cs">
       <DependentUpon>LapThanhToan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\ThanhToan\LapThanhToan.aspx.designer.cs">
       <DependentUpon>LapThanhToan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ThanhToan\LapThanhToanNCC.aspx.cs">
+      <DependentUpon>LapThanhToanNCC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ThanhToan\LapThanhToanNCC.aspx.designer.cs">
+      <DependentUpon>LapThanhToanNCC.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ThuChi\DanhSachThuChi.aspx.cs">
+      <DependentUpon>DanhSachThuChi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ThuChi\DanhSachThuChi.aspx.designer.cs">
+      <DependentUpon>DanhSachThuChi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ThuChi\LapPhieuThuChi.aspx.cs">
+      <DependentUpon>LapPhieuThuChi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ThuChi\LapPhieuThuChi.aspx.designer.cs">
+      <DependentUpon>LapPhieuThuChi.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\TraHang\DanhSachTraHang.aspx.cs">
       <DependentUpon>DanhSachTraHang.aspx</DependentUpon>
@@ -423,12 +456,19 @@
     <Compile Include="Pages\TraHang\LapPhieu.aspx.designer.cs">
       <DependentUpon>LapPhieu.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\TraHang\TraHangNCC.aspx.cs">
+      <DependentUpon>TraHangNCC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\TraHang\TraHangNCC.aspx.designer.cs">
+      <DependentUpon>TraHangNCC.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reports\XtraReport1.cs">
+    <Compile Include="Reports\rpPhieuThanhToan.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\XtraReport1.Designer.cs">
-      <DependentUpon>XtraReport1.cs</DependentUpon>
+    <Compile Include="Reports\rpPhieuThanhToan.Designer.cs">
+      <DependentUpon>rpPhieuThanhToan.cs</DependentUpon>
     </Compile>
     <Compile Include="Root.master.cs">
       <DependentUpon>Root.master</DependentUpon>
@@ -448,11 +488,13 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Reports\rpPhieuThanhToan.resx">
+      <DependentUpon>rpPhieuThanhToan.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\BaoCao\" />
     <Folder Include="Pages\POST\" />
-    <Folder Include="Pages\ThuChi\" />
     <Folder Include="Pages\TongQuan\" />
     <Folder Include="Uploads\" />
   </ItemGroup>

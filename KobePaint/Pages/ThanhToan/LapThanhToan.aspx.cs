@@ -13,45 +13,49 @@ namespace KobePaint.Pages.ThanhToan
     {        
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                hiddenfield["view"] = 0;
-            }
-            if (hiddenfield["view"].ToString() != "0")
-            {
-                //reportViewer.Report = CreatReport();
-                hiddenfield["view"] = 0;
-            }
+            
         }
 
         protected void cbpThanhToan_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
             switch (e.Parameter)
             {
-                case "PhieuTT": 
-                        int IDPhieuThanhToan = int.Parse(ccbPhieuThanhToan.Value.ToString());
-                        var PhieuTT = DBDataProvider.DB.ghPhieuGiaoHangs.Where(x => x.IDPhieuGiaoHang == IDPhieuThanhToan).FirstOrDefault();
-                        txtSoTienDaTT.Text = PhieuTT.ThanhToan.ToString();
-                        spCanThanhToan.Text = PhieuTT.ConLai.ToString();
-                        memoNoiDungTT.Text += PhieuTT.ConLai.ToString();
+                case "PhieuTT":
+                    int IDPhieuThanhToan = int.Parse(ccbPhieuThanhToan.Value.ToString());
+                    var PhieuTT = DBDataProvider.DB.ghPhieuGiaoHangs.Where(x => x.IDPhieuGiaoHang == IDPhieuThanhToan).FirstOrDefault();
+                    txtSoTienDaTT.Text = PhieuTT.ThanhToan.ToString();
+                    speSoTienTT.Text = PhieuTT.ConLai.ToString();
+                    speSoTienTT.Enabled = false;
+                    ListPhieuThanhToan(Convert.ToInt32(ccbKhachHang.Value.ToString()));
+                    memoNoiDungTT.Text += PhieuTT.ConLai.ToString() + " ĐỒNG";
                     break;
                 case "Customer":
-                        int IDKhachHang = int.Parse(ccbKhachHang.Value.ToString());
-                        var KhachHang = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == IDKhachHang).FirstOrDefault();
-                        txtCongNoHienTai.Text = KhachHang.CongNo.ToString();
-                        memoNoiDungTT.Text = KhachHang.HoTen.ToUpper() + " THANH TOÁN: ";
-                        var ListDonHang = DBDataProvider.ListPhieuGiaoHang(IDKhachHang);
-                        ccbPhieuThanhToan.DataSource = ListDonHang;
-                        ccbPhieuThanhToan.DataBind();
+                    //ccbPhieuThanhToan.SelectedIndex = 0;
+                    speSoTienTT.Text = "0";
+                    int IDKhachHang = int.Parse(ccbKhachHang.Value.ToString());
+                    var KhachHang = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == IDKhachHang).FirstOrDefault();
+                    txtCongNoHienTai.Text = KhachHang.CongNo.ToString();
+                    ccbPhieuThanhToan.Text = "";
+                    ListPhieuThanhToan(IDKhachHang);
                     break;
                 case "Review": break;
-                default :
+                default:
                     LuuThanhToan();
                     Reset();
                     break;
             }
         }
-        
+
+        private void ListPhieuThanhToan(int IDKhachHang)
+        {
+            var KhachHang = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == IDKhachHang).FirstOrDefault();
+            memoNoiDungTT.Text = "";
+            memoNoiDungTT.Text = KhachHang.HoTen.ToUpper() + " THANH TOÁN: ";
+            
+            var ListDonHang = DBDataProvider.ListPhieuGiaoHang(IDKhachHang);
+            ccbPhieuThanhToan.DataSource = ListDonHang;
+            ccbPhieuThanhToan.DataBind();
+        }
 
         protected void dateEditControl_Init(object sender, EventArgs e)
         {
@@ -69,10 +73,6 @@ namespace KobePaint.Pages.ThanhToan
         {
           
         }
-
-        
-
-       
 
         protected void btnRenew_Click(object sender, EventArgs e)
         {

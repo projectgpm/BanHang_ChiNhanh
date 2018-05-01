@@ -3,17 +3,15 @@
 <%@ Register Assembly="DevExpress.XtraReports.v16.1.Web, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <script>
-        function onCCBKhachHangChanged(s, e)
-        {
+        function onCCBKhachHangChanged(s, e) {
             cbpThanhToan.PerformCallback('Customer');
         }
-        function onCCBPhieuThanhToanChanged(s,e)
-        {
+        function onCCBPhieuThanhToanChanged(s, e) {
             cbpThanhToan.PerformCallback('PhieuTT');
-            onCCBHinhThucChanged(s, e);
         }
-        function initCCBHinhThuc(s, e)
-        {
+
+        // hình thức thanh toán
+        function initCCBHinhThuc(s, e) {
             if (s.GetSelectedIndex() == 0) {
                 SetVisiblePhieuTT(false);
             }
@@ -21,84 +19,43 @@
                 SetVisiblePhieuTT(true);
             }
         }
-        function onCCBHinhThucChanged(s, e)
-        {
+
+        function onCCBHinhThucChanged(s, e) {
             if (s.GetSelectedIndex() == 0) {
-                formThanhToan.GetItemByName('itemSoTienTT').SetVisible(true);
                 SetVisiblePhieuTT(false);
+                speSoTienTT.SetEnabled(true);
             }
-            else
-            {
+            else {
                 SetVisiblePhieuTT(true);
-                formThanhToan.GetItemByName('itemSoTienTT').SetVisible(false);
+                speSoTienTT.SetEnabled(false);
             }
         }
-        function SetVisiblePhieuTT(bVisible)
-        {
+        function SetVisiblePhieuTT(bVisible) {
             formThanhToan.GetItemByName('itemPhieuTT').SetVisible(bVisible);
             formThanhToan.GetItemByName('itemSoTienDaTT').SetVisible(bVisible);
-            formThanhToan.GetItemByName('itemspCanThanhToan').SetVisible(bVisible);
         }
-        function onClickSavePrint()
-        {
-            //if (speSoTienTT.GetValue() == 0)
-            //{
-            //    alert("Chưa nhập số tiền thanh toán");
-            //    return;
-            //}
-            //if (rdlHinhThuc.GetSelectedIndex() == 0)
-            //{
-            //    var TongNo = Number(txtCongNoHienTai.GetText());
-            //    var Tra = Number(speSoTienTT.GetValue());
-            //    if (Tra > TongNo) {
-            //        var r = confirm("Số tiền thanh toán không được nhập quá số tổng công nợ /n Bạn có muốn sửa số tiền thanh toán và lưu?");
-            //        if (r == true) {
-            //            speSoTienTT.SetValue(TongNo);
-            //            SavePrint();
-            //        }
-            //    }
-            //    else {
-            //        SavePrint();
-            //    }
-            //}
-            //else
-            //{
-            //    var PhieuNo = Number(hiddenfield.Get("TienNo"));
-            //    var Tra = Number(speSoTienTT.GetValue());
-            //    if (Tra > PhieuNo) {
-            //        var r = confirm("Số tiền thanh toán không được nhập quá số công nợ trên phiếu /n Bạn có muốn sửa số tiền thanh toán và lưu?");
-            //        if (r == true) {
-            //            speSoTienTT.SetValue(PhieuNo);
-            //            SavePrint();
-            //        }
-            //    }
-            //    else
-            //    {
-            //        SavePrint();
-            //    }
-            //}
-        }
-        function SavePrint() {
-            //cbpThanhToan.PerformCallback('SavePrint');
-        }
-        function onReviewClick()
-        {
-            //if (ccbKhachHang.GetSelectedIndex() == -1)
-            //{
-            //    alert("Chưa chọn khách hàng");
-            //    return;
-            //}
-            //cbpThanhToan.PerformCallback('Review');
-        }
-        function onEndCallBack(s, e)
-        {
-            if (s.cp_rpView) {
-                hiddenfield.Set('view', '1');
-                popupViewReport.Show();
-                reportViewer.GetViewer().Refresh();
-                delete (s.cp_rpView);
+
+        function checkInput() {
+            if (ccbKhachHang.GetSelectedIndex() == -1) {
+                alert('Vui lòng chọn khách hàng!!');
+                ccbKhachHang.Fouce();
+                return false;
             }
+            return true;
         }
+        function onSaveClick() {
+            //if(checkInput())
+
+        }
+       
+            function onEndCallBack(s, e) {
+                //if (s.cp_rpView) {
+                //    hiddenfield.Set('view', '1');
+                //    popupViewReport.Show();
+                //    reportViewer.GetViewer().Refresh();
+                //    delete (s.cp_rpView);
+                //}
+            }
     </script>
     <dx:ASPxCallbackPanel ID="cbpThanhToan" ClientInstanceName="cbpThanhToan" runat="server" Width="100%" OnCallback="cbpThanhToan_Callback">
         <PanelCollection>
@@ -110,7 +67,7 @@
                                 <dx:LayoutItem Caption="Khách hàng">
                                     <LayoutItemNestedControlCollection>
                                         <dx:LayoutItemNestedControlContainer runat="server">
-                                            <dx:ASPxComboBox ID="ccbKhachHang" ClientInstanceName="ccbKhachHang" runat="server" Width="100%" DataSourceID="dsKhachHang" NullText="--- chọn khách hàng ---" ValueField="IDKhachHang" TextField="HoTen">
+                                            <dx:ASPxComboBox ID="ccbKhachHang" ClientInstanceName="ccbKhachHang" runat="server" Width="100%" DataSourceID="dsKhachHang" NullText="--- Chọn khách hàng ---" ValueField="IDKhachHang" TextField="HoTen">
                                                 <ClientSideEvents SelectedIndexChanged="onCCBKhachHangChanged" />
                                             </dx:ASPxComboBox>
                                             <asp:SqlDataSource ID="dsKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDKhachHang], [HoTen] FROM [khKhachHang] Where LoaiKhachHangID = 3"></asp:SqlDataSource>
@@ -168,24 +125,7 @@
                                     <HelpTextStyle ForeColor="#00CC00" Wrap="False"></HelpTextStyle>
                                 </dx:LayoutItem>
                             
-
-
-
-
-
-                                <dx:LayoutItem Caption="Số tiền cần thanh toán" ColSpan="2" HelpText="(Đvt: đồng)"  Name="itemspCanThanhToan" ClientVisible="false">
-                                    <LayoutItemNestedControlCollection>
-                                        <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer1" runat="server">
-                                            <dx:ASPxSpinEdit ID="spCanThanhToan" ClientInstanceName="spCanThanhToan" runat="server" Number="0" DecimalPlaces="2" Increment="5000" Width="100%" DisplayFormatString="N0"  Enabled ="false">
-                                            </dx:ASPxSpinEdit>
-                                        </dx:LayoutItemNestedControlContainer>
-                                    </LayoutItemNestedControlCollection>
-                                    <HelpTextSettings Position="Right" VerticalAlign="Middle" />
-                                    <HelpTextStyle ForeColor="#00CC00" Wrap="False"></HelpTextStyle>
-                                </dx:LayoutItem>
-
-
-                                <dx:LayoutItem Caption="Số tiền thanh toán" ColSpan="2" HelpText="(Đvt: đồng)" Name="itemSoTienTT" ClientVisible="true">
+                                <dx:LayoutItem Caption="Số tiền thanh toán" ColSpan="2" HelpText="(Đvt: đồng)" Name="itemSoTienTT" >
                                     <LayoutItemNestedControlCollection>
                                         <dx:LayoutItemNestedControlContainer runat="server">
                                             <dx:ASPxSpinEdit ID="speSoTienTT" ClientInstanceName="speSoTienTT" runat="server" Number="0" DecimalPlaces="2" Increment="5000" Width="100%" DisplayFormatString="N0">
@@ -224,24 +164,31 @@
                         <dx:LayoutItem HorizontalAlign="Center" ShowCaption="False" Width="100%">
                             <LayoutItemNestedControlCollection>
                                 <dx:LayoutItemNestedControlContainer runat="server">
-                                    <table style="width:100%;">
+                                    <div style="align-items: center; text-align: center; padding-top: 5px;">
+                                    <table  style="margin: 0 auto;">
                                         <tr>
-                                            <td style="padding-right:10px;text-align:right;width:50%;">
+                                            <%--<td style="padding-right:10px;text-align:right;width:50%;">
                                                 <dx:ASPxButton ID="btnReview" runat="server" Text="Xem trước" Width="100" BackColor="#5cb85c" AutoPostBack="False">
                                                     <ClientSideEvents Click="onReviewClick" />
                                                 </dx:ASPxButton>
+                                            </td>--%>
+                                            <td style="padding-left: 10px">
+                                                <dx:ASPxButton ID="btnSave" runat="server" Text="Thanh toán" AutoPostBack="false" UseSubmitBehavior="true">
+                                                    <ClientSideEvents Click="onSaveClick" />
+                                                </dx:ASPxButton>
                                             </td>
-                                            <td style="padding-right:10px;width:110px;">
+                                           <%-- <td style="width:110px;">
                                                 <dx:ASPxButton ID="btnSavePrint" runat="server" Text="Thanh toán và In phiếu" Width="100" AutoPostBack="false" UseSubmitBehavior="true">
                                                     <ClientSideEvents Click="onClickSavePrint" />
                                                 </dx:ASPxButton>
-                                            </td>
-                                            <td>
+                                            </td>--%>
+                                            <td style="padding-left:10px;">
                                                 <dx:ASPxButton ID="btnRenew" runat="server" Text="Lập mới" Width="100" BackColor="#d9534f" OnClick="btnRenew_Click" UseSubmitBehavior="false">
                                                 </dx:ASPxButton>
                                             </td>
                                         </tr>
                                     </table>
+                                        </div>
                                 </dx:LayoutItemNestedControlContainer>
                             </LayoutItemNestedControlCollection>
                         </dx:LayoutItem>

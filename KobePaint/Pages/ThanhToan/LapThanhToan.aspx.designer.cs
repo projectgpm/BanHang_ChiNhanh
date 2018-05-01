@@ -94,24 +94,6 @@ namespace KobePaint.Pages.ThanhToan {
         protected global::DevExpress.Web.ASPxHiddenField hiddenfield;
         
         /// <summary>
-        /// LayoutItemNestedControlContainer1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer1;
-        
-        /// <summary>
-        /// spCanThanhToan control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxSpinEdit spCanThanhToan;
-        
-        /// <summary>
         /// speSoTienTT control.
         /// </summary>
         /// <remarks>
@@ -148,22 +130,13 @@ namespace KobePaint.Pages.ThanhToan {
         protected global::DevExpress.Web.ASPxMemo memoNoiDungTT;
         
         /// <summary>
-        /// btnReview control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnReview;
-        
-        /// <summary>
-        /// btnSavePrint control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnSavePrint;
+        protected global::DevExpress.Web.ASPxButton btnSave;
         
         /// <summary>
         /// btnRenew control.

@@ -47,3 +47,5 @@ D:\GPM2018\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.dll.licenses
 D:\GPM2018\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.dll
 D:\GPM2018\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.pdb
 D:\GPM2018\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.csprojResolveAssemblyReference.cache
+D:\GPM2018\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.Reports.rpPhieuThanhToan.resources
+D:\GPM2018\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.csproj.GenerateResource.Cache

@@ -111,27 +111,6 @@
       <Column Name="GiaBan" Type="System.Double" DbType="Float" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.kNhapKho" Member="kNhapKhos">
-    <Type Name="kNhapKho">
-      <Column Name="IDNhapKho" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="NCCID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SoHoaDon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="MaPhieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="NgayNhap" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
-      <Column Name="NguoiNhapID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TongTien" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="ThanhToan" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="CongNo" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="CongNoCu" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="CongNoMoi" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="TongSoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="NgayTao" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
-      <Column Name="DaXoa" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TrangThaiPhieu" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Url" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.khNhatKyCongNo" Member="khNhatKyCongNos">
     <Type Name="khNhatKyCongNo">
       <Column Name="IDCongNo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -229,6 +208,28 @@
       <Column Name="TTThanhToan" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ThanhToan" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="ConLai" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.kNhapKho" Member="kNhapKhos">
+    <Type Name="kNhapKho">
+      <Column Name="IDNhapKho" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NCCID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SoHoaDon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaPhieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NgayNhap" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="NguoiNhapID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TongTien" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ThanhToan" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CongNo" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CongNoCu" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CongNoMoi" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TongSoLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="NgayTao" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="DaXoa" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TrangThaiPhieu" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Url" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="TTThanhToan" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

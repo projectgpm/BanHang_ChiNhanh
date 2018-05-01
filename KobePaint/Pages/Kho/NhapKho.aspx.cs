@@ -286,6 +286,9 @@ namespace KobePaint.Pages.Kho
                     nhapKho.DaXoa = 0;
                     nhapKho.ThanhToan = ThanhToan;
                     nhapKho.CongNo = ConLai;// nợ đơn hàng
+                    if (ConLai == 0)
+                        nhapKho.TTThanhToan = 1;
+                    nhapKho.TTThanhToan = 0;
                     DBDataProvider.DB.kNhapKhos.InsertOnSubmit(nhapKho);
                     DBDataProvider.DB.SubmitChanges();
                     int IDNhap = nhapKho.IDNhapKho;

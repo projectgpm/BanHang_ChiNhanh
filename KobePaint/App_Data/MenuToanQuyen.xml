@@ -29,10 +29,11 @@
   <item Text="Giao - Trả hàng">
     <item Text="Lập phiếu giao hàng" NavigateUrl="~/Pages/GiaoHang/LapPhieu.aspx" />
     <item Text="Danh sách giao hàng" NavigateUrl="~/Pages/GiaoHang/DanhSachGiaoHang.aspx" />
-    <item Text="Lập phiếu trả hàng" NavigateUrl="~/Pages/Kho/DanhSachNhapKho.aspx" />
-    <item Text="Danh sách trả hàng" NavigateUrl="~/Pages/Kho/ThemXuatKhac.aspx" />
-    <item Text="Lập phiếu trả hàng NCC" NavigateUrl="~/Pages/Kho/DanhSachNhapKho.aspx" />
+    <item Text="Lập phiếu trả hàng" NavigateUrl="~/Pages/TraHang/LapPhieu.aspx" />
+    <item Text="Danh sách trả hàng" NavigateUrl="~/Pages/TraHang/DanhSachTraHang.aspx" />
+    <item Text="Lập phiếu trả hàng NCC" NavigateUrl="~/Pages/TraHang/TraHangNCC.aspx" />
     <item Text="Danh sách trả hàng NCC" NavigateUrl="~/Pages/Kho/ThemXuatKhac.aspx" />
+    <!--<item Text="Trả hàng phát sinh" NavigateUrl="" />-->
   </item>
   
   <item Text="Thanh toán" >
@@ -42,10 +43,10 @@
   </item>
   
   <item Text="Thu chi" >
-    <item Text="Lập phiếu thu chi" NavigateUrl="" />
-    <item Text="Danh sách phiếu thu chi" NavigateUrl="" />
-    <item Text="Lập phiếu tạm ứng" NavigateUrl="" />
-    <item Text="Danh sách tạm ứng" NavigateUrl="" />
+    <item Text="Lập phiếu thu chi" NavigateUrl="~/Pages/ThuChi/LapPhieuThuChi.aspx" />
+    <item Text="Danh sách phiếu thu chi" NavigateUrl="~/Pages/ThuChi/DanhSachThuChi.aspx" />
+    <!--<item Text="Lập phiếu tạm ứng" NavigateUrl="" />
+    <item Text="Danh sách tạm ứng" NavigateUrl="" />-->
   </item>
   
   <item Text="Báo cáo" >
