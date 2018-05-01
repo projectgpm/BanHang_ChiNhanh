@@ -87,7 +87,7 @@ namespace KobePaint.Pages.Kho
                         ccbBarcode.Value = "";
                         ccbBarcode.Text = "";
                         ccbBarcode.Focus();
-                        ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Mã hàng không tồn tại!!');", true);
+                        throw new Exception("Mã hàng không tồn tại!!");
                     }
                 }
                 else
@@ -104,7 +104,7 @@ namespace KobePaint.Pages.Kho
                         ccbBarcode.Value = "";
                         ccbBarcode.Text = "";
                         ccbBarcode.Focus();
-                        ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Mã hàng không tồn tại!!');", true);
+                        throw new Exception("Mã hàng không tồn tại!!");
                     }
                 }
             }
@@ -143,7 +143,7 @@ namespace KobePaint.Pages.Kho
                 ccbBarcode.Value = "";
                 ccbBarcode.Text = "";
                 ccbBarcode.Focus();
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Mã hàng không tồn tại!!');", true);
+                throw new Exception("Mã hàng không tồn tại!!");
             }
         }
         #endregion
@@ -337,7 +337,7 @@ namespace KobePaint.Pages.Kho
             }
             else
             {
-                Response.Write("<script language='JavaScript'> alert('Dữ liệu không chính xác? Vui lòng kiểm tra lại.'); </script>"); return;
+                throw new Exception("File excel không đúng. Vui lòng kiểm tra lại!!");
             }
         }
         #endregion
