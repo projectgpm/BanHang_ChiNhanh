@@ -3,6 +3,7 @@ using KobePaint.Reports;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -71,7 +72,24 @@ namespace KobePaint.Pages.ThanhToan
         }
         public void LuuThanhToan()
         {
-          
+            using (var scope = new TransactionScope())
+            {
+                try
+                {
+                    int IDKhachHang = Convert.ToInt32(ccbKhachHang.Value.ToString());
+                    string SoHoaDon = txtHoaDon.Text;
+                    string NoiDung = memoNoiDungTT.Text;
+                    DateTime NgayThu = Formats.ConvertToDateTime(dateNgayTT.Text);
+                    int NhanVienThuID = Formats.IDUser();
+                    int HinhThucThu = rdlHinhThuc.SelectedIndex == 0 ? 1 : 2;
+                    float CongNoCu = float.Parse(txtCongNoHienTai.Text);
+
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
 
         protected void btnRenew_Click(object sender, EventArgs e)

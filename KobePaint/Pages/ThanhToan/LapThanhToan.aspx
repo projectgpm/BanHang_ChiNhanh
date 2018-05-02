@@ -115,10 +115,9 @@
                                 <dx:LayoutItem Caption="Số tiền đã thanh toán" HelpText="(Đvt: đồng)" Name="itemSoTienDaTT" ClientVisible="false">
                                     <LayoutItemNestedControlCollection>
                                         <dx:LayoutItemNestedControlContainer runat="server">
-                                                        <dx:ASPxTextBox ID="txtSoTienDaTT" runat="server" Width="100%"  Enabled="false" DisplayFormatString="N0">
-                                                        </dx:ASPxTextBox>
-                                                        <dx:ASPxHiddenField ID="hiddenfield" ClientInstanceName="hiddenfield" runat="server"></dx:ASPxHiddenField>
-     
+                                            <dx:ASPxTextBox ID="txtSoTienDaTT" runat="server" Width="100%"  Enabled="false" DisplayFormatString="N0">
+                                            </dx:ASPxTextBox>
+                                            <dx:ASPxHiddenField ID="hiddenfield" ClientInstanceName="hiddenfield" runat="server"></dx:ASPxHiddenField>
                                         </dx:LayoutItemNestedControlContainer>
                                     </LayoutItemNestedControlCollection>
                                     <HelpTextSettings Position="Right" VerticalAlign="Middle" />
