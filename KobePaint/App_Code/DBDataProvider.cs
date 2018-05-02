@@ -43,13 +43,33 @@ namespace KobePaint.App_Code
         // danh sách phiếu giao hàng chưa thanh toán
         public static List<ghPhieuGiaoHang> ListPhieuGiaoHang(int IDKhachHang)
         {
-            return DB.ghPhieuGiaoHangs.Where(x => x.KhachHangID == IDKhachHang && x.TrangThai == 1 && x.TTThanhToan == 0).OrderBy(x => x.IDPhieuGiaoHang).ToList();
+            return DB.ghPhieuGiaoHangs.Where(x => x.KhachHangID == IDKhachHang && x.TrangThai == 1 && x.TTThanhToan == 0).OrderByDescending(x => x.IDPhieuGiaoHang).ToList();
         }
 
         // danh sách phiếu nhập hàng chưa thanh toán
         public static List<kNhapKho> ListPhieuNhapHang(int IDKhachHang)
         {
-            return DB.kNhapKhos.Where(x => x.NCCID == IDKhachHang && x.TTThanhToan == 0 && x.CongNo > 0).OrderBy(x => x.IDNhapKho).ToList();
+            return DB.kNhapKhos.Where(x => x.NCCID == IDKhachHang && x.TTThanhToan == 0 && x.CongNo > 0).OrderByDescending(x => x.IDNhapKho).ToList();
+        }
+        // danh sách phiếu nhập hàng chưa thanh toán
+        public static List<kNhapKho> ListPhieuNhapHang_TraHang(int IDKhachHang)
+        {
+            return DB.kNhapKhos.Where(x => x.NCCID == IDKhachHang).OrderByDescending(x => x.IDNhapKho).ToList();
+        }
+        // danh sách nhập kho chi tiết
+        public static List<kNhapKhoChiTiet> ListChiTietNhapKho(int NhapKhoID)
+        {
+            return DB.kNhapKhoChiTiets.Where(x => x.NhapKhoID == NhapKhoID).ToList();
+        }
+        // danh sách phiếu giao hàng
+        public static List<ghPhieuGiaoHang> ListPhieuGiaoHang_TraHang(int IDDaiLy)
+        {
+            return DB.ghPhieuGiaoHangs.Where(x => x.KhachHangID == IDDaiLy).OrderByDescending(x => x.IDPhieuGiaoHang).ToList();
+        }
+        // danh sách giao hàng chi tiết
+        public static List<ghPhieuGiaoHangChiTiet> ListChiTietGiaoHang(int PhieuGiaoHangID)
+        {
+            return DB.ghPhieuGiaoHangChiTiets.Where(x => x.PhieuGiaoHangID == PhieuGiaoHangID).ToList();
         }
     }
 }

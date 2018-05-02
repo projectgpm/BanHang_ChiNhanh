@@ -151,6 +151,7 @@
                                                                                     </dx:ASPxTextBox>
                                                                                 </dx:LayoutItemNestedControlContainer>
                                                                             </LayoutItemNestedControlCollection>
+                                                                            <CaptionSettings Location="Left" />
                                                                         </dx:LayoutItem>
                                                                         <dx:LayoutItem Caption="Nhà cung cấp">
                                                                             <LayoutItemNestedControlCollection>
@@ -190,6 +191,7 @@
                                                                                     </dx:ASPxDateEdit>
                                                                                 </dx:LayoutItemNestedControlContainer>
                                                                             </LayoutItemNestedControlCollection>
+                                                                            <CaptionSettings Location="Left" />
                                                                         </dx:LayoutItem>
                                                                         <dx:LayoutItem Caption="Số hóa đơn">
                                                                             <LayoutItemNestedControlCollection>
@@ -198,6 +200,7 @@
                                                                                     </dx:ASPxTextBox>
                                                                                 </dx:LayoutItemNestedControlContainer>
                                                                             </LayoutItemNestedControlCollection>
+                                                                            <CaptionSettings Location="Left" />
                                                                         </dx:LayoutItem>
                                                                         <dx:LayoutItem Caption="Người nhập">
                                                                             <LayoutItemNestedControlCollection>
@@ -206,6 +209,7 @@
                                                                                     </dx:ASPxTextBox>
                                                                                 </dx:LayoutItemNestedControlContainer>
                                                                             </LayoutItemNestedControlCollection>
+                                                                            <CaptionSettings Location="Left" />
                                                                         </dx:LayoutItem>
                                                                         <dx:LayoutItem Caption="Tổng tiền" FieldName="TongTien">
                                                                             <LayoutItemNestedControlCollection>
@@ -215,6 +219,7 @@
 
                                                                                 </dx:LayoutItemNestedControlContainer>
                                                                             </LayoutItemNestedControlCollection>
+                                                                            <CaptionSettings Location="Left" />
                                                                         </dx:LayoutItem>
                                                                       <dx:LayoutItem Caption="Thanh toán" FieldName="ThanhToan">
                                                                             <LayoutItemNestedControlCollection>
@@ -225,11 +230,12 @@
 
                                                                                 </dx:LayoutItemNestedControlContainer>
                                                                             </LayoutItemNestedControlCollection>
+                                                                            <CaptionSettings Location="Left" />
                                                                         </dx:LayoutItem>
                                                                         <dx:LayoutItem Caption="Thông tin khác">
                                                                             <LayoutItemNestedControlCollection>
                                                                                 <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer7" runat="server">
-                                                                                    <dx:ASPxMemo ID="memoGhiChu" runat="server" Rows="3" Width="100%">
+                                                                                    <dx:ASPxMemo ID="memoGhiChu" runat="server" Rows="5" Width="100%">
                                                                                     </dx:ASPxMemo>
                                                                                 </dx:LayoutItemNestedControlContainer>
                                                                             </LayoutItemNestedControlCollection>

@@ -15,6 +15,8 @@
             </Header>
             <GroupRow ForeColor="#428BCA">
             </GroupRow>
+            <AlternatingRow Enabled="True">
+            </AlternatingRow>
             <Cell>
                 <Paddings PaddingBottom="3px" PaddingTop="3px" />
             </Cell>

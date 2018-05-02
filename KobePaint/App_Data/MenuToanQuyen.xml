@@ -29,10 +29,10 @@
   <item Text="Giao - Trả hàng">
     <item Text="Lập phiếu giao hàng" NavigateUrl="~/Pages/GiaoHang/LapPhieu.aspx" />
     <item Text="Danh sách giao hàng" NavigateUrl="~/Pages/GiaoHang/DanhSachGiaoHang.aspx" />
-    <item Text="Lập phiếu trả hàng" NavigateUrl="~/Pages/TraHang/LapPhieu.aspx" />
-    <item Text="Danh sách trả hàng" NavigateUrl="~/Pages/TraHang/DanhSachTraHang.aspx" />
+    <item Text="Lập phiếu đại lý trả hàng" NavigateUrl="~/Pages/TraHang/LapPhieu.aspx" />
+    <item Text="Danh sách đại lý trả hàng" NavigateUrl="~/Pages/TraHang/DanhSachTraHang.aspx" />
     <item Text="Lập phiếu trả hàng NCC" NavigateUrl="~/Pages/TraHang/TraHangNCC.aspx" />
-    <item Text="Danh sách trả hàng NCC" NavigateUrl="~/Pages/Kho/ThemXuatKhac.aspx" />
+    <item Text="Danh sách trả hàng NCC" NavigateUrl="~/Pages/TraHang/DanhSachTraHangNCC.aspx" />
     <!--<item Text="Trả hàng phát sinh" NavigateUrl="" />-->
   </item>
   
@@ -50,7 +50,7 @@
   </item>
   
   <item Text="Báo cáo" >
-    <item Text="Doanh thu" NavigateUrl="~/Pages/BaoCao/CongNo.aspx" />
+    <!--<item Text="Doanh thu" NavigateUrl="~/Pages/BaoCao/CongNo.aspx" />
     <item Text="Công nợ" NavigateUrl="~/Pages/BaoCao/CongNoChiTiet.aspx" />
     <item Text="Thanh toán" NavigateUrl="~/Pages/BaoCao/CongNoNCC.aspx" />
     <item Text="Hàng trả" NavigateUrl="~/Pages/BaoCao/DanhSachKhachHang.aspx" />
@@ -59,7 +59,7 @@
     <item Text="Nhập-xuất-tồn" NavigateUrl="~/Pages/BaoCao/TraHang.aspx" />
     <item Text="Tồn kho" NavigateUrl="~/Pages/BaoCao/ThanhToan.aspx" />
     <item Text="Nhập kho chi tiết" NavigateUrl="~/Pages/BaoCao/NhapXuatTon.aspx" />
-    <item Text="Xuất kho chi tiết" NavigateUrl="~/Pages/BaoCao/ChiTietNhapKho.aspx" />
+    <item Text="Xuất kho chi tiết" NavigateUrl="~/Pages/BaoCao/ChiTietNhapKho.aspx" />-->
   </item>
   <item Text="Hệ thống" >
     <item Text="Thông tin tài khoản" NavigateUrl="~/Pages/TaiKhoan/ThongTinTaiKhoan.aspx" />

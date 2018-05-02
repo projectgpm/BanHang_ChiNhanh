@@ -123,5 +123,35 @@ namespace KobePaint.App_Code
         }
     }
     #endregion
+
+
+
+    #region Trả hàng NCC
+    [Serializable]
+    public class oImportProduct_TraHangNCC
+    {
+        public int STT { get; set; }
+        public int IDHangHoa { get; set; }
+        public string MaHang { get; set; }
+        public string TenHangHoa { get; set; }
+        public double GiaVon { get; set; }
+        public int TonKho { get; set; }
+        public int SoLuong { get; set; }
+        public double ThanhTien { get; set; }
+        public double TienTra { get; set; }
+        public oImportProduct_TraHangNCC(int iDHangHoa, string maHang, string tenHangHoa, double giaVon, int tonKho, int soLuong, double thanhTien,double tienTra)
+        {
+            // TODO: Complete member initialization
+            this.IDHangHoa = iDHangHoa;
+            this.MaHang = maHang;
+            this.TenHangHoa = tenHangHoa;
+            this.GiaVon = giaVon;
+            this.TonKho = tonKho;
+            this.SoLuong = soLuong;
+            this.ThanhTien = thanhTien;
+            this.TienTra = tienTra;
+        }
+    }
+    #endregion
 }
  

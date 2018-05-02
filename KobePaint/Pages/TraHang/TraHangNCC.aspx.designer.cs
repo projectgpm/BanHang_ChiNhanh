@@ -31,13 +31,13 @@ namespace KobePaint.Pages.TraHang {
         protected global::DevExpress.Web.SplitterContentControl SplitterContentControl1;
         
         /// <summary>
-        /// cbpInfoCustomer control.
+        /// cbpInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxCallbackPanel cbpInfoCustomer;
+        protected global::DevExpress.Web.ASPxCallbackPanel cbpInfo;
         
         /// <summary>
         /// PanelContent1 control.
@@ -101,6 +101,15 @@ namespace KobePaint.Pages.TraHang {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource dsNhaCungCap;
+        
+        /// <summary>
+        /// ccbSoPhieu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox ccbSoPhieu;
         
         /// <summary>
         /// LayoutItemNestedControlContainer3 control.
@@ -184,15 +193,6 @@ namespace KobePaint.Pages.TraHang {
         protected global::DevExpress.Web.ASPxSpinEdit spThanhToan;
         
         /// <summary>
-        /// spConLai control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxSpinEdit spConLai;
-        
-        /// <summary>
         /// SplitterContentControl2 control.
         /// </summary>
         /// <remarks>
@@ -256,6 +256,15 @@ namespace KobePaint.Pages.TraHang {
         protected global::System.Web.UI.WebControls.SqlDataSource dsHangHoa;
         
         /// <summary>
+        /// spSoLuong control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxSpinEdit spSoLuong;
+        
+        /// <summary>
         /// LayoutItemNestedControlContainer9 control.
         /// </summary>
         /// <remarks>
@@ -281,24 +290,6 @@ namespace KobePaint.Pages.TraHang {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxHiddenField hiddenFields;
-        
-        /// <summary>
-        /// LayoutItemNestedControlContainer10 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer10;
-        
-        /// <summary>
-        /// btnExcel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnExcel;
         
         /// <summary>
         /// gridImportPro control.
@@ -328,22 +319,13 @@ namespace KobePaint.Pages.TraHang {
         protected global::DevExpress.Web.SplitterContentControl SplitterContentControl4;
         
         /// <summary>
-        /// btnPreview control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnPreview;
-        
-        /// <summary>
-        /// btnSave1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnSave1;
+        protected global::DevExpress.Web.ASPxButton btnSave;
         
         /// <summary>
         /// btnRenew control.

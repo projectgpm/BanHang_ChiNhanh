@@ -3,6 +3,7 @@ using KobePaint.App_Code;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -11,21 +12,309 @@ namespace KobePaint.Pages.TraHang
 {
     public partial class TraHangNCC : System.Web.UI.Page
     {
+        public List<oImportProduct_TraHangNCC> listReceiptProducts
+        {
+            get
+            {
+                if (Session["sslistReceiptProducts"] == null)
+                    Session["sslistReceiptProducts"] = new List<oImportProduct_TraHangNCC>();
+                return (List<oImportProduct_TraHangNCC>)Session["sslistReceiptProducts"];
+            }
+            set
+            {
+                Session["sslistReceiptProducts"] = value;
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                txtTenNhanVien.Text = Formats.NameUser();
+                listReceiptProducts = new List<oImportProduct_TraHangNCC>();
+            }
         }
-        protected void cbpInfoCustomer_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
+        protected void cbpInfo_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
-
+            switch (e.Parameter)
+            {
+                case "refresh": BindGrid(); break;
+                case "ccbNhaCungCapChanged":
+                    listReceiptProducts = new List<oImportProduct_TraHangNCC>();
+                    BindGrid();
+                    ListSoPhieu();
+                    break;
+                case "ccbSoPhieuChanged":
+                    listReceiptProducts = new List<oImportProduct_TraHangNCC>();
+                    ListSoPhieu();
+                    int NhapKhoID = int.Parse(ccbSoPhieu.Value.ToString());
+                    var ListNhapKhoChiTiet = DBDataProvider.ListChiTietNhapKho(NhapKhoID);
+                    foreach( var prod in ListNhapKhoChiTiet)
+                    {
+                        Insert_Hang(Convert.ToInt32(prod.HangHoaID));
+                    }
+                    BindGrid();
+                    break;
+                
+                default: break;
+            }
         }
+
+        private void ListSoPhieu()
+        {
+            int IDNhaCungCap = int.Parse(ccbNhaCungCap.Value.ToString());
+            var ListNhapHang = DBDataProvider.ListPhieuNhapHang_TraHang(IDNhaCungCap);
+            ccbSoPhieu.DataSource = ListNhapHang;
+            ccbSoPhieu.DataBind();
+        }
+
         protected void cbpInfoImport_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
+            string[] para = e.Parameter.Split('|');
+            switch (para[0])
+            {
+                case "refresh": BindGrid(); break;
+                case "UnitChange": Unitchange(para[1]); BindGrid(); break;
+                case "Reset": Reset(); break;
+                case "Save": Save(); break;
+                case "redirect": DevExpress.Web.ASPxWebControl.RedirectOnCallback("~/Pages/TraHang/DanhSachTraHangNCC.aspx"); break;
+                default: InsertIntoGrid(); BindGrid(); break;
+            }
+        }
+
+        private void Save()
+        {
+            using (var scope = new TransactionScope())
+            {
+                try
+                {
+                    double TongTien = 0;
+                    int TongSoLuong = 0;
+                    foreach (var prod in listReceiptProducts)
+                    {
+                        TongTien += prod.ThanhTien;
+                        TongSoLuong += prod.SoLuong;
+                    }
+                    double ThanhToan = Convert.ToDouble(spThanhToan.Number);
+                    double ConLai = TongTien - ThanhToan;
+
+                    string MaPhieu = null, strMaPhieu = "PX";
+                    string MAX = (DBDataProvider.DB.kPhieuTraHangNCCs.Count() + 1).ToString();
+                    for (int i = 1; i < (7 - MAX.Length); i++)
+                    {
+                        strMaPhieu += "0";
+                    }
+                    MaPhieu = strMaPhieu + MAX;
+                    int IDNCC = Int32.Parse(ccbNhaCungCap.Value.ToString());
+                    int IDSoPhieu = 0;
+                    if (ccbSoPhieu.Text != "")
+                        IDSoPhieu = Int32.Parse(ccbSoPhieu.Value.ToString());
+
+                    // insert kPhieuTraHangNCC
+                    kPhieuTraHangNCC phieutra = new kPhieuTraHangNCC();
+                    phieutra.MaPhieu = MaPhieu;
+                    phieutra.NhaCungCapID = IDNCC;
+                    phieutra.SoPhieuTra = IDSoPhieu;
+                    phieutra.NgayTra = Convert.ToDateTime(dateNgayTra.Date);
+                    phieutra.NgayNhap = DateTime.Now;
+                    phieutra.NhanVienID = Formats.IDUser();
+                    phieutra.GhiChu = memoGhiChu.Text;
+                    phieutra.TongSoLuong = TongSoLuong;
+                    phieutra.TongTienHang = TongTien;
+                    phieutra.ThanhToan = ThanhToan;
+                    phieutra.ConLai = ConLai;
+                    phieutra.HinhThucTT = ckGiamCongNo.Checked == true ? 1 : 0;
+                    DBDataProvider.DB.kPhieuTraHangNCCs.InsertOnSubmit(phieutra);
+                    DBDataProvider.DB.SubmitChanges();
+                    int IDPhieuTraHang = phieutra.IDPhieuTraHang;
+                    foreach (var prod in listReceiptProducts)
+                    {
+                        // insert Chi tiet
+                        kPhieuTraHangNCCChiTiet chitiet = new kPhieuTraHangNCCChiTiet();
+                        chitiet.PhieuTraHangNCCID = IDPhieuTraHang;
+                        chitiet.HangHoaID = prod.IDHangHoa;
+                        chitiet.GiaVon = prod.GiaVon;
+                        chitiet.SoLuong = prod.SoLuong;
+                        chitiet.ThanhTien = prod.ThanhTien;
+                        chitiet.TonKho = prod.TonKho;
+                        chitiet.TienTra = prod.TienTra;
+                        DBDataProvider.DB.kPhieuTraHangNCCChiTiets.InsertOnSubmit(chitiet);
+                        //Cập nhật || trừ tồn kho
+                        var TonKhoBanDau = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == prod.IDHangHoa).FirstOrDefault();
+                        if (TonKhoBanDau != null)
+                        {
+                            TonKhoBanDau.TonKho -= prod.SoLuong;
+                            #region ghi thẻ kho
+                            kTheKho thekho = new kTheKho();
+                            thekho.NgayNhap = DateTime.Now;
+                            thekho.DienGiai = "Trả hàng NCC #" + MaPhieu;
+                            thekho.Nhap = 0;
+                            thekho.Xuat = prod.SoLuong;
+                            thekho.Ton = prod.TonKho - prod.SoLuong;
+                            thekho.HangHoaID = TonKhoBanDau.IDHangHoa;
+                            thekho.NhanVienID = Formats.IDUser();
+                            DBDataProvider.DB.kTheKhos.InsertOnSubmit(thekho);
+                            #endregion
+                        }
+                    }
+                    //update công nợ
+                    khKhachHang Supplier = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == IDNCC).FirstOrDefault();
+                    if (Supplier != null)
+                    {
+
+                        #region ghi nhật ký nhập kho để xem báo cáo
+                        if (ckGiamCongNo.Checked  == true)// giảm công nợ
+                        {
+                            khNhatKyCongNo nhatky = new khNhatKyCongNo();
+                            nhatky.NgayNhap = DateTime.Now;
+                            nhatky.DienGiai = "Trả hàng NCC ";
+                            nhatky.NoDau = Supplier.CongNo;
+                            nhatky.NhapHang = 0;
+                            nhatky.TraHang = ConLai;
+                            nhatky.NoCuoi = Supplier.CongNo - ConLai;
+                            nhatky.ThanhToan = 0;
+                            nhatky.NhanVienID = Formats.IDUser();
+                            nhatky.SoPhieu = MaPhieu;
+                            nhatky.IDKhachHang = IDNCC;
+                            DBDataProvider.DB.khNhatKyCongNos.InsertOnSubmit(nhatky);
+                            DBDataProvider.DB.SubmitChanges();
+                            Supplier.CongNo -= ConLai;
+                            Supplier.LanCuoiMuaHang = DateTime.Now;
+                        }
+                        Supplier.TienTraHang += TongTien;
+                        #endregion
+                        phieutra.CongNoCu = Supplier.CongNo;
+                    }
+                   
+                    DBDataProvider.DB.SubmitChanges();
+                    scope.Complete();
+                    Reset();
+                    cbpInfoImport.JSProperties["cp_Reset"] = true;
+                    
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        #region InsertHang
+        protected void InsertIntoGrid()
+        {
+            if (ccbBarcode.Text.Trim() != "")
+            {
+                if (ccbBarcode.Value == null)
+                {
+                    //barcode
+                    int tbThongTin_Count = DBDataProvider.DB.hhBarcodes.Where(r => r.Barcode == ccbBarcode.Text.Trim()).Count();
+                    if (tbThongTin_Count > 0)
+                    {
+                        var tbThongTin = DBDataProvider.DB.hhBarcodes.Where(r => r.Barcode == ccbBarcode.Text.Trim()).FirstOrDefault();
+                        Insert_Hang(Convert.ToInt32(tbThongTin.IDHangHoa));
+                    }
+                    else
+                    {
+                        ccbBarcode.Value = "";
+                        ccbBarcode.Text = "";
+                        ccbBarcode.Focus();
+                        throw new Exception("Mã hàng khồn tồn tại!!");
+                    }
+                }
+                else
+                {
+                    // idhanghoa
+                    int IDProduct;
+                    bool isNumeric = Int32.TryParse(ccbBarcode.Value.ToString(), out IDProduct);
+                    if (isNumeric)
+                    {
+                        Insert_Hang(IDProduct);
+                    }
+                    else
+                    {
+                        ccbBarcode.Value = "";
+                        ccbBarcode.Text = "";
+                        ccbBarcode.Focus();
+                        throw new Exception("Mã hàng khồn tồn tại!!");
+                    }
+                }
+            }
+        }
+
+        public void Insert_Hang(int ID)
+        {
+            int tblHangHoa_Count = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == ID && x.DaXoa == 0).Count();
+            if (tblHangHoa_Count > 0)
+            {
+                var tblHangHoa = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == ID && x.DaXoa == 0).FirstOrDefault();
+                int SoLuong = Convert.ToInt32(spSoLuong.Number);
+                var exitProdInList = listReceiptProducts.SingleOrDefault(r => r.IDHangHoa == ID);
+                if (exitProdInList == null)
+                {
+                    
+                    oImportProduct_TraHangNCC newRecpPro = new oImportProduct_TraHangNCC(
+                         tblHangHoa.IDHangHoa,
+                         tblHangHoa.MaHang,
+                         tblHangHoa.TenHangHoa,
+                         Convert.ToDouble(tblHangHoa.GiaVon),
+                         Convert.ToInt32(tblHangHoa.TonKho),
+                         SoLuong, SoLuong*Convert.ToDouble(tblHangHoa.GiaVon), Convert.ToDouble(tblHangHoa.GiaVon)
+                         );
+                    listReceiptProducts.Add(newRecpPro);
+                }
+                else
+                {
+                    exitProdInList.SoLuong += SoLuong;
+                    exitProdInList.ThanhTien = exitProdInList.SoLuong * exitProdInList.TienTra;
+                }
+                UpdateSTT();
+            }
+            else
+            {
+                ccbBarcode.Value = "";
+                ccbBarcode.Text = "";
+                ccbBarcode.Focus();
+                spSoLuong.Number = 1;
+                throw new Exception("Mã hàng không tồn tại !!");
+            }
+        }
+        #endregion
+        protected void UpdateSTT()
+        {
+            ccbBarcode.Value = "";
+            ccbBarcode.Text = "";
+            ccbBarcode.Focus();
+            spSoLuong.Number = 1;
+            for (int i = 1; i <= listReceiptProducts.Count; i++)
+            {
+                listReceiptProducts[i - 1].STT = i;
+            }
 
         }
+        private void BindGrid()
+        {
+            double TongTien = 0;
+            foreach (var prod in listReceiptProducts)
+            {
+                TongTien += prod.ThanhTien;
+            }
+            spTongTien.Text = TongTien.ToString();
+            spThanhToan.Text = TongTien.ToString();
+            gridImportPro.DataSource = listReceiptProducts;
+            gridImportPro.DataBind();
+        }
+
+
         protected void gridImportPro_RowDeleting(object sender, DevExpress.Web.Data.ASPxDataDeletingEventArgs e)
         {
-
+            int stt = int.Parse(e.Keys["STT"].ToString());
+            var itemToRemove = listReceiptProducts.SingleOrDefault(r => r.STT == stt);
+            if (itemToRemove != null)
+            {
+                listReceiptProducts.Remove(itemToRemove);
+                UpdateSTT();
+            }
+            e.Cancel = true;
+            BindGrid();
         }
 
         #region bind hàng hóa
@@ -66,9 +355,20 @@ namespace KobePaint.Pages.TraHang
         }
         #endregion
 
-        protected void UploadControl_FileUploadComplete(object sender, FileUploadCompleteEventArgs e)
+        protected void Reset()
         {
-
+            listReceiptProducts = new List<oImportProduct_TraHangNCC>();
+            gridImportPro.DataSource = listReceiptProducts;
+            gridImportPro.DataBind();
+            ccbNhaCungCap.SelectedIndex = -1;
+            ccbNhaCungCap.Text = "";
+            ckGiamCongNo.Checked = false;
+            memoGhiChu.Text = "";
+            spThanhToan.Number = 0;
+            spTongTien.Number = 0;
+            
+            dateNgayTra.Date = DateTime.Now;
+            ccbBarcode.Text = "";
         }
 
         protected void dateNgayTra_Init(object sender, EventArgs e)
@@ -76,6 +376,37 @@ namespace KobePaint.Pages.TraHang
             Formats.InitDateEditControl(sender, e);
         }
 
-      
+        #region Cập nhật SL + Tiền trả
+        protected void spSoLuongReturn_Init(object sender, EventArgs e)
+        {
+            ASPxSpinEdit SpinEdit = sender as ASPxSpinEdit;
+            GridViewDataRowTemplateContainer container = SpinEdit.NamingContainer as GridViewDataRowTemplateContainer;
+            SpinEdit.ClientSideEvents.NumberChanged = String.Format("function(s, e) {{ onUnitReturnChanged({0}); }}", container.KeyValue);
+        }
+        protected void spTienTraReturn_Init(object sender, EventArgs e)
+        {
+            ASPxSpinEdit SpinEdit = sender as ASPxSpinEdit;
+            GridViewDataRowTemplateContainer container = SpinEdit.NamingContainer as GridViewDataRowTemplateContainer;
+            SpinEdit.ClientSideEvents.NumberChanged = String.Format("function(s, e) {{ onUnitReturnChanged({0}); }}", container.KeyValue);
+        }
+        private void Unitchange(string para)
+        {
+            int IDProduct = Convert.ToInt32(para);
+
+            //sL
+            ASPxSpinEdit SpinEdit = gridImportPro.FindRowCellTemplateControlByKey(IDProduct, (GridViewDataColumn)gridImportPro.Columns["Số lượng"], "spSoLuongReturn") as ASPxSpinEdit;
+            int SLMoi = Convert.ToInt32(SpinEdit.Number);
+
+            //Giá vốn
+            ASPxSpinEdit SpinEdit_TienTra = gridImportPro.FindRowCellTemplateControlByKey(IDProduct, (GridViewDataColumn)gridImportPro.Columns["Tiền trả"], "spTienTraReturn") as ASPxSpinEdit;
+            double TienTraMoi = Convert.ToDouble(SpinEdit_TienTra.Number);
+
+            // cập nhật
+            var sourceRow = listReceiptProducts.Where(x => x.STT == IDProduct).SingleOrDefault();
+            sourceRow.SoLuong = SLMoi;
+            sourceRow.TienTra = TienTraMoi;
+            sourceRow.ThanhTien = SLMoi * TienTraMoi;
+        }
+        #endregion
     }
 }

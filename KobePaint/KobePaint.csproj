@@ -151,6 +151,7 @@
     <Content Include="Pages\ThuChi\DanhSachThuChi.aspx" />
     <Content Include="Pages\ThuChi\LapPhieuThuChi.aspx" />
     <Content Include="Pages\TraHang\DanhSachTraHang.aspx" />
+    <Content Include="Pages\TraHang\DanhSachTraHangNCC.aspx" />
     <Content Include="Pages\TraHang\LapPhieu.aspx" />
     <Content Include="Pages\TraHang\TraHangNCC.aspx" />
     <Content Include="Root.master" />
@@ -440,6 +441,13 @@
     </Compile>
     <Compile Include="Pages\TraHang\DanhSachTraHang.aspx.designer.cs">
       <DependentUpon>DanhSachTraHang.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TraHang\DanhSachTraHangNCC.aspx.cs">
+      <DependentUpon>DanhSachTraHangNCC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\TraHang\DanhSachTraHangNCC.aspx.designer.cs">
+      <DependentUpon>DanhSachTraHangNCC.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\TraHang\LapPhieu.aspx.cs">
       <DependentUpon>LapPhieu.aspx</DependentUpon>

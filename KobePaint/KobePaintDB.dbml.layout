@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 9.25" name="KobePaintDB">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="KobePaintDB">
   <DataContextMoniker Name="/KobePaintDBDataContext" />
   <nestedChildShapes>
     <classShape Id="9dfe940d-6f0a-4d6d-935e-717588171cb2" isExpanded="false" absoluteBounds="2.625, 3.125, 2, 0.45">
@@ -98,10 +98,10 @@
         <elementListCompartment Id="f7106e77-051f-46f0-a0e9-6a139daef303" absoluteBounds="5.015, 5.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="de8a44c3-1678-44b7-aaf3-135470ffc90b" isExpanded="false" absoluteBounds="2.75, 4.875, 2, 0.45">
+    <classShape Id="de8a44c3-1678-44b7-aaf3-135470ffc90b" isExpanded="false" absoluteBounds="2.75, 4.625, 2, 0.45">
       <DataClassMoniker Name="/KobePaintDBDataContext/ghPhieuGiaoHang" />
       <nestedChildShapes>
-        <elementListCompartment Id="bc0900f6-e177-4134-bd9f-c780dcb1910b" absoluteBounds="2.765, 5.335, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="bc0900f6-e177-4134-bd9f-c780dcb1910b" absoluteBounds="2.765, 5.085, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="55b6332a-1914-4958-a166-07ee40071b0f" isExpanded="false" absoluteBounds="5.125, 1.625, 2, 0.45">
@@ -116,16 +116,40 @@
         <elementListCompartment Id="e0c84e7f-d4dd-4090-8aea-c4b275a18cfd" absoluteBounds="0.515, 5.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="0ee47ecd-8f92-4b61-8bef-e35253e64873" absoluteBounds="3, 5.875, 2, 3.1170068359375">
+    <classShape Id="0ee47ecd-8f92-4b61-8bef-e35253e64873" isExpanded="false" absoluteBounds="0.5, 5.875, 2, 0.45">
       <DataClassMoniker Name="/KobePaintDBDataContext/pPhieuThuChi" />
       <nestedChildShapes>
-        <elementListCompartment Id="152811eb-2d29-42e2-9acd-cd4d9ec3669e" absoluteBounds="3.015, 6.335, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="152811eb-2d29-42e2-9acd-cd4d9ec3669e" absoluteBounds="0.51500000000000012, 6.335, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="17300178-d3fb-4bd8-8f80-e9b13f20b2a9" isExpanded="false" absoluteBounds="0.5, 0.5, 2, 0.45">
       <DataClassMoniker Name="/KobePaintDBDataContext/chChiNhanh" />
       <nestedChildShapes>
         <elementListCompartment Id="9b5fc2c9-030c-4d49-ba62-dd9c9e398972" absoluteBounds="0.51500000000000012, 0.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="03890352-7cd2-40cb-87ca-e25e3a579e8f" isExpanded="false" absoluteBounds="5.125, 5.625, 2, 0.45">
+      <DataClassMoniker Name="/KobePaintDBDataContext/kPhieuTraHangNCCChiTiet" />
+      <nestedChildShapes>
+        <elementListCompartment Id="87078ce0-a722-4676-99e1-b06de6913424" absoluteBounds="5.14, 6.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="69278401-ce8b-4a20-89bb-a472df290d36" isExpanded="false" absoluteBounds="2.75, 5.5, 2, 0.45">
+      <DataClassMoniker Name="/KobePaintDBDataContext/kPhieuTraHangNCC" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3a8f3d0e-7f7c-4acc-9fd2-ab24c12d7ed3" absoluteBounds="2.7650000000000006, 5.96, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="64319bdc-ddbd-4cd2-bf6f-58022718522f" isExpanded="false" absoluteBounds="0.5, 6.625, 2, 0.45">
+      <DataClassMoniker Name="/KobePaintDBDataContext/kPhieuTraHang" />
+      <nestedChildShapes>
+        <elementListCompartment Id="66048233-f348-4da8-a2ef-cb79630d2f5f" absoluteBounds="0.515, 7.0850000000000009, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8d1bde86-1dd1-4f69-a88d-e32945a08146" isExpanded="false" absoluteBounds="2.75, 6.375, 2, 0.45">
+      <DataClassMoniker Name="/KobePaintDBDataContext/kPhieuTraHangChiTiet" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b2840087-4474-4070-a541-82d32815b023" absoluteBounds="2.765, 6.8350000000000009, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
