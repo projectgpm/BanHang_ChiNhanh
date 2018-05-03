@@ -179,6 +179,7 @@
                     <Items>
                         <dx:ListEditItem Text="Chưa xử lý" Value="0" />
                         <dx:ListEditItem Text="Đã xử lý" Value="1" />
+                        <dx:ListEditItem Text="Đã hủy" Value="2" />
                     </Items>
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>

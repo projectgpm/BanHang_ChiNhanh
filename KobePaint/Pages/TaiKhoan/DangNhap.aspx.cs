@@ -33,7 +33,7 @@ namespace KobePaint.Pages.TaiKhoan
             {
                 Session["IDChiNhanh"] = user.First().IDChiNhanh;
                 FormsAuthentication.RedirectFromLoginPage(user.First().userID + "-" + user.First().TenNguoiDung + "-" + user.First().Quyen, chbRemember.Checked);
-                Response.Redirect("~/Pages/TaiKhoan/DanhSachTaiKhoan.aspx");
+                Response.Redirect("~/Default.aspx");
             }
             else
             {

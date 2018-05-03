@@ -240,7 +240,7 @@
                                                     <dx:PanelContent ID="PanelContent2" runat="server">
                                                         <dx:ASPxFormLayout ID="flayoutInfosImport" ClientInstanceName="flayoutInfosImport" runat="server" Width="100%">
                                                             <Items>
-                                                                <dx:LayoutGroup Caption="Thông tin nhập hàng" ColCount="6" GroupBoxDecoration="HeadingLine">
+                                                                <dx:LayoutGroup Caption="Thông tin giao hàng đại lý" ColCount="6" GroupBoxDecoration="HeadingLine">
                                                                     <Items>
                                                                         <dx:LayoutItem Caption="" ColSpan="4" ShowCaption="False" Width="100%">
                                                                             <LayoutItemNestedControlCollection>

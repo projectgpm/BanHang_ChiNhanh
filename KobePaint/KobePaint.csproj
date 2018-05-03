@@ -125,6 +125,7 @@
   <ItemGroup>
     <Content Include="Pages\GiaoHang\DanhSachGiaoHang.aspx" />
     <Content Include="Pages\GiaoHang\LapPhieu.aspx" />
+    <Content Include="Pages\GiaoHang\PheDuyetGiaoHang.ascx" />
     <Content Include="Pages\HangHoa\CapNhat.aspx" />
     <Content Include="Pages\HangHoa\HangHoa.aspx" />
     <Content Include="Pages\HangHoa\NhomHang.aspx" />
@@ -155,6 +156,7 @@
     <Content Include="Pages\TraHang\DanhSachTraHang.aspx" />
     <Content Include="Pages\TraHang\DanhSachTraHangNCC.aspx" />
     <Content Include="Pages\TraHang\LapPhieu.aspx" />
+    <Content Include="Pages\TraHang\PheDuyetTraHang.ascx" />
     <Content Include="Pages\TraHang\TraHangNCC.aspx" />
     <Content Include="Root.master" />
   </ItemGroup>
@@ -261,6 +263,13 @@
     </Compile>
     <Compile Include="Pages\GiaoHang\LapPhieu.aspx.designer.cs">
       <DependentUpon>LapPhieu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\GiaoHang\PheDuyetGiaoHang.ascx.cs">
+      <DependentUpon>PheDuyetGiaoHang.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\GiaoHang\PheDuyetGiaoHang.ascx.designer.cs">
+      <DependentUpon>PheDuyetGiaoHang.ascx</DependentUpon>
     </Compile>
     <Compile Include="Pages\HangHoa\CapNhat.aspx.cs">
       <DependentUpon>CapNhat.aspx</DependentUpon>
@@ -471,6 +480,13 @@
     </Compile>
     <Compile Include="Pages\TraHang\LapPhieu.aspx.designer.cs">
       <DependentUpon>LapPhieu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TraHang\PheDuyetTraHang.ascx.cs">
+      <DependentUpon>PheDuyetTraHang.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\TraHang\PheDuyetTraHang.ascx.designer.cs">
+      <DependentUpon>PheDuyetTraHang.ascx</DependentUpon>
     </Compile>
     <Compile Include="Pages\TraHang\TraHangNCC.aspx.cs">
       <DependentUpon>TraHangNCC.aspx</DependentUpon>
