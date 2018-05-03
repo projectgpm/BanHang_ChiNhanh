@@ -141,11 +141,13 @@
     <Content Include="Pages\Kho\ThemKiemKho.aspx" />
     <Content Include="Pages\Kho\ThemXuatKhac.aspx" />
     <Content Include="Pages\Kho\TonKho.aspx" />
+    <Content Include="Pages\POST\BanHangLe.aspx" />
     <Content Include="Pages\TaiKhoan\DangNhap.aspx" />
     <Content Include="Pages\TaiKhoan\DangXuat.aspx" />
     <Content Include="Pages\TaiKhoan\DanhSachTaiKhoan.aspx" />
     <Content Include="Pages\TaiKhoan\ThongTinTaiKhoan.aspx" />
     <Content Include="Pages\ThanhToan\DanhSachThanhToan.aspx" />
+    <Content Include="Pages\ThanhToan\DanhSachThanhToanNCC.aspx" />
     <Content Include="Pages\ThanhToan\LapThanhToan.aspx" />
     <Content Include="Pages\ThanhToan\LapThanhToanNCC.aspx" />
     <Content Include="Pages\ThuChi\DanhSachThuChi.aspx" />
@@ -372,6 +374,13 @@
     <Compile Include="Pages\Kho\TonKho.aspx.designer.cs">
       <DependentUpon>TonKho.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\POST\BanHangLe.aspx.cs">
+      <DependentUpon>BanHangLe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\POST\BanHangLe.aspx.designer.cs">
+      <DependentUpon>BanHangLe.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\TaiKhoan\DangNhap.aspx.cs">
       <DependentUpon>DangNhap.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -406,6 +415,13 @@
     </Compile>
     <Compile Include="Pages\ThanhToan\DanhSachThanhToan.aspx.designer.cs">
       <DependentUpon>DanhSachThanhToan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ThanhToan\DanhSachThanhToanNCC.aspx.cs">
+      <DependentUpon>DanhSachThanhToanNCC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ThanhToan\DanhSachThanhToanNCC.aspx.designer.cs">
+      <DependentUpon>DanhSachThanhToanNCC.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\ThanhToan\LapThanhToan.aspx.cs">
       <DependentUpon>LapThanhToan.aspx</DependentUpon>
@@ -494,7 +510,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\BaoCao\" />
-    <Folder Include="Pages\POST\" />
     <Folder Include="Pages\TongQuan\" />
     <Folder Include="Uploads\" />
   </ItemGroup>

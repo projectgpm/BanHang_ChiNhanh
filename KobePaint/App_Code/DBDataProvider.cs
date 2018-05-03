@@ -40,16 +40,25 @@ namespace KobePaint.App_Code
             return DB.kPhieuXuatKhacChiTiets.Where(x => x.PhieuXuatID == PhieuXuatID).ToList();
         }
 
-        // danh sách phiếu giao hàng chưa thanh toán
+        // danh sách phiếu giao hàng chưa thanh toán & đã được duyệt
         public static List<ghPhieuGiaoHang> ListPhieuGiaoHang(int IDKhachHang)
         {
             return DB.ghPhieuGiaoHangs.Where(x => x.KhachHangID == IDKhachHang && x.TrangThai == 1 && x.TTThanhToan == 0).OrderByDescending(x => x.IDPhieuGiaoHang).ToList();
         }
-
+        // danh sách phiếu giao hàng chưa thanh toán & đã được duyệt  asc
+        public static List<ghPhieuGiaoHang> ListPhieuGiaoHang_ASC(int IDKhachHang)
+        {
+            return DB.ghPhieuGiaoHangs.Where(x => x.KhachHangID == IDKhachHang && x.TrangThai == 1 && x.TTThanhToan == 0).OrderBy(x => x.IDPhieuGiaoHang).ToList();
+        }
         // danh sách phiếu nhập hàng chưa thanh toán
         public static List<kNhapKho> ListPhieuNhapHang(int IDKhachHang)
         {
             return DB.kNhapKhos.Where(x => x.NCCID == IDKhachHang && x.TTThanhToan == 0 && x.CongNo > 0).OrderByDescending(x => x.IDNhapKho).ToList();
+        }
+        // danh sách phiếu nhập hàng chưa thanh toán ASC
+        public static List<kNhapKho> ListPhieuNhapHang_ASC(int IDKhachHang)
+        {
+            return DB.kNhapKhos.Where(x => x.NCCID == IDKhachHang && x.TTThanhToan == 0 && x.CongNo > 0).OrderBy(x => x.IDNhapKho).ToList();
         }
         // danh sách phiếu nhập hàng chưa thanh toán
         public static List<kNhapKho> ListPhieuNhapHang_TraHang(int IDKhachHang)
@@ -70,6 +79,17 @@ namespace KobePaint.App_Code
         public static List<ghPhieuGiaoHangChiTiet> ListChiTietGiaoHang(int PhieuGiaoHangID)
         {
             return DB.ghPhieuGiaoHangChiTiets.Where(x => x.PhieuGiaoHangID == PhieuGiaoHangID).ToList();
+        }
+
+        //STT thanh toán NCC
+        public static int STTPhieuThanhToan_NCC(int IDCustomer)
+        {
+            return DB.kPhieuThanhToanNCCs.Where(x => x.KhachHangID == IDCustomer && x.NgayThu.Value.Year == DateTime.Now.Year).Count() + 1;
+        }
+        //STT thanh toán đại lý
+        public static int STTPhieuThanhToan_DaiLy(int IDCustomer)
+        {
+            return DB.ghPhieuDaiLyThanhToans.Where(x => x.KhachHangID == IDCustomer && x.NgayThu.Value.Year == DateTime.Now.Year).Count() + 1;
         }
     }
 }

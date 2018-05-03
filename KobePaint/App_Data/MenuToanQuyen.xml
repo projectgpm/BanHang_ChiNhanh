@@ -27,8 +27,8 @@
     <item Text="Danh sách kiểm kê" NavigateUrl="~/Pages/Kho/DanhSachKiemKho.aspx" />
   </item>
   <item Text="Giao - Trả hàng">
-    <item Text="Lập phiếu giao hàng" NavigateUrl="~/Pages/GiaoHang/LapPhieu.aspx" />
-    <item Text="Danh sách giao hàng" NavigateUrl="~/Pages/GiaoHang/DanhSachGiaoHang.aspx" />
+    <item Text="Lập phiếu giao hàng Đại lý" NavigateUrl="~/Pages/GiaoHang/LapPhieu.aspx" />
+    <item Text="Danh sách giao hàng Đại lý" NavigateUrl="~/Pages/GiaoHang/DanhSachGiaoHang.aspx" />
     <item Text="Lập phiếu đại lý trả hàng" NavigateUrl="~/Pages/TraHang/LapPhieu.aspx" />
     <item Text="Danh sách đại lý trả hàng" NavigateUrl="~/Pages/TraHang/DanhSachTraHang.aspx" />
     <item Text="Lập phiếu trả hàng NCC" NavigateUrl="~/Pages/TraHang/TraHangNCC.aspx" />
@@ -38,8 +38,9 @@
   
   <item Text="Thanh toán" >
     <item Text="Lập phiếu đại lý thanh toán" NavigateUrl="~/Pages/ThanhToan/LapThanhToan.aspx" />
+    <item Text="Danh sách đại lý thanh toán" NavigateUrl="~/Pages/ThanhToan/DanhSachThanhToan.aspx" />
     <item Text="Lập phiếu thanh toán NCC" NavigateUrl="~/Pages/ThanhToan/LapThanhToanNCC.aspx" />
-    <item Text="Danh sách thanh toán" NavigateUrl="~/Pages/ThanhToan/DanhSachThanhToan.aspx" />
+    <item Text="Danh sách thanh toán NCC" NavigateUrl="~/Pages/ThanhToan/DanhSachThanhToanNCC.aspx" />
   </item>
   
   <item Text="Thu chi" >

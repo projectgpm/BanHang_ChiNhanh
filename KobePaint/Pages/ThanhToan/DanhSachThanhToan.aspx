@@ -11,7 +11,7 @@
         }
     </script>
     <dx:ASPxGridView ID="gridThanhToan" runat="server" AutoGenerateColumns="False" ClientInstanceName="gridThanhToan" DataSourceID="dsPhieuThu" KeyFieldName="IDPhieuThu" Width="100%">
-        <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="0" />
+        <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="0" ShowTitlePanel="True" />
         <SettingsBehavior AutoExpandAllGroups="True" />
         <SettingsCommandButton>
             <ShowAdaptiveDetailButton ButtonType="Image">
@@ -35,7 +35,7 @@
             <Summary EmptyText="Không có dữ liệu" Text="Trang {0}/{1}" />
         </SettingsPager>
         <SettingsSearchPanel Visible="True" />
-        <SettingsText EmptyDataRow="Không có dữ liệu !!" HeaderFilterCancelButton="Hủy" HeaderFilterFrom="Từ" HeaderFilterOkButton="Lọc" HeaderFilterTo="Đến" SearchPanelEditorNullText="Nhập thông tin cần tìm..." CommandBatchEditCancel="Hủy bỏ" CommandBatchEditUpdate="Lưu" PopupEditFormCaption="Cập nhật mã hóa đơn" />
+        <SettingsText EmptyDataRow="Không có dữ liệu !!" HeaderFilterCancelButton="Hủy" HeaderFilterFrom="Từ" HeaderFilterOkButton="Lọc" HeaderFilterTo="Đến" SearchPanelEditorNullText="Nhập thông tin cần tìm..." CommandBatchEditCancel="Hủy bỏ" CommandBatchEditUpdate="Lưu" PopupEditFormCaption="Cập nhật mã hóa đơn" Title="DANH SÁCH ĐẠI LÝ THANH TOÁN" />
         <Columns>
             <dx:GridViewDataTextColumn FieldName="IDPhieuThu" ReadOnly="True" Visible="False" VisibleIndex="0">
                 <EditFormSettings Visible="False" />
@@ -45,8 +45,6 @@
                 </CellStyle>
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn Caption="Hóa đơn" FieldName="SoHoaDon" VisibleIndex="2" Width="120px">
-            </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="Số tiền thu" FieldName="SoTienThu" VisibleIndex="6" Width="120px">
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn Caption="Nội dung" FieldName="NoiDung" VisibleIndex="5">
             </dx:GridViewDataTextColumn>
@@ -60,7 +58,7 @@
                     </CalendarProperties>
                 </PropertiesDateEdit>
             </dx:GridViewDataDateColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Khách hàng" FieldName="KhachHangID" GroupIndex="0" SortIndex="0" SortOrder="Ascending" VisibleIndex="4">
+            <dx:GridViewDataComboBoxColumn Caption="Khách hàng" FieldName="KhachHangID" GroupIndex="0" SortIndex="0" SortOrder="Ascending" VisibleIndex="4" Width="150px">
                 <PropertiesComboBox DataSourceID="dsKhachHang" TextField="HoTen" ValueField="IDKhachHang">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
@@ -81,10 +79,23 @@
                 </CellStyle>
             </dx:GridViewDataTextColumn>
             
+            <dx:GridViewDataSpinEditColumn Caption="Số tiền thu" FieldName="SoTienThu" VisibleIndex="6" Width="120px" CellStyle-Font-Bold="true">
+                <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
+                </PropertiesSpinEdit>
+            </dx:GridViewDataSpinEditColumn>
+            <dx:GridViewDataComboBoxColumn Caption="Hình thức thanh toán" FieldName="HinhThucTTID" VisibleIndex="8" Width="200px">
+                <PropertiesComboBox>
+                    <Items>
+                        <dx:ListEditItem Text="Công nợ giảm dần" Value="1" />
+                        <dx:ListEditItem Text="Theo phiếu giao hàng" Value="2" />
+                    </Items>
+                </PropertiesComboBox>
+            </dx:GridViewDataComboBoxColumn>
+            
         </Columns>
     </dx:ASPxGridView>
-    <asp:SqlDataSource ID="dsPhieuThu" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDPhieuThu], [STTPhieuThu], [SoHoaDon], [KhachHangID], [SoTienThu], [NoiDung], [NgayThu], [NhanVienThuID], [HinhThucTTID] FROM [gPhieuThu]"></asp:SqlDataSource>
-    <asp:SqlDataSource ID="dsKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDKhachHang], [HoTen] FROM [khKhachHang]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="dsPhieuThu" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT ghPhieuDaiLyThanhToan.* FROM ghPhieuDaiLyThanhToan ORDER BY IDPhieuThu DESC"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="dsKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDKhachHang], [HoTen] FROM [khKhachHang] WHERE LoaiKhachHangID =3"></asp:SqlDataSource>
 
     <asp:SqlDataSource ID="dsNhanVien" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDNhanVien], [HoTen] FROM [nvNhanVien]"></asp:SqlDataSource>
     <dx:ASPxGlobalEvents ID="globalEventGrid" runat="server">
@@ -94,7 +105,7 @@
 	        UpdateControlHeight(gridThanhToan);                      
         }" />
     </dx:ASPxGlobalEvents>
-    <dx:ASPxPopupControl ID="popupViewReport" ClientInstanceName="popupViewReport" runat="server" HeaderText="Phiếu xuất hàng" Width="800px" Height="600px" PopupHorizontalAlign="WindowCenter" ScrollBars="Auto" >
+    <dx:ASPxPopupControl ID="popupViewReport" ClientInstanceName="popupViewReport" runat="server" HeaderText="Phiếu đại lý thanh toán" Width="800px" Height="600px" PopupHorizontalAlign="WindowCenter" ScrollBars="Auto" >
         <ContentCollection>
             <dx:PopupControlContentControl runat="server">
                 <dx:ASPxCallbackPanel ID="cbpViewReport" ClientInstanceName="cbpViewReport" runat="server" Width="100%" OnCallback="cbpViewReport_Callback">

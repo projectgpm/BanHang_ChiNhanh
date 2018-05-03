@@ -123,7 +123,7 @@
                                         </dx:ASPxMenu>
                                     </td>
                                     <td style="width:90px;text-align:right;background-color:#1F77C0;">
-                                        <dx:ASPxButton ID="btnBanHang" runat="server" Text="POS" Width="80px" BackColor="#FF9906" UseSubmitBehavior="false">
+                                        <dx:ASPxButton ID="btnBanHang" runat="server" Text="POS bán lẻ" Width="80px" PostBackUrl="~/Pages/POST/BanHangLe.aspx" BackColor="#FF9906" UseSubmitBehavior="false">
                                             <HoverStyle BackColor="#F0A000">
                                             </HoverStyle>
                                         </dx:ASPxButton>                                        

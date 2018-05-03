@@ -37,13 +37,37 @@
         function checkInput() {
             if (ccbKhachHang.GetSelectedIndex() == -1) {
                 alert('Vui lòng chọn khách hàng!!');
-                ccbKhachHang.Fouce();
+                ccbKhachHang.Focus();
+                return false;
+            }
+
+            if (rdlHinhThuc.GetSelectedIndex() == 0 && speSoTienTT.GetValue() <= 0) {
+                alert('Số tiền thanh toán phải lớn hơn 0')
+                speSoTienTT.Focus();
+                return false;
+            }
+
+            if (rdlHinhThuc.GetSelectedIndex() == 0 && txtCongNoHienTai.GetValue() < speSoTienTT.GetValue()) {
+                alert('Số tiền thanh toán phải nhỏ hơn công nợ hiện tại')
+                speSoTienTT.Focus();
+                return false;
+            }
+
+            if (rdlHinhThuc.GetSelectedIndex() == 1 && ccbPhieuThanhToan.GetSelectedIndex() == -1) {
+                alert('Vui lòng chọn phiếu thanh toán')
+                ccbPhieuThanhToan.Focus();
+                return false;
+            }
+            if (dateNgayTT.GetValue() == null) {
+                alert('Vui lòng chọn ngày thanh toán')
+                dateNgayTT.Focus();
                 return false;
             }
             return true;
         }
         function onSaveClick() {
-            //if(checkInput())
+            if (checkInput())
+                cbpThanhToan.PerformCallback('ThanhToan');
 
         }
 
@@ -54,6 +78,10 @@
             //    reportViewer.GetViewer().Refresh();
             //    delete (s.cp_rpView);
             //}
+            if (s.cp_Reset) {
+            delete (s.cp_Reset);
+            ShowPopup(4000);
+        }
         }
     </script>
     <dx:ASPxCallbackPanel ID="cbpThanhToan" ClientInstanceName="cbpThanhToan" runat="server" Width="100%" OnCallback="cbpThanhToan_Callback">
@@ -101,7 +129,7 @@
                                 <dx:LayoutItem Caption="Phiếu thanh toán" Name="itemPhieuTT" ClientVisible="false">
                                     <LayoutItemNestedControlCollection>
                                         <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer4" runat="server">
-                                            <dx:ASPxComboBox ID="ccbPhieuThanhToan" runat="server" Width="100%" NullText="--Chọn phiếu thanh toán--" ValueField="IDNhapKho" TextFormatString="Mã phiếu {0} - {1} đồng">
+                                            <dx:ASPxComboBox ID="ccbPhieuThanhToan" ClientInstanceName="ccbPhieuThanhToan" runat="server" Width="100%" NullText="--Chọn phiếu thanh toán--" ValueField="IDNhapKho" TextFormatString="Mã phiếu {0} - {1} đồng">
                                                 <Columns>
                                                     <dx:ListBoxColumn Caption="Mã phiếu" FieldName="MaPhieu" />
                                                     <dx:ListBoxColumn Caption="Tổng tiền" FieldName="TongTien" />
@@ -115,7 +143,7 @@
                                 <dx:LayoutItem Caption="Số tiền đã thanh toán" HelpText="(Đvt: đồng)" Name="itemSoTienDaTT" ClientVisible="false">
                                     <LayoutItemNestedControlCollection>
                                         <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer5" runat="server">
-                                                        <dx:ASPxTextBox ID="txtSoTienDaTT" runat="server" Width="100%"  Enabled="false" DisplayFormatString="N0">
+                                                        <dx:ASPxTextBox ID="txtSoTienDaTT" ClientInstanceName="txtSoTienDaTT" runat="server" Width="100%"  Enabled="false" DisplayFormatString="N0">
                                                         </dx:ASPxTextBox>
                                                         <dx:ASPxHiddenField ID="hiddenfield" ClientInstanceName="hiddenfield" runat="server"></dx:ASPxHiddenField>
      
@@ -138,7 +166,7 @@
                                 <dx:LayoutItem Caption="Số hóa đơn">
                                     <LayoutItemNestedControlCollection>
                                         <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer7" runat="server">
-                                            <dx:ASPxTextBox ID="txtHoaDon" runat="server" Width="100%">
+                                            <dx:ASPxTextBox ID="txtHoaDon" ClientInstanceName="txtHoaDon" runat="server" Width="100%">
                                             </dx:ASPxTextBox>
                                         </dx:LayoutItemNestedControlContainer>
                                     </LayoutItemNestedControlCollection>
@@ -146,7 +174,7 @@
                                 <dx:LayoutItem Caption="Ngày thanh toán">
                                     <LayoutItemNestedControlCollection>
                                         <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer8" runat="server">
-                                            <dx:ASPxDateEdit ID="dateNgayTT" runat="server" Width="100%" OnInit="dateEditControl_Init">
+                                            <dx:ASPxDateEdit ID="dateNgayTT" ClientInstanceName="dateNgayTT" runat="server" Width="100%" OnInit="dateEditControl_Init">
                                             </dx:ASPxDateEdit>
                                         </dx:LayoutItemNestedControlContainer>
                                     </LayoutItemNestedControlCollection>
@@ -154,7 +182,7 @@
                                 <dx:LayoutItem Caption="Nội dung thanh toán" ColSpan="2">
                                     <LayoutItemNestedControlCollection>
                                         <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer9" runat="server">
-                                            <dx:ASPxMemo ID="memoNoiDungTT" runat="server" Rows="5" Width="100%">
+                                            <dx:ASPxMemo ID="memoNoiDungTT" ClientInstanceName="memoNoiDungTT" runat="server" Rows="5" Width="100%">
                                             </dx:ASPxMemo>
                                         </dx:LayoutItemNestedControlContainer>
                                     </LayoutItemNestedControlCollection>

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -70,7 +71,175 @@ namespace KobePaint.Pages.ThanhToan
         }
         public void LuuThanhToan()
         {
+             using (var scope = new TransactionScope())
+            {
+                try
+                {
+                    double? SoTienThu = double.Parse(speSoTienTT.Number.ToString());
+                    if (SoTienThu == 0)
+                        throw new Exception("Chưa nhập số tiền thanh toán");
+                    double? SoNoHienTai = double.Parse(txtCongNoHienTai.Text);
+                    if (SoTienThu > SoNoHienTai)
+                        throw new Exception("Số tiền thu không được vượt qua số nợ hiện tại");
 
+                    int IDKhachHang = Convert.ToInt32(ccbKhachHang.Value.ToString());
+                    string SoHoaDon = txtHoaDon.Text;
+                    string NoiDung = memoNoiDungTT.Text;
+                    DateTime NgayThu = Formats.ConvertToDateTime(dateNgayTT.Text);
+                    int HinhThucThu = rdlHinhThuc.SelectedIndex == 0 ? 1 : 2;
+                    double CongNoCu = double.Parse(txtCongNoHienTai.Text);
+
+                    kPhieuThanhToanNCC thanhtoan = new kPhieuThanhToanNCC();
+                    thanhtoan.STTPhieuThu = DBDataProvider.STTPhieuThanhToan_NCC(IDKhachHang);
+                    thanhtoan.SoHoaDon = SoHoaDon;
+                    thanhtoan.KhachHangID = IDKhachHang;
+                    thanhtoan.SoTienThu = SoTienThu;
+                    thanhtoan.NoiDung = NoiDung;
+                    thanhtoan.NgayThu = NgayThu;
+                    thanhtoan.NgayLap = DateTime.Now;
+                    thanhtoan.NhanVienThuID = Formats.IDUser();
+                    thanhtoan.HinhThucTTID = HinhThucThu;
+                    thanhtoan.CongNoCu = CongNoCu;
+
+                    DBDataProvider.DB.kPhieuThanhToanNCCs.InsertOnSubmit(thanhtoan);
+                    DBDataProvider.DB.SubmitChanges();
+                    int IDPhieuThu = thanhtoan.IDPhieuThu;
+
+                    if (rdlHinhThuc.SelectedIndex == 0)
+                    {
+                        //Cap nhat thanh toan phieu đặt hàng
+                        List<kNhapKho> ListPhieuNhapKho = DBDataProvider.ListPhieuNhapHang_ASC(IDKhachHang);// phiếu đã được duyệt & chưa thanh toán
+                        int i = 0;
+                        if (SoTienThu > 0 && ListPhieuNhapKho.Count > 0)
+                        {
+                            while (SoTienThu > 0 && i < ListPhieuNhapKho.Count)
+                            {
+                                double? TienNoDonHang = ListPhieuNhapKho[i].CongNo;
+                                if (SoTienThu >= TienNoDonHang) //Thanh toán hết đơn hàng
+                                {
+                                    ListPhieuNhapKho[i].ThanhToan = ListPhieuNhapKho[i].TongTien; //cập nhật lại thanh toán = tổng tiền
+                                    ListPhieuNhapKho[i].CongNo = 0;// cập nhật còn lại  = 0;
+                                    ListPhieuNhapKho[i].TTThanhToan = 1;// đã thanh toán
+                                    khKhachHang KH = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == IDKhachHang).FirstOrDefault();
+                                    if (KH != null)
+                                    {
+                                        #region ghi nhật ký nhập kho để xem báo cáo
+                                        khNhatKyCongNo nhatky = new khNhatKyCongNo();
+                                        nhatky.NgayNhap = DateTime.Now;
+                                        nhatky.DienGiai = "Thanh toán Nhà cung cấp";
+                                        nhatky.NoDau = KH.CongNo;
+                                        nhatky.NhapHang = 0;
+                                        nhatky.TraHang = 0;
+                                        nhatky.ThanhToan = TienNoDonHang;
+                                        nhatky.NoCuoi = KH.CongNo - TienNoDonHang;
+                                        nhatky.NhanVienID = Formats.IDUser();
+                                        nhatky.SoPhieu = ListPhieuNhapKho[i].MaPhieu;
+                                        nhatky.IDKhachHang = IDKhachHang;
+                                        DBDataProvider.DB.khNhatKyCongNos.InsertOnSubmit(nhatky);
+                                        DBDataProvider.DB.SubmitChanges();
+                                        #endregion
+                                        KH.CongNo -= TienNoDonHang; // - công nợ
+                                    }
+                                    SoTienThu -= TienNoDonHang;
+
+                                }
+                                else // Thanh toán 1 phần đơn hàng
+                                {
+                                    ListPhieuNhapKho[i].ThanhToan += SoTienThu; // cộng phần còn lại vào thanh toán.
+                                    ListPhieuNhapKho[i].CongNo = ListPhieuNhapKho[i].TongTien - ListPhieuNhapKho[i].ThanhToan; // cập nhật phần còn lại
+                                    //ListPhieuGiaoHang[i].TTThanhToan = 1;// đã thanh toán
+                                    khKhachHang KH = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == IDKhachHang).FirstOrDefault();
+                                    if (KH != null)
+                                    {
+                                        #region ghi nhật ký nhập kho để xem báo cáo
+                                        khNhatKyCongNo nhatky = new khNhatKyCongNo();
+                                        nhatky.NgayNhap = DateTime.Now;
+                                        nhatky.DienGiai = "Thanh toán Nhà cung cấp";
+                                        nhatky.NoDau = KH.CongNo;
+                                        nhatky.NhapHang = 0;
+                                        nhatky.TraHang = 0;
+                                        nhatky.ThanhToan = SoTienThu;
+                                        nhatky.NoCuoi = KH.CongNo - SoTienThu;
+                                        nhatky.NhanVienID = Formats.IDUser();
+                                        nhatky.SoPhieu = ListPhieuNhapKho[i].MaPhieu;
+                                        nhatky.IDKhachHang = IDKhachHang;
+                                        DBDataProvider.DB.khNhatKyCongNos.InsertOnSubmit(nhatky);
+                                        DBDataProvider.DB.SubmitChanges();
+                                        #endregion
+                                        KH.CongNo -= SoTienThu; // - công nợ
+                                    }
+                                    SoTienThu -= SoTienThu;
+                                }
+                                i++;
+                            }
+                        }
+                        else
+                        {
+                            // trừ công nợ thẳng.
+                            khKhachHang KH = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == IDKhachHang).FirstOrDefault();
+                            if (KH != null)
+                            {
+                                #region ghi nhật ký nhập kho để xem báo cáo
+                                khNhatKyCongNo nhatky = new khNhatKyCongNo();
+                                nhatky.NgayNhap = DateTime.Now;
+                                nhatky.DienGiai = "Thanh toán Nhà cung cấp";
+                                nhatky.NoDau = KH.CongNo;
+                                nhatky.NhapHang = 0;
+                                nhatky.TraHang = 0;
+                                nhatky.ThanhToan = SoTienThu;
+                                nhatky.NoCuoi = KH.CongNo - SoTienThu;
+                                nhatky.NhanVienID = Formats.IDUser();
+                                nhatky.SoPhieu = "";
+                                nhatky.IDKhachHang = IDKhachHang;
+                                DBDataProvider.DB.khNhatKyCongNos.InsertOnSubmit(nhatky);
+                                DBDataProvider.DB.SubmitChanges();
+                                #endregion
+                                KH.CongNo -= SoTienThu; // - công nợ
+                            }
+                        }
+                    }
+                    else
+                    {
+                        int IDNhapKho = int.Parse(ccbPhieuThanhToan.Value.ToString());
+                        kNhapKho PhieuNK = DBDataProvider.DB.kNhapKhos.Single(x => x.IDNhapKho == IDNhapKho);
+                        double? TienNoDonHang = PhieuNK.CongNo;
+                        if (SoTienThu >= TienNoDonHang)
+                        {
+                            PhieuNK.ThanhToan = PhieuNK.TongTien;
+                            PhieuNK.CongNo = 0;
+                            PhieuNK.TTThanhToan = 1;// đã thanh toán
+                            khKhachHang KH = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == IDKhachHang).FirstOrDefault();
+                            if (KH != null)
+                            {
+                                #region ghi nhật ký nhập kho để xem báo cáo
+                                khNhatKyCongNo nhatky = new khNhatKyCongNo();
+                                nhatky.NgayNhap = DateTime.Now;
+                                nhatky.DienGiai = "Thanh toán Nhà cung cấp";
+                                nhatky.NoDau = KH.CongNo;
+                                nhatky.NhapHang = 0;
+                                nhatky.TraHang = 0;
+                                nhatky.ThanhToan = SoTienThu;
+                                nhatky.NoCuoi = KH.CongNo - SoTienThu;
+                                nhatky.NhanVienID = Formats.IDUser();
+                                nhatky.SoPhieu = PhieuNK.MaPhieu;
+                                nhatky.IDKhachHang = IDKhachHang;
+                                DBDataProvider.DB.khNhatKyCongNos.InsertOnSubmit(nhatky);
+                                DBDataProvider.DB.SubmitChanges();
+                                #endregion
+                                KH.CongNo -= SoTienThu;// - công nợ
+                            }
+                        }
+                    }
+                    DBDataProvider.DB.SubmitChanges();
+                    scope.Complete();
+                    // Reset();
+                    cbpThanhToan.JSProperties["cp_Reset"] = true;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
 
         protected void btnRenew_Click(object sender, EventArgs e)

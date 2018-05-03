@@ -38,24 +38,51 @@
         function checkInput() {
             if (ccbKhachHang.GetSelectedIndex() == -1) {
                 alert('Vui lòng chọn khách hàng!!');
-                ccbKhachHang.Fouce();
+                ccbKhachHang.Focus();
+                return false;
+            }
+           
+            if (rdlHinhThuc.GetSelectedIndex() == 0 && speSoTienTT.GetValue() <= 0) {
+                alert('Số tiền thanh toán phải lớn hơn 0')
+                speSoTienTT.Focus();
+                return false;
+            }
+
+            if (rdlHinhThuc.GetSelectedIndex() == 0 && txtCongNoHienTai.GetValue() < speSoTienTT.GetValue()) {
+                alert('Số tiền thanh toán phải nhỏ hơn công nợ hiện tại')
+                speSoTienTT.Focus();
+                return false;
+            }
+
+            if (rdlHinhThuc.GetSelectedIndex() == 1 && ccbPhieuThanhToan.GetSelectedIndex() == -1) {
+                alert('Vui lòng chọn phiếu thanh toán')
+                ccbPhieuThanhToan.Focus();
+                return false;
+            }
+            if (dateNgayTT.GetValue() == null) {
+                alert('Vui lòng chọn ngày thanh toán')
+                dateNgayTT.Focus();
                 return false;
             }
             return true;
         }
         function onSaveClick() {
-            //if(checkInput())
-
+            if(checkInput())
+                cbpThanhToan.PerformCallback('ThanhToan');
         }
        
-            function onEndCallBack(s, e) {
-                //if (s.cp_rpView) {
-                //    hiddenfield.Set('view', '1');
-                //    popupViewReport.Show();
-                //    reportViewer.GetViewer().Refresh();
-                //    delete (s.cp_rpView);
-                //}
+        function onEndCallBack(s, e) {
+            //if (s.cp_rpView) {
+            //    hiddenfield.Set('view', '1');
+            //    popupViewReport.Show();
+            //    reportViewer.GetViewer().Refresh();
+            //    delete (s.cp_rpView);
+            //}
+            if (s.cp_Reset) {
+                delete (s.cp_Reset);
+                ShowPopup(4000);
             }
+        }
     </script>
     <dx:ASPxCallbackPanel ID="cbpThanhToan" ClientInstanceName="cbpThanhToan" runat="server" Width="100%" OnCallback="cbpThanhToan_Callback">
         <PanelCollection>
@@ -101,7 +128,7 @@
                                 <dx:LayoutItem Caption="Phiếu thanh toán" Name="itemPhieuTT" ClientVisible="false">
                                     <LayoutItemNestedControlCollection>
                                         <dx:LayoutItemNestedControlContainer runat="server">
-                                            <dx:ASPxComboBox ID="ccbPhieuThanhToan" runat="server" Width="100%" NullText="--Chọn phiếu thanh toán--" ValueField="IDPhieuGiaoHang" TextFormatString="Mã phiếu {0} - {1} đồng">
+                                            <dx:ASPxComboBox ID="ccbPhieuThanhToan" ClientInstanceName="ccbPhieuThanhToan" runat="server" Width="100%" NullText="--Chọn phiếu thanh toán--" ValueField="IDPhieuGiaoHang" TextFormatString="Mã phiếu {0} - {1} đồng">
                                                 <Columns>
                                                     <dx:ListBoxColumn Caption="Mã phiếu" FieldName="MaPhieu" />
                                                     <dx:ListBoxColumn Caption="Tổng tiền" FieldName="TongTien" />
@@ -145,7 +172,7 @@
                                 <dx:LayoutItem Caption="Ngày thanh toán">
                                     <LayoutItemNestedControlCollection>
                                         <dx:LayoutItemNestedControlContainer runat="server">
-                                            <dx:ASPxDateEdit ID="dateNgayTT" runat="server" Width="100%" OnInit="dateEditControl_Init">
+                                            <dx:ASPxDateEdit ID="dateNgayTT" ClientInstanceName="dateNgayTT" runat="server" Width="100%" OnInit="dateEditControl_Init">
                                             </dx:ASPxDateEdit>
                                         </dx:LayoutItemNestedControlContainer>
                                     </LayoutItemNestedControlCollection>
