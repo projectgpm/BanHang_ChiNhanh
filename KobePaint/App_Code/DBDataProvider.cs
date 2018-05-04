@@ -82,14 +82,34 @@ namespace KobePaint.App_Code
         }
 
         //STT thanh toán NCC
-        public static int STTPhieuThanhToan_NCC(int IDCustomer)
+        public static int STTPhieuThanhToan_NCC(int IDNCC)
         {
-            return DB.kPhieuThanhToanNCCs.Where(x => x.KhachHangID == IDCustomer && x.NgayThu.Value.Year == DateTime.Now.Year).Count() + 1;
+            return DB.kPhieuThanhToanNCCs.Where(x => x.KhachHangID == IDNCC && x.NgayThu.Value.Year == DateTime.Now.Year).Count() + 1;
         }
         //STT thanh toán đại lý
-        public static int STTPhieuThanhToan_DaiLy(int IDCustomer)
+        public static int STTPhieuThanhToan_DaiLy(int IDDaiLy)
         {
-            return DB.ghPhieuDaiLyThanhToans.Where(x => x.KhachHangID == IDCustomer && x.NgayThu.Value.Year == DateTime.Now.Year).Count() + 1;
+            return DB.ghPhieuDaiLyThanhToans.Where(x => x.KhachHangID == IDDaiLy && x.NgayThu.Value.Year == DateTime.Now.Year).Count() + 1;
         }
+        //STT phiếu giao hàng
+        public static int STTPhieuGiaoHang_DaiLy(int IDDaiLy)
+        {
+            return DB.ghPhieuGiaoHangs.Where(x => x.KhachHangID == IDDaiLy).Count() + 1;
+        }
+        //Số đơn hàng trong năm phiếu giao hàng
+        public static int SoDonHangTrongNam_GiaoHang()
+        {
+            return DB.ghPhieuGiaoHangs.Where(x => x.NgayTao.Value.Year == DateTime.Now.Year).Count() + 1;
+        }
+
+
+
+
+        #region report view
+        public static ghPhieuGiaoHang GetPhieuGiaoHang(int ID)
+        {
+            return DB.ghPhieuGiaoHangs.Where(x => x.IDPhieuGiaoHang == ID).FirstOrDefault();
+        }
+        #endregion
     }
 }

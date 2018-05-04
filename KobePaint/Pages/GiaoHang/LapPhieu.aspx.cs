@@ -230,7 +230,7 @@ namespace KobePaint.Pages.GiaoHang
                     giaohang.TongTien = TongTien;
                     giaohang.ThanhToan = 0;
                     giaohang.ConLai = TongTien;
-
+                    giaohang.STTDonHang = DBDataProvider.STTPhieuGiaoHang_DaiLy(IDkhachHang);
 
                     DBDataProvider.DB.ghPhieuGiaoHangs.InsertOnSubmit(giaohang);
                     DBDataProvider.DB.SubmitChanges();

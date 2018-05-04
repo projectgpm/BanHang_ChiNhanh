@@ -90,7 +90,7 @@ namespace KobePaint.Pages.Kho
                     kk.DaXoa = 0;
                     kk.NgayTao = DateTime.Now;
                     kk.ChenhLech = ChenhLech;
-                    kk.TrangThai = 0;
+                    //kk.TrangThai = 0;
                     DBDataProvider.DB.kKiemKes.InsertOnSubmit(kk);
                     DBDataProvider.DB.SubmitChanges();
 

@@ -153,5 +153,77 @@ namespace KobePaint.App_Code
         }
     }
     #endregion
+
+
+    #region report giao hàng
+    [Serializable]
+    public class oReportGiaoHang
+    {
+        public int IDPhieuGiaoHang { get; set; }
+        public string NgayTao { get; set; }
+        public string MaPhieu { get; set; }
+        public int NhanVienID { get; set; }
+        public string GhiChuGiaoHang { get; set; }
+        public int KhachHangID { get; set; }
+        public string NgayGiao { get; set; }
+        public string NguoiGiao { get; set; }
+        public string DiaChiGiaoHang { get; set; }
+        public int TongSoLuong { get; set; }
+        public double TongTien { get; set; }
+        public string DienThoai { get; set; }
+        public string SoHoaDon { get; set; }
+        public double ThanhToan { get; set; }
+        public double ConLai { get; set; }
+        public string MaKhachHang { get; set; }
+        public string TenKhachHang { get; set; }
+        public string TenNhanVien { get; set; }
+        public string SoDonHangTrongNam { get; set; }
+        public double CongNoHienTai { get; set; }
+        public string TieuDePhieu { get; set; }
+        public List<oProduct> listProduct { get; set; }
+    }
+    [Serializable]
+    public class oProduct
+    {
+        public int STT { get; set; }
+        public string MaHang { get; set; }
+        public string TenHang { get; set; }
+        public string TenDonViTinh { get; set; }
+        public int SoLuong { get; set; }
+        public double DonGia { get; set; }
+        public double ThanhTien { get; set; }
+
+
+        public oProduct(string maHang,string tenHang,string tenDonViTinh,int soLuong, float donGia)
+        {
+            // TODO: Complete member initialization
+            this.MaHang = maHang;
+            this.TenHang = tenHang;
+            this.TenDonViTinh = tenDonViTinh;
+            this.SoLuong = soLuong;
+            this.DonGia = donGia;
+            this.ThanhTien = this.SoLuong * this.DonGia;
+        }
+
+        public oProduct()
+        {
+            // TODO: Complete member initialization
+        }
+
+        public oProduct(oProduct x)
+        {
+            // TODO: Complete member initialization
+            this.STT = x.STT;
+            this.MaHang = x.MaHang;
+            this.TenHang = x.TenHang;
+            this.TenDonViTinh = x.TenDonViTinh;
+            this.SoLuong = SoLuong;
+            this.DonGia = DonGia;
+            this.ThanhTien = ThanhTien;
+        }
+       
+    }
+
+    #endregion
 }
  

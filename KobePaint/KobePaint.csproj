@@ -496,11 +496,17 @@
       <DependentUpon>TraHangNCC.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reports\rpPhieuThanhToan.cs">
+    <Compile Include="Reports\rpPhieuGiaoHang.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\rpPhieuThanhToan.Designer.cs">
-      <DependentUpon>rpPhieuThanhToan.cs</DependentUpon>
+    <Compile Include="Reports\rpPhieuGiaoHang.Designer.cs">
+      <DependentUpon>rpPhieuGiaoHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rpPhieuGiaoHangNoPrice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rpPhieuGiaoHangNoPrice.Designer.cs">
+      <DependentUpon>rpPhieuGiaoHangNoPrice.cs</DependentUpon>
     </Compile>
     <Compile Include="Root.master.cs">
       <DependentUpon>Root.master</DependentUpon>
@@ -520,8 +526,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="Reports\rpPhieuThanhToan.resx">
-      <DependentUpon>rpPhieuThanhToan.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\rpPhieuGiaoHang.resx">
+      <DependentUpon>rpPhieuGiaoHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rpPhieuGiaoHangNoPrice.resx">
+      <DependentUpon>rpPhieuGiaoHangNoPrice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

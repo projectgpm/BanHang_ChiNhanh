@@ -68,6 +68,9 @@ namespace KobePaint.Pages.GiaoHang
                             KH.TongTienHang += PhieuGH.ConLai;
                             KH.LanCuoiMuaHang = DateTime.Now;
                             PhieuGH.TrangThai = 1;// duyệt thành công
+                            PhieuGH.SoDonHangTrongNam = DBDataProvider.SoDonHangTrongNam_GiaoHang();
+                            PhieuGH.STTDonHang = DBDataProvider.STTPhieuGiaoHang_DaiLy(IDKhachHang);
+                            PhieuGH.CongNoHienTai = KH.CongNo;
                         }
                     }
                     else
@@ -83,6 +86,9 @@ namespace KobePaint.Pages.GiaoHang
                                 HH.TonKho += prod.SoLuong;
                             }
                             PhieuGH.TrangThai = 2;// hủy đơn hàng
+                            PhieuGH.STTDonHang = 0;
+                            PhieuGH.SoDonHangTrongNam = 0;
+                            PhieuGH.CongNoHienTai = KH.CongNo;
                         }
                     }
 

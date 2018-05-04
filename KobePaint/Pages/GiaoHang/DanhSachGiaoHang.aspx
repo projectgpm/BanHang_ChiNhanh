@@ -1,6 +1,28 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.master" AutoEventWireup="true" CodeBehind="DanhSachGiaoHang.aspx.cs" Inherits="KobePaint.Pages.GiaoHang.DanhSachGiaoHang" %>
+
+<%@ Register Assembly="DevExpress.XtraReports.v16.1.Web, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-     <dx:ASPxGridView ID="gridGiaoHang" runat="server" AutoGenerateColumns="False" ClientInstanceName="gridGiaoHang" Width="100%" DataSourceID="dsGiaohang" KeyFieldName="IDPhieuGiaoHang" OnCustomColumnDisplayText="gridGiaoHang_CustomColumnDisplayText" OnRowDeleting="gridGiaoHang_RowDeleting">
+    <script>
+        function onPrintClick(idPhieu) {
+            popupViewReport.Show();
+            cbpViewReport.PerformCallback(idPhieu);
+        }
+        function onEndCallBackViewRp() {
+            hdfViewReport.Set('view', '1');
+            reportViewer.GetViewer().Refresh();
+        }
+        function onTabChanged(s, e) {
+            if (e.tab.name == 'CoGia') {
+                hdfViewReport.Set('view', '1');
+                reportViewer.GetViewer().Refresh();
+            }
+            else {
+                hdfViewReport.Set('view', '2');
+                reportViewer.GetViewer().Refresh();
+            }
+        }
+    </script>
+    <dx:ASPxGridView ID="gridGiaoHang" runat="server" AutoGenerateColumns="False" ClientInstanceName="gridGiaoHang" Width="100%" DataSourceID="dsGiaohang" KeyFieldName="IDPhieuGiaoHang" OnCustomColumnDisplayText="gridGiaoHang_CustomColumnDisplayText" OnRowDeleting="gridGiaoHang_RowDeleting">
         <SettingsEditing EditFormColumnCount="3">
         </SettingsEditing>
         <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="0" ShowFilterRow="True" ShowTitlePanel="True"/>
@@ -195,7 +217,7 @@
                 <PropertiesComboBox DataSourceID="dsKhachHang" TextField="HoTen" ValueField="IDKhachHang">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataTextColumn Caption="Ghi chú đơn hàng" FieldName="GhiChuGiaoHang" VisibleIndex="12" Visible="False">
+            <dx:GridViewDataTextColumn Caption="Ghi chú đơn hàng" FieldName="GhiChuGiaoHang" VisibleIndex="13" Visible="False">
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataDateColumn Caption="Ngày giao" FieldName="NgayGiao" VisibleIndex="9" Width="120px">
                 <PropertiesDateEdit DisplayFormatString="dd/MM/yyyy">
@@ -205,7 +227,17 @@
             </dx:GridViewDataMemoColumn>
             <dx:GridViewDataTextColumn Caption="Điện thoại" FieldName="DienThoai" VisibleIndex="3" Width="100px">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="Số hóa đơn" FieldName="SoHoaDon" Visible="False" VisibleIndex="13">
+            <dx:GridViewDataTextColumn Caption="Số hóa đơn" FieldName="SoHoaDon" Visible="False" VisibleIndex="14">
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn Caption="In phiếu" VisibleIndex="12" Width="80px">
+                <DataItemTemplate>
+                    <dx:ASPxButton ID="btnInPhieu" runat="server" RenderMode="Link" OnInit="btnInPhieu_Init" AutoPostBack="false">
+                        <Image IconID="print_print_16x16">
+                        </Image>
+                    </dx:ASPxButton>
+                </DataItemTemplate>
+                <CellStyle HorizontalAlign="Center">
+                </CellStyle>
             </dx:GridViewDataTextColumn>
         </Columns>
 
@@ -239,4 +271,35 @@
 	        UpdateControlHeight(gridGiaoHang);
         }" />
     </dx:ASPxGlobalEvents>
+    <dx:ASPxPopupControl ID="popupViewReport" ClientInstanceName="popupViewReport" runat="server" HeaderText="Phiếu giao hàng đại lý" Width="800px" Height="600px" ScrollBars="Auto" PopupHorizontalAlign="WindowCenter" >
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
+                <dx:ASPxCallbackPanel ID="cbpViewReport" ClientInstanceName="cbpViewReport" runat="server" Width="100%" OnCallback="cbpViewReport_Callback">
+                    <PanelCollection>
+                        <dx:PanelContent>
+                            <dx:ASPxTabControl ID="ASPxTabControl1" runat="server" ActiveTabIndex="0">
+                                <tabs>
+                                    <dx:Tab Text="Phiếu giao hàng" Name="CoGia">
+                                    </dx:Tab>
+                                    <dx:Tab Text="Phiếu giao hàng (không có giá bán)" Name="KhongGia">
+                                    </dx:Tab>
+                                </tabs>
+                                <clientsideevents activetabchanged="onTabChanged" />
+                                <tabstyle>
+                                    <paddings padding="5px" />
+                                </tabstyle>
+                                <ActiveTabStyle Font-Bold="True" ForeColor="#1F77C0">
+                                </ActiveTabStyle>
+                            </dx:ASPxTabControl>
+                            <dx:ASPxDocumentViewer ID="reportViewer" ClientInstanceName="reportViewer" runat="server">
+                            </dx:ASPxDocumentViewer>
+                            <dx:ASPxHiddenField ID="hdfViewReport" ClientInstanceName="hdfViewReport" runat="server">
+                            </dx:ASPxHiddenField>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                    <ClientSideEvents EndCallback="onEndCallBackViewRp" />
+                </dx:ASPxCallbackPanel>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
 </asp:Content>
