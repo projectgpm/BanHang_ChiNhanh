@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.master" AutoEventWireup="true" CodeBehind="LapPhieu.aspx.cs" Inherits="KobePaint.Pages.GiaoHang.LapPhieu" %>
+<%@ Register assembly="DevExpress.XtraReports.v16.1.Web, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.XtraReports.Web" tagprefix="dx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <script>
         function AdjustSize() {
@@ -52,7 +53,10 @@
             };
             return true;
         }
-
+        function onReviewClick() {
+            if (checkInput())
+                cbpInfoImport.PerformCallback('Review');
+        }
 
         function onFileUploadComplete() {
             cbpInfoImport.PerformCallback('importexcel');
@@ -67,11 +71,18 @@
         }
 
         function endCallBackProduct(s, e) {
+            if (s.cp_rpView) {
+                hdfViewReport.Set('view', '1');
+                popupViewReport.Show();
+                reportViewer.GetViewer().Refresh();
+                delete (s.cp_rpView);
+            }
             if (s.cp_Reset) {
                 cbpInfoImport.PerformCallback('Reset');
                 delete (s.cp_Reset);
                 ShowPopup(4000);
             }
+            
         }
     </script>
 
@@ -377,7 +388,12 @@
                                     <div style="align-items: center; text-align: center; padding-top: 5px;">
                                         <table style="margin: 0 auto;">
                                             <tr>
-                                                <td style="padding-left: 10px">
+                                                <td style="padding-right:10px;">
+                                                        <dx:ASPxButton ID="btnPreview" runat="server" Text="Xem trước" BackColor="#5cb85c" AutoPostBack="False">
+                                                            <ClientSideEvents Click="onReviewClick" />
+                                                        </dx:ASPxButton>
+                                                    </td>
+                                                <td >
                                                     <dx:ASPxButton ID="btnLuuVaIn" runat="server" Text="Lưu" AutoPostBack="false" UseSubmitBehavior="false">
                                                         <ClientSideEvents Click="onSaveClick" />
                                                     </dx:ASPxButton>
@@ -410,8 +426,7 @@
     <dx:ASPxPopupControl ID="popupViewExcel" runat="server" ClientInstanceName="popupViewExcel" HeaderText="Nhập hàng hóa từ Excel" Width="800px" Height="200px" PopupHorizontalAlign="WindowCenter">
         <ContentCollection>
             <dx:PopupControlContentControl ID="PopupControlContentControl2" runat="server">
-                <dx:ASPxHiddenField ID="hdfViewReport" ClientInstanceName="hdfViewReport" runat="server">
-                </dx:ASPxHiddenField>
+               
                 <table>
                     <tr>
                         <td>
@@ -467,4 +482,15 @@
             </dx:PopupControlContentControl>
         </ContentCollection>
     </dx:ASPxPopupControl>
+
+ <dx:ASPxPopupControl ID="popupViewReport" ClientInstanceName="popupViewReport" runat="server" HeaderText="Phiếu xuất hàng" Width="850px" Height="600px" ScrollBars="Auto" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ShowHeader="False" >
+    <ContentCollection>
+        <dx:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
+            <dx:ASPxDocumentViewer ID="reportViewer" ClientInstanceName="reportViewer" runat="server">
+            </dx:ASPxDocumentViewer>
+            <dx:ASPxHiddenField ID="hdfViewReport" ClientInstanceName="hdfViewReport" runat="server">
+            </dx:ASPxHiddenField>
+        </dx:PopupControlContentControl>
+    </ContentCollection>
+</dx:ASPxPopupControl>
 </asp:Content>

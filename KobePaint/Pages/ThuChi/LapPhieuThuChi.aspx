@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.master" AutoEventWireup="true" CodeBehind="LapPhieuThuChi.aspx.cs" Inherits="KobePaint.Pages.ThuChi.LapPhieuThuChi" %>
+<%@ Register assembly="DevExpress.XtraReports.v16.1.Web, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.XtraReports.Web" tagprefix="dx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
      <script>
          function gridEndCallBack(s, e) {
@@ -36,6 +37,16 @@
                  ccbLoaiThuChi.Focus();
                  return false;
              }
+             if (spSoTien.GetValue() == null) {
+                 alert('Vui lòng nhập số tiền!!');
+                 spSoTien.Focus();
+                 return false;
+             }
+             if (dateNgayLap.GetValue() == null) {
+                 alert('Vui lòng nhập ngày lập!!');
+                 dateNgayLap.Focus();
+                 return false;
+             }
              return true;
          }
 
@@ -49,10 +60,19 @@
                  cbpThem.PerformCallback('redirect');
              }
          }
-        
+         function onReviewClick() {
+             if (checkInput()) 
+                 cbpThem.PerformCallback('Review');
+         }
         
          // thong bao
          function endCallBack(s, e) {
+             if (s.cp_rpView) {
+                 hdfViewReport.Set('view', '1');
+                 popupViewReport.Show();
+                 reportViewer.GetViewer().Refresh();
+                 delete (s.cp_rpView);
+             }
              if (s.cp_Reset) {
                  cbpThem.PerformCallback('Reset');
                  delete (s.cp_Reset);
@@ -128,10 +148,26 @@
                                         </dx:LayoutItemNestedControlContainer>
                                     </LayoutItemNestedControlCollection>
                                 </dx:LayoutItem>
+                                <dx:LayoutItem Caption="Điện thoại">
+                                    <LayoutItemNestedControlCollection>
+                                        <dx:LayoutItemNestedControlContainer runat="server">
+                                            <dx:ASPxTextBox ID="txtDienThoai" runat="server" Width="100%">
+                                            </dx:ASPxTextBox>
+                                        </dx:LayoutItemNestedControlContainer>
+                                    </LayoutItemNestedControlCollection>
+                                </dx:LayoutItem>
+                                <dx:LayoutItem Caption="Địa chỉ">
+                                    <LayoutItemNestedControlCollection>
+                                        <dx:LayoutItemNestedControlContainer runat="server">
+                                            <dx:ASPxTextBox ID="txtDiaChi" runat="server" Width="100%">
+                                            </dx:ASPxTextBox>
+                                        </dx:LayoutItemNestedControlContainer>
+                                    </LayoutItemNestedControlCollection>
+                                </dx:LayoutItem>
                                 <dx:LayoutItem Caption="Ngày lập">
                                     <LayoutItemNestedControlCollection>
                                         <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer6" runat="server">
-                                            <dx:ASPxDateEdit ID="dateNgayLap" runat="server" Width="100%" OnInit="dateNgayLap_Init">
+                                            <dx:ASPxDateEdit ID="dateNgayLap" ClientInstanceName="dateNgayLap" runat="server" Width="100%" OnInit="dateNgayLap_Init">
                                             </dx:ASPxDateEdit>
                                         </dx:LayoutItemNestedControlContainer>
                                     </LayoutItemNestedControlCollection>
@@ -150,6 +186,11 @@
                                         <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer9" runat="server">
                                             <table >
                                                 <tr>
+                                                     <td style="padding-right:10px;">
+                                                        <dx:ASPxButton ID="btnPreview" runat="server" Text="Xem trước" BackColor="#5cb85c" AutoPostBack="False">
+                                                            <ClientSideEvents Click="onReviewClick" />
+                                                        </dx:ASPxButton>
+                                                    </td>
                                                     <td style="padding-right:10px;width:110px;">
                                                         <dx:ASPxButton ID="btnSave" runat="server" Text="Lưu" ValidationGroup="checkInput" AutoPostBack="false">
                                                             <ClientSideEvents Click="onSaveClick" />
@@ -304,5 +345,14 @@
             </dx:PopupControlContentControl>
         </ContentCollection>
     </dx:ASPxPopupControl>
-
+    <dx:ASPxPopupControl ID="popupViewReport" ClientInstanceName="popupViewReport" runat="server" ShowHeader="false" HeaderText="Xem trước phiếu thu chi" Width="850px" PopupVerticalAlign="WindowCenter" Height="600px" ScrollBars="Auto" PopupHorizontalAlign="WindowCenter" >
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl2" runat="server">
+                <dx:ASPxDocumentViewer ID="reportViewer" ClientInstanceName="reportViewer" runat="server">
+                </dx:ASPxDocumentViewer>
+                <dx:ASPxHiddenField ID="hdfViewReport" ClientInstanceName="hdfViewReport" runat="server">
+                </dx:ASPxHiddenField>
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
     </asp:Content>

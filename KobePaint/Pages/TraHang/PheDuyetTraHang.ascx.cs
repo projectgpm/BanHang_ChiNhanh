@@ -73,6 +73,7 @@ namespace KobePaint.Pages.TraHang
 
                             }
                             PhieuTraHang.DuyetDonHang = 1;// duyệt thành công
+                            PhieuTraHang.STTDonHang = DBDataProvider.STTPhieuTraHang_DaiLy(DaiLyID);
                             // + tồn kho
                             var PhieuTraHangChiTiet = DBDataProvider.DB.kPhieuTraHangChiTiets.Where(x => x.PhieuTraHangNCCID == IDPhieuTraHang).ToList();
                             foreach (var prod in PhieuTraHangChiTiet)
@@ -88,6 +89,7 @@ namespace KobePaint.Pages.TraHang
                         if (KH != null && PhieuTraHang != null)
                         {
                             PhieuTraHang.DuyetDonHang = 2;// hủy đơn hàng
+                            PhieuTraHang.STTDonHang = 0;
                         }
                     }
 

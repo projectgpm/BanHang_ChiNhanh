@@ -24,7 +24,7 @@ namespace KobePaint.Pages.GiaoHang
                 if (hdfViewReport["view"].ToString() == "1")
                     reportViewer.Report = CreatReport();
                 else
-                    //reportViewer.Report = CreatReportNoPrice();
+                    reportViewer.Report = CreatReportNoPrice();
                 hdfViewReport["view"] = 0;
             }
         }
@@ -38,8 +38,8 @@ namespace KobePaint.Pages.GiaoHang
         rpPhieuGiaoHangNoPrice CreatReportNoPrice()
         {
             rpPhieuGiaoHangNoPrice rp = new rpPhieuGiaoHangNoPrice();
-            //rp.odsPhieuGiaoHang.DataSource = oCusExport;
-            //rp.CreateDocument();
+            rp.odsPhieuGiaoHang.DataSource = oCusExport;
+            rp.CreateDocument();
             return rp;
         }
         protected void gridChiTietDonHang_BeforePerformDataSelect(object sender, EventArgs e)
@@ -100,7 +100,20 @@ namespace KobePaint.Pages.GiaoHang
             oCusExport.SoHoaDon = PhieuGiaoHang.SoHoaDon;
             oCusExport.SoDonHangTrongNam = PhieuGiaoHang.SoDonHangTrongNam.ToString();
             oCusExport.TieuDePhieu = "PHIẾU GIAO HÀNG " + PhieuGiaoHang.STTDonHang;
-
+            string TrangThai = "";
+            switch (PhieuGiaoHang.TrangThai)
+            {
+                case 0:
+                    TrangThai = "(Đã đặt)";
+                    break;
+                case 1:
+                    TrangThai = "(Kiêm phiếu xuất kho)";
+                    break;
+                default:
+                    TrangThai = "(Đã hủy)";
+                    break;
+            }
+            oCusExport.TrangThaiPhieu = TrangThai;
             oCusExport.listProduct = new List<oProduct>();
             List<ghPhieuGiaoHangChiTiet> ListHang = DBDataProvider.ListChiTietGiaoHang(IDPhieuGiaoHang);
             int i = 1;

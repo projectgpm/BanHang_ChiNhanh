@@ -5,6 +5,7 @@
     <script>
         function onPrintClick(idPhieu) {
             popupViewReport.Show();
+            //reportViewer.GetViewer().Refresh();
             cbpViewReport.PerformCallback(idPhieu);
         }
         function onEndCallBackViewRp() {
@@ -271,7 +272,7 @@
 	        UpdateControlHeight(gridGiaoHang);
         }" />
     </dx:ASPxGlobalEvents>
-    <dx:ASPxPopupControl ID="popupViewReport" ClientInstanceName="popupViewReport" runat="server" HeaderText="Phiếu giao hàng đại lý" Width="800px" Height="600px" ScrollBars="Auto" PopupHorizontalAlign="WindowCenter" >
+    <dx:ASPxPopupControl ID="popupViewReport" ClientInstanceName="popupViewReport" runat="server" HeaderText="Phiếu giao hàng đại lý" Width="850px" Height="600px" ScrollBars="Auto" PopupVerticalAlign="WindowCenter" ShowHeader="false" PopupHorizontalAlign="WindowCenter" >
         <ContentCollection>
             <dx:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
                 <dx:ASPxCallbackPanel ID="cbpViewReport" ClientInstanceName="cbpViewReport" runat="server" Width="100%" OnCallback="cbpViewReport_Callback">

@@ -508,6 +508,30 @@
     <Compile Include="Reports\rpPhieuGiaoHangNoPrice.Designer.cs">
       <DependentUpon>rpPhieuGiaoHangNoPrice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\rpPhieuThanhToan.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rpPhieuThanhToan.Designer.cs">
+      <DependentUpon>rpPhieuThanhToan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rpPhieuThuChi.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rpPhieuThuChi.Designer.cs">
+      <DependentUpon>rpPhieuThuChi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rpPhieuTraHang.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rpPhieuTraHang.Designer.cs">
+      <DependentUpon>rpPhieuTraHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rpPhieuTraHangNoPrice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\rpPhieuTraHangNoPrice.Designer.cs">
+      <DependentUpon>rpPhieuTraHangNoPrice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Root.master.cs">
       <DependentUpon>Root.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -531,6 +555,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rpPhieuGiaoHangNoPrice.resx">
       <DependentUpon>rpPhieuGiaoHangNoPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rpPhieuThanhToan.resx">
+      <DependentUpon>rpPhieuThanhToan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rpPhieuThuChi.resx">
+      <DependentUpon>rpPhieuThuChi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rpPhieuTraHang.resx">
+      <DependentUpon>rpPhieuTraHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rpPhieuTraHangNoPrice.resx">
+      <DependentUpon>rpPhieuTraHangNoPrice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

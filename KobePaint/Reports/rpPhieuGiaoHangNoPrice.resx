@@ -118,20 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <metadata name="DataThongTin.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+    <value>17, 56</value>
   </metadata>
-  <data name="customSqlQuery1.Sql" xml:space="preserve">
-    <value>select UPPER("iThongTinCongTy"."TenCongTy") as TenCongTy,
-       "iThongTinCongTy"."DiaChi",
-       "iThongTinCongTy"."Website",
-       "iThongTinCongTy"."SoDienThoai",
-       "iThongTinCongTy"."Logo"
-  from "dbo"."iThongTinCongTy" "iThongTinCongTy"</value>
-  </data>
   <data name="DataThongTin.ResultSchemaSerializable" xml:space="preserve">
-    <value>PERhdGFTZXQgTmFtZT0iRGF0YVRob25nVGluIj48VmlldyBOYW1lPSJUaG9uZ1RpbkNvbmdUeSI+PEZpZWxkIE5hbWU9IlRlbkNvbmdUeSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJEaWFDaGkiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iV2Vic2l0ZSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJTb0RpZW5UaG9haSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJMb2dvIiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjxWaWV3IE5hbWU9IlRob25nVGluS2hhY2hIYW5nIj48RmllbGQgTmFtZT0iSG9UZW4iIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iRGlhQ2hpIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkRpZW5UaG9haSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJNYUtoYWNoSGFuZyIgVHlwZT0iU3RyaW5nIiAvPjwvVmlldz48L0RhdGFTZXQ+</value>
+    <value>PERhdGFTZXQgTmFtZT0iRGF0YVRob25nVGluIj48VmlldyBOYW1lPSJUaG9uZ1RpbkNvbmdUeSI+PEZpZWxkIE5hbWU9IlRlbkNoaU5oYW5oIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkRpZW5UaG9haSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJEaWFDaGkiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iTVNUIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkxvZ28iIFR5cGU9IlN0cmluZyIgLz48L1ZpZXc+PC9EYXRhU2V0Pg==</value>
   </data>
   <metadata name="odsPhieuGiaoHang.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
+    <value>17, 17</value>
   </metadata>
 </root>

@@ -14,7 +14,7 @@ namespace KobePaint.App_Code
 
         public static string ConvertToVNDateString(string date)
         {
-            return DateTime.Parse(date, culture, DateTimeStyles.NoCurrentDateDefault).ToString("dd-MM-yyyy");
+            return DateTime.Parse(date, culture, DateTimeStyles.NoCurrentDateDefault).ToString("dd/MM/yyyy");
         }
         /// <summary>
         /// covert yyyy-MM-dd
@@ -50,7 +50,13 @@ namespace KobePaint.App_Code
             string nam = date.Year.ToString();
             return "ngày " + ngay + " tháng " + thang + " năm " + nam;
         }
-
+        public static string ConvertToFullStringDate_ToUp(DateTime date)
+        {
+            string ngay = date.Day.ToString();
+            string thang = date.Month.ToString();
+            string nam = date.Year.ToString();
+            return "Ngày " + ngay + " Tháng " + thang + " Năm " + nam;
+        }
         public static void InitDateEditControl(object sender, EventArgs e)
         {
             ASPxDateEdit dateEdit = sender as ASPxDateEdit;

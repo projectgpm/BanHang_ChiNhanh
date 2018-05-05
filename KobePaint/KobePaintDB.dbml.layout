@@ -2,18 +2,6 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.875, 14.25" name="KobePaintDB">
   <DataContextMoniker Name="/KobePaintDBDataContext" />
   <nestedChildShapes>
-    <classShape Id="1a877ba0-a585-4165-884b-c18413fc6338" isExpanded="false" absoluteBounds="0.625, 3.125, 2, 0.45">
-      <DataClassMoniker Name="/KobePaintDBDataContext/chChiNhanh" />
-      <nestedChildShapes>
-        <elementListCompartment Id="0635294b-7bb2-4da4-9de3-77905dbf5635" absoluteBounds="0.63999999999999968, 3.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="6bb919a4-93d2-45e5-a620-a253d82957e7" isExpanded="false" absoluteBounds="6.125, 0.5, 2, 0.45">
-      <DataClassMoniker Name="/KobePaintDBDataContext/pPhieuThuChi" />
-      <nestedChildShapes>
-        <elementListCompartment Id="bbf3b654-00a9-4370-bf12-6444e1983a64" absoluteBounds="6.14, 0.96, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="b018858e-671d-4199-b383-ff9c28f90a74" isExpanded="false" absoluteBounds="3.75, 8.75, 2, 0.45">
       <DataClassMoniker Name="/KobePaintDBDataContext/ghPhieuDaiLyThanhToan" />
       <nestedChildShapes>
@@ -122,18 +110,6 @@
         <elementListCompartment Id="124f0ef8-99e7-44d1-9ccb-76c3714916ca" absoluteBounds="3.6399999999999997, 7.5850000000000009, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="b5228c67-81b6-4a8d-8c80-50170149d3b4" isExpanded="false" absoluteBounds="3.625, 5.75, 2, 0.45">
-      <DataClassMoniker Name="/KobePaintDBDataContext/kPhieuTraHang" />
-      <nestedChildShapes>
-        <elementListCompartment Id="d4dc1cbe-c64a-4546-a8cd-d60fe2a76c89" absoluteBounds="3.64, 6.2100000000000009, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="4b3141d1-5bda-44ec-926a-dcea0000e2ac" isExpanded="false" absoluteBounds="3.625, 6.375, 2, 0.45">
-      <DataClassMoniker Name="/KobePaintDBDataContext/kPhieuTraHangChiTiet" />
-      <nestedChildShapes>
-        <elementListCompartment Id="a806c005-0d50-4eda-8c89-b0db43d8fc26" absoluteBounds="3.6400000000000006, 6.8350000000000009, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="1d2c587e-6430-4a51-b13e-6dd094360e1a" isExpanded="false" absoluteBounds="5.75, 9.875, 2, 0.45">
       <DataClassMoniker Name="/KobePaintDBDataContext/kPhieuTraHangNCC" />
       <nestedChildShapes>
@@ -182,7 +158,7 @@
         <elementListCompartment Id="c186cc85-a7ab-4ed8-bda3-abf629fb6d25" absoluteBounds="6.1400000000000006, 1.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.625 : 2.04375025); (3.5625 : 2.04375025); (3.5625 : 2.3875); (6.0625 : 2.3875); (6.0625 : 2.8875); (10.625 : 2.8875); (10.625 : 10)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.625 : 2.325); (1.625 : 2.4375); (2.6875 : 2.4375); (2.6875 : 10.3875); (2.96354166666667 : 10.3875 : JumpStart); (3.13020833333333 : 10.3875 : JumpEnd); (3.17448166666667 : 10.3875 : JumpStart); (3.34114833333333 : 10.3875 : JumpEnd); (3.37760666666667 : 10.3875 : JumpStart); (3.54427333333333 : 10.3875 : JumpEnd); (3.57291666666667 : 10.3875 : JumpStart); (3.73958333333333 : 10.3875 : JumpEnd); (9.53125 : 10.3875); (9.53125 : 10.225); (9.625 : 10.225)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/KobePaintDBDataContext/hhHangHoa/hhHangHoa_ghPhieuGiaoHangChiTiet" />
       <nodes>
         <classShapeMoniker Id="753ffc35-da2b-43f2-a68c-c1e478ddcf48" />
@@ -196,56 +172,49 @@
         <classShapeMoniker Id="753ffc35-da2b-43f2-a68c-c1e478ddcf48" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.625 : 4.95); (1.625 : 8.975); (1.80729291666667 : 8.975 : JumpStart); (1.97395958333333 : 8.975 : JumpEnd); (2.76041666666667 : 8.975 : JumpStart); (2.92708333333333 : 8.975 : JumpEnd); (3.04166916666667 : 8.975 : JumpStart); (3.20833583333333 : 8.975 : JumpEnd); (3.57291666666667 : 8.975 : JumpStart); (3.73958333333333 : 8.975 : JumpEnd); (3.75 : 8.975)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.625 : 4.95); (1.625 : 8.975); (1.80729291666667 : 8.975 : JumpStart); (1.97395958333333 : 8.975 : JumpEnd); (2.07291916666667 : 8.975 : JumpStart); (2.23958583333333 : 8.975 : JumpEnd); (2.33854541666667 : 8.975 : JumpStart); (2.50521208333333 : 8.975 : JumpEnd); (2.60416666666667 : 8.975 : JumpStart); (2.77083333333333 : 8.975 : JumpEnd); (2.96354166666667 : 8.975 : JumpStart); (3.13020833333333 : 8.975 : JumpEnd); (3.17448166666667 : 8.975 : JumpStart); (3.34114833333333 : 8.975 : JumpEnd); (3.57291666666667 : 8.975 : JumpStart); (3.73958333333333 : 8.975 : JumpEnd); (3.75 : 8.975)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/KobePaintDBDataContext/khKhachHang/khKhachHang_ghPhieuDaiLyThanhToan" />
       <nodes>
         <classShapeMoniker Id="4f762dc6-0e1f-4af9-bf43-caa84160e7d3" />
         <classShapeMoniker Id="b018858e-671d-4199-b383-ff9c28f90a74" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.625 : 4.725); (3.04166916666667 : 4.725 : JumpStart); (3.20833583333333 : 4.725 : JumpEnd); (5.59375 : 4.725); (5.59375 : 2.325)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.625 : 4.725); (3.17448166666667 : 4.725 : JumpStart); (3.48958333333333 : 4.725 : JumpEnd); (5.59375 : 4.725); (5.59375 : 2.325)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/KobePaintDBDataContext/khKhachHang/khKhachHang_gPhieuThu" />
       <nodes>
         <classShapeMoniker Id="4f762dc6-0e1f-4af9-bf43-caa84160e7d3" />
         <classShapeMoniker Id="b78d4098-d487-4c8d-a4d9-078874058b16" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.625 : 4.2); (1.625 : 4.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.5937475 : 4.2); (1.5937475 : 4.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/KobePaintDBDataContext/khLoaiKhachHang/khLoaiKhachHang_khKhachHang" />
       <nodes>
         <classShapeMoniker Id="b75772c0-11c5-4dce-b055-32a95e2653ab" />
         <classShapeMoniker Id="4f762dc6-0e1f-4af9-bf43-caa84160e7d3" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.0937475 : 4.95); (1.0937475 : 11.8187475); (2.47916416666667 : 11.8187475 : JumpStart); (2.64583083333333 : 11.8187475 : JumpEnd); (2.76041666666667 : 11.8187475 : JumpStart); (2.92708333333333 : 11.8187475 : JumpEnd); (3.04166916666667 : 11.8187475 : JumpStart); (3.20833583333333 : 11.8187475 : JumpEnd); (3.30729291666667 : 11.8187475 : JumpStart); (3.47395958333333 : 11.8187475 : JumpEnd); (3.57291666666667 : 11.8187475 : JumpStart); (3.73958333333333 : 11.8187475 : JumpEnd); (4.01041416666667 : 11.8187475 : JumpStart); (4.17708083333333 : 11.8187475 : JumpEnd); (4.625 : 11.8187475)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.1562525 : 4.95); (2.1562525 : 11.8187475); (2.59635216666667 : 11.8187475 : JumpStart); (2.76301883333333 : 11.8187475 : JumpEnd); (2.96354166666667 : 11.8187475 : JumpStart); (3.13020833333333 : 11.8187475 : JumpEnd); (3.17448166666667 : 11.8187475 : JumpStart); (3.34114833333333 : 11.8187475 : JumpEnd); (3.37760666666667 : 11.8187475 : JumpStart); (3.54427333333333 : 11.8187475 : JumpEnd); (3.57291666666667 : 11.8187475 : JumpStart); (3.73958333333333 : 11.8187475 : JumpEnd); (4.01041416666667 : 11.8187475 : JumpStart); (4.17708083333333 : 11.8187475 : JumpEnd); (4.625 : 11.8187475)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/KobePaintDBDataContext/khKhachHang/khKhachHang_kNhapKho" />
       <nodes>
         <classShapeMoniker Id="4f762dc6-0e1f-4af9-bf43-caa84160e7d3" />
         <classShapeMoniker Id="2872eb07-4ee7-4827-ac51-ffab8f06e5ae" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.1562525 : 4.95); (2.1562525 : 7.35); (2.76041666666667 : 7.35 : JumpStart); (2.92708333333333 : 7.35 : JumpEnd); (3.04166916666667 : 7.35 : JumpStart); (3.20833583333333 : 7.35 : JumpEnd); (3.625 : 7.35)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.0937475 : 4.95); (1.0937475 : 7.35); (1.54166666666667 : 7.35 : JumpStart); (1.70833333333333 : 7.35 : JumpEnd); (1.80729291666667 : 7.35 : JumpStart); (1.97395958333333 : 7.35 : JumpEnd); (2.07291916666667 : 7.35 : JumpStart); (2.23958583333333 : 7.35 : JumpEnd); (2.33854541666667 : 7.35 : JumpStart); (2.50521208333333 : 7.35 : JumpEnd); (2.60416666666667 : 7.35 : JumpStart); (2.77083333333333 : 7.35 : JumpEnd); (2.96354166666667 : 7.35 : JumpStart); (3.13020833333333 : 7.35 : JumpEnd); (3.17448166666667 : 7.35 : JumpStart); (3.34114833333333 : 7.35 : JumpEnd); (3.625 : 7.35)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/KobePaintDBDataContext/khKhachHang/khKhachHang_kPhieuThanhToanNCC" />
       <nodes>
         <classShapeMoniker Id="4f762dc6-0e1f-4af9-bf43-caa84160e7d3" />
         <classShapeMoniker Id="acf5d729-4f0b-4877-bcc1-36658f7903e9" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.625 : 4.8687525); (3.04166916666667 : 4.8687525 : JumpStart); (3.20833583333333 : 4.8687525 : JumpEnd); (4.609375 : 4.8687525); (4.609375 : 5.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/KobePaintDBDataContext/khKhachHang/khKhachHang_kPhieuTraHang" />
-      <nodes>
-        <classShapeMoniker Id="4f762dc6-0e1f-4af9-bf43-caa84160e7d3" />
-        <classShapeMoniker Id="b5228c67-81b6-4a8d-8c80-50170149d3b4" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(1.89062625 : 4.95); (1.89062625 : 10.02812375); (2.76041666666667 : 10.02812375 : JumpStart); (2.92708333333333 : 10.02812375 : JumpEnd); (3.04166916666667 : 10.02812375 : JumpStart); (3.20833583333333 : 10.02812375 : JumpEnd); (3.57291666666667 : 10.02812375 : JumpStart); (3.73958333333333 : 10.02812375 : JumpEnd); (5.75 : 10.02812375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.42187875 : 4.95); (2.42187875 : 10.02812375); (2.60416666666667 : 10.02812375 : JumpStart); (2.77083333333333 : 10.02812375 : JumpEnd); (2.96354166666667 : 10.02812375 : JumpStart); (3.13020833333333 : 10.02812375 : JumpEnd); (3.17448166666667 : 10.02812375 : JumpStart); (3.34114833333333 : 10.02812375 : JumpEnd); (3.57291666666667 : 10.02812375 : JumpStart); (3.73958333333333 : 10.02812375 : JumpEnd); (5.75 : 10.02812375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/KobePaintDBDataContext/khKhachHang/khKhachHang_kPhieuTraHangNCC" />
       <nodes>
         <classShapeMoniker Id="4f762dc6-0e1f-4af9-bf43-caa84160e7d3" />
         <classShapeMoniker Id="1d2c587e-6430-4a51-b13e-6dd094360e1a" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(3.1250025 : 12.5); (3.1250025 : 3.575); (3.25 : 3.575); (3.25 : 2.2124995); (3.625 : 2.2124995)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.257815 : 12.5); (3.257815 : 3.575); (3 : 3.575); (3 : 2.1); (3.625 : 2.1)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/KobePaintDBDataContext/nvNhanVien/nvNhanVien_gPhieuThu" />
       <nodes>
         <classShapeMoniker Id="b6408c79-d903-41ee-b25d-84d64e23c14f" />
@@ -266,28 +235,21 @@
         <classShapeMoniker Id="2872eb07-4ee7-4827-ac51-ffab8f06e5ae" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(3.65625 : 12.5); (3.65625 : 7.575)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.65625 : 12.5); (3.65625 : 7.575)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/KobePaintDBDataContext/nvNhanVien/nvNhanVien_kPhieuThanhToanNCC" />
       <nodes>
         <classShapeMoniker Id="b6408c79-d903-41ee-b25d-84d64e23c14f" />
         <classShapeMoniker Id="acf5d729-4f0b-4877-bcc1-36658f7903e9" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.84375 : 12.5); (2.84375 : 5.975); (3.04166916666667 : 5.975 : JumpStart); (3.20833583333333 : 5.975 : JumpEnd); (3.625 : 5.975)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/KobePaintDBDataContext/nvNhanVien/nvNhanVien_kPhieuTraHang" />
-      <nodes>
-        <classShapeMoniker Id="b6408c79-d903-41ee-b25d-84d64e23c14f" />
-        <classShapeMoniker Id="b5228c67-81b6-4a8d-8c80-50170149d3b4" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(2.5624975 : 12.5); (2.5624975 : 10.2437525); (2.76041666666667 : 10.2437525 : JumpStart); (2.92708333333333 : 10.2437525 : JumpEnd); (3.04166916666667 : 10.2437525 : JumpStart); (3.20833583333333 : 10.2437525 : JumpEnd); (3.57291666666667 : 10.2437525 : JumpStart); (3.73958333333333 : 10.2437525 : JumpEnd); (5.75 : 10.2437525)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.46094 : 12.5); (3.46094 : 10.2437525); (3.57291666666667 : 10.2437525 : JumpStart); (3.73958333333333 : 10.2437525 : JumpEnd); (5.75 : 10.2437525)]" fixedFrom="Algorithm" fixedTo="NotFixed">
       <AssociationMoniker Name="/KobePaintDBDataContext/nvNhanVien/nvNhanVien_kPhieuTraHangNCC" />
       <nodes>
         <classShapeMoniker Id="b6408c79-d903-41ee-b25d-84d64e23c14f" />
         <classShapeMoniker Id="1d2c587e-6430-4a51-b13e-6dd094360e1a" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.0937475 : 12.5); (4.0937475 : 11.325)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.0937475 : 12.5); (4.0937475 : 11.325)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/KobePaintDBDataContext/nvNhanVien/nvNhanVien_kPhieuXuatKhac" />
       <nodes>
         <classShapeMoniker Id="b6408c79-d903-41ee-b25d-84d64e23c14f" />
@@ -300,19 +262,64 @@
         <elementListCompartment Id="9f58b980-989a-4be4-9e3d-f885bc8cb58a" absoluteBounds="9.64, 10.96, 1.9700000000000002, 4.2877197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.35937375 : 4.95); (1.35937375 : 10.65625); (2.47916416666667 : 10.65625 : JumpStart); (2.64583083333333 : 10.65625 : JumpEnd); (2.76041666666667 : 10.65625 : JumpStart); (2.92708333333333 : 10.65625 : JumpEnd); (3.04166916666667 : 10.65625 : JumpStart); (3.20833583333333 : 10.65625 : JumpEnd); (3.57291666666667 : 10.65625 : JumpStart); (3.73958333333333 : 10.65625 : JumpEnd); (9.625 : 10.65625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.89062625 : 4.95); (1.89062625 : 10.60156125); (2.07291916666667 : 10.60156125 : JumpStart); (2.23958583333333 : 10.60156125 : JumpEnd); (2.96354166666667 : 10.60156125 : JumpStart); (3.13020833333333 : 10.60156125 : JumpEnd); (3.17448166666667 : 10.60156125 : JumpStart); (3.34114833333333 : 10.60156125 : JumpEnd); (3.37760666666667 : 10.60156125 : JumpStart); (3.54427333333333 : 10.60156125 : JumpEnd); (3.57291666666667 : 10.60156125 : JumpStart); (3.73958333333333 : 10.60156125 : JumpEnd); (9.625 : 10.60156125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/KobePaintDBDataContext/khKhachHang/khKhachHang_ghPhieuGiaoHang" />
       <nodes>
         <classShapeMoniker Id="4f762dc6-0e1f-4af9-bf43-caa84160e7d3" />
         <classShapeMoniker Id="4eae563c-1d27-4f9d-b1c6-696d39fae2c1" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(3.39062625 : 12.5); (3.39062625 : 10.7656275); (3.57291666666667 : 10.7656275 : JumpStart); (3.73958333333333 : 10.7656275 : JumpEnd); (9.625 : 10.7656275)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.6796855 : 12.5); (2.6796855 : 10.7656275); (2.96354166666667 : 10.7656275 : JumpStart); (3.13020833333333 : 10.7656275 : JumpEnd); (3.17448166666667 : 10.7656275 : JumpStart); (3.34114833333333 : 10.7656275 : JumpEnd); (3.37760666666667 : 10.7656275 : JumpStart); (3.54427333333333 : 10.7656275 : JumpEnd); (3.57291666666667 : 10.7656275 : JumpStart); (3.73958333333333 : 10.7656275 : JumpEnd); (9.625 : 10.7656275)]" fixedFrom="Algorithm" fixedTo="NotFixed">
       <AssociationMoniker Name="/KobePaintDBDataContext/nvNhanVien/nvNhanVien_ghPhieuGiaoHang" />
       <nodes>
         <classShapeMoniker Id="b6408c79-d903-41ee-b25d-84d64e23c14f" />
         <classShapeMoniker Id="4eae563c-1d27-4f9d-b1c6-696d39fae2c1" />
       </nodes>
     </associationConnector>
+    <classShape Id="66e1b58d-9c28-4084-a604-c44cc758e87b" isExpanded="false" absoluteBounds="4.25, 5.5, 2, 0.45">
+      <DataClassMoniker Name="/KobePaintDBDataContext/kPhieuTraHang" />
+      <nestedChildShapes>
+        <elementListCompartment Id="55cf3e59-387d-4fa2-90e4-cc7328a452e7" absoluteBounds="4.265, 5.96, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.35937375 : 4.95); (1.35937375 : 5.5812475); (1.54166666666667 : 5.5812475 : JumpStart); (1.70833333333333 : 5.5812475 : JumpEnd); (1.80729291666667 : 5.5812475 : JumpStart); (1.97395958333333 : 5.5812475 : JumpEnd); (2.07291916666667 : 5.5812475 : JumpStart); (2.23958583333333 : 5.5812475 : JumpEnd); (2.33854541666667 : 5.5812475 : JumpStart); (2.50521208333333 : 5.5812475 : JumpEnd); (2.60416666666667 : 5.5812475 : JumpStart); (2.77083333333333 : 5.5812475 : JumpEnd); (3.17448166666667 : 5.5812475 : JumpStart); (3.48958333333333 : 5.5812475 : JumpEnd); (4.25 : 5.5812475)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/KobePaintDBDataContext/khKhachHang/khKhachHang_kPhieuTraHang" />
+      <nodes>
+        <classShapeMoniker Id="4f762dc6-0e1f-4af9-bf43-caa84160e7d3" />
+        <classShapeMoniker Id="66e1b58d-9c28-4084-a604-c44cc758e87b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.046875 : 12.5); (3.046875 : 5.725); (3.17448166666667 : 5.725 : JumpStart); (3.48958333333333 : 5.725 : JumpEnd); (4.25 : 5.725)]" fixedFrom="Algorithm" fixedTo="NotFixed">
+      <AssociationMoniker Name="/KobePaintDBDataContext/nvNhanVien/nvNhanVien_kPhieuTraHang" />
+      <nodes>
+        <classShapeMoniker Id="b6408c79-d903-41ee-b25d-84d64e23c14f" />
+        <classShapeMoniker Id="66e1b58d-9c28-4084-a604-c44cc758e87b" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="4ebe75a2-e698-4eaf-b25d-c4ea3016a731" isExpanded="false" absoluteBounds="4.25, 6.25, 2, 0.45">
+      <DataClassMoniker Name="/KobePaintDBDataContext/kPhieuTraHangChiTiet" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c54682cf-bad1-4f4b-9847-ad1d07a39435" absoluteBounds="4.265, 6.71, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.625 : 2.30284515384615); (2.94107443490112 : 2.61891958874727 : JumpStart); (3.05892556509888 : 2.73677071894503 : JumpEnd); (3.40625 : 3.08409515384615); (3.40625 : 6.475); (4.25 : 6.475)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/KobePaintDBDataContext/hhHangHoa/hhHangHoa_kPhieuTraHangChiTiet" />
+      <nodes>
+        <classShapeMoniker Id="753ffc35-da2b-43f2-a68c-c1e478ddcf48" />
+        <classShapeMoniker Id="4ebe75a2-e698-4eaf-b25d-c4ea3016a731" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="14a3aafe-4b8e-4616-b946-97e43af7e864" isExpanded="false" absoluteBounds="0.625, 3.125, 2, 0.45">
+      <DataClassMoniker Name="/KobePaintDBDataContext/chChiNhanh" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3dc0a3da-6793-4e72-a487-7f20ed852c87" absoluteBounds="0.64, 3.585, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3ff198d5-3530-4e9c-91c4-ddcd02e55664" isExpanded="false" absoluteBounds="6, 0.5, 2, 0.45">
+      <DataClassMoniker Name="/KobePaintDBDataContext/pPhieuThuChi" />
+      <nestedChildShapes>
+        <elementListCompartment Id="923ec3ff-ee2c-440f-b11a-4b65277129b3" absoluteBounds="6.0150000000000006, 0.96, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

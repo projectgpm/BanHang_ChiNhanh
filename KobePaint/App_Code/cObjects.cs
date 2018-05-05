@@ -104,12 +104,13 @@ namespace KobePaint.App_Code
         public int IDHangHoa { get; set; }
         public string MaHang { get; set; }
         public string TenHangHoa { get; set; }
+        public string TenDonViTinh { get; set; }
         public double GiaVon { get; set; }
         public int TonKho { get; set; }
         public int SoLuong { get; set; }
         public double ThanhTien { get; set; }
         public double GiaBan { get; set; }
-        public LapPhieuGiaohang(int iDHangHoa, string maHang, string tenHangHoa, double giaVon, int tonKho, int soLuong, double thanhTien, double giaBan)
+        public LapPhieuGiaohang(int iDHangHoa, string maHang, string tenHangHoa, double giaVon, int tonKho, int soLuong, double thanhTien, double giaBan, string tenDonViTinh)
         {
             // TODO: Complete member initialization
             this.IDHangHoa = iDHangHoa;
@@ -120,6 +121,7 @@ namespace KobePaint.App_Code
             this.SoLuong = soLuong;
             this.ThanhTien = thanhTien;
             this.GiaBan = giaBan;
+            this.TenDonViTinh = tenDonViTinh;
         }
     }
     #endregion
@@ -180,6 +182,7 @@ namespace KobePaint.App_Code
         public string SoDonHangTrongNam { get; set; }
         public double CongNoHienTai { get; set; }
         public string TieuDePhieu { get; set; }
+        public string TrangThaiPhieu { get; set; }
         public List<oProduct> listProduct { get; set; }
     }
     [Serializable]
@@ -224,6 +227,47 @@ namespace KobePaint.App_Code
        
     }
 
+    #endregion
+
+    #region phiếu đại lý thanh toán
+    public class oThanhToan
+    {
+        public double CongNoSauThanhToan { get; set; }
+        public double CongNoTruocThanhToan { get; set; }
+        public double SoTienThu { get; set; }
+        public string NoiDung { get; set; }
+        public string DienThoai { get; set; }
+        public string MaKhachHang { get; set; }
+        public string TenKhachHang { get; set; }
+        public string SoHoaDon { get; set; }
+        public string TieuDe { get; set; }
+        public int STTPhieuThu { get; set; }
+        public int IDKhachHang { get; set; }
+        public string NgayThu { get; set; }
+        public string SoTienBangChu { get; set; }
+        public string XemTruoc { get; set; }
+    }
+    #endregion
+
+
+    #region phiếu thu chi
+    public class oThuChi
+    {
+        public string TieuDe { get; set; }
+        public string MaPhieu { get; set; }
+        public string Ngay { get; set; }
+        public string HoTen { get; set; }
+        public string TenNguoiNopNhan { get; set; }
+        public string DienThoai { get; set; }
+        public string DiaChi { get; set; }
+        public string LyDo { get; set; }
+        public string NoiDungLyDo { get; set; }
+        public double SoTien { get; set; }
+        public string NgayThangNam { get; set; }
+        public string NguoiNopChi { get; set; }
+        public string NguoiThuChi { get; set; }
+        public string XemTruoc { get; set; }
+    }
     #endregion
 }
  

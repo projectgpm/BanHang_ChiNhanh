@@ -1,5 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.master" AutoEventWireup="true" CodeBehind="DanhSachThuChi.aspx.cs" Inherits="KobePaint.Pages.ThuChi.DanhSachThuChi" %>
+<%@ Register Assembly="DevExpress.XtraReports.v16.1.Web, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <script>
+        function onPrintClick(idPhieu) {
+            popupViewReport.Show();
+            cbpViewReport.PerformCallback(idPhieu);
+        }
+        function onEndCallBackViewRp() {
+            reportViewer.GetViewer().Refresh();
+        }
+    </script>
     <dx:ASPxGridView ID="gridThuChi" runat="server" AutoGenerateColumns="False" ClientInstanceName="gridThuChi" Width="100%" DataSourceID="dsThuChi" KeyFieldName="IDPhieu" OnCustomColumnDisplayText="gridThuChi_CustomColumnDisplayText">
         <SettingsEditing EditFormColumnCount="3">
         </SettingsEditing>
@@ -84,9 +94,19 @@
             </dx:GridViewDataComboBoxColumn>
             <dx:GridViewDataTextColumn Caption="Người nộp" FieldName="NguoiNop" VisibleIndex="5" Width="120px">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="Nội dung" FieldName="NoiDung" VisibleIndex="8" Width="90%">
+            <dx:GridViewDataTextColumn Caption="Nội dung" FieldName="NoiDung" VisibleIndex="9" Width="90%">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Số tiền" CellStyle-Font-Bold="true" FieldName="SoTien" VisibleIndex="6" CellStyle-HorizontalAlign="Center" Width="120px">
+             <dx:GridViewDataTextColumn Caption="In phiếu" VisibleIndex="12" Width="80px">
+                <DataItemTemplate>
+                    <dx:ASPxButton ID="btnInPhieu" runat="server" RenderMode="Link" OnInit="btnInPhieu_Init" AutoPostBack="false">
+                        <Image IconID="print_print_16x16">
+                        </Image>
+                    </dx:ASPxButton>
+                </DataItemTemplate>
+                <CellStyle HorizontalAlign="Center">
+                </CellStyle>
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataSpinEditColumn Caption="Số tiền" CellStyle-Font-Bold="true" FieldName="SoTien" VisibleIndex="7" CellStyle-HorizontalAlign="Center" Width="120px">
                 <PropertiesSpinEdit DisplayFormatString="N0">
                 </PropertiesSpinEdit>
 
@@ -104,10 +124,12 @@
 <CellStyle HorizontalAlign="Center"></CellStyle>
 
             </dx:GridViewDataComboBoxColumn>
-            <dx:GridViewDataComboBoxColumn Caption="Loại thu chi" FieldName="LoaiThuChiID" VisibleIndex="7" Width="100px">
+            <dx:GridViewDataComboBoxColumn Caption="Loại thu chi" FieldName="LoaiThuChiID" VisibleIndex="8" Width="100px">
                 <PropertiesComboBox DataSourceID="dsLoaiThuChi" TextField="TenPhieu" ValueField="ID">
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
+            <dx:GridViewDataTextColumn Caption="Điện thoại" FieldName="DienThoai" VisibleIndex="6" Width="100px">
+            </dx:GridViewDataTextColumn>
         </Columns>
     </dx:ASPxGridView>
     <asp:SqlDataSource ID="dsLoaiThuChi" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [ID], [TenPhieu] FROM [pLoaiThuChi] WHERE ([DaXoa] = @DaXoa) ORDER BY [TenPhieu]">
@@ -124,4 +146,21 @@
 	        UpdateControlHeight(gridThuChi);
         }" />
     </dx:ASPxGlobalEvents>
+     <dx:ASPxPopupControl ID="popupViewReport" ClientInstanceName="popupViewReport" runat="server" HeaderText="In phiếu thu chi" ShowHeader="false" PopupVerticalAlign="WindowCenter" Width="850px" Height="600px" PopupHorizontalAlign="WindowCenter" ScrollBars="Auto" >
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
+                <dx:ASPxCallbackPanel ID="cbpViewReport" ClientInstanceName="cbpViewReport" runat="server" Width="100%" OnCallback="cbpViewReport_Callback">
+                    <PanelCollection>
+                        <dx:PanelContent>
+                            <dx:ASPxDocumentViewer ID="reportViewer" ClientInstanceName="reportViewer" runat="server" Width="100%">
+                            </dx:ASPxDocumentViewer>                
+                            <dx:ASPxHiddenField ID="hdfViewReport" ClientInstanceName="hdfViewReport" runat="server">
+                            </dx:ASPxHiddenField>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                    <ClientSideEvents EndCallback="onEndCallBackViewRp" />
+                </dx:ASPxCallbackPanel>                
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
 </asp:Content>

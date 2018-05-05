@@ -1,6 +1,7 @@
 ﻿using DevExpress.Web;
 using DevExpress.XtraReports.UI;
 using KobePaint.App_Code;
+using KobePaint.Reports;
 //using KobePaint.Reports;
 using System;
 using System.Collections.Generic;
@@ -32,20 +33,76 @@ namespace KobePaint.Pages.GiaoHang
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Context.User.Identity.IsAuthenticated)
+            if (!IsPostBack)
             {
-                if (!IsPostBack)
-                {
-                    string[] infoUser = Context.User.Identity.Name.Split('-');
-                    txtNguoiBan.Text = infoUser[1];
-                    listReceiptProducts = new List<LapPhieuGiaohang>();
-                }
+                txtNguoiBan.Text = Formats.NameUser();
+                listReceiptProducts = new List<LapPhieuGiaohang>();
+                hdfViewReport["view"] = 0;
             }
-            else
-                Response.Redirect("~/Pages/TaiKhoan/DangNhap.aspx");
+            if (hdfViewReport["view"].ToString() != "0")
+            {
+                reportViewer.Report = CreatReport();
+                hdfViewReport["view"] = 0;
+            }
         }
 
-        
+        rpPhieuGiaoHang CreatReport()
+        {
+            rpPhieuGiaoHang rp = new rpPhieuGiaoHang();
+            rp.odsPhieuGiaoHang.DataSource = oCusExport;
+            rp.CreateDocument();
+            return rp;
+        }
+        private oReportGiaoHang oCusExport
+        {
+            get
+            {
+                return (oReportGiaoHang)Session["ocus_Priew"];
+            }
+            set
+            {
+                Session["ocus_Priew"] = value;
+            }
+        } 
+        private void CreateReportReview()
+        {
+
+            hdfViewReport["view"] = 1;
+            oCusExport = new oReportGiaoHang();
+            var KH = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == Convert.ToInt32(ccbKhachHang.Value.ToString())).FirstOrDefault();
+            oCusExport.MaKhachHang = KH.MaKhachHang;
+            oCusExport.TenKhachHang = KH.HoTen;
+            oCusExport.DienThoai = txtDienThoai.Text ;
+            oCusExport.DiaChiGiaoHang = memoDiaChiKH.Text;
+            oCusExport.TenNhanVien = txtNguoiBan.Text;
+            oCusExport.GhiChuGiaoHang = memoDonHang.Text;
+            oCusExport.NgayGiao = Formats.ConvertToVNDateString(dateNgayGiao.Text);
+            oCusExport.NgayTao = Formats.ConvertToVNDateString(dateNgayTao.Text);
+
+            oCusExport.CongNoHienTai =Convert.ToDouble(KH.CongNo);
+            oCusExport.SoDonHangTrongNam = ".....";
+            oCusExport.TieuDePhieu = "PHIẾU GIAO HÀNG ";
+            oCusExport.TrangThaiPhieu = "(Xem trước)";
+            oCusExport.listProduct = new List<oProduct>();
+
+            int i = 1;
+            double TongTien = 0;
+            foreach (var Hang in listReceiptProducts)
+            {
+                TongTien += Hang.ThanhTien;
+                oProduct prod = new oProduct();
+                prod.STT = i++;
+                prod.MaHang = Hang.MaHang;
+                prod.TenHang = Hang.TenHangHoa;
+                prod.TenDonViTinh = Hang.TenDonViTinh;
+                prod.SoLuong = Convert.ToInt32(Hang.SoLuong);
+                prod.DonGia = Convert.ToDouble(Hang.GiaBan);
+                prod.ThanhTien = Convert.ToDouble(Hang.ThanhTien);
+                oCusExport.listProduct.Add(prod);
+            }
+            oCusExport.TongTien = TongTien;
+            cbpInfoImport.JSProperties["cp_rpView"] = true;
+        }
 
         protected void cbpInfoImport_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
@@ -57,9 +114,12 @@ namespace KobePaint.Pages.GiaoHang
                 case "Save": Save(); Reset(); break;
                 case "importexcel": BindGrid(); break;
                 case "redirect": DevExpress.Web.ASPxWebControl.RedirectOnCallback("~/Pages/GiaoHang/DanhSachGiaoHang.aspx"); break;
+                case "Review": CreateReportReview();  break;
                 default: InsertIntoGrid(); BindGrid(); break;
             }
         }
+
+        
         protected void cbpInfo_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
             switch (e.Parameter)
@@ -138,7 +198,8 @@ namespace KobePaint.Pages.GiaoHang
                             Convert.ToInt32(tblHangHoa.TonKho),
                             1,
                              Convert.ToDouble(tblHangHoa.GiaBan),
-                             Convert.ToDouble(tblHangHoa.GiaBan)
+                             Convert.ToDouble(tblHangHoa.GiaBan),
+                             tblHangHoa.hhDonViTinh.TenDonViTinh
                         );
                     listReceiptProducts.Add(newLapPhieuGiaoHang);
 
@@ -435,7 +496,8 @@ namespace KobePaint.Pages.GiaoHang
                                             Convert.ToInt32(tblHangHoa.TonKho),
                                             SoLuong,
                                              SoLuong * GiaBan,
-                                             GiaBan
+                                             GiaBan,
+                                             tblHangHoa.hhDonViTinh.TenDonViTinh
                                         );
                                     listReceiptProducts.Add(newLapPhieuGiaoHang);
                                 }

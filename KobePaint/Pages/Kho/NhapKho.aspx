@@ -418,7 +418,7 @@
                                                     </dx:ASPxButton>
                                                 </td>--%>
                                                 <td style="padding-left: 10px">
-                                                    <dx:ASPxButton ID="btnLuuVaIn" runat="server" Text="Lưu" AutoPostBack="false" UseSubmitBehavior="false">
+                                                    <dx:ASPxButton ID="btnLuuVaIn" runat="server" Text="Lưu kho" AutoPostBack="false" UseSubmitBehavior="false">
                                                         <ClientSideEvents Click="onSaveClick" />
                                                     </dx:ASPxButton>
                                                 </td>

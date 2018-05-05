@@ -121,18 +121,13 @@
     <value>17, 17</value>
   </metadata>
   <data name="customSqlQuery1.Sql" xml:space="preserve">
-    <value>select UPPER("iThongTinCongTy"."TenCongTy") as TenCongTy,
-       "iThongTinCongTy"."DiaChi",
-       "iThongTinCongTy"."Website",
-       "iThongTinCongTy"."SoDienThoai",
-       "iThongTinCongTy"."Fax",
-       "iThongTinCongTy"."Logo",
-       "iThongTinCongTy"."Email",
-	"iThongTinCongTy"."TinhThanh"
-  from "dbo"."iThongTinCongTy" "iThongTinCongTy"</value>
+    <value>select UPPER("chChiNhanh"."TenChiNhanh") AS TenChiNhanh ,
+       "chChiNhanh"."DienThoai",
+       "chChiNhanh"."DiaChi", "chChiNhanh"."MST", "chChiNhanh"."Logo"
+  from "dbo"."chChiNhanh" "chChiNhanh"</value>
   </data>
   <data name="DataThongTin.ResultSchemaSerializable" xml:space="preserve">
-    <value>PERhdGFTZXQgTmFtZT0iRGF0YVRob25nVGluIj48VmlldyBOYW1lPSJUaG9uZ1RpbkNvbmdUeSI+PEZpZWxkIE5hbWU9IlRlbkNvbmdUeSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJEaWFDaGkiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iV2Vic2l0ZSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJTb0RpZW5UaG9haSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJGYXgiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iTG9nbyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJFbWFpbCIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJUaW5oVGhhbmgiIFR5cGU9IlN0cmluZyIgLz48L1ZpZXc+PFZpZXcgTmFtZT0iVGhvbmdUaW5LaGFjaEhhbmciPjxGaWVsZCBOYW1lPSJIb1RlbiIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJEaWVuVGhvYWkiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iTWFLaGFjaEhhbmciIFR5cGU9IlN0cmluZyIgLz48L1ZpZXc+PC9EYXRhU2V0Pg==</value>
+    <value>PERhdGFTZXQgTmFtZT0iRGF0YVRob25nVGluIj48VmlldyBOYW1lPSJUaG9uZ1RpbkNvbmdUeSI+PEZpZWxkIE5hbWU9IlRlbkNoaU5oYW5oIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkRpZW5UaG9haSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJEaWFDaGkiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iTVNUIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkxvZ28iIFR5cGU9IlN0cmluZyIgLz48L1ZpZXc+PC9EYXRhU2V0Pg==</value>
   </data>
   <metadata name="odsPayNode.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 56</value>

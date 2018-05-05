@@ -1,4 +1,5 @@
 ﻿using KobePaint.App_Code;
+using KobePaint.Reports;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,57 @@ namespace KobePaint.Pages.ThanhToan
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                hdfViewReport["view"] = 0;
+            }
+            if (hdfViewReport["view"].ToString() != "0")
+            {
+                reportViewer.Report = CreatReport();
+                hdfViewReport["view"] = 0;
+            }
+        }
+        #region Report
+        private DevExpress.XtraReports.UI.XtraReport CreatReport()
+        {
+            rpPhieuThanhToan rp = new rpPhieuThanhToan();
+            rp.odsPayNode.DataSource = oPhieuTTExport;
+            rp.CreateDocument();
+            return rp;
+        }
+        private oThanhToan oPhieuTTExport
+        {
+            get
+            {
+                return (oThanhToan)Session["oPhieuTT"];
+            }
+            set
+            {
+                Session["oPhieuTT"] = value;
+            }
         }
 
+        private void CreateReportReview()
+        {
+
+            hdfViewReport["view"] = 1;
+            oPhieuTTExport = new oThanhToan();
+            oPhieuTTExport.NgayThu = DBDataProvider.TinhThanhCty() + ", " + Formats.ConvertToFullStringDate(DateTime.Parse(dateNgayTT.Text.ToString()));
+            var KH = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == Convert.ToInt32(ccbKhachHang.Value.ToString())).FirstOrDefault();
+            oPhieuTTExport.STTPhieuThu = 0000;
+            oPhieuTTExport.TieuDe = "PHIẾU THANH TOÁN ";
+            oPhieuTTExport.XemTruoc = "(Xem trước)";
+            oPhieuTTExport.SoHoaDon = txtHoaDon.Text;
+            oPhieuTTExport.TenKhachHang = KH.HoTen;
+            oPhieuTTExport.MaKhachHang = KH.MaKhachHang;
+            oPhieuTTExport.DienThoai = KH.DienThoai;
+            oPhieuTTExport.NoiDung = memoNoiDungTT.Text;
+            oPhieuTTExport.SoTienThu = Convert.ToDouble(speSoTienTT.Number);
+            oPhieuTTExport.CongNoTruocThanhToan = Convert.ToDouble(KH.CongNo);
+            oPhieuTTExport.CongNoSauThanhToan = Convert.ToDouble(KH.CongNo) - Convert.ToDouble(speSoTienTT.Number);
+            cbpThanhToan.JSProperties["cp_rpView"] = true;
+        }
+        #endregion
         protected void cbpThanhToan_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
         {
             switch (e.Parameter)
@@ -38,7 +87,7 @@ namespace KobePaint.Pages.ThanhToan
                     ccbPhieuThanhToan.Text = "";
                     ListPhieuThanhToan(IDKhachHang);
                     break;
-                case "Review": break;
+                case "Review": CreateReportReview(); break;
                 default:
                     LuuThanhToan();
                     Reset();

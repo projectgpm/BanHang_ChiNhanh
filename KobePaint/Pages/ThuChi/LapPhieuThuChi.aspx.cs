@@ -1,4 +1,5 @@
 ﻿using KobePaint.App_Code;
+using KobePaint.Reports;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,15 @@ namespace KobePaint.Pages.ThuChi
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                hdfViewReport["view"] = 0;
+            }
+            if (hdfViewReport["view"].ToString() != "0")
+            {
+                reportViewer.Report = CreatReport();
+                hdfViewReport["view"] = 0;
+            }
         }
 
         protected void btnRenew_Click(object sender, EventArgs e)
@@ -34,10 +43,89 @@ namespace KobePaint.Pages.ThuChi
                     break;
                 case "Save": Save(); Rest(); break;
                 case "redirect": DevExpress.Web.ASPxWebControl.RedirectOnCallback("~/Pages/ThuChi/DanhSachThuChi.aspx"); break;
+                case "Review": CreateReportReview();  break;
                 default: break;
             }
         }
+        #region Report
+        private DevExpress.XtraReports.UI.XtraReport CreatReport()
+        {
 
+            rpPhieuThuChi rp = new rpPhieuThuChi();
+            rp.odsPayNode.DataSource = oPhieuTC;
+            rp.CreateDocument();
+            return rp;
+        }
+        private oThuChi oPhieuTC
+        {
+            get
+            {
+                return (oThuChi)Session["oPhieuTC"];
+            }
+            set
+            {
+                Session["oPhieuTC"] = value;
+            }
+        }
+       
+        private void CreateReportReview()
+        {
+
+            int LoaiPhieu = Convert.ToInt32(ccbLoaiPhieu.Value.ToString());
+            string MAX = (DBDataProvider.DB.pPhieuThuChis.Where(x => x.LoaiPhieu == LoaiPhieu).Count() + 1).ToString();
+            if (LoaiPhieu == 0)
+            {
+                //phiếu thu
+                string MaPhieu = "PT";
+                for (int i = 1; i < (9 - MAX.Length); i++)
+                {
+                    MaPhieu += "0";
+                }
+                MaPhieu += MAX;
+                oPhieuTC = new oThuChi();
+                oPhieuTC.TieuDe = "PHIẾU THU";
+                oPhieuTC.XemTruoc = "(Xem trước)";
+                oPhieuTC.MaPhieu = "Mã phiếu thu: " + MaPhieu;
+                oPhieuTC.Ngay = Formats.ConvertToVNDateString(dateNgayLap.Text);
+                oPhieuTC.HoTen = "Họ tên người nộp tiền";
+                oPhieuTC.TenNguoiNopNhan = txtKhachHang.Text;
+                oPhieuTC.DienThoai =  txtDienThoai.Text;
+                oPhieuTC.DiaChi = txtDiaChi.Text;
+                oPhieuTC.LyDo = "Lý do nộp";
+                oPhieuTC.NoiDungLyDo = memoNoiDung.Text;
+                oPhieuTC.SoTien = Convert.ToDouble(spSoTien.Number);
+                oPhieuTC.NguoiNopChi = "Người nộp";
+                oPhieuTC.NguoiThuChi = "Người thu";
+                oPhieuTC.NgayThangNam = Formats.ConvertToFullStringDate_ToUp(DateTime.Parse(dateNgayLap.Text.ToString()));
+            }
+            else
+            {
+                // Phiếu chi
+                string MaPhieu = "PC";
+                for (int i = 1; i < (9 - MAX.Length); i++)
+                {
+                    MaPhieu += "0";
+                }
+                MaPhieu += MAX;
+                oPhieuTC = new oThuChi();
+                oPhieuTC.TieuDe = "PHIẾU CHI";
+                oPhieuTC.XemTruoc = "(Xem trước)";
+                oPhieuTC.MaPhieu = "Mã phiếu chi: " + MaPhieu;
+                oPhieuTC.Ngay = Formats.ConvertToVNDateString(dateNgayLap.Text);
+                oPhieuTC.HoTen = "Họ tên người nhận tiền";
+                oPhieuTC.TenNguoiNopNhan = txtKhachHang.Text;
+                oPhieuTC.DienThoai = txtDienThoai.Text;
+                oPhieuTC.DiaChi = txtDiaChi.Text;
+                oPhieuTC.LyDo = "Lý do nhận";
+                oPhieuTC.NoiDungLyDo = memoNoiDung.Text;
+                oPhieuTC.SoTien = Convert.ToDouble(spSoTien.Number);
+                oPhieuTC.NguoiNopChi = "Người nhận";
+                oPhieuTC.NguoiThuChi = "Người chi";
+                oPhieuTC.NgayThangNam = Formats.ConvertToFullStringDate_ToUp(DateTime.Parse(dateNgayLap.Text.ToString()));
+            }
+            cbpThem.JSProperties["cp_rpView"] = true;
+        }
+        #endregion
         private void Save()
         {
             using (var scope = new TransactionScope())
@@ -50,6 +138,8 @@ namespace KobePaint.Pages.ThuChi
                     item.NhanVienID = Formats.IDUser();
                     item.NguoiNop = txtKhachHang.Text;
                     item.NoiDung = memoNoiDung.Text;
+                    item.DienThoai = txtDienThoai.Text;
+                    item.DiaChi = txtDiaChi.Text;
                     item.SoTien = Convert.ToDouble(spSoTien.Number);
                     item.LoaiThuChiID = Convert.ToInt32(ccbLoaiThuChi.Value.ToString());
                     item.LoaiPhieu = LoaiPhieu;

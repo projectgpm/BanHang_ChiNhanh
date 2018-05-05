@@ -66,18 +66,22 @@
             }
             return true;
         }
+        function onReviewClick() {
+            if (checkInput())
+                cbpThanhToan.PerformCallback('Review');
+        }
         function onSaveClick() {
             if(checkInput())
                 cbpThanhToan.PerformCallback('ThanhToan');
         }
        
         function onEndCallBack(s, e) {
-            //if (s.cp_rpView) {
-            //    hiddenfield.Set('view', '1');
-            //    popupViewReport.Show();
-            //    reportViewer.GetViewer().Refresh();
-            //    delete (s.cp_rpView);
-            //}
+            if (s.cp_rpView) {
+                hdfViewReport.Set('view', '1');
+                popupViewReport.Show();
+                reportViewer.GetViewer().Refresh();
+                delete (s.cp_rpView);
+            }
             if (s.cp_Reset) {
                 delete (s.cp_Reset);
                 ShowPopup(4000);
@@ -193,11 +197,11 @@
                                     <div style="align-items: center; text-align: center; padding-top: 5px;">
                                     <table  style="margin: 0 auto;">
                                         <tr>
-                                            <%--<td style="padding-right:10px;text-align:right;width:50%;">
+                                            <td style="padding-right:10px;text-align:right;width:50%;">
                                                 <dx:ASPxButton ID="btnReview" runat="server" Text="Xem trước" Width="100" BackColor="#5cb85c" AutoPostBack="False">
                                                     <ClientSideEvents Click="onReviewClick" />
                                                 </dx:ASPxButton>
-                                            </td>--%>
+                                            </td>
                                             <td style="padding-left: 10px">
                                                 <dx:ASPxButton ID="btnSave" runat="server" Text="Thanh toán" AutoPostBack="false" UseSubmitBehavior="true">
                                                     <ClientSideEvents Click="onSaveClick" />
@@ -224,11 +228,13 @@
         </PanelCollection>
         <ClientSideEvents EndCallback="onEndCallBack" />
     </dx:ASPxCallbackPanel>
-    <dx:ASPxPopupControl ID="popupViewReport" ClientInstanceName="popupViewReport" runat="server" HeaderText="Phiếu thanh toán đại lý" Width="800px" PopupHorizontalAlign="WindowCenter" >
+    <dx:ASPxPopupControl ID="popupViewReport" ClientInstanceName="popupViewReport" runat="server" HeaderText="Phiếu thanh toán đại lý" Width="850px" ShowHeader="false" Height="600px" ScrollBars="Auto" PopupVerticalAlign="WindowCenter" PopupHorizontalAlign="WindowCenter" >
         <ContentCollection>
             <dx:PopupControlContentControl runat="server">
                 <dx:ASPxDocumentViewer ID="reportViewer" ClientInstanceName="reportViewer" runat="server">
-                </dx:ASPxDocumentViewer>                
+                </dx:ASPxDocumentViewer>      
+                <dx:ASPxHiddenField ID="hdfViewReport" ClientInstanceName="hdfViewReport" runat="server">
+                </dx:ASPxHiddenField>          
             </dx:PopupControlContentControl>
         </ContentCollection>
     </dx:ASPxPopupControl>

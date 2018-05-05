@@ -105,7 +105,7 @@
 	        UpdateControlHeight(gridThanhToan);                      
         }" />
     </dx:ASPxGlobalEvents>
-    <dx:ASPxPopupControl ID="popupViewReport" ClientInstanceName="popupViewReport" runat="server" HeaderText="Phiếu thanh toán NCC" Width="800px" Height="600px" PopupHorizontalAlign="WindowCenter" ScrollBars="Auto" >
+    <dx:ASPxPopupControl ID="popupViewReport"  ClientInstanceName="popupViewReport" runat="server" HeaderText="Phiếu thanh toán NCC" Width="850px" ShowHeader="false" PopupVerticalAlign="WindowCenter" Height="600px" PopupHorizontalAlign="WindowCenter" ScrollBars="Auto" >
         <ContentCollection>
             <dx:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
                 <dx:ASPxCallbackPanel ID="cbpViewReport" ClientInstanceName="cbpViewReport" runat="server" Width="100%" OnCallback="cbpViewReport_Callback">

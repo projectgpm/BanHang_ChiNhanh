@@ -80,7 +80,11 @@ namespace KobePaint.App_Code
         {
             return DB.ghPhieuGiaoHangChiTiets.Where(x => x.PhieuGiaoHangID == PhieuGiaoHangID).ToList();
         }
-
+        // danh sách trả hàng chi tiết
+        public static List<kPhieuTraHangChiTiet> ListChiTietTraHang_DaiLy(int PhieuGiaoHangID)
+        {
+            return DB.kPhieuTraHangChiTiets.Where(x => x.PhieuTraHangNCCID == PhieuGiaoHangID).ToList();
+        }
         //STT thanh toán NCC
         public static int STTPhieuThanhToan_NCC(int IDNCC)
         {
@@ -94,7 +98,12 @@ namespace KobePaint.App_Code
         //STT phiếu giao hàng
         public static int STTPhieuGiaoHang_DaiLy(int IDDaiLy)
         {
-            return DB.ghPhieuGiaoHangs.Where(x => x.KhachHangID == IDDaiLy).Count() + 1;
+            return DB.ghPhieuGiaoHangs.Where(x => x.KhachHangID == IDDaiLy && x.TrangThai == 1).Count() + 1;
+        }
+        //STT phiếu trả hàng
+        public static int STTPhieuTraHang_DaiLy(int IDDaiLy)
+        {
+            return DB.kPhieuTraHangs.Where(x => x.DaiLyID == IDDaiLy && x.DuyetDonHang == 1).Count() + 1;
         }
         //Số đơn hàng trong năm phiếu giao hàng
         public static int SoDonHangTrongNam_GiaoHang()
@@ -103,12 +112,20 @@ namespace KobePaint.App_Code
         }
 
 
-
+        public static string TinhThanhCty()
+        {
+            return DB.chChiNhanhs.First().TinhThanh;
+        }
 
         #region report view
         public static ghPhieuGiaoHang GetPhieuGiaoHang(int ID)
         {
             return DB.ghPhieuGiaoHangs.Where(x => x.IDPhieuGiaoHang == ID).FirstOrDefault();
+        }
+
+        public static kPhieuTraHang GetPhieuTraHang_DaiLy(int ID)
+        {
+            return DB.kPhieuTraHangs.Where(x => x.IDPhieuTraHang == ID).FirstOrDefault();
         }
         #endregion
     }

@@ -49,6 +49,7 @@ namespace KobePaint.Pages.GiaoHang
                         // duyệt đơn hàng
                         if (KH != null && PhieuGH != null)
                         {
+                            PhieuGH.CongNoHienTai = KH.CongNo;
                             #region nhật ký công nợ
                                 khNhatKyCongNo nhatky = new khNhatKyCongNo();
                                 nhatky.NgayNhap = DateTime.Now;
@@ -70,7 +71,6 @@ namespace KobePaint.Pages.GiaoHang
                             PhieuGH.TrangThai = 1;// duyệt thành công
                             PhieuGH.SoDonHangTrongNam = DBDataProvider.SoDonHangTrongNam_GiaoHang();
                             PhieuGH.STTDonHang = DBDataProvider.STTPhieuGiaoHang_DaiLy(IDKhachHang);
-                            PhieuGH.CongNoHienTai = KH.CongNo;
                         }
                     }
                     else
