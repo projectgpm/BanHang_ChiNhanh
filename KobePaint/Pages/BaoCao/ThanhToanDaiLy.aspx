@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.master" AutoEventWireup="true" CodeBehind="ThanhToanDaiLy.aspx.cs" Inherits="KobePaint.Pages.BaoCao.ThanhToanDaiLy" %>
+<%@ Register Assembly="DevExpress.XtraReports.v16.1.Web, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
      <style>
 
@@ -36,6 +37,13 @@
                  return false;
              }
              return true;
+         }
+         function onPrintClick(idPhieu) {
+             popupViewReport.Show();
+             cbpViewReport.PerformCallback(idPhieu);
+         }
+         function onEndCallBackViewRp() {
+             reportViewer.GetViewer().Refresh();
          }
     </script>
     <dx:ASPxFormLayout ID="formThongTin" ClientInstanceName="formThongTin" runat="server" Width="100%">
@@ -99,7 +107,7 @@
             </LayoutItem>
         </Styles>
     </dx:ASPxFormLayout>
-   <dx:ASPxGridView ID="gridChiTiet" ClientInstanceName="gridChiTietCongNo" runat="server" AutoGenerateColumns="False" DataSourceID="dsChiTiet" Width="100%" OnCustomColumnDisplayText="grid_CustomColumnDisplayText">
+   <dx:ASPxGridView ID="gridChiTiet" ClientInstanceName="gridChiTietCongNo" runat="server" AutoGenerateColumns="False" DataSourceID="dsChiTiet" Width="100%" OnCustomColumnDisplayText="grid_CustomColumnDisplayText" KeyFieldName="IDPhieuThu">
         <Settings VerticalScrollBarMode="Auto" ShowFilterRow="True" ShowFilterRowMenu="True" ShowFooter="True" ShowHeaderFilterButton="true"/>
         <SettingsCommandButton>
             <ShowAdaptiveDetailButton ButtonType="Image">
@@ -141,6 +149,16 @@
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn Caption="Nhân viên thu" FieldName="HoTenNV" VisibleIndex="7">
             </dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn Caption="In phiếu" VisibleIndex="9" Width="80px">
+                <DataItemTemplate>
+                    <dx:ASPxButton ID="btnInPhieu" runat="server" RenderMode="Link" OnInit="btnInPhieu_Init" AutoPostBack="false">
+                        <Image IconID="print_print_16x16">
+                        </Image>
+                    </dx:ASPxButton>
+                </DataItemTemplate>
+                <CellStyle HorizontalAlign="Center">
+                </CellStyle>
+            </dx:GridViewDataTextColumn>
             <dx:GridViewDataSpinEditColumn Caption="Số tiền" FieldName="SoTienThu" VisibleIndex="5" CellStyle-Font-Bold="true">
                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                 </PropertiesSpinEdit>
@@ -165,4 +183,21 @@
     </dx:ASPxGlobalEvents>
     <dx:ASPxGridViewExporter ID="exporterGrid" runat="server" GridViewID="gridChiTiet">
     </dx:ASPxGridViewExporter>
+     <dx:ASPxPopupControl ID="popupViewReport" ClientInstanceName="popupViewReport" runat="server" HeaderText="Đại lý thanh toán" Width="850px" ShowHeader="false" PopupVerticalAlign="WindowCenter" Height="600px" PopupHorizontalAlign="WindowCenter" ScrollBars="Auto" >
+        <ContentCollection>
+            <dx:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
+                <dx:ASPxCallbackPanel ID="cbpViewReport" ClientInstanceName="cbpViewReport" runat="server" Width="100%" OnCallback="cbpViewReport_Callback">
+                    <PanelCollection>
+                        <dx:PanelContent>
+                            <dx:ASPxDocumentViewer ID="reportViewer" ClientInstanceName="reportViewer" runat="server" Width="100%">
+                            </dx:ASPxDocumentViewer>                
+                            <dx:ASPxHiddenField ID="hdfViewReport" ClientInstanceName="hdfViewReport" runat="server">
+                            </dx:ASPxHiddenField>
+                        </dx:PanelContent>
+                    </PanelCollection>
+                    <ClientSideEvents EndCallback="onEndCallBackViewRp" />
+                </dx:ASPxCallbackPanel>                
+            </dx:PopupControlContentControl>
+        </ContentCollection>
+    </dx:ASPxPopupControl>
 </asp:Content>

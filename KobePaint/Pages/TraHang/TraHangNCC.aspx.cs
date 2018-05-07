@@ -1,5 +1,6 @@
 ﻿using DevExpress.Web;
 using KobePaint.App_Code;
+using KobePaint.Reports;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,8 +30,32 @@ namespace KobePaint.Pages.TraHang
         {
             if (!IsPostBack)
             {
+                hdfViewReport["view"] = 0;
                 txtTenNhanVien.Text = Formats.NameUser();
                 listReceiptProducts = new List<oImportProduct_TraHangNCC>();
+            }
+            if (hdfViewReport["view"].ToString() != "0")
+            {
+                reportViewer.Report = CreatReport();
+                hdfViewReport["view"] = 0;
+            }
+        }
+        rpPhieuTraHang CreatReport()
+        {
+            rpPhieuTraHang rp = new rpPhieuTraHang();
+            rp.odsPhieuGiaoHang.DataSource = oReturnNodeReport;
+            rp.CreateDocument();
+            return rp;
+        }
+        private oReportGiaoHang oReturnNodeReport
+        {
+            get
+            {
+                return (oReportGiaoHang)Session["oReturnNodeReportReview"];
+            }
+            set
+            {
+                Session["oReturnNodeReportReview"] = value;
             }
         }
         protected void cbpInfo_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
@@ -76,9 +101,45 @@ namespace KobePaint.Pages.TraHang
                 case "UnitChange": Unitchange(para[1]); BindGrid(); break;
                 case "Reset": Reset(); break;
                 case "Save": Save(); break;
+                case "Review": CreateReportReview(); break;
                 case "redirect": DevExpress.Web.ASPxWebControl.RedirectOnCallback("~/Pages/TraHang/DanhSachTraHangNCC.aspx"); break;
                 default: InsertIntoGrid(); BindGrid(); break;
             }
+        }
+
+        private void CreateReportReview()
+        {
+            hdfViewReport["view"] = 1;
+            oReturnNodeReport = new oReportGiaoHang();
+            var KH = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == Convert.ToInt32(ccbNhaCungCap.Value.ToString())).FirstOrDefault();
+            oReturnNodeReport.MaKhachHang = KH.MaKhachHang;
+            oReturnNodeReport.TenKhachHang = KH.HoTen;
+            oReturnNodeReport.DienThoai = KH.DienThoai;
+            oReturnNodeReport.DiaChiGiaoHang = KH.DiaChi;
+            oReturnNodeReport.TenNhanVien = Formats.NameUser();
+            oReturnNodeReport.GhiChuGiaoHang = memoGhiChu.Text;
+            oReturnNodeReport.NgayGiao = Formats.ConvertToVNDateString(dateNgayTra.Text);
+            oReturnNodeReport.NgayTao = Formats.ConvertToVNDateString(DateTime.Now.ToString());
+            oReturnNodeReport.TongTien = Convert.ToDouble(spTongTien.Number);
+            oReturnNodeReport.TieuDePhieu = "PHIẾU TRẢ HÀNG (Xem trước)";
+            oReturnNodeReport.listProduct = new List<oProduct>();
+            int i = 1;
+            double TongTien = 0;
+            foreach (var Hang in listReceiptProducts)
+            {
+                TongTien += Hang.ThanhTien;
+                oProduct prod = new oProduct();
+                prod.STT = i++;
+                prod.MaHang = Hang.MaHang;
+                prod.TenHang = Hang.TenHangHoa;
+                prod.TenDonViTinh = Hang.TenDonViTinh;
+                prod.SoLuong = Convert.ToInt32(Hang.SoLuong);
+                prod.DonGia = Convert.ToDouble(Hang.TienTra);
+                prod.ThanhTien = Convert.ToDouble(Hang.ThanhTien);
+                oReturnNodeReport.listProduct.Add(prod);
+            }
+            oReturnNodeReport.TongTien = TongTien;
+            cbpInfoImport.JSProperties["cp_rpView"] = true;
         }
 
         private void Save()
