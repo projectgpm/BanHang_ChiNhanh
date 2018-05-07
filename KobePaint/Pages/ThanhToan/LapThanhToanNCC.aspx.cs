@@ -188,6 +188,7 @@ namespace KobePaint.Pages.ThanhToan
                                         DBDataProvider.DB.SubmitChanges();
                                         #endregion
                                         KH.CongNo -= TienNoDonHang; // - công nợ
+                                        KH.ThanhToan += TienNoDonHang; 
                                     }
                                     SoTienThu -= TienNoDonHang;
 
@@ -216,6 +217,7 @@ namespace KobePaint.Pages.ThanhToan
                                         DBDataProvider.DB.SubmitChanges();
                                         #endregion
                                         KH.CongNo -= SoTienThu; // - công nợ
+                                        KH.ThanhToan += SoTienThu; 
                                     }
                                     SoTienThu -= SoTienThu;
                                 }
@@ -244,6 +246,7 @@ namespace KobePaint.Pages.ThanhToan
                                 DBDataProvider.DB.SubmitChanges();
                                 #endregion
                                 KH.CongNo -= SoTienThu; // - công nợ
+                                KH.ThanhToan += SoTienThu;
                             }
                         }
                     }
@@ -276,6 +279,7 @@ namespace KobePaint.Pages.ThanhToan
                                 DBDataProvider.DB.SubmitChanges();
                                 #endregion
                                 KH.CongNo -= SoTienThu;// - công nợ
+                                KH.ThanhToan += SoTienThu;
                             }
                         }
                     }

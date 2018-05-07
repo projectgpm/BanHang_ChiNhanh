@@ -80,10 +80,15 @@ namespace KobePaint.App_Code
         {
             return DB.ghPhieuGiaoHangChiTiets.Where(x => x.PhieuGiaoHangID == PhieuGiaoHangID).ToList();
         }
-        // danh sách trả hàng chi tiết
+        // danh sách trả hàng chi tiết đại lý
         public static List<kPhieuTraHangChiTiet> ListChiTietTraHang_DaiLy(int PhieuGiaoHangID)
         {
             return DB.kPhieuTraHangChiTiets.Where(x => x.PhieuTraHangNCCID == PhieuGiaoHangID).ToList();
+        }
+        // danh sách trả hàng chi tiết nhà cung cấp
+        public static List<kPhieuTraHangNCCChiTiet> ListChiTietTraHang_NCC(int PhieuGiaoHangID)
+        {
+            return DB.kPhieuTraHangNCCChiTiets.Where(x => x.PhieuTraHangNCCID == PhieuGiaoHangID).ToList();
         }
         //STT thanh toán NCC
         public static int STTPhieuThanhToan_NCC(int IDNCC)
@@ -100,10 +105,15 @@ namespace KobePaint.App_Code
         {
             return DB.ghPhieuGiaoHangs.Where(x => x.KhachHangID == IDDaiLy && x.TrangThai == 1).Count() + 1;
         }
-        //STT phiếu trả hàng
+        //STT phiếu trả hàng đại lý
         public static int STTPhieuTraHang_DaiLy(int IDDaiLy)
         {
             return DB.kPhieuTraHangs.Where(x => x.DaiLyID == IDDaiLy && x.DuyetDonHang == 1).Count() + 1;
+        }
+        //STT phiếu trả hàng nhà cung cấp
+        public static int STTPhieuTraHang_NCC(int NhaCungCapID)
+        {
+            return DB.kPhieuTraHangNCCs.Where(x => x.NhaCungCapID == NhaCungCapID).Count() + 1;
         }
         //Số đơn hàng trong năm phiếu giao hàng
         public static int SoDonHangTrongNam_GiaoHang()
@@ -126,6 +136,10 @@ namespace KobePaint.App_Code
         public static kPhieuTraHang GetPhieuTraHang_DaiLy(int ID)
         {
             return DB.kPhieuTraHangs.Where(x => x.IDPhieuTraHang == ID).FirstOrDefault();
+        }
+        public static kPhieuTraHangNCC GetPhieuTraHang_NCC(int ID)
+        {
+            return DB.kPhieuTraHangNCCs.Where(x => x.IDPhieuTraHang == ID).FirstOrDefault();
         }
         #endregion
     }

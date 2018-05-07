@@ -115,7 +115,7 @@
         </Items>
     </dx:ASPxFormLayout>
     <asp:SqlDataSource ID="dsKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
-        InsertCommand="INSERT INTO khKhachHang(MaKhachHang, LoaiKhachHangID, HoTen, DiaChi, DienThoai, MaSoThue, GhiChu, Email) VALUES (@MaKhachHang, @LoaiKhachHangID, @HoTen, @DiaChi, @DienThoai, @MaSoThue, @GhiChu, @Email)"
+        InsertCommand="INSERT INTO khKhachHang(MaKhachHang, LoaiKhachHangID, HoTen, DiaChi, DienThoai, MaSoThue, GhiChu, Email,ThanhToan) VALUES (@MaKhachHang, @LoaiKhachHangID, @HoTen, @DiaChi, @DienThoai, @MaSoThue, @GhiChu, @Email,0)"
          SelectCommand="SELECT khKhachHang.* FROM khKhachHang">
         <InsertParameters>
             <asp:ControlParameter ControlID="formThemKH$txtMaKH" Name="MaKhachHang" PropertyName="Text" />

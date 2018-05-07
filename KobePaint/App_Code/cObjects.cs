@@ -136,12 +136,14 @@ namespace KobePaint.App_Code
         public int IDHangHoa { get; set; }
         public string MaHang { get; set; }
         public string TenHangHoa { get; set; }
+        public string TenDonViTinh { get; set; }
         public double GiaVon { get; set; }
         public int TonKho { get; set; }
         public int SoLuong { get; set; }
         public double ThanhTien { get; set; }
         public double TienTra { get; set; }
-        public oImportProduct_TraHangNCC(int iDHangHoa, string maHang, string tenHangHoa, double giaVon, int tonKho, int soLuong, double thanhTien,double tienTra)
+
+        public oImportProduct_TraHangNCC(int iDHangHoa, string maHang, string tenHangHoa, double giaVon, int tonKho, int soLuong, double thanhTien, double tienTra, string tenDonViTinh)
         {
             // TODO: Complete member initialization
             this.IDHangHoa = iDHangHoa;
@@ -152,6 +154,7 @@ namespace KobePaint.App_Code
             this.SoLuong = soLuong;
             this.ThanhTien = thanhTien;
             this.TienTra = tienTra;
+            this.TenDonViTinh = tenDonViTinh;
         }
     }
     #endregion

@@ -121,6 +121,7 @@ namespace KobePaint.Pages.TraHang
                     phieutra.TongSoLuong = TongSoLuong;
                     phieutra.TongTienHang = TongTien;
                     phieutra.ThanhToan = ThanhToan;
+                    phieutra.STTDonHang = DBDataProvider.STTPhieuTraHang_NCC(IDNCC);
                     phieutra.ConLai = ConLai;
                     phieutra.HinhThucTT = ckGiamCongNo.Checked == true ? 1 : 0;
                     DBDataProvider.DB.kPhieuTraHangNCCs.InsertOnSubmit(phieutra);
@@ -257,7 +258,8 @@ namespace KobePaint.Pages.TraHang
                          tblHangHoa.TenHangHoa,
                          Convert.ToDouble(tblHangHoa.GiaVon),
                          Convert.ToInt32(tblHangHoa.TonKho),
-                         SoLuong, SoLuong*Convert.ToDouble(tblHangHoa.GiaVon), Convert.ToDouble(tblHangHoa.GiaVon)
+                         SoLuong, SoLuong*Convert.ToDouble(tblHangHoa.GiaVon), Convert.ToDouble(tblHangHoa.GiaVon),
+                         tblHangHoa.hhDonViTinh.TenDonViTinh
                          );
                     listReceiptProducts.Add(newRecpPro);
                 }

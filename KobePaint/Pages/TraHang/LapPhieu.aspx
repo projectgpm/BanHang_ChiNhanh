@@ -17,6 +17,12 @@
                 delete (s.cp_Reset);
                 ShowPopup(4000);
             }
+            if (s.cp_rpView) {
+                hdfViewReport.Set('view', '1');
+                popupViewReport.Show();
+                reportViewer.GetViewer().Refresh();
+                delete (s.cp_rpView);
+            }
         }
         function onRenewClick() {
             cbpInfoImport.PerformCallback('Reset');
@@ -50,7 +56,10 @@
                 cbpInfoImport.PerformCallback('redirect');
             }
         }
-
+        function onReviewClick() {
+            if (checkInput())
+                cbpInfoImport.PerformCallback('Review');
+        }
         function ImportProduct() {
             cbpInfoImport.PerformCallback("import");
             cbpInfo.PerformCallback('refresh');
@@ -77,6 +86,7 @@
                 spThanhToan.SetNumber(0);
             }
         }
+
         function ckGiamCongNoChanged(s, e) {
             var value = s.GetChecked();
             if (value == true)
@@ -390,7 +400,11 @@
                         <div style="align-items:center; text-align:center;padding-top:5px;">
                             <table style="margin: 0 auto;">
                                 <tr>
-                             
+                                    <td style="padding-right:10px;">
+                                        <dx:ASPxButton ID="btnPreview" runat="server" Text="Xem trước" BackColor="#5cb85c" AutoPostBack="False">
+                                            <ClientSideEvents Click="onReviewClick" />
+                                        </dx:ASPxButton>
+                                    </td>
                                     <td>
                                         <dx:ASPxButton ID="btnSave"  ClientInstanceName="btnSave" runat="server" Text="Trả hàng" AutoPostBack="False">
                                             <ClientSideEvents Click="onSaveClick" />
@@ -413,4 +427,14 @@
     <dx:ASPxGlobalEvents ID="globalEventGrid" runat="server">
         <ClientSideEvents BrowserWindowResized="AdjustSize" ControlsInitialized="AdjustSize" />
     </dx:ASPxGlobalEvents>
+    <dx:ASPxPopupControl ID="popupViewReport" ClientInstanceName="popupViewReport" runat="server" HeaderText="Phiếu xuất hàng" Width="850px" Height="600px" ScrollBars="Auto" PopupHorizontalAlign="WindowCenter" PopupVerticalAlign="WindowCenter" ShowHeader="False" >
+    <ContentCollection>
+        <dx:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
+            <dx:ASPxDocumentViewer ID="reportViewer" ClientInstanceName="reportViewer" runat="server">
+            </dx:ASPxDocumentViewer>
+            <dx:ASPxHiddenField ID="hdfViewReport" ClientInstanceName="hdfViewReport" runat="server">
+            </dx:ASPxHiddenField>
+        </dx:PopupControlContentControl>
+    </ContentCollection>
+</dx:ASPxPopupControl>
 </asp:Content>

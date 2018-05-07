@@ -123,6 +123,13 @@
     <Content Include="Main.master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Pages\BaoCao\CongNo.aspx" />
+    <Content Include="Pages\BaoCao\CongNoDLChiTiet.aspx" />
+    <Content Include="Pages\BaoCao\CongNoDLTheoNgay.aspx" />
+    <Content Include="Pages\BaoCao\CongNoNCC.aspx" />
+    <Content Include="Pages\BaoCao\ThanhToanDaiLy.aspx" />
+    <Content Include="Pages\BaoCao\ThanhToanNCC.aspx" />
+    <Content Include="Pages\BaoCao\TraHangDaiLy.aspx" />
     <Content Include="Pages\GiaoHang\DanhSachGiaoHang.aspx" />
     <Content Include="Pages\GiaoHang\LapPhieu.aspx" />
     <Content Include="Pages\GiaoHang\PheDuyetGiaoHang.ascx" />
@@ -249,6 +256,55 @@
     </Compile>
     <Compile Include="Main.master.designer.cs">
       <DependentUpon>Main.master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BaoCao\CongNo.aspx.cs">
+      <DependentUpon>CongNo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BaoCao\CongNo.aspx.designer.cs">
+      <DependentUpon>CongNo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BaoCao\CongNoDLChiTiet.aspx.cs">
+      <DependentUpon>CongNoDLChiTiet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BaoCao\CongNoDLChiTiet.aspx.designer.cs">
+      <DependentUpon>CongNoDLChiTiet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BaoCao\CongNoDLTheoNgay.aspx.cs">
+      <DependentUpon>CongNoDLTheoNgay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BaoCao\CongNoDLTheoNgay.aspx.designer.cs">
+      <DependentUpon>CongNoDLTheoNgay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BaoCao\CongNoNCC.aspx.cs">
+      <DependentUpon>CongNoNCC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BaoCao\CongNoNCC.aspx.designer.cs">
+      <DependentUpon>CongNoNCC.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BaoCao\ThanhToanDaiLy.aspx.cs">
+      <DependentUpon>ThanhToanDaiLy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BaoCao\ThanhToanDaiLy.aspx.designer.cs">
+      <DependentUpon>ThanhToanDaiLy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BaoCao\ThanhToanNCC.aspx.cs">
+      <DependentUpon>ThanhToanNCC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BaoCao\ThanhToanNCC.aspx.designer.cs">
+      <DependentUpon>ThanhToanNCC.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BaoCao\TraHangDaiLy.aspx.cs">
+      <DependentUpon>TraHangDaiLy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BaoCao\TraHangDaiLy.aspx.designer.cs">
+      <DependentUpon>TraHangDaiLy.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\GiaoHang\DanhSachGiaoHang.aspx.cs">
       <DependentUpon>DanhSachGiaoHang.aspx</DependentUpon>
@@ -570,7 +626,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Pages\BaoCao\" />
     <Folder Include="Pages\TongQuan\" />
     <Folder Include="Uploads\" />
   </ItemGroup>

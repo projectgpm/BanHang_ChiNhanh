@@ -389,10 +389,10 @@
                                         <table style="margin: 0 auto;">
                                             <tr>
                                                 <td style="padding-right:10px;">
-                                                        <dx:ASPxButton ID="btnPreview" runat="server" Text="Xem trước" BackColor="#5cb85c" AutoPostBack="False">
-                                                            <ClientSideEvents Click="onReviewClick" />
-                                                        </dx:ASPxButton>
-                                                    </td>
+                                                    <dx:ASPxButton ID="btnPreview" runat="server" Text="Xem trước" BackColor="#5cb85c" AutoPostBack="False">
+                                                        <ClientSideEvents Click="onReviewClick" />
+                                                    </dx:ASPxButton>
+                                                </td>
                                                 <td >
                                                     <dx:ASPxButton ID="btnLuuVaIn" runat="server" Text="Lưu" AutoPostBack="false" UseSubmitBehavior="false">
                                                         <ClientSideEvents Click="onSaveClick" />
