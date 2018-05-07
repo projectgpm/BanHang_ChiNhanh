@@ -10,7 +10,7 @@
 namespace KobePaint.Pages.BaoCao {
     
     
-    public partial class TraHangDaiLy {
+    public partial class DoanhThuDaiLy {
         
         /// <summary>
         /// formThongTin control.

@@ -52,7 +52,7 @@
   
   <item Text="Báo cáo" >
     <item Text="Báo cáo bán đại lý" >
-      <item Text="Báo cáo doanh thu" NavigateUrl="" />
+      <item Text="Báo cáo doanh thu" NavigateUrl="~/Pages/BaoCao/DoanhThuDaiLy.aspx" />
       <item Text="Báo cáo doanh thu theo hàng hóa" NavigateUrl="" />
       <item Text="Báo cáo công nợ" NavigateUrl="~/Pages/BaoCao/CongNo.aspx" />
       <item Text="Báo cáo công nợ chi tiết theo ngày" NavigateUrl="~/Pages/BaoCao/CongNoDLTheoNgay.aspx" />

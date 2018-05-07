@@ -127,6 +127,7 @@
     <Content Include="Pages\BaoCao\CongNoDLChiTiet.aspx" />
     <Content Include="Pages\BaoCao\CongNoDLTheoNgay.aspx" />
     <Content Include="Pages\BaoCao\CongNoNCC.aspx" />
+    <Content Include="Pages\BaoCao\DoanhThuDaiLy.aspx" />
     <Content Include="Pages\BaoCao\ThanhToanDaiLy.aspx" />
     <Content Include="Pages\BaoCao\ThanhToanNCC.aspx" />
     <Content Include="Pages\BaoCao\TraHangDaiLy.aspx" />
@@ -284,6 +285,13 @@
     </Compile>
     <Compile Include="Pages\BaoCao\CongNoNCC.aspx.designer.cs">
       <DependentUpon>CongNoNCC.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BaoCao\DoanhThuDaiLy.aspx.cs">
+      <DependentUpon>DoanhThuDaiLy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BaoCao\DoanhThuDaiLy.aspx.designer.cs">
+      <DependentUpon>DoanhThuDaiLy.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\BaoCao\ThanhToanDaiLy.aspx.cs">
       <DependentUpon>ThanhToanDaiLy.aspx</DependentUpon>

@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.master" AutoEventWireup="true" CodeBehind="TraHangDaiLy.aspx.cs" Inherits="KobePaint.Pages.BaoCao.TraHangDaiLy" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.master" AutoEventWireup="true" CodeBehind="DoanhThuDaiLy.aspx.cs" Inherits="KobePaint.Pages.BaoCao.DoanhThuDaiLy" %>
 <%@ Register Assembly="DevExpress.XtraReports.v16.1.Web, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-     <style>
+    <style>
 
         .dxflGroupCell_Material{
             padding: 0 5px;
@@ -40,29 +40,30 @@
              return true;
          }
     </script>
-    <script>
-        function onPrintClick(idPhieu) {
-            popupViewReport.Show();
-            cbpViewReport.PerformCallback(idPhieu);
-        }
-        function onEndCallBackViewRp() {
-            hdfViewReport.Set('view', '1');
-            reportViewer.GetViewer().Refresh();
-        }
-        function onTabChanged(s, e) {
-            if (e.tab.name == 'CoGia') {
-                hdfViewReport.Set('view', '1');
-                reportViewer.GetViewer().Refresh();
-            }
-            else {
-                hdfViewReport.Set('view', '2');
-                reportViewer.GetViewer().Refresh();
-            }
-        }
+     <script>
+         function onPrintClick(idPhieu) {
+             popupViewReport.Show();
+             //reportViewer.GetViewer().Refresh();
+             cbpViewReport.PerformCallback(idPhieu);
+         }
+         function onEndCallBackViewRp() {
+             hdfViewReport.Set('view', '1');
+             reportViewer.GetViewer().Refresh();
+         }
+         function onTabChanged(s, e) {
+             if (e.tab.name == 'CoGia') {
+                 hdfViewReport.Set('view', '1');
+                 reportViewer.GetViewer().Refresh();
+             }
+             else {
+                 hdfViewReport.Set('view', '2');
+                 reportViewer.GetViewer().Refresh();
+             }
+         }
     </script>
-    <dx:ASPxFormLayout ID="formThongTin" ClientInstanceName="formThongTin" runat="server" Width="100%">
+      <dx:ASPxFormLayout ID="formThongTin" ClientInstanceName="formThongTin" runat="server" Width="100%">
         <Items>
-            <dx:LayoutGroup Caption="Báo cáo đại lý trả hàng" ColCount="5" HorizontalAlign="Center" Width="100%">
+            <dx:LayoutGroup Caption="Báo cáo doanh thu - đại lý" ColCount="5" HorizontalAlign="Center" Width="100%">
                 <Items>
                     <dx:LayoutItem Caption="Khách hàng">
                         <LayoutItemNestedControlCollection>
@@ -121,7 +122,7 @@
             </LayoutItem>
         </Styles>
     </dx:ASPxFormLayout>
-   <dx:ASPxGridView ID="gridChiTiet" ClientInstanceName="gridChiTietCongNo" runat="server" AutoGenerateColumns="False" DataSourceID="dsChiTiet" Width="100%" OnCustomColumnDisplayText="grid_CustomColumnDisplayText" KeyFieldName="IDPhieuTraHang">
+   <dx:ASPxGridView ID="gridChiTiet" ClientInstanceName="gridChiTietCongNo" runat="server" AutoGenerateColumns="False" DataSourceID="dsChiTiet" Width="100%" OnCustomColumnDisplayText="grid_CustomColumnDisplayText" KeyFieldName="IDPhieuGiaoHang">
         <Settings VerticalScrollBarMode="Auto" ShowFilterRow="True" ShowFilterRowMenu="True" ShowFooter="True" ShowHeaderFilterButton="true"/>
         <SettingsCommandButton>
             <ShowAdaptiveDetailButton ButtonType="Image">
@@ -134,7 +135,7 @@
             <Summary EmptyText="Không có dữ liệu" Text="Trang {0}/{1}" />
         </SettingsPager>
         <Columns>
-            <dx:GridViewDataDateColumn Caption="Ngày trả" FieldName="NgayTra" VisibleIndex="4" ReadOnly="True">
+            <dx:GridViewDataDateColumn Caption="Ngày xuất hàng" FieldName="NgayTao" VisibleIndex="6" ReadOnly="True">
                 <SettingsHeaderFilter>
                     <DateRangeCalendarSettings ClearButtonText="Bỏ" FirstDayOfWeek="Monday" ShowClearButton="False" ShowTodayButton="False" ShowWeekNumbers="False" TodayButtonText="Hôm nay" />
                     <DateRangePeriodsSettings ShowWeeksSection="False" />
@@ -146,25 +147,29 @@
                     </CalendarProperties>                    
                 </PropertiesDateEdit>
             </dx:GridViewDataDateColumn>
-            <dx:GridViewDataTextColumn Caption="Mã phiếu" FieldName="STTDonHang" VisibleIndex="3" ReadOnly="True" Width="90px">
+            <dx:GridViewDataTextColumn Caption="Mã phiếu" FieldName="MaPhieu" VisibleIndex="4" ReadOnly="True" Width="90px">
                 <SettingsHeaderFilter Mode="CheckedList">
                 </SettingsHeaderFilter>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="STT" VisibleIndex="0" Width="50px" FieldName="IDPhieuTraHang">
+            <dx:GridViewDataTextColumn Caption="STT" VisibleIndex="0" Width="50px" FieldName="IDPhieuGiaoHang">
                 <Settings AllowAutoFilter="False" />
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="Khách hàng" FieldName="HoTenKH" VisibleIndex="1">
+            <dx:GridViewDataTextColumn Caption="Khách hàng" FieldName="HoTen" VisibleIndex="1">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="Điện thoại" FieldName="DienThoai" VisibleIndex="2">
+            <dx:GridViewDataTextColumn Caption="Điện thoại" FieldName="DienThoai" VisibleIndex="3">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="Nhân viên lập phiếu" FieldName="HoTenNV" VisibleIndex="7">
-            </dx:GridViewDataTextColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Số tiền" FieldName="ConLai" VisibleIndex="5" CellStyle-Font-Bold="true">
+            <dx:GridViewDataSpinEditColumn Caption="Số tiền" FieldName="TongTien" VisibleIndex="7" CellStyle-Font-Bold="true">
                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                 </PropertiesSpinEdit>
 
 <CellStyle Font-Bold="True"></CellStyle>
             </dx:GridViewDataSpinEditColumn>
+            <dx:GridViewDataTextColumn Caption="Mã khách hàng" FieldName="MaKhachHang" VisibleIndex="2">
+            </dx:GridViewDataTextColumn>
+            <dx:GridViewDataTextColumn Caption="STT phiếu" FieldName="STTDonHang" VisibleIndex="5">
+                <PropertiesTextEdit DisplayFormatString="N0">
+                </PropertiesTextEdit>
+            </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn Caption="In phiếu" VisibleIndex="12" Width="80px">
                 <DataItemTemplate>
                     <dx:ASPxButton ID="btnInPhieu" runat="server" RenderMode="Link" OnInit="btnInPhieu_Init" AutoPostBack="false">
@@ -177,12 +182,12 @@
             </dx:GridViewDataTextColumn>
         </Columns>
         <TotalSummary>
-            <dx:ASPxSummaryItem DisplayFormat="Tổng: {0:N0}" FieldName="ConLai" ShowInColumn="Số tiền" SummaryType="Sum" />
+            <dx:ASPxSummaryItem DisplayFormat="Tổng: {0:N0}" FieldName="TongTien" ShowInColumn="Số tiền" SummaryType="Sum" />
         </TotalSummary>
     </dx:ASPxGridView>
      <asp:SqlDataSource ID="dsChiTiet" runat="server" 
         ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
-        SelectCommand="SELECT khKhachHang.HoTen AS HoTenKH, khKhachHang.DienThoai, kPhieuTraHang.IDPhieuTraHang, kPhieuTraHang.MaPhieu, kPhieuTraHang.STTDonHang, kPhieuTraHang.TongTienHang, kPhieuTraHang.ThanhToan, kPhieuTraHang.ConLai, kPhieuTraHang.NgayTra, nvNhanVien.HoTen AS HoTenNV FROM kPhieuTraHang INNER JOIN khKhachHang ON kPhieuTraHang.DaiLyID = khKhachHang.IDKhachHang INNER JOIN nvNhanVien ON kPhieuTraHang.NhanVienID = nvNhanVien.IDNhanVien WHERE (kPhieuTraHang.NgayTra &lt;= DATEADD(day, 1, @DenNgay)) AND (kPhieuTraHang.NgayTra &gt;= @TuNgay) AND (khKhachHang.IDKhachHang = @IDKhachHang)" 
+        SelectCommand="SELECT khKhachHang.MaKhachHang, khKhachHang.HoTen, khKhachHang.DienThoai, ghPhieuGiaoHang.IDPhieuGiaoHang, ghPhieuGiaoHang.NgayTao, ghPhieuGiaoHang.MaPhieu, ghPhieuGiaoHang.GhiChuGiaoHang, ghPhieuGiaoHang.NgayGiao, ghPhieuGiaoHang.NguoiGiao, ghPhieuGiaoHang.TongSoLuong, ghPhieuGiaoHang.TongTien, ghPhieuGiaoHang.STTDonHang, ghPhieuGiaoHang.SoDonHangTrongNam FROM ghPhieuGiaoHang INNER JOIN khKhachHang ON ghPhieuGiaoHang.KhachHangID = khKhachHang.IDKhachHang WHERE (ghPhieuGiaoHang.NgayTao &lt;= DATEADD(day, 1, @DenNgay)) AND (ghPhieuGiaoHang.NgayTao &gt;= @TuNgay) AND (khKhachHang.IDKhachHang = @IDKhachHang) AND (ghPhieuGiaoHang.TrangThai = 1)" 
         CancelSelectOnNullParameter="False">
         <SelectParameters>
             <asp:ControlParameter ControlID="formThongTin$fromDay" Name="TuNgay" PropertyName="Value" ConvertEmptyStringToNull="true" DefaultValue=""  />
@@ -195,7 +200,7 @@
     </dx:ASPxGlobalEvents>
     <dx:ASPxGridViewExporter ID="exporterGrid" runat="server" GridViewID="gridChiTiet">
     </dx:ASPxGridViewExporter>
-     <dx:ASPxPopupControl ID="popupViewReport" ClientInstanceName="popupViewReport" runat="server" HeaderText="Phiếu đại lý trả hàng" Width="800px" Height="600px" ScrollBars="Auto" PopupHorizontalAlign="WindowCenter" >
+      <dx:ASPxPopupControl ID="popupViewReport" ClientInstanceName="popupViewReport" runat="server" HeaderText="Phiếu giao hàng đại lý" Width="850px" Height="600px" ScrollBars="Auto" PopupVerticalAlign="WindowCenter" ShowHeader="false" PopupHorizontalAlign="WindowCenter" >
         <ContentCollection>
             <dx:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
                 <dx:ASPxCallbackPanel ID="cbpViewReport" ClientInstanceName="cbpViewReport" runat="server" Width="100%" OnCallback="cbpViewReport_Callback">
@@ -203,9 +208,9 @@
                         <dx:PanelContent>
                             <dx:ASPxTabControl ID="ASPxTabControl1" runat="server" ActiveTabIndex="0">
                                 <tabs>
-                                    <dx:Tab Text="Phiếu trả hàng" Name="CoGia">
+                                    <dx:Tab Text="Phiếu giao hàng" Name="CoGia">
                                     </dx:Tab>
-                                    <dx:Tab Text="Phiếu trả hàng (không có giá bán)" Name="KhongGia">
+                                    <dx:Tab Text="Phiếu giao hàng (không có giá bán)" Name="KhongGia">
                                     </dx:Tab>
                                 </tabs>
                                 <clientsideevents activetabchanged="onTabChanged" />
