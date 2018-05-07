@@ -92,7 +92,7 @@ namespace KobePaint.Pages.TraHang
                             PhieuTraHang.STTDonHang = 0;
                         }
                     }
-
+                    PhieuTraHang.NgayDuyet = DateTime.Now;
                     DBDataProvider.DB.SubmitChanges();
                     scope.Complete();
                     gridTraHang.CancelEdit();

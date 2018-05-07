@@ -91,7 +91,7 @@ namespace KobePaint.Pages.GiaoHang
                             PhieuGH.CongNoHienTai = KH.CongNo;
                         }
                     }
-
+                    PhieuGH.NgayDuyet = DateTime.Now;
                     DBDataProvider.DB.SubmitChanges();
                     scope.Complete();
                     gridDonHang.CancelEdit();
