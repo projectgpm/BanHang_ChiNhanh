@@ -26,7 +26,7 @@
     <dx:ASPxGridView ID="gridGiaoHang" runat="server" AutoGenerateColumns="False" ClientInstanceName="gridGiaoHang" Width="100%" DataSourceID="dsGiaohang" KeyFieldName="IDPhieuGiaoHang" OnCustomColumnDisplayText="gridGiaoHang_CustomColumnDisplayText" OnRowDeleting="gridGiaoHang_RowDeleting">
         <SettingsEditing EditFormColumnCount="3">
         </SettingsEditing>
-        <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="0" ShowFilterRow="True" ShowTitlePanel="True"/>
+        <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="0" ShowFilterRow="True" ShowTitlePanel="True" ShowFooter="True"/>
         <SettingsDetail ShowDetailRow="True" />
         <Templates>
             <DetailRow>
@@ -209,6 +209,7 @@
                         <dx:ListEditItem Text="Đã đặt" Value="0" />
                         <dx:ListEditItem Text="Giao hàng" Value="1" />
                         <dx:ListEditItem Text="Đã hủy" Value="2" />
+                        <dx:ListEditItem Text="Bán hàng" Value="3" />
                     </Items>
                 </PropertiesComboBox>
 
@@ -242,6 +243,10 @@
             </dx:GridViewDataTextColumn>
         </Columns>
 
+        <TotalSummary>
+            <dx:ASPxSummaryItem DisplayFormat="Tổng: {0:N0}" FieldName="TongTien" ShowInColumn="Tổng tiền" SummaryType="Sum" />
+        </TotalSummary>
+
         <FormatConditions>
             <dx:GridViewFormatConditionHighlight FieldName="TrangThai" Expression="[TrangThai] = 0" Format="YellowFillWithDarkYellowText" />
             <dx:GridViewFormatConditionHighlight FieldName="TrangThai" Expression="[TrangThai] = 1" Format="GreenFillWithDarkGreenText" />
@@ -249,7 +254,7 @@
         </FormatConditions>
     </dx:ASPxGridView>
      <asp:SqlDataSource ID="dsKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
-         SelectCommand="SELECT [IDKhachHang], [HoTen] FROM [khKhachHang] WHERE LoaiKhachHangID = 3 ORDER BY [IDKhachHang] DESC ">
+         SelectCommand="SELECT [IDKhachHang], [HoTen] FROM [khKhachHang] WHERE LoaiKhachHangID <> 2 ORDER BY [IDKhachHang] DESC ">
 
      </asp:SqlDataSource>
      <asp:SqlDataSource ID="dsGiaohang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 

@@ -44,6 +44,7 @@ namespace KobePaint.Pages.GiaoHang
 
                     var KH = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == IDKhachHang).FirstOrDefault();
                     var PhieuGH = DBDataProvider.DB.ghPhieuGiaoHangs.Where(x => x.IDPhieuGiaoHang == IDPhieuGiaoHang).FirstOrDefault();
+                    var PhieuGiaoHangCT = DBDataProvider.DB.ghPhieuGiaoHangChiTiets.Where(x => x.PhieuGiaoHangID == IDPhieuGiaoHang).ToList();
                     if (pheduyet == 1)
                     {
                         // duyệt đơn hàng
@@ -65,6 +66,22 @@ namespace KobePaint.Pages.GiaoHang
                                 DBDataProvider.DB.khNhatKyCongNos.InsertOnSubmit(nhatky);
                                 DBDataProvider.DB.SubmitChanges();
                             #endregion
+                            foreach (var prod in PhieuGiaoHangCT)
+                            {
+                                var HH = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == prod.HangHoaID).FirstOrDefault();
+                                //ghi thẻ kho
+                                #region thẻ kho
+                                kTheKho thekho = new kTheKho();
+                                thekho.NgayNhap = DateTime.Now;
+                                thekho.DienGiai = "Duyệt giao hàng #" + PhieuGH.MaPhieu;
+                                thekho.Nhap = 0;
+                                thekho.Xuat = prod.SoLuong;
+                                thekho.Ton = HH.TonKho - prod.SoLuong;
+                                thekho.HangHoaID = HH.IDHangHoa;
+                                thekho.NhanVienID = Formats.IDUser();
+                                DBDataProvider.DB.kTheKhos.InsertOnSubmit(thekho);
+                                #endregion
+                            }
                             KH.CongNo += PhieuGH.ConLai; // cộng công nợ
                             KH.TongTienHang += PhieuGH.ConLai;
                             KH.LanCuoiMuaHang = DateTime.Now;
@@ -79,7 +96,6 @@ namespace KobePaint.Pages.GiaoHang
                         if (KH != null && PhieuGH != null)
                         {
                             // cộng tồn kho
-                            var PhieuGiaoHangCT = DBDataProvider.DB.ghPhieuGiaoHangChiTiets.Where(x => x.PhieuGiaoHangID == IDPhieuGiaoHang).ToList();
                             foreach (var prod in PhieuGiaoHangCT)
                             {
                                 var HH = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == prod.HangHoaID).FirstOrDefault();
@@ -96,7 +112,6 @@ namespace KobePaint.Pages.GiaoHang
                     scope.Complete();
                     gridDonHang.CancelEdit();
                     e.Cancel = true;
-                    //gridDonHang.DataBind();
                     //cbpInfoImport.JSProperties["cp_Reset"] = true;
                 }
                 catch (Exception ex)

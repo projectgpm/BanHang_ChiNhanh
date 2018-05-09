@@ -93,7 +93,7 @@
             <dx:PanelContent runat="server">
                 <dx:ASPxFormLayout ID="formThanhToan" ClientInstanceName="formThanhToan" runat="server" Width="100%">
                     <Items>
-                        <dx:LayoutGroup Caption="Lập phiếu đại lý thanh toán" ColCount="2" GroupBoxDecoration="HeadingLine" HorizontalAlign="Center">
+                        <dx:LayoutGroup Caption="Lập phiếu khách hàng thanh toán" ColCount="2" GroupBoxDecoration="HeadingLine" HorizontalAlign="Center">
                             <Items>
                                 <dx:LayoutItem Caption="Khách hàng">
                                     <LayoutItemNestedControlCollection>
@@ -101,7 +101,7 @@
                                             <dx:ASPxComboBox ID="ccbKhachHang" ClientInstanceName="ccbKhachHang" runat="server" Width="100%" DataSourceID="dsKhachHang" NullText="--- Chọn khách hàng ---" ValueField="IDKhachHang" TextField="HoTen">
                                                 <ClientSideEvents SelectedIndexChanged="onCCBKhachHangChanged" />
                                             </dx:ASPxComboBox>
-                                            <asp:SqlDataSource ID="dsKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDKhachHang], [HoTen] FROM [khKhachHang] Where LoaiKhachHangID = 3"></asp:SqlDataSource>
+                                            <asp:SqlDataSource ID="dsKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDKhachHang], [HoTen] FROM [khKhachHang] Where LoaiKhachHangID &lt;&gt; 2"></asp:SqlDataSource>
                                         </dx:LayoutItemNestedControlContainer>
                                     </LayoutItemNestedControlCollection>
                                 </dx:LayoutItem>

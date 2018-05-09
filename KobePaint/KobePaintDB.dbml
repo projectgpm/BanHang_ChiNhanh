@@ -444,6 +444,7 @@
       <Column Name="SoDonHangTrongNam" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CongNoHienTai" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="NgayDuyet" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="GiamGia" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Association Name="khKhachHang_ghPhieuGiaoHang" Member="khKhachHang" ThisKey="KhachHangID" OtherKey="IDKhachHang" Type="khKhachHang" IsForeignKey="true" />
       <Association Name="nvNhanVien_ghPhieuGiaoHang" Member="nvNhanVien" ThisKey="NhanVienID" OtherKey="IDNhanVien" Type="nvNhanVien" IsForeignKey="true" />
     </Type>

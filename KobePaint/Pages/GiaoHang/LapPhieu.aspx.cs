@@ -81,7 +81,7 @@ namespace KobePaint.Pages.GiaoHang
 
             oCusExport.CongNoHienTai =Convert.ToDouble(KH.CongNo);
             oCusExport.SoDonHangTrongNam = ".....";
-            oCusExport.TieuDePhieu = "PHIẾU GIAO HÀNG ";
+            oCusExport.TieuDePhieu = "PHIẾU BÁN HÀNG ";
             oCusExport.TrangThaiPhieu = "(Xem trước)";
             oCusExport.listProduct = new List<oProduct>();
 
@@ -158,7 +158,7 @@ namespace KobePaint.Pages.GiaoHang
                         ccbBarcode.Value = "";
                         ccbBarcode.Text = "";
                         ccbBarcode.Focus();
-                        ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Mã hàng không tồn tại!!');", true);
+                        throw new Exception("Mã hàng không tồn tại !!");
                     }
                 }
                 else
@@ -175,7 +175,7 @@ namespace KobePaint.Pages.GiaoHang
                         ccbBarcode.Value = "";
                         ccbBarcode.Text = "";
                         ccbBarcode.Focus();
-                        ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Mã hàng không tồn tại!!');", true);
+                        throw new Exception("Mã hàng không tồn tại !!");
                     }
                 }
             }
@@ -216,7 +216,7 @@ namespace KobePaint.Pages.GiaoHang
                 ccbBarcode.Value = "";
                 ccbBarcode.Text = "";
                 ccbBarcode.Focus();
-                ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Mã hàng không tồn tại!!');", true);
+                throw new Exception("Mã hàng không tồn tại !!");
             }
         }
 
@@ -511,7 +511,7 @@ namespace KobePaint.Pages.GiaoHang
             }
             else
             {
-                Response.Write("<script language='JavaScript'> alert('Dữ liệu không chính xác? Vui lòng kiểm tra lại.'); </script>"); return;
+                throw new Exception("File excel không đúng với mẫu !!");
             }
         }
         #endregion

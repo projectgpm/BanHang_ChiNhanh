@@ -98,8 +98,9 @@ namespace KobePaint.Pages.GiaoHang
             oCusExport.ThanhToan = Convert.ToDouble(PhieuGiaoHang.ThanhToan);
             oCusExport.CongNoHienTai = Convert.ToDouble(PhieuGiaoHang.CongNoHienTai);
             oCusExport.SoHoaDon = PhieuGiaoHang.SoHoaDon;
+            oCusExport.GiamGia = Convert.ToDouble(PhieuGiaoHang.GiamGia);
             oCusExport.SoDonHangTrongNam = PhieuGiaoHang.SoDonHangTrongNam.ToString();
-            oCusExport.TieuDePhieu = "PHIẾU GIAO HÀNG " + PhieuGiaoHang.STTDonHang;
+            oCusExport.TieuDePhieu = "PHIẾU BÁN HÀNG " + PhieuGiaoHang.STTDonHang;
             string TrangThai = "";
             switch (PhieuGiaoHang.TrangThai)
             {
@@ -107,6 +108,9 @@ namespace KobePaint.Pages.GiaoHang
                     TrangThai = "(Đã đặt)";
                     break;
                 case 1:
+                    TrangThai = "(Kiêm phiếu xuất kho)";
+                    break;
+                case 3:
                     TrangThai = "(Kiêm phiếu xuất kho)";
                     break;
                 default:

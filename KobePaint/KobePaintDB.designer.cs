@@ -9180,6 +9180,8 @@ namespace KobePaint
 		
 		private System.Nullable<System.DateTime> _NgayDuyet;
 		
+		private System.Nullable<double> _GiamGia;
+		
 		private EntityRef<khKhachHang> _khKhachHang;
 		
 		private EntityRef<nvNhanVien> _nvNhanVien;
@@ -9232,6 +9234,8 @@ namespace KobePaint
     partial void OnCongNoHienTaiChanged();
     partial void OnNgayDuyetChanging(System.Nullable<System.DateTime> value);
     partial void OnNgayDuyetChanged();
+    partial void OnGiamGiaChanging(System.Nullable<double> value);
+    partial void OnGiamGiaChanged();
     #endregion
 		
 		public ghPhieuGiaoHang()
@@ -9685,6 +9689,26 @@ namespace KobePaint
 					this._NgayDuyet = value;
 					this.SendPropertyChanged("NgayDuyet");
 					this.OnNgayDuyetChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GiamGia", DbType="Float")]
+		public System.Nullable<double> GiamGia
+		{
+			get
+			{
+				return this._GiamGia;
+			}
+			set
+			{
+				if ((this._GiamGia != value))
+				{
+					this.OnGiamGiaChanging(value);
+					this.SendPropertyChanging();
+					this._GiamGia = value;
+					this.SendPropertyChanged("GiamGia");
+					this.OnGiamGiaChanged();
 				}
 			}
 		}

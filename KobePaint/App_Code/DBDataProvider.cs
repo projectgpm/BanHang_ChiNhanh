@@ -103,7 +103,7 @@ namespace KobePaint.App_Code
         //STT phiếu giao hàng
         public static int STTPhieuGiaoHang_DaiLy(int IDDaiLy)
         {
-            return DB.ghPhieuGiaoHangs.Where(x => x.KhachHangID == IDDaiLy && x.TrangThai == 1).Count() + 1;
+            return DB.ghPhieuGiaoHangs.Where(x => x.KhachHangID == IDDaiLy && (x.TrangThai == 1 || x.TrangThai == 3)).Count() + 1;
         }
         //STT phiếu trả hàng đại lý
         public static int STTPhieuTraHang_DaiLy(int IDDaiLy)

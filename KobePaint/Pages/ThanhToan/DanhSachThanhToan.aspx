@@ -35,7 +35,7 @@
             <Summary EmptyText="Không có dữ liệu" Text="Trang {0}/{1}" />
         </SettingsPager>
         <SettingsSearchPanel Visible="True" />
-        <SettingsText EmptyDataRow="Không có dữ liệu !!" HeaderFilterCancelButton="Hủy" HeaderFilterFrom="Từ" HeaderFilterOkButton="Lọc" HeaderFilterTo="Đến" SearchPanelEditorNullText="Nhập thông tin cần tìm..." CommandBatchEditCancel="Hủy bỏ" CommandBatchEditUpdate="Lưu" PopupEditFormCaption="Cập nhật mã hóa đơn" Title="DANH SÁCH ĐẠI LÝ THANH TOÁN" />
+        <SettingsText EmptyDataRow="Không có dữ liệu !!" HeaderFilterCancelButton="Hủy" HeaderFilterFrom="Từ" HeaderFilterOkButton="Lọc" HeaderFilterTo="Đến" SearchPanelEditorNullText="Nhập thông tin cần tìm..." CommandBatchEditCancel="Hủy bỏ" CommandBatchEditUpdate="Lưu" PopupEditFormCaption="Cập nhật mã hóa đơn" Title="DANH SÁCH KHÁCH HÀNG THANH TOÁN" />
         <Columns>
             <dx:GridViewDataTextColumn FieldName="IDPhieuThu" ReadOnly="True" Visible="False" VisibleIndex="0">
                 <EditFormSettings Visible="False" />
@@ -82,6 +82,8 @@
             <dx:GridViewDataSpinEditColumn Caption="Số tiền thu" FieldName="SoTienThu" VisibleIndex="6" Width="120px" CellStyle-Font-Bold="true">
                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                 </PropertiesSpinEdit>
+
+<CellStyle Font-Bold="True"></CellStyle>
             </dx:GridViewDataSpinEditColumn>
             <dx:GridViewDataComboBoxColumn Caption="Hình thức thanh toán" FieldName="HinhThucTTID" VisibleIndex="8" Width="200px">
                 <PropertiesComboBox>

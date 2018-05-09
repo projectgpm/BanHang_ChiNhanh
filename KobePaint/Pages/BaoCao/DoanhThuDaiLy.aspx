@@ -1,6 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.master" AutoEventWireup="true" CodeBehind="DoanhThuDaiLy.aspx.cs" Inherits="KobePaint.Pages.BaoCao.DoanhThuDaiLy" %>
-<%@ Register Assembly="DevExpress.XtraReports.v16.1.Web, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.XtraReports.Web" TagPrefix="dx" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <style>
 
@@ -40,30 +38,10 @@
              return true;
          }
     </script>
-     <script>
-         function onPrintClick(idPhieu) {
-             popupViewReport.Show();
-             //reportViewer.GetViewer().Refresh();
-             cbpViewReport.PerformCallback(idPhieu);
-         }
-         function onEndCallBackViewRp() {
-             hdfViewReport.Set('view', '1');
-             reportViewer.GetViewer().Refresh();
-         }
-         function onTabChanged(s, e) {
-             if (e.tab.name == 'CoGia') {
-                 hdfViewReport.Set('view', '1');
-                 reportViewer.GetViewer().Refresh();
-             }
-             else {
-                 hdfViewReport.Set('view', '2');
-                 reportViewer.GetViewer().Refresh();
-             }
-         }
-    </script>
+    
       <dx:ASPxFormLayout ID="formThongTin" ClientInstanceName="formThongTin" runat="server" Width="100%">
         <Items>
-            <dx:LayoutGroup Caption="Báo cáo doanh thu - đại lý" ColCount="5" HorizontalAlign="Center" Width="100%">
+            <dx:LayoutGroup Caption="Báo cáo doanh thu" ColCount="5" HorizontalAlign="Center" Width="100%">
                 <Items>
                     <dx:LayoutItem Caption="Khách hàng">
                         <LayoutItemNestedControlCollection>
@@ -74,7 +52,7 @@
                                         <dx:ListBoxColumn Caption="Điện thoại" FieldName="DienThoai" />
                                     </Columns>
                                 </dx:ASPxComboBox>
-                                <asp:SqlDataSource ID="dsKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDKhachHang], [HoTen], [DienThoai] FROM [khKhachHang] WHERE [LoaiKhachHangID] = 3"></asp:SqlDataSource>
+                                <asp:SqlDataSource ID="dsKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDKhachHang], [HoTen], [DienThoai] FROM [khKhachHang] WHERE [LoaiKhachHangID] <> 2"></asp:SqlDataSource>
                             </dx:LayoutItemNestedControlContainer>
                         </LayoutItemNestedControlCollection>
                     </dx:LayoutItem>
@@ -122,7 +100,7 @@
             </LayoutItem>
         </Styles>
     </dx:ASPxFormLayout>
-   <dx:ASPxGridView ID="gridChiTiet" ClientInstanceName="gridChiTietCongNo" runat="server" AutoGenerateColumns="False" DataSourceID="dsChiTiet" Width="100%" OnCustomColumnDisplayText="grid_CustomColumnDisplayText" KeyFieldName="IDPhieuGiaoHang">
+   <dx:ASPxGridView ID="gridChiTiet" ClientInstanceName="gridChiTietCongNo" runat="server" AutoGenerateColumns="False" DataSourceID="dsChiTiet" Width="100%" OnCustomColumnDisplayText="grid_CustomColumnDisplayText" KeyFieldName="IDKhachHang">
         <Settings VerticalScrollBarMode="Auto" ShowFilterRow="True" ShowFilterRowMenu="True" ShowFooter="True" ShowHeaderFilterButton="true"/>
         <SettingsCommandButton>
             <ShowAdaptiveDetailButton ButtonType="Image">
@@ -135,7 +113,7 @@
             <Summary EmptyText="Không có dữ liệu" Text="Trang {0}/{1}" />
         </SettingsPager>
         <Columns>
-            <dx:GridViewDataDateColumn Caption="Ngày xuất hàng" FieldName="NgayTao" VisibleIndex="6" ReadOnly="True">
+            <dx:GridViewDataDateColumn Caption="Ngày duyệt" FieldName="NGAYDUYET" VisibleIndex="6" ReadOnly="True">
                 <SettingsHeaderFilter>
                     <DateRangeCalendarSettings ClearButtonText="Bỏ" FirstDayOfWeek="Monday" ShowClearButton="False" ShowTodayButton="False" ShowWeekNumbers="False" TodayButtonText="Hôm nay" />
                     <DateRangePeriodsSettings ShowWeeksSection="False" />
@@ -147,18 +125,18 @@
                     </CalendarProperties>                    
                 </PropertiesDateEdit>
             </dx:GridViewDataDateColumn>
-            <dx:GridViewDataTextColumn Caption="Mã phiếu" FieldName="MaPhieu" VisibleIndex="4" ReadOnly="True" Width="90px">
+            <dx:GridViewDataTextColumn Caption="Mã phiếu" FieldName="MAPHIEU" VisibleIndex="4" ReadOnly="True" Width="90px">
                 <SettingsHeaderFilter Mode="CheckedList">
                 </SettingsHeaderFilter>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="STT" VisibleIndex="0" Width="50px" FieldName="IDPhieuGiaoHang">
+            <dx:GridViewDataTextColumn Caption="STT" VisibleIndex="0" Width="50px" FieldName="IDKhachHang">
                 <Settings AllowAutoFilter="False" />
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn Caption="Khách hàng" FieldName="HoTen" VisibleIndex="1">
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn Caption="Điện thoại" FieldName="DienThoai" VisibleIndex="3">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Số tiền" FieldName="TongTien" VisibleIndex="7" CellStyle-Font-Bold="true">
+            <dx:GridViewDataSpinEditColumn Caption="Số tiền" FieldName="TONGTIEN" VisibleIndex="7" CellStyle-Font-Bold="true">
                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                 </PropertiesSpinEdit>
 
@@ -166,69 +144,35 @@
             </dx:GridViewDataSpinEditColumn>
             <dx:GridViewDataTextColumn Caption="Mã khách hàng" FieldName="MaKhachHang" VisibleIndex="2">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="STT phiếu" FieldName="STTDonHang" VisibleIndex="5">
+            <dx:GridViewDataTextColumn Caption="STT phiếu" FieldName="STT" VisibleIndex="5">
                 <PropertiesTextEdit DisplayFormatString="N0">
                 </PropertiesTextEdit>
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn Caption="In phiếu" VisibleIndex="12" Width="80px">
-                <DataItemTemplate>
-                    <dx:ASPxButton ID="btnInPhieu" runat="server" RenderMode="Link" OnInit="btnInPhieu_Init" AutoPostBack="false">
-                        <Image IconID="print_print_16x16">
-                        </Image>
-                    </dx:ASPxButton>
-                </DataItemTemplate>
-                <CellStyle HorizontalAlign="Center">
-                </CellStyle>
-            </dx:GridViewDataTextColumn>
         </Columns>
+        <FormatConditions>
+            <dx:GridViewFormatConditionHighlight FieldName="TONGTIEN" Expression="[TONGTIEN] < 1" Format="LightRedFillWithDarkRedText" />
+            <dx:GridViewFormatConditionHighlight FieldName="TONGTIEN" Expression="[TONGTIEN] > 0" Format="GreenFillWithDarkGreenText" />
+            <dx:GridViewFormatConditionTopBottom FieldName="TONGTIEN" Rule="TopItems" Threshold="15" Format="BoldText" CellStyle-HorizontalAlign="Center">
+                <CellStyle HorizontalAlign="Center"></CellStyle>
+            </dx:GridViewFormatConditionTopBottom>
+        </FormatConditions>
         <TotalSummary>
-            <dx:ASPxSummaryItem DisplayFormat="Tổng: {0:N0}" FieldName="TongTien" ShowInColumn="Số tiền" SummaryType="Sum" />
+            <dx:ASPxSummaryItem DisplayFormat="Tổng: {0:N0}" FieldName="TONGTIEN" ShowInColumn="Số tiền" SummaryType="Sum" />
         </TotalSummary>
     </dx:ASPxGridView>
-     <asp:SqlDataSource ID="dsChiTiet" runat="server" 
-        ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
-        SelectCommand="SELECT khKhachHang.MaKhachHang, khKhachHang.HoTen, khKhachHang.DienThoai, ghPhieuGiaoHang.IDPhieuGiaoHang, ghPhieuGiaoHang.NgayTao, ghPhieuGiaoHang.MaPhieu, ghPhieuGiaoHang.GhiChuGiaoHang, ghPhieuGiaoHang.NgayGiao, ghPhieuGiaoHang.NguoiGiao, ghPhieuGiaoHang.TongSoLuong, ghPhieuGiaoHang.TongTien, ghPhieuGiaoHang.STTDonHang, ghPhieuGiaoHang.SoDonHangTrongNam FROM ghPhieuGiaoHang INNER JOIN khKhachHang ON ghPhieuGiaoHang.KhachHangID = khKhachHang.IDKhachHang WHERE (ghPhieuGiaoHang.NgayTao &lt;= DATEADD(day, 1, @DenNgay)) AND (ghPhieuGiaoHang.NgayTao &gt;= @TuNgay) AND (khKhachHang.IDKhachHang = @IDKhachHang) AND (ghPhieuGiaoHang.TrangThai = 1)" 
-        CancelSelectOnNullParameter="False">
+
+    <asp:SqlDataSource ID="dsChiTiet" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
+        SelectCommand="spDoanhThuDaiLy" SelectCommandType="StoredProcedure">
         <SelectParameters>
-            <asp:ControlParameter ControlID="formThongTin$fromDay" Name="TuNgay" PropertyName="Value" ConvertEmptyStringToNull="true" DefaultValue=""  />
-            <asp:ControlParameter ControlID="formThongTin$toDay" Name="DenNgay" PropertyName="Value" ConvertEmptyStringToNull="true" DefaultValue="" />
-            <asp:ControlParameter ControlID="formThongTin$ccbKhachHang" Name="IDKhachHang" PropertyName="Value" Type="Int32" />
+             <asp:ControlParameter ControlID="formThongTin$ccbKhachHang" Name="IDKhachHang" PropertyName="Value" Type="Int32" />
+            <asp:ControlParameter ControlID="formThongTin$fromDay" Name="TuNgay" PropertyName="Value" />
+            <asp:ControlParameter ControlID="formThongTin$toDay" Name="DenNgay" PropertyName="Value" />
         </SelectParameters>
     </asp:SqlDataSource>
+   
     <dx:ASPxGlobalEvents ID="globalEventGrid" runat="server">
         <ClientSideEvents BrowserWindowResized="AdjustSize" ControlsInitialized="AdjustSize" />
     </dx:ASPxGlobalEvents>
     <dx:ASPxGridViewExporter ID="exporterGrid" runat="server" GridViewID="gridChiTiet">
     </dx:ASPxGridViewExporter>
-      <dx:ASPxPopupControl ID="popupViewReport" ClientInstanceName="popupViewReport" runat="server" HeaderText="Phiếu giao hàng đại lý" Width="850px" Height="600px" ScrollBars="Auto" PopupVerticalAlign="WindowCenter" ShowHeader="false" PopupHorizontalAlign="WindowCenter" >
-        <ContentCollection>
-            <dx:PopupControlContentControl ID="PopupControlContentControl1" runat="server">
-                <dx:ASPxCallbackPanel ID="cbpViewReport" ClientInstanceName="cbpViewReport" runat="server" Width="100%" OnCallback="cbpViewReport_Callback">
-                    <PanelCollection>
-                        <dx:PanelContent>
-                            <dx:ASPxTabControl ID="ASPxTabControl1" runat="server" ActiveTabIndex="0">
-                                <tabs>
-                                    <dx:Tab Text="Phiếu giao hàng" Name="CoGia">
-                                    </dx:Tab>
-                                    <dx:Tab Text="Phiếu giao hàng (không có giá bán)" Name="KhongGia">
-                                    </dx:Tab>
-                                </tabs>
-                                <clientsideevents activetabchanged="onTabChanged" />
-                                <tabstyle>
-                                    <paddings padding="5px" />
-                                </tabstyle>
-                                <ActiveTabStyle Font-Bold="True" ForeColor="#1F77C0">
-                                </ActiveTabStyle>
-                            </dx:ASPxTabControl>
-                            <dx:ASPxDocumentViewer ID="reportViewer" ClientInstanceName="reportViewer" runat="server">
-                            </dx:ASPxDocumentViewer>
-                            <dx:ASPxHiddenField ID="hdfViewReport" ClientInstanceName="hdfViewReport" runat="server">
-                            </dx:ASPxHiddenField>
-                        </dx:PanelContent>
-                    </PanelCollection>
-                    <ClientSideEvents EndCallback="onEndCallBackViewRp" />
-                </dx:ASPxCallbackPanel>
-            </dx:PopupControlContentControl>
-        </ContentCollection>
-    </dx:ASPxPopupControl>
 </asp:Content>

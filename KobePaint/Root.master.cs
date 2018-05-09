@@ -13,7 +13,7 @@ namespace KobePaint {
             if (Context.User.Identity.IsAuthenticated)
             {
                 string[] infoUser = Context.User.Identity.Name.Split('-');
-              //  btnDangXuat.Text = infoUser[1];
+                btnThongTin.Text = infoUser[1];
                 if (!IsPostBack)
                 {
                     switch (infoUser[2])

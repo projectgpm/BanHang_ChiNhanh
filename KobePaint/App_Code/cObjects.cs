@@ -186,6 +186,7 @@ namespace KobePaint.App_Code
         public double CongNoHienTai { get; set; }
         public string TieuDePhieu { get; set; }
         public string TrangThaiPhieu { get; set; }
+        public double GiamGia { get; set; }
         public List<oProduct> listProduct { get; set; }
     }
     [Serializable]
@@ -270,6 +271,35 @@ namespace KobePaint.App_Code
         public string NguoiNopChi { get; set; }
         public string NguoiThuChi { get; set; }
         public string XemTruoc { get; set; }
+    }
+    #endregion
+
+    #region bán hàng
+    [Serializable]
+    public class oChiTietHoaDon
+    {
+        public int STT { get; set; }
+        public string MaHang { get; set; }
+        public int IDHangHoa { get; set; }
+        public string TenHangHoa { get; set; }
+        public string TenDonViTinh { get; set; }
+        public int TonKho { get; set; }
+        public int SoLuong { get; set; }
+        public double GiaBan { get; set; }
+        public double GiaVon { get; set; }
+        public double ThanhTien { get; set; }
+        public oChiTietHoaDon(int iDHangHoa, string maHang, string tenHangHoa, string tenDonViTinh, int tonKho, int soLuong, double giaBan, double giaVon, double thanhTien)
+        {
+            this.MaHang = maHang;
+            this.IDHangHoa = iDHangHoa;
+            this.TenHangHoa = tenHangHoa;
+            this.TenDonViTinh = tenDonViTinh;
+            this.TonKho = tonKho;
+            this.SoLuong = soLuong;
+            this.GiaVon = giaVon;
+            this.GiaBan = giaBan;
+            this.ThanhTien = thanhTien;
+        }
     }
     #endregion
 }

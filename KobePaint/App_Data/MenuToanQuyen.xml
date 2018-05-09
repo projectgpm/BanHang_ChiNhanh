@@ -1,21 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <items>
-    <item Text="Tổng quan" NavigateUrl="~/Pages/KH-NCC/ThemKH.aspx" />
-  <!--<item Text="Đơn hàng">
-    <item Text="Xuất trả nhà cung cấp" NavigateUrl="~/Pages/GiaoHang/LapPhieu.aspx" />
-    <item Text="Đặt hàng" NavigateUrl="~/Pages/GiaoHang/CapNhatHoaDon.aspx" />
-    <item Text="Bán hàng" NavigateUrl="~/Pages/TraHang/LapPhieu.aspx" />
-    <item Text="Danh sách trả hàng" NavigateUrl="~/Pages/TraHang/DanhSachTraHang.aspx" />
-  </item>-->
   <item text="Hàng hóa">
     <item Text="Thêm hàng hóa" NavigateUrl="~/Pages/HangHoa/ThemHangHoa.aspx" ></item>
     <item Text="Danh sách hàng hóa" NavigateUrl="~/Pages/HangHoa/HangHoa.aspx" ></item>
   </item>
-  <item Text="Khách hàng">
-    <item Text="Thêm khách hàng - NCC - ĐL" NavigateUrl="~/Pages/KhachHang/ThemKH.aspx" />
+  <item Text="Đối tác">
+    <item Text="Thêm khách hàng - NCC" NavigateUrl="~/Pages/KhachHang/ThemKH.aspx" />
     <item Text="Danh sách khách hàng" NavigateUrl="~/Pages/KhachHang/DanhSachKH.aspx" />
     <item Text="Danh sách nhà cung cấp" NavigateUrl="~/Pages/KhachHang/DanhSachNCC.aspx" />
-    <item Text="Danh sách đại lý" NavigateUrl="~/Pages/KhachHang/DanhSachDaiLy.aspx" />
+   
   </item>
   <item Text="Kho">
     <item Text="Tồn kho" NavigateUrl="~/Pages/Kho/TonKho.aspx" />
@@ -26,19 +19,19 @@
     <item Text="Thêm phiếu kiểm kê" NavigateUrl="~/Pages/Kho/ThemKiemKho.aspx" />
     <item Text="Danh sách kiểm kê" NavigateUrl="~/Pages/Kho/DanhSachKiemKho.aspx" />
   </item>
-  <item Text="Giao - Trả hàng">
-    <item Text="Lập phiếu giao hàng Đại lý" NavigateUrl="~/Pages/GiaoHang/LapPhieu.aspx" />
-    <item Text="Danh sách giao hàng Đại lý" NavigateUrl="~/Pages/GiaoHang/DanhSachGiaoHang.aspx" />
-    <item Text="Lập phiếu đại lý trả hàng" NavigateUrl="~/Pages/TraHang/LapPhieu.aspx" />
-    <item Text="Danh sách đại lý trả hàng" NavigateUrl="~/Pages/TraHang/DanhSachTraHang.aspx" />
+  <item Text="Giao dịch">
+    <item Text="Bán hàng" NavigateUrl="~/Pages/BanHang/LapPhieu.aspx" />
+    <item Text="Lập phiếu giao hàng" NavigateUrl="~/Pages/GiaoHang/LapPhieu.aspx" />
+    <item Text="Danh sách giao hàng" NavigateUrl="~/Pages/GiaoHang/DanhSachGiaoHang.aspx" />
+    <item Text="Lập phiếu trả hàng" NavigateUrl="~/Pages/TraHang/LapPhieu.aspx" />
+    <item Text="Danh sách trả hàng" NavigateUrl="~/Pages/TraHang/DanhSachTraHang.aspx" />
     <item Text="Lập phiếu trả hàng NCC" NavigateUrl="~/Pages/TraHang/TraHangNCC.aspx" />
     <item Text="Danh sách trả hàng NCC" NavigateUrl="~/Pages/TraHang/DanhSachTraHangNCC.aspx" />
-    <!--<item Text="Trả hàng phát sinh" NavigateUrl="" />-->
   </item>
   
   <item Text="Thanh toán" >
-    <item Text="Lập phiếu đại lý thanh toán" NavigateUrl="~/Pages/ThanhToan/LapThanhToan.aspx" />
-    <item Text="Danh sách đại lý thanh toán" NavigateUrl="~/Pages/ThanhToan/DanhSachThanhToan.aspx" />
+    <item Text="Lập phiếu thanh toán" NavigateUrl="~/Pages/ThanhToan/LapThanhToan.aspx" />
+    <item Text="Danh sách thanh toán" NavigateUrl="~/Pages/ThanhToan/DanhSachThanhToan.aspx" />
     <item Text="Lập phiếu thanh toán NCC" NavigateUrl="~/Pages/ThanhToan/LapThanhToanNCC.aspx" />
     <item Text="Danh sách thanh toán NCC" NavigateUrl="~/Pages/ThanhToan/DanhSachThanhToanNCC.aspx" />
   </item>
@@ -51,21 +44,16 @@
   </item>
   
   <item Text="Báo cáo" >
-    <item Text="Báo cáo bán đại lý" >
+    <item Text="Báo cáo khách hàng" >
       <item Text="Báo cáo doanh thu" NavigateUrl="~/Pages/BaoCao/DoanhThuDaiLy.aspx" />
       <item Text="Báo cáo doanh thu theo hàng hóa" NavigateUrl="" />
       <item Text="Báo cáo công nợ" NavigateUrl="~/Pages/BaoCao/CongNo.aspx" />
       <item Text="Báo cáo công nợ chi tiết theo ngày" NavigateUrl="~/Pages/BaoCao/CongNoDLTheoNgay.aspx" />
-      <item Text="Báo cáo công nợ chi tiết theo đại lý" NavigateUrl="~/Pages/BaoCao/CongNoDLChiTiet.aspx" />
+      <item Text="Báo cáo công nợ chi tiết theo khách hàng" NavigateUrl="~/Pages/BaoCao/CongNoDLChiTiet.aspx" />
       <item Text="Báo cáo thanh toán" NavigateUrl="~/Pages/BaoCao/ThanhToanDaiLy.aspx" />
       <item Text="Báo cáo trả hàng" NavigateUrl="~/Pages/BaoCao/TraHangDaiLy.aspx" />
     </item>
-    <item Text="Báo cáo bán lẻ" >
-      <item Text="Báo cáo doanh thu" NavigateUrl="" />
-      <item Text="Báo cáo công nợ" NavigateUrl="" />
-      <item Text="Báo cáo thanh toán" NavigateUrl="" />
-      <item Text="Báo cáo hàng trả" NavigateUrl="" />
-    </item>
+   
 
     <item Text="Danh sách khách hàng" NavigateUrl="" />
     <item Text="Báo cáo công nợ NCC" NavigateUrl="~/Pages/BaoCao/CongNoNCC.aspx" />

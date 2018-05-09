@@ -58,13 +58,13 @@ namespace KobePaint {
         protected global::DevExpress.Web.ASPxMenu HeaderMenu;
         
         /// <summary>
-        /// btnBanHang control.
+        /// btnThongTin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnBanHang;
+        protected global::DevExpress.Web.ASPxButton btnThongTin;
         
         /// <summary>
         /// MainPane control.

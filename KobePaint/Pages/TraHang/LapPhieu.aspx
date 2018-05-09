@@ -32,7 +32,7 @@
             if (ccbNhaCungCap.GetSelectedIndex() == -1) {
                 ccbBarcode.SetSelectedIndex(-1);
                 ccbNhaCungCap.Focus();
-                alert('Vui lòng chọn đại lý');
+                alert('Vui lòng chọn khách hàng');
                 return false;
             }
             var value = ckGiamCongNo.GetChecked();
@@ -141,19 +141,23 @@
                                                                 </LayoutItemNestedControlCollection>
                                                                 <CaptionSettings Location="Left" />
                                                             </dx:LayoutItem>
-                                                            <dx:LayoutItem Caption="Đại lý">
+                                                            <dx:LayoutItem Caption="Khách hàng">
                                                                 <LayoutItemNestedControlCollection>
                                                                     <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer2" runat="server">
-                                                                        <dx:ASPxComboBox ID="ccbNhaCungCap" ClientInstanceName="ccbNhaCungCap" NullText="-- Chọn đại lý --" runat="server" Width="100%" DataSourceID="dsNhaCungCap" ValueField="IDKhachHang" TextField="HoTen">
+                                                                        <dx:ASPxComboBox ID="ccbNhaCungCap" TextFormatString="{0};{1}" ClientInstanceName="ccbNhaCungCap" NullText="-- Chọn khách hàng --" runat="server" Width="100%" DataSourceID="dsNhaCungCap" ValueField="IDKhachHang" TextField="HoTen">
                                                                         <ClientSideEvents SelectedIndexChanged="ccbNhaCungCapChanged" />
+                                                                        <Columns>
+                                                                                <dx:ListBoxColumn FieldName="MaKhachHang" Width="90px" Caption="Mã khách hàng" />
+                                                                                <dx:ListBoxColumn FieldName="HoTen" Width="150px" Caption="Tên khách hàng" />
+                                                                            </Columns>
                                                                         </dx:ASPxComboBox>
                                                                         <asp:SqlDataSource ID="dsNhaCungCap" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
-                                                                            SelectCommand="SELECT [IDKhachHang], [HoTen] FROM [khKhachHang] WHERE (([DaXoa] = @DaXoa) AND ([LoaiKhachHangID] = @LoaiKhachHangID)) ORDER BY [HoTen]">
+                                                                            SelectCommand="SELECT [IDKhachHang],[MaKhachHang], [HoTen] FROM [khKhachHang] WHERE (([DaXoa] = @DaXoa) AND ([LoaiKhachHangID] <> @LoaiKhachHangID)) ORDER BY [HoTen]">
                                                                             <SelectParameters>
                                                                                 <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
-                                                                                <asp:Parameter DefaultValue="3" Name="LoaiKhachHangID" Type="Int32" />
+                                                                                <asp:Parameter DefaultValue="2" Name="LoaiKhachHangID" Type="Int32" />
                                                                             </SelectParameters>
-                                                                             
+                                                                              
                                                                         </asp:SqlDataSource>
                                                                     </dx:LayoutItemNestedControlContainer>
                                                                 </LayoutItemNestedControlCollection>
@@ -252,7 +256,7 @@
                                         <dx:PanelContent ID="PanelContent2" runat="server">                                            
                                               <dx:ASPxFormLayout ID="flayoutInfosImport" ClientInstanceName="flayoutInfosImport" runat="server" Width="100%">
                                                 <Items>
-                                                    <dx:LayoutGroup Caption="Thông tin đại lý trả hàng" ColCount="6" GroupBoxDecoration="HeadingLine">
+                                                    <dx:LayoutGroup Caption="Thông tin khách hàng trả hàng" ColCount="6" GroupBoxDecoration="HeadingLine">
                                                         <Items>
                                                             <dx:LayoutItem Caption="" ColSpan="4" ShowCaption="False" Width="100%">
                                                                 <LayoutItemNestedControlCollection>

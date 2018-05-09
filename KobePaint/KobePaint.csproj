@@ -123,6 +123,7 @@
     <Content Include="Main.master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Pages\BanHang\LapPhieu.aspx" />
     <Content Include="Pages\BaoCao\CongNo.aspx" />
     <Content Include="Pages\BaoCao\CongNoDLChiTiet.aspx" />
     <Content Include="Pages\BaoCao\CongNoDLTheoNgay.aspx" />
@@ -150,7 +151,6 @@
     <Content Include="Pages\Kho\ThemKiemKho.aspx" />
     <Content Include="Pages\Kho\ThemXuatKhac.aspx" />
     <Content Include="Pages\Kho\TonKho.aspx" />
-    <Content Include="Pages\POST\BanHangLe.aspx" />
     <Content Include="Pages\TaiKhoan\DangNhap.aspx" />
     <Content Include="Pages\TaiKhoan\DangXuat.aspx" />
     <Content Include="Pages\TaiKhoan\DanhSachTaiKhoan.aspx" />
@@ -257,6 +257,13 @@
     </Compile>
     <Compile Include="Main.master.designer.cs">
       <DependentUpon>Main.master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BanHang\LapPhieu.aspx.cs">
+      <DependentUpon>LapPhieu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BanHang\LapPhieu.aspx.designer.cs">
+      <DependentUpon>LapPhieu.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\BaoCao\CongNo.aspx.cs">
       <DependentUpon>CongNo.aspx</DependentUpon>
@@ -446,13 +453,6 @@
     </Compile>
     <Compile Include="Pages\Kho\TonKho.aspx.designer.cs">
       <DependentUpon>TonKho.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\POST\BanHangLe.aspx.cs">
-      <DependentUpon>BanHangLe.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\POST\BanHangLe.aspx.designer.cs">
-      <DependentUpon>BanHangLe.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\TaiKhoan\DangNhap.aspx.cs">
       <DependentUpon>DangNhap.aspx</DependentUpon>

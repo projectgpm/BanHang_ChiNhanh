@@ -367,7 +367,7 @@
                                                                 <dx:GridViewDataSpinEditColumn Caption="Giá bán" FieldName="GiaBanMoi" ShowInCustomizationForm="True" VisibleIndex="8" Width="150px">
                                                                     <PropertiesSpinEdit DisplayFormatString="g"></PropertiesSpinEdit>
                                                                     <DataItemTemplate>
-                                                                        <dx:ASPxSpinEdit ID="spGiaBanReturn" runat="server" Number='<%# Convert.ToInt32(Eval("GiaBanMoi")) %>' DisplayFormatString="N0" Width="100%" NumberType="Integer" OnInit="spGiaBanReturn_Init" Increment="5000" HorizontalAlign="Right">
+                                                                        <dx:ASPxSpinEdit ID="spGiaBanReturn" runat="server" Number='<%# Convert.ToDouble(Eval("GiaBanMoi")) %>' DisplayFormatString="N0" Width="100%" NumberType="Integer" OnInit="spGiaBanReturn_Init" Increment="5000" HorizontalAlign="Right">
                                                                         </dx:ASPxSpinEdit>
                                                                     </DataItemTemplate>
                                                                     <CellStyle>

@@ -20,6 +20,8 @@ namespace KobePaint.Pages.KH_NCC
         protected void btnLuu_Click(object sender, EventArgs e)
         {
             dsKhachHang.Insert();
+            if (ccbLoaiKH.Value.ToString() == "2")
+                Response.Redirect("~/Pages/KhachHang/DanhSachNCC.aspx");
             Response.Redirect("~/Pages/KhachHang/DanhSachKH.aspx");
         }
         
