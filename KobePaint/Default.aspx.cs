@@ -10,6 +10,10 @@ namespace KobePaint {
     public partial class _Default : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
 
+            if (!Context.User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/Pages/TaiKhoan/DangNhap.aspx");
+            }
             // phân quyền
             int Permiss = Formats.PermissionUser();
             //if (Permiss == 1) Response.Redirect("~/Pages/BaoCao/DoanhThu.aspx");

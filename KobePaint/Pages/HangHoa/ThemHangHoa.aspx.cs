@@ -18,7 +18,10 @@ namespace KobePaint.Pages.HangHoa
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (!Context.User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/Pages/TaiKhoan/DangNhap.aspx");
+            }
         }
 
         protected void cbpThemHH_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)

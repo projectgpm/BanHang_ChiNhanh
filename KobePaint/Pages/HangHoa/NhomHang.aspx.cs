@@ -14,7 +14,10 @@ namespace KobePaint.Pages.HangHoa
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!Context.User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/Pages/TaiKhoan/DangNhap.aspx");
+            }
         }
 
         protected void gridNhomHang_CustomColumnDisplayText(object sender, DevExpress.Web.ASPxGridViewColumnDisplayTextEventArgs e)

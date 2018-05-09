@@ -16,6 +16,10 @@ namespace KobePaint.Pages.BaoCao
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Context.User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/Pages/TaiKhoan/DangNhap.aspx");
+            }
             if (!IsPostBack)
             {
                 hdfViewReport["view"] = 0;

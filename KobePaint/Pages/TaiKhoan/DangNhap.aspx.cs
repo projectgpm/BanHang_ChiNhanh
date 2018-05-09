@@ -31,8 +31,7 @@ namespace KobePaint.Pages.TaiKhoan
                        };
             if(user.Any())
             {
-                Session["IDChiNhanh"] = user.First().IDChiNhanh;
-                FormsAuthentication.RedirectFromLoginPage(user.First().userID + "-" + user.First().TenNguoiDung + "-" + user.First().Quyen, chbRemember.Checked);
+                FormsAuthentication.RedirectFromLoginPage(user.First().userID + "-" + user.First().TenNguoiDung + "-" + user.First().Quyen + "-" + user.First().IDChiNhanh, chbRemember.Checked);
                 Response.Redirect("~/Default.aspx");
             }
             else

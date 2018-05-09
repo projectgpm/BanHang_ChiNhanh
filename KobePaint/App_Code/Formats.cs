@@ -168,14 +168,7 @@ namespace KobePaint.App_Code
         {
             return Convert.ToInt32(HttpContext.Current.User.Identity.Name.Split('-')[0]);
         }
-        /// <summary>
-        /// IDchiNhanh
-        /// </summary>
-        /// <returns></returns>
-        public static int IDChiNhanh()
-        {
-            return 1;
-        }
+     
         /// <summary>
         /// Ho tên User
         /// </summary>
@@ -188,6 +181,14 @@ namespace KobePaint.App_Code
         public static int PermissionUser()
         {
             return Convert.ToInt32(HttpContext.Current.User.Identity.Name.Split('-')[2]);
+        }
+        /// <summary>
+        /// IDchiNhanh
+        /// </summary>
+        /// <returns></returns>
+        public static int IDChiNhanh()
+        {
+            return Convert.ToInt32(HttpContext.Current.User.Identity.Name.Split('-')[3]);
         }
     }
 }

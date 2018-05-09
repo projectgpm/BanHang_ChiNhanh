@@ -14,7 +14,10 @@ namespace KobePaint.Pages.Kho
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!Context.User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/Pages/TaiKhoan/DangNhap.aspx");
+            }
         }
 
         protected void gridChiTietNhapKho_BeforePerformDataSelect(object sender, EventArgs e)

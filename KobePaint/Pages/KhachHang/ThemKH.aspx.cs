@@ -11,6 +11,10 @@ namespace KobePaint.Pages.KH_NCC
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Context.User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/Pages/TaiKhoan/DangNhap.aspx");
+            }
             if (!IsPostBack)
             {
                 txtMaKH.Text = "KH" + (DateTime.Now).ToString("MM") + BitConverter.ToInt32(Guid.NewGuid().ToByteArray(), 10).ToString().Substring(1, 4);

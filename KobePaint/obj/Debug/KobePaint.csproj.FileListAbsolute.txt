@@ -66,3 +66,4 @@ D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.csproj.GenerateRes
 D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.dll.licenses
 D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.dll
 D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.pdb
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.csprojResolveAssemblyReference.cache

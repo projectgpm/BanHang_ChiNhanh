@@ -33,6 +33,10 @@ namespace KobePaint.Pages.GiaoHang
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Context.User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/Pages/TaiKhoan/DangNhap.aspx");
+            }
             if (!IsPostBack)
             {
                 txtNguoiNhap.Text = Formats.NameUser();

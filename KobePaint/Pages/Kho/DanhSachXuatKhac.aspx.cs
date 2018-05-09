@@ -14,7 +14,10 @@ namespace KobePaint.Pages.Kho
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!Context.User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/Pages/TaiKhoan/DangNhap.aspx");
+            }
         }
       
         protected void gridXuathang_CustomColumnDisplayText(object sender, ASPxGridViewColumnDisplayTextEventArgs e)

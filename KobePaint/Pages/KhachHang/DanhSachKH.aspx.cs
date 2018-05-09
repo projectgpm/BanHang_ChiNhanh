@@ -13,7 +13,10 @@ namespace KobePaint.Pages.KH_NCC
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!Context.User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/Pages/TaiKhoan/DangNhap.aspx");
+            }
         }
 
         protected void gridDanhSachKH_HtmlDataCellPrepared(object sender, DevExpress.Web.ASPxGridViewTableDataCellEventArgs e)
