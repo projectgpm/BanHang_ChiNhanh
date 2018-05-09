@@ -26,3 +26,16 @@ E:\[An]\GoogleDriver\KP\KobePaint\KobePaint\KobePaint\obj\Release\KobePaint.cspr
 E:\[An]\GoogleDriver\KP\KobePaint\KobePaint\KobePaint\obj\Release\KobePaint.dll.licenses
 E:\[An]\GoogleDriver\KP\KobePaint\KobePaint\KobePaint\obj\Release\KobePaint.dll
 E:\[An]\GoogleDriver\KP\KobePaint\KobePaint\KobePaint\obj\Release\KobePaint.pdb
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\bin\KobePaint.dll
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\bin\KobePaint.pdb
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Release\KobePaint.csprojResolveAssemblyReference.cache
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Release\KobePaint.Reports.rpPhieuGiaoHang.resources
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Release\KobePaint.Reports.rpPhieuGiaoHangNoPrice.resources
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Release\KobePaint.Reports.rpPhieuThanhToan.resources
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Release\KobePaint.Reports.rpPhieuThuChi.resources
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Release\KobePaint.Reports.rpPhieuTraHang.resources
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Release\KobePaint.Reports.rpPhieuTraHangNoPrice.resources
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Release\KobePaint.csproj.GenerateResource.Cache
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Release\KobePaint.dll.licenses
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Release\KobePaint.dll
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Release\KobePaint.pdb

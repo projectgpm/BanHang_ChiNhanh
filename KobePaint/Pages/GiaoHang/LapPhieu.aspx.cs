@@ -18,13 +18,13 @@ namespace KobePaint.Pages.GiaoHang
 {
     public partial class LapPhieu : System.Web.UI.Page
     {
-        public List<LapPhieuGiaohang> listReceiptProducts
+        public List<oChiTietHoaDon> listReceiptProducts
         {
             get
             {
                 if (Session["sslistLapPhieuGiaoHang"] == null)
-                    Session["sslistLapPhieuGiaoHang"] = new List<LapPhieuGiaohang>();
-                return (List<LapPhieuGiaohang>)Session["sslistLapPhieuGiaoHang"];
+                    Session["sslistLapPhieuGiaoHang"] = new List<oChiTietHoaDon>();
+                return (List<oChiTietHoaDon>)Session["sslistLapPhieuGiaoHang"];
             }
             set
             {
@@ -35,8 +35,8 @@ namespace KobePaint.Pages.GiaoHang
         {
             if (!IsPostBack)
             {
-                txtNguoiBan.Text = Formats.NameUser();
-                listReceiptProducts = new List<LapPhieuGiaohang>();
+                txtNguoiNhap.Text = Formats.NameUser();
+                listReceiptProducts = new List<oChiTietHoaDon>();
                 hdfViewReport["view"] = 0;
             }
             if (hdfViewReport["view"].ToString() != "0")
@@ -57,34 +57,97 @@ namespace KobePaint.Pages.GiaoHang
         {
             get
             {
-                return (oReportGiaoHang)Session["ocus_Priew"];
+                return (oReportGiaoHang)Session["ocus_PriewBanHang"];
             }
             set
             {
-                Session["ocus_Priew"] = value;
+                Session["ocus_PriewBanHang"] = value;
             }
-        } 
+        }
+        protected void dateEditControl_Init(object sender, EventArgs e)
+        {
+            Formats.InitDateEditControl(sender, e);
+        }
+        protected void cbpInfoImport_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
+        {
+            string[] para = e.Parameter.Split('|');
+            switch (para[0])
+            {
+                case "price": GetPrice(); break;
+                case "UnitChange": Unitchange(para[1]); BindGrid(); break;
+                case "Save": Save(); Reset(); break;
+                case "Review": CreateReportReview(); break;
+                case "importexcel": BindGrid(); break;
+                default: InsertIntoGrid(); BindGrid(); break;
+            }
+        }
+
+       
+        protected void cbpInfo_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
+        {
+            switch (e.Parameter)
+            {
+                case "refresh": BindGrid(); break;
+                case "giamgia": GiamGia(); break;
+                case "renew": spTienGiamGia.Number = 0; break;
+                case "khachhang": CongNo(); break;
+                case "khachthanhtoan": KhachThanhToan(); break;
+                case "lammoi": Reset(); break;
+                default: break;
+            }
+        }
+
+        private void KhachThanhToan()
+        {
+            double ThanhToan = Convert.ToDouble(spThanhToan.Number.ToString());
+            double KhachThanhToan = Convert.ToDouble(spKhachHangThoan.Number.ToString());
+            spTienTraKhach.Text = (KhachThanhToan - ThanhToan).ToString();
+        }
+
+        private void GiamGia()
+        {
+            spTienTraKhach.Number = 0;
+            if (rdHinhThuc.SelectedIndex == 0)
+            {
+                // giảm VNĐ
+                double TienGiamGia = Convert.ToDouble(spTienGiamGia.Number.ToString());
+                spGiamGia.Text = (TienGiamGia).ToString();
+                spThanhToan.Text = (Convert.ToDouble(spTongTien.Number) - TienGiamGia).ToString();
+                spKhachHangThoan.Text = "0";
+                hiddenTienGiamGia["GiamGia"] = TienGiamGia.ToString();
+            }
+            else
+            {
+                //giảm %
+                double PhanTram = Convert.ToDouble(spTienGiamGia.Number.ToString());
+                double TongTien = Convert.ToDouble(spTongTien.Number.ToString());
+                double GiamGiaTien = (TongTien * (double)(PhanTram / 100));
+                spGiamGia.Text = (GiamGiaTien).ToString();
+                spThanhToan.Text = (TongTien - GiamGiaTien).ToString();
+                spKhachHangThoan.Text = "0";
+                hiddenTienGiamGia["GiamGia"] = PhanTram.ToString();
+            }
+        }
         private void CreateReportReview()
         {
-
             hdfViewReport["view"] = 1;
             oCusExport = new oReportGiaoHang();
-            var KH = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == Convert.ToInt32(ccbKhachHang.Value.ToString())).FirstOrDefault();
+            var KH = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == Convert.ToInt32(ccbNhaCungCap.Value.ToString())).FirstOrDefault();
             oCusExport.MaKhachHang = KH.MaKhachHang;
             oCusExport.TenKhachHang = KH.HoTen;
-            oCusExport.DienThoai = txtDienThoai.Text ;
-            oCusExport.DiaChiGiaoHang = memoDiaChiKH.Text;
-            oCusExport.TenNhanVien = txtNguoiBan.Text;
-            oCusExport.GhiChuGiaoHang = memoDonHang.Text;
-            oCusExport.NgayGiao = Formats.ConvertToVNDateString(dateNgayGiao.Text);
-            oCusExport.NgayTao = Formats.ConvertToVNDateString(dateNgayTao.Text);
-
-            oCusExport.CongNoHienTai =Convert.ToDouble(KH.CongNo);
+            oCusExport.DienThoai = KH.DienThoai;
+            oCusExport.DiaChiGiaoHang = KH.DiaChi;
+            oCusExport.TenNhanVien = Formats.NameUser();
+            oCusExport.GhiChuGiaoHang = memoGhiChu.Text;
+            oCusExport.NgayGiao = Formats.ConvertToVNDateString(dateNgayNhap.Text);
+            oCusExport.NgayTao = Formats.ConvertToVNDateString(dateNgayLapPhieu.Text);
+            oCusExport.GiamGia = Convert.ToDouble(spGiamGia.Number);
+            oCusExport.CongNoHienTai = Convert.ToDouble(KH.CongNo);
             oCusExport.SoDonHangTrongNam = ".....";
             oCusExport.TieuDePhieu = "PHIẾU BÁN HÀNG ";
             oCusExport.TrangThaiPhieu = "(Xem trước)";
             oCusExport.listProduct = new List<oProduct>();
-
+            oCusExport.ThanhToan = Convert.ToDouble(spKhachHangThoan.Number);// khách thanh toán
             int i = 1;
             double TongTien = 0;
             foreach (var Hang in listReceiptProducts)
@@ -104,41 +167,172 @@ namespace KobePaint.Pages.GiaoHang
             cbpInfoImport.JSProperties["cp_rpView"] = true;
         }
 
-        protected void cbpInfoImport_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
+        protected void Save()
         {
-            string[] para = e.Parameter.Split('|');
-            switch (para[0])
+             using (var scope = new TransactionScope())
             {
-                
-                case "UnitChange": Unitchange(para[1]); BindGrid(); break;
-                case "Save": Save(); Reset(); break;
-                case "importexcel": BindGrid(); break;
-                case "redirect": DevExpress.Web.ASPxWebControl.RedirectOnCallback("~/Pages/GiaoHang/DanhSachGiaoHang.aspx"); break;
-                case "Review": CreateReportReview();  break;
-                default: InsertIntoGrid(); BindGrid(); break;
+                try
+                {
+                    double TongTien = 0;
+                    int TongSoLuong = 0;
+                    foreach (var prod in listReceiptProducts)
+                    {
+                        TongTien += prod.ThanhTien;
+                        TongSoLuong += prod.SoLuong;
+                    }
+                    string MaPhieu = null, strMaPhieu = "PX";
+                    string MAX = (DBDataProvider.DB.ghPhieuGiaoHangs.Count() + 1).ToString();
+                    for (int i = 1; i < (7 - MAX.Length); i++)
+                    {
+                        strMaPhieu += "0";
+                    }
+                    MaPhieu = strMaPhieu + MAX;
+                    int IDkhachHang = Int32.Parse(ccbNhaCungCap.Value.ToString());
+                    var KH = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == IDkhachHang).FirstOrDefault();
+                    ghPhieuGiaoHang giaohang = new ghPhieuGiaoHang();
+                    giaohang.NgayTao = DateTime.Now;
+                    giaohang.MaPhieu = MaPhieu;
+                    giaohang.NhanVienID = Formats.IDUser();
+                    giaohang.GhiChuGiaoHang = memoGhiChu.Text;
+                    giaohang.KhachHangID = IDkhachHang;
+                    giaohang.NgayGiao = Formats.ConvertToDateTime(dateNgayNhap.Text);
+                    giaohang.NguoiGiao = "";
+                    giaohang.DiaChiGiaoHang = KH.DiaChi;
+                    giaohang.DaXoa = 0;
+                    giaohang.TTThanhToan = 0; //0 chưa thanh toán. 1 đã thanh toán
+                    giaohang.TrangThai = 0;// chưa duyệt, 1 đã duyệt
+                    giaohang.TongSoLuong = TongSoLuong;
+                    giaohang.DienThoai = KH.DienThoai;
+                    giaohang.TongTien = TongTien;
+                    giaohang.ThanhToan = 0;
+                    giaohang.ConLai = TongTien;
+                    giaohang.STTDonHang = DBDataProvider.STTPhieuGiaoHang_DaiLy(IDkhachHang);
+
+                    DBDataProvider.DB.ghPhieuGiaoHangs.InsertOnSubmit(giaohang);
+                    DBDataProvider.DB.SubmitChanges();
+
+                    int IDPhieuGiaoHang = giaohang.IDPhieuGiaoHang;
+                    hiddenFields["IDPhieuMoi"] = IDPhieuGiaoHang;
+                    foreach (var prod in listReceiptProducts)
+                    {
+                        // insert phiếu giao hàng chi tiết
+                        ghPhieuGiaoHangChiTiet chitiet = new ghPhieuGiaoHangChiTiet();
+                        chitiet.PhieuGiaoHangID = IDPhieuGiaoHang;
+                        chitiet.HangHoaID = prod.IDHangHoa;
+                        chitiet.TonKho = prod.TonKho;
+                        chitiet.SoLuong = prod.SoLuong;
+                        chitiet.GiaBan = prod.GiaBan;
+                        chitiet.GiaVon = prod.GiaVon;
+                        chitiet.ThanhTien = prod.ThanhTien;
+                        DBDataProvider.DB.ghPhieuGiaoHangChiTiets.InsertOnSubmit(chitiet);
+                        // trừ tạm tồn kho. không ghi công nợ, khi duyệt thì ghi thẻ kho + cộng công nợ khách hàng
+                         var TonKhoBanDau = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == prod.IDHangHoa).FirstOrDefault();
+                         if (TonKhoBanDau != null)
+                         {
+                             TonKhoBanDau.TonKho -= prod.SoLuong;
+                         }
+                    }
+                    DBDataProvider.DB.SubmitChanges();
+                    scope.Complete();
+                    Reset();
+                    cbpInfoImport.JSProperties["cp_Reset"] = true;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
 
-        
-        protected void cbpInfo_Callback(object sender, DevExpress.Web.CallbackEventArgsBase e)
+        protected void ccbNhaCungCap_Callback(object sender, CallbackEventArgsBase e)
         {
-            switch (e.Parameter)
+            ccbNhaCungCap.DataBind();
+        }
+
+        #region bind data hàng hóa
+        protected void ccbBarcode_ItemRequestedByValue(object source, ListEditItemRequestedByValueEventArgs e)
+        {
+            long value = 0;
+            if (e.Value == null || !Int64.TryParse(e.Value.ToString(), out value))
+                return;
+            ASPxComboBox comboBox = (ASPxComboBox)source;
+            dsHangHoa.SelectCommand = @"SELECT hhHangHoa.IDHangHoa, hhHangHoa.MaHang, hhHangHoa.TenHangHoa, hhHangHoa.GiaBan,hhHangHoa.GiaVon
+                                        FROM hhHangHoa
+                                        WHERE (hhHangHoa.IDHangHoa = @IDHangHoa AND hhHangHoa.DaXoa = 0)";
+            dsHangHoa.SelectParameters.Clear();
+            dsHangHoa.SelectParameters.Add("IDHangHoa", TypeCode.Int64, e.Value.ToString());
+            comboBox.DataSource = dsHangHoa;
+            comboBox.DataBind();
+        }
+
+        protected void ccbBarcode_ItemsRequestedByFilterCondition(object source, ListEditItemsRequestedByFilterConditionEventArgs e)
+        {
+            ASPxComboBox comboBox = (ASPxComboBox)source;
+            dsHangHoa.SelectCommand = @"SELECT [IDHangHoa], [MaHang], [TenHangHoa], [GiaBan] , [GiaVon]
+                                        FROM (
+	                                        select hhHangHoa.IDHangHoa, hhHangHoa.MaHang, hhHangHoa.TenHangHoa, hhHangHoa.GiaBan,hhHangHoa.GiaVon,
+	                                        row_number()over(order by hhHangHoa.MaHang) as [rn] 
+	                                        FROM hhHangHoa 
+                                                    
+	                                        WHERE ((hhHangHoa.MaHang LIKE @MaHang) OR hhHangHoa.TenHangHoa LIKE @TenHang) AND hhHangHoa.DaXoa = 0	
+	                                        ) as st 
+                                        where st.[rn] between @startIndex and @endIndex";
+            dsHangHoa.SelectParameters.Clear();
+            dsHangHoa.SelectParameters.Add("MaHang", TypeCode.String, string.Format("%{0}%", e.Filter));
+            dsHangHoa.SelectParameters.Add("TenHang", TypeCode.String, string.Format("%{0}%", e.Filter));
+            dsHangHoa.SelectParameters.Add("startIndex", TypeCode.Int64, (e.BeginIndex + 1).ToString());
+            dsHangHoa.SelectParameters.Add("endIndex", TypeCode.Int64, (e.EndIndex + 1).ToString());
+            comboBox.DataSource = dsHangHoa;
+            comboBox.DataBind();
+        }
+        #endregion
+        private void BindGrid()
+        {
+            double TongTien = 0;
+            foreach (var prod in listReceiptProducts)
             {
-                case "refresh": Reset(); BindGrid(); break;
-                case "DienThoai": LoadDienThoai(); break;
-                default: break;
+                TongTien += prod.ThanhTien;
+            }
+            spTongTien.Text = TongTien.ToString();
+            spThanhToan.Text = TongTien.ToString();
+            spKhachHangThoan.Text = TongTien.ToString();
+            gridImportPro.DataSource = listReceiptProducts;
+            gridImportPro.DataBind();
+        }
+        protected void Reset()
+        {
+            listReceiptProducts = new List<oChiTietHoaDon>();
+            gridImportPro.DataSource = listReceiptProducts;
+            gridImportPro.DataBind();
+            ccbNhaCungCap.SelectedIndex = -1;
+            ccbNhaCungCap.Text = "";
+
+            spThanhToan.Number = 0;
+            spTongTien.Number = 0;
+            dateNgayNhap.Date = DateTime.Now;
+            spGiamGia.Number = 0;
+            spKhachHangThoan.Number = 0;
+            spTienGiamGia.Number = 0;
+            spTienTraKhach.Number = 0;
+            memoGhiChu.Text = "";
+            spCongNoCu.Number = 0;
+            ccbBarcode.Text = "";
+            rdHinhThuc.SelectedIndex = 0;
+
+        }
+        private void CongNo()
+        {
+            var KH = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == Convert.ToInt32(ccbNhaCungCap.Value.ToString())).FirstOrDefault();
+            if (KH != null)
+            {
+                spCongNoCu.Text = KH.CongNo.ToString();
             }
         }
-
-        private void LoadDienThoai()
+        protected void GetPrice()
         {
-            int IDKhachHang = Convert.ToInt32(ccbKhachHang.Value.ToString());
-            var KH = DBDataProvider.DB.khKhachHangs.Where(x => x.IDKhachHang == IDKhachHang).FirstOrDefault();
-            txtDienThoai.Text = KH.DienThoai;
-            memoDiaChiKH.Text = KH.DiaChi;
+            ccbBarcode.Text = "";
+            ccbBarcode.Focus();
         }
-      
-
         #region InsertHang
         protected void InsertIntoGrid()
         {
@@ -190,19 +384,18 @@ namespace KobePaint.Pages.GiaoHang
                 var exitProdInList = listReceiptProducts.SingleOrDefault(r => r.IDHangHoa == ID);
                 if (exitProdInList == null)
                 {
-                    LapPhieuGiaohang newLapPhieuGiaoHang = new LapPhieuGiaohang(
-                            tblHangHoa.IDHangHoa,
-                            tblHangHoa.MaHang,
-                            tblHangHoa.TenHangHoa,
-                            Convert.ToDouble(tblHangHoa.GiaVon),
-                            Convert.ToInt32(tblHangHoa.TonKho),
-                            1,
-                             Convert.ToDouble(tblHangHoa.GiaBan),
-                             Convert.ToDouble(tblHangHoa.GiaBan),
-                             tblHangHoa.hhDonViTinh.TenDonViTinh
+                    oChiTietHoaDon cthd = new oChiTietHoaDon(
+                        tblHangHoa.IDHangHoa,
+                        tblHangHoa.MaHang,
+                        tblHangHoa.TenHangHoa,
+                        tblHangHoa.hhDonViTinh.TenDonViTinh,
+                        Convert.ToInt32(tblHangHoa.TonKho),
+                        1,
+                        Convert.ToDouble(tblHangHoa.GiaBan),
+                        Convert.ToDouble(tblHangHoa.GiaVon),
+                        Convert.ToDouble(tblHangHoa.GiaBan)
                         );
-                    listReceiptProducts.Add(newLapPhieuGiaoHang);
-
+                    listReceiptProducts.Add(cthd);
                 }
                 else
                 {
@@ -219,28 +412,7 @@ namespace KobePaint.Pages.GiaoHang
                 throw new Exception("Mã hàng không tồn tại !!");
             }
         }
-
         #endregion
-
-
-
-        protected void Reset()
-        {
-            listReceiptProducts = new List<LapPhieuGiaohang>();
-            gridImportPro.DataSource = listReceiptProducts;
-            gridImportPro.DataBind();
-            memoDiaChiKH.Text = "";
-            ccbKhachHang.SelectedIndex = -1;
-            ccbKhachHang.Value = "";
-            dateNgayGiao.Date = DateTime.Now;
-            txtNguoiGiaoHang.Text = "";
-            memoDiaChiKH.Text = "";
-            ccbBarcode.Text = "";
-            ccbBarcode.Value = "";
-            ccbBarcode.Focus();
-
-        }
-
         protected void UpdateSTT()
         {
             ccbBarcode.Value = "";
@@ -252,135 +424,6 @@ namespace KobePaint.Pages.GiaoHang
             }
 
         }
-
-        protected void Save()
-        {
-             using (var scope = new TransactionScope())
-            {
-                try
-                {
-                    double TongTien = 0;
-                    int TongSoLuong = 0;
-                    foreach (var prod in listReceiptProducts)
-                    {
-                        TongTien += prod.ThanhTien;
-                        TongSoLuong += prod.SoLuong;
-                    }
-                    string MaPhieu = null, strMaPhieu = "PX";
-                    string MAX = (DBDataProvider.DB.ghPhieuGiaoHangs.Count() + 1).ToString();
-                    for (int i = 1; i < (7 - MAX.Length); i++)
-                    {
-                        strMaPhieu += "0";
-                    }
-                    MaPhieu = strMaPhieu + MAX;
-                    int IDkhachHang = Int32.Parse(ccbKhachHang.Value.ToString());
-                    ghPhieuGiaoHang giaohang = new ghPhieuGiaoHang();
-                    giaohang.NgayTao = DateTime.Now;
-                    giaohang.MaPhieu = MaPhieu;
-                    giaohang.NhanVienID = Formats.IDUser();
-                    giaohang.GhiChuGiaoHang = memoDonHang.Text;
-                    giaohang.KhachHangID = IDkhachHang;
-                    giaohang.NgayGiao = Formats.ConvertToDateTime(dateNgayGiao.Text);
-                    giaohang.NguoiGiao = txtNguoiGiaoHang.Text;
-                    giaohang.DiaChiGiaoHang = memoDiaChiKH.Text;
-                    giaohang.DaXoa = 0;
-                    giaohang.TTThanhToan = 0; //0 chưa thanh toán. 1 đã thanh toán
-                    giaohang.TrangThai = 0;// chưa duyệt, 1 đã duyệt
-                    giaohang.TongSoLuong = TongSoLuong;
-                    giaohang.DienThoai = txtDienThoai.Text;
-                    giaohang.TongTien = TongTien;
-                    giaohang.ThanhToan = 0;
-                    giaohang.ConLai = TongTien;
-                    giaohang.STTDonHang = DBDataProvider.STTPhieuGiaoHang_DaiLy(IDkhachHang);
-
-                    DBDataProvider.DB.ghPhieuGiaoHangs.InsertOnSubmit(giaohang);
-                    DBDataProvider.DB.SubmitChanges();
-
-                    int IDPhieuGiaoHang = giaohang.IDPhieuGiaoHang;
-                    foreach (var prod in listReceiptProducts)
-                    {
-                        // insert phiếu giao hàng chi tiết
-                        ghPhieuGiaoHangChiTiet chitiet = new ghPhieuGiaoHangChiTiet();
-                        chitiet.PhieuGiaoHangID = IDPhieuGiaoHang;
-                        chitiet.HangHoaID = prod.IDHangHoa;
-                        chitiet.TonKho = prod.TonKho;
-                        chitiet.SoLuong = prod.SoLuong;
-                        chitiet.GiaBan = prod.GiaBan;
-                        chitiet.GiaVon = prod.GiaVon;
-                        chitiet.ThanhTien = prod.ThanhTien;
-                        DBDataProvider.DB.ghPhieuGiaoHangChiTiets.InsertOnSubmit(chitiet);
-                        // trừ tạm tồn kho. không ghi công nợ, khi duyệt thì ghi thẻ kho + cộng công nợ khách hàng
-                         var TonKhoBanDau = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == prod.IDHangHoa).FirstOrDefault();
-                         if (TonKhoBanDau != null)
-                         {
-                             TonKhoBanDau.TonKho -= prod.SoLuong;
-                         }
-                    }
-                    DBDataProvider.DB.SubmitChanges();
-                    scope.Complete();
-                    Reset();
-                    cbpInfoImport.JSProperties["cp_Reset"] = true;
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-        }
-
-        protected void gridImportPro_RowDeleting(object sender, DevExpress.Web.Data.ASPxDataDeletingEventArgs e)
-        {
-            int stt = int.Parse(e.Keys["STT"].ToString());
-            var itemToRemove = listReceiptProducts.SingleOrDefault(r => r.STT == stt);
-            if (itemToRemove != null)
-            {
-                listReceiptProducts.Remove(itemToRemove);
-                UpdateSTT();
-            }
-            e.Cancel = true;
-            BindGrid();
-        }
-
-       
-
-        #region bind data hàng hóa
-        protected void ccbBarcode_ItemRequestedByValue(object source, ListEditItemRequestedByValueEventArgs e)
-        {
-            long value = 0;
-            if (e.Value == null || !Int64.TryParse(e.Value.ToString(), out value))
-                return;
-            ASPxComboBox comboBox = (ASPxComboBox)source;
-            dsHangHoa.SelectCommand = @"SELECT hhHangHoa.IDHangHoa, hhHangHoa.MaHang, hhHangHoa.TenHangHoa, hhHangHoa.GiaBan,hhHangHoa.GiaVon
-                                        FROM hhHangHoa
-                                        WHERE (hhHangHoa.IDHangHoa = @IDHangHoa AND hhHangHoa.DaXoa = 0)";
-            dsHangHoa.SelectParameters.Clear();
-            dsHangHoa.SelectParameters.Add("IDHangHoa", TypeCode.Int64, e.Value.ToString());
-            comboBox.DataSource = dsHangHoa;
-            comboBox.DataBind();
-        }
-
-        protected void ccbBarcode_ItemsRequestedByFilterCondition(object source, ListEditItemsRequestedByFilterConditionEventArgs e)
-        {
-            ASPxComboBox comboBox = (ASPxComboBox)source;
-            dsHangHoa.SelectCommand = @"SELECT [IDHangHoa], [MaHang], [TenHangHoa], [GiaBan] , [GiaVon]
-                                        FROM (
-	                                        select hhHangHoa.IDHangHoa, hhHangHoa.MaHang, hhHangHoa.TenHangHoa, hhHangHoa.GiaBan,hhHangHoa.GiaVon,
-	                                        row_number()over(order by hhHangHoa.MaHang) as [rn] 
-	                                        FROM hhHangHoa 
-                                                    
-	                                        WHERE ((hhHangHoa.MaHang LIKE @MaHang) OR hhHangHoa.TenHangHoa LIKE @TenHang) AND hhHangHoa.DaXoa = 0	
-	                                        ) as st 
-                                        where st.[rn] between @startIndex and @endIndex";
-            dsHangHoa.SelectParameters.Clear();
-            dsHangHoa.SelectParameters.Add("MaHang", TypeCode.String, string.Format("%{0}%", e.Filter));
-            dsHangHoa.SelectParameters.Add("TenHang", TypeCode.String, string.Format("%{0}%", e.Filter));
-            dsHangHoa.SelectParameters.Add("startIndex", TypeCode.Int64, (e.BeginIndex + 1).ToString());
-            dsHangHoa.SelectParameters.Add("endIndex", TypeCode.Int64, (e.EndIndex + 1).ToString());
-            comboBox.DataSource = dsHangHoa;
-            comboBox.DataBind();
-        }
-        #endregion
-
         #region cập nhật SL + DG
         protected void spUnitReturn_Init(object sender, EventArgs e)
         {
@@ -394,8 +437,6 @@ namespace KobePaint.Pages.GiaoHang
             GridViewDataRowTemplateContainer container = SpinEdit.NamingContainer as GridViewDataRowTemplateContainer;
             SpinEdit.ClientSideEvents.NumberChanged = String.Format("function(s, e) {{ onUnitReturnChanged({0}); }}", container.KeyValue);
         }
-        
-
         private void Unitchange(string para)
         {
             int IDProduct = Convert.ToInt32(para);
@@ -410,19 +451,25 @@ namespace KobePaint.Pages.GiaoHang
             // cập nhật
             var sourceRow = listReceiptProducts.Where(x => x.STT == IDProduct).SingleOrDefault();
             sourceRow.SoLuong = UnitProductNew;
-
             sourceRow.GiaBan = PriceProduct_GiaBan;
-            sourceRow.ThanhTien = sourceRow.SoLuong * sourceRow.GiaBan;
+            sourceRow.ThanhTien = UnitProductNew * PriceProduct_GiaBan;
+
+            //BindGrid();
         }
         #endregion
 
-        private void BindGrid()
+        protected void gridImportPro_RowDeleting(object sender, DevExpress.Web.Data.ASPxDataDeletingEventArgs e)
         {
-            gridImportPro.DataSource = listReceiptProducts;
-            gridImportPro.DataBind();
+            int stt = int.Parse(e.Keys["STT"].ToString());
+            var itemToRemove = listReceiptProducts.SingleOrDefault(r => r.STT == stt);
+            if (itemToRemove != null)
+            {
+                listReceiptProducts.Remove(itemToRemove);
+                UpdateSTT();
+            }
+            e.Cancel = true;
+            BindGrid();
         }
-
-
         #region nhập excel
         public string strFileExcel { get; set; }
         protected void UploadControl_FileUploadComplete(object sender, FileUploadCompleteEventArgs e)
@@ -468,7 +515,7 @@ namespace KobePaint.Pages.GiaoHang
         private void Import_Temp(DataTable datatable)
         {
             int intRow = datatable.Rows.Count;
-            if (datatable.Columns.Contains("Mã hàng hóa") && datatable.Columns.Contains("Số lượng")  && datatable.Columns.Contains("Giá bán"))
+            if (datatable.Columns.Contains("Mã hàng hóa") && datatable.Columns.Contains("Số lượng") && datatable.Columns.Contains("Giá bán"))
             {
                 if (intRow != 0)
                 {
@@ -478,28 +525,28 @@ namespace KobePaint.Pages.GiaoHang
                         string MaHang = dr["Mã hàng hóa"].ToString().Trim();
                         if (MaHang != "")
                         {
+                            double GiaBan = Convert.ToDouble(dr["Giá bán"] == null ? "0" : dr["Giá bán"].ToString().Trim());
+                            int SoLuong = Convert.ToInt32(dr["Số lượng"] == null ? "0" : dr["Số lượng"].ToString().Trim());
                             int tblHangHoa_Count = DBDataProvider.DB.hhHangHoas.Where(x => x.MaHang == MaHang && x.DaXoa == 0).Count();
                             if (tblHangHoa_Count > 0)
                             {
-                                double GiaBan = Convert.ToDouble(dr["Giá bán"] == "" ? "0" : dr["Giá bán"].ToString().Trim());
-                                int SoLuong = Convert.ToInt32(dr["Số lượng"] == "" ? "0" : dr["Số lượng"].ToString().Trim());
                                 var tblHangHoa = DBDataProvider.DB.hhHangHoas.Where(x => x.MaHang == MaHang && x.DaXoa == 0).FirstOrDefault();
                                 var exitProdInList = listReceiptProducts.SingleOrDefault(r => r.MaHang == MaHang);
                                 if (exitProdInList == null)
                                 {
-
-                                    LapPhieuGiaohang newLapPhieuGiaoHang = new LapPhieuGiaohang(
-                                            tblHangHoa.IDHangHoa,
-                                            tblHangHoa.MaHang,
-                                            tblHangHoa.TenHangHoa,
-                                            Convert.ToDouble(tblHangHoa.GiaVon),
-                                            Convert.ToInt32(tblHangHoa.TonKho),
-                                            SoLuong,
-                                             SoLuong * GiaBan,
-                                             GiaBan,
-                                             tblHangHoa.hhDonViTinh.TenDonViTinh
+                                    oChiTietHoaDon cthd = new oChiTietHoaDon(
+                                        tblHangHoa.IDHangHoa,
+                                        tblHangHoa.MaHang,
+                                        tblHangHoa.TenHangHoa,
+                                        tblHangHoa.hhDonViTinh.TenDonViTinh,
+                                       Convert.ToInt32(tblHangHoa.TonKho),
+                                        SoLuong,
+                                       GiaBan,
+                                       Convert.ToDouble(tblHangHoa.GiaVon),
+                                       SoLuong * GiaBan
                                         );
-                                    listReceiptProducts.Add(newLapPhieuGiaoHang);
+
+                                    listReceiptProducts.Add(cthd);
                                 }
 
                             }
@@ -511,56 +558,14 @@ namespace KobePaint.Pages.GiaoHang
             }
             else
             {
-                throw new Exception("File excel không đúng với mẫu !!");
+                throw new Exception("File excel không đúng. Vui lòng kiểm tra lại!!");
             }
         }
         #endregion
 
-        protected void dateNgayTao_Init(object sender, EventArgs e)
+        protected void dateNgayLapPhieu_Init(object sender, EventArgs e)
         {
             Formats.InitDateEditControl(sender, e);
         }
-
-        protected void dateNgayGiao_Init(object sender, EventArgs e)
-        {
-            Formats.InitDateEditControl(sender, e);
-        }
-
-        #region DataBind khách hàng
-        protected void ccbKhachHang_ItemRequestedByValue(object source, ListEditItemRequestedByValueEventArgs e)
-        {
-            long value = 0;
-            if (e.Value == null || !Int64.TryParse(e.Value.ToString(), out value))
-                return;
-            ASPxComboBox comboBox = (ASPxComboBox)source;
-            dsKhachHang.SelectCommand = @"SELECT MaKhachHang,HoTen,DienThoai,IDKhachHang
-                                        FROM khKhachHang
-                                        WHERE (IDKhachHang = @IDKhachHang) AND (DaXoa = 0) AND LoaiKhachHangID = 3";
-            dsKhachHang.SelectParameters.Clear();
-            dsKhachHang.SelectParameters.Add("IDKhachHang", TypeCode.Int64, e.Value.ToString());
-            comboBox.DataSource = dsKhachHang;
-            comboBox.DataBind();
-        }
-
-        protected void ccbKhachHang_ItemsRequestedByFilterCondition(object source, ListEditItemsRequestedByFilterConditionEventArgs e)
-        {
-            ASPxComboBox comboBox = (ASPxComboBox)source;
-            dsKhachHang.SelectCommand = @"SELECT MaKhachHang,HoTen,DienThoai,IDKhachHang
-                                        FROM (
-	                                        SELECT MaKhachHang,HoTen,DienThoai,IDKhachHang,
-	                                        row_number()over(order by IDKhachHang) as [rn] 
-	                                        FROM khKhachHang 
-	                                        WHERE ((khKhachHang.MaKhachHang LIKE @MaKhachHang) OR (khKhachHang.HoTen LIKE @HoTen)) AND khKhachHang.DaXoa = 0 AND LoaiKhachHangID = 3	
-	                                        ) as st 
-                                        where st.[rn] between @startIndex and @endIndex";
-            dsKhachHang.SelectParameters.Clear();
-            dsKhachHang.SelectParameters.Add("MaKhachHang", TypeCode.String, string.Format("%{0}%", e.Filter));
-            dsKhachHang.SelectParameters.Add("HoTen", TypeCode.String, string.Format("%{0}%", e.Filter));
-            dsKhachHang.SelectParameters.Add("startIndex", TypeCode.Int64, (e.BeginIndex + 1).ToString());
-            dsKhachHang.SelectParameters.Add("endIndex", TypeCode.Int64, (e.EndIndex + 1).ToString());
-            comboBox.DataSource = dsKhachHang;
-            comboBox.DataBind();
-        }
-        #endregion
     }
 }

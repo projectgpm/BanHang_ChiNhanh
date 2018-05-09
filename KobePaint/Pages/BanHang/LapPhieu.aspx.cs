@@ -73,7 +73,7 @@ namespace KobePaint.Pages.BanHang
             {
                 case "price": GetPrice();  break;
                 case "UnitChange": Unitchange(para[1]); BindGrid(); break;
-                case "Save": Save(); CreateReportReview_Save(Convert.ToInt32(hiddenFields["IDPhieuMoi"].ToString())); Reset(); break;
+                case "Save": Save(); Reset(); CreateReportReview_Save(Convert.ToInt32(hiddenFields["IDPhieuMoi"].ToString())); Reset(); break;
                 case "Review": CreateReportReview(); break;
                 case "importexcel": BindGrid(); break;
                 default: InsertIntoGrid(); BindGrid(); break;
@@ -218,6 +218,7 @@ namespace KobePaint.Pages.BanHang
             oCusExport.TongTien = TongTien;
             cbpInfoImport.JSProperties["cp_rpView"] = true;
         }
+
         protected void Save()
         {
             using (var scope = new TransactionScope())
@@ -266,6 +267,7 @@ namespace KobePaint.Pages.BanHang
                     DBDataProvider.DB.ghPhieuGiaoHangs.InsertOnSubmit(giaohang);
                     DBDataProvider.DB.SubmitChanges();
                     int IDPhieuGiaoHang = giaohang.IDPhieuGiaoHang;
+                    hiddenFields["IDPhieuMoi"] = IDPhieuGiaoHang;
                     foreach (var prod in listReceiptProducts)
                     {
                         // insert phiếu giao hàng chi tiết
@@ -324,7 +326,6 @@ namespace KobePaint.Pages.BanHang
                     scope.Complete();
                     Reset();
                     cbpInfoImport.JSProperties["cp_Reset"] = true;
-                    hiddenFields["IDPhieuMoi"] = IDPhieuGiaoHang;
                 }
                 catch (Exception ex)
                 {
@@ -333,6 +334,7 @@ namespace KobePaint.Pages.BanHang
             }
 
         }
+
         protected void ccbNhaCungCap_Callback(object sender, CallbackEventArgsBase e)
         {
             ccbNhaCungCap.DataBind();
@@ -441,7 +443,7 @@ namespace KobePaint.Pages.BanHang
                         ccbBarcode.Value = "";
                         ccbBarcode.Text = "";
                         ccbBarcode.Focus();
-                        ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Mã hàng không tồn tại!!');", true);
+                        throw new Exception("Mã hàng không tồn tại !!");
                     }
                 }
                 else
@@ -458,7 +460,7 @@ namespace KobePaint.Pages.BanHang
                         ccbBarcode.Value = "";
                         ccbBarcode.Text = "";
                         ccbBarcode.Focus();
-                        ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Mã hàng không tồn tại!!');", true);
+                        throw new Exception("Mã hàng không tồn tại !!");
                     }
                 }
             }

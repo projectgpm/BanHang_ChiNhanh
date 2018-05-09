@@ -120,7 +120,7 @@ namespace KobePaint.Pages.TraHang
             oReturnNodeReport.GhiChuGiaoHang = memoGhiChu.Text;
             oReturnNodeReport.NgayGiao = Formats.ConvertToVNDateString(dateNgayTra.Text);
             oReturnNodeReport.NgayTao = Formats.ConvertToVNDateString(DateTime.Now.ToString());
-            oReturnNodeReport.TongTien = Convert.ToDouble(spTongTien.Number);
+           
             oReturnNodeReport.TieuDePhieu = "PHIẾU TRẢ HÀNG (Xem trước)";
             oReturnNodeReport.listProduct = new List<oProduct>();
             int i = 1;
@@ -155,9 +155,7 @@ namespace KobePaint.Pages.TraHang
                         TongTien += prod.ThanhTien;
                         TongSoLuong += prod.SoLuong;
                     }
-                    double ThanhToan = Convert.ToDouble(spThanhToan.Number);
-                    double ConLai = TongTien - ThanhToan;
-
+                    
                     string MaPhieu = null, strMaPhieu = "PX";
                     string MAX = (DBDataProvider.DB.kPhieuTraHangNCCs.Count() + 1).ToString();
                     for (int i = 1; i < (7 - MAX.Length); i++)
@@ -181,9 +179,9 @@ namespace KobePaint.Pages.TraHang
                     phieutra.GhiChu = memoGhiChu.Text;
                     phieutra.TongSoLuong = TongSoLuong;
                     phieutra.TongTienHang = TongTien;
-                    phieutra.ThanhToan = ThanhToan;
+                    phieutra.ThanhToan = ckGiamCongNo.Checked == true ? 0 : TongTien;
                     phieutra.STTDonHang = DBDataProvider.STTPhieuTraHang_NCC(IDNCC);
-                    phieutra.ConLai = ConLai;
+                    phieutra.ConLai = ckGiamCongNo.Checked == true ? TongTien : 0;
                     phieutra.HinhThucTT = ckGiamCongNo.Checked == true ? 1 : 0;
                     DBDataProvider.DB.kPhieuTraHangNCCs.InsertOnSubmit(phieutra);
                     DBDataProvider.DB.SubmitChanges();
@@ -231,15 +229,15 @@ namespace KobePaint.Pages.TraHang
                             nhatky.DienGiai = "Trả hàng NCC ";
                             nhatky.NoDau = Supplier.CongNo;
                             nhatky.NhapHang = 0;
-                            nhatky.TraHang = ConLai;
-                            nhatky.NoCuoi = Supplier.CongNo - ConLai;
+                            nhatky.TraHang = ckGiamCongNo.Checked == true ? TongTien : 0;
+                            nhatky.NoCuoi = Supplier.CongNo - (ckGiamCongNo.Checked == true ? TongTien : 0);
                             nhatky.ThanhToan = 0;
                             nhatky.NhanVienID = Formats.IDUser();
                             nhatky.SoPhieu = MaPhieu;
                             nhatky.IDKhachHang = IDNCC;
                             DBDataProvider.DB.khNhatKyCongNos.InsertOnSubmit(nhatky);
                             DBDataProvider.DB.SubmitChanges();
-                            Supplier.CongNo -= ConLai;
+                            Supplier.CongNo -= ckGiamCongNo.Checked == true ? TongTien : 0;
                             Supplier.LanCuoiMuaHang = DateTime.Now;
                         }
                         Supplier.TienTraHang += TongTien;
@@ -355,13 +353,8 @@ namespace KobePaint.Pages.TraHang
         }
         private void BindGrid()
         {
-            double TongTien = 0;
-            foreach (var prod in listReceiptProducts)
-            {
-                TongTien += prod.ThanhTien;
-            }
-            spTongTien.Text = TongTien.ToString();
-            spThanhToan.Text = TongTien.ToString();
+            gridImportPro.DataSource = null;
+            gridImportPro.DataBind();
             gridImportPro.DataSource = listReceiptProducts;
             gridImportPro.DataBind();
         }
@@ -427,8 +420,7 @@ namespace KobePaint.Pages.TraHang
             ccbNhaCungCap.Text = "";
             ckGiamCongNo.Checked = false;
             memoGhiChu.Text = "";
-            spThanhToan.Number = 0;
-            spTongTien.Number = 0;
+           
             
             dateNgayTra.Date = DateTime.Now;
             ccbBarcode.Text = "";
@@ -471,5 +463,10 @@ namespace KobePaint.Pages.TraHang
             sourceRow.ThanhTien = SLMoi * TienTraMoi;
         }
         #endregion
+
+        protected void dateNgayLap_Init(object sender, EventArgs e)
+        {
+            Formats.InitDateEditControl(sender, e);
+        }
     }
 }

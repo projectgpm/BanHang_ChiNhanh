@@ -112,6 +112,24 @@ namespace KobePaint.Pages.TraHang {
         protected global::DevExpress.Web.ASPxComboBox ccbSoPhieu;
         
         /// <summary>
+        /// ckGiamCongNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxCheckBox ckGiamCongNo;
+        
+        /// <summary>
+        /// dateNgayLap control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxDateEdit dateNgayLap;
+        
+        /// <summary>
         /// LayoutItemNestedControlContainer3 control.
         /// </summary>
         /// <remarks>
@@ -164,33 +182,6 @@ namespace KobePaint.Pages.TraHang {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxMemo memoGhiChu;
-        
-        /// <summary>
-        /// ckGiamCongNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxCheckBox ckGiamCongNo;
-        
-        /// <summary>
-        /// spTongTien control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxSpinEdit spTongTien;
-        
-        /// <summary>
-        /// spThanhToan control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxSpinEdit spThanhToan;
         
         /// <summary>
         /// SplitterContentControl2 control.

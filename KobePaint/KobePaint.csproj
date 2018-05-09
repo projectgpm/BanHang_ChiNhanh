@@ -117,6 +117,7 @@
     <Content Include="Account\Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="images\add.png" />
     <Content Include="Light.master" />
   </ItemGroup>
   <ItemGroup>

@@ -139,6 +139,15 @@ namespace KobePaint.Pages.TraHang {
         protected global::DevExpress.Web.ASPxDateEdit dateNgayTra;
         
         /// <summary>
+        /// dateNgayLap control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxDateEdit dateNgayLap;
+        
+        /// <summary>
         /// LayoutItemNestedControlContainer5 control.
         /// </summary>
         /// <remarks>
@@ -157,6 +166,15 @@ namespace KobePaint.Pages.TraHang {
         protected global::DevExpress.Web.ASPxTextBox txtTenNhanVien;
         
         /// <summary>
+        /// ckGiamCongNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxCheckBox ckGiamCongNo;
+        
+        /// <summary>
         /// LayoutItemNestedControlContainer7 control.
         /// </summary>
         /// <remarks>
@@ -173,60 +191,6 @@ namespace KobePaint.Pages.TraHang {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxMemo memoGhiChu;
-        
-        /// <summary>
-        /// LayoutItemNestedControlContainer6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer6;
-        
-        /// <summary>
-        /// ckGiamCongNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxCheckBox ckGiamCongNo;
-        
-        /// <summary>
-        /// LayoutItemNestedControlContainer8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer8;
-        
-        /// <summary>
-        /// spTongTien control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxSpinEdit spTongTien;
-        
-        /// <summary>
-        /// LayoutItemNestedControlContainer9 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer9;
-        
-        /// <summary>
-        /// spThanhToan control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxSpinEdit spThanhToan;
         
         /// <summary>
         /// SplitterContentControl2 control.

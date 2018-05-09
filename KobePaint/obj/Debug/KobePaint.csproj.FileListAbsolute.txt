@@ -54,3 +54,15 @@ D:\GPM2018\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.Reports.rpPhieuTraHang
 D:\GPM2018\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.Reports.rpPhieuThanhToan.resources
 D:\GPM2018\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.Reports.rpPhieuThuChi.resources
 D:\GPM2018\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.csprojResolveAssemblyReference.cache
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\bin\KobePaint.dll
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\bin\KobePaint.pdb
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.Reports.rpPhieuGiaoHang.resources
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.Reports.rpPhieuGiaoHangNoPrice.resources
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.Reports.rpPhieuThanhToan.resources
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.Reports.rpPhieuThuChi.resources
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.Reports.rpPhieuTraHang.resources
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.Reports.rpPhieuTraHangNoPrice.resources
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.csproj.GenerateResource.Cache
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.dll.licenses
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.dll
+D:\GPMSoffware\BanHang_ChiNhanh\KobePaint\obj\Debug\KobePaint.pdb
