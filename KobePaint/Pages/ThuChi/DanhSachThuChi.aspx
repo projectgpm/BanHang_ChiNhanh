@@ -41,7 +41,7 @@
             </SearchPanel>
         </Styles>
         <Paddings Padding="0px" />
-        <SettingsBehavior AutoExpandAllGroups="True" ConfirmDelete="True" />
+        <SettingsBehavior AutoExpandAllGroups="True" ConfirmDelete="True" AllowSelectByRowClick="True" />
         <SettingsCommandButton>
             <ShowAdaptiveDetailButton ButtonType="Image">
             </ShowAdaptiveDetailButton>

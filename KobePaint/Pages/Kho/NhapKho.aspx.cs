@@ -306,6 +306,8 @@ namespace KobePaint.Pages.Kho
                         detailNhapKho.GiaBan = prod.GiaBanMoi;
                         detailNhapKho.TonKho = prod.TonKho;
                         DBDataProvider.DB.kNhapKhoChiTiets.InsertOnSubmit(detailNhapKho);
+                        DBDataProvider.DB.SubmitChanges();
+
                         //Cập nhật || Thêm tồn kho
                         var TonKhoBanDau = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == prod.IDHangHoa).FirstOrDefault();
                         if (TonKhoBanDau != null)
@@ -323,10 +325,15 @@ namespace KobePaint.Pages.Kho
                                 DBDataProvider.DB.kTheKhos.InsertOnSubmit(thekho);
                             #endregion
                         }
+                        hhHangHoa hang = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == prod.IDHangHoa).FirstOrDefault();
+
+                        // cập nhật giá nhập trung bình cho hàng hóa
+
+                        var GiaVonTB = DBDataProvider.DB.spAVG_IDHangHoa(Convert.ToInt32(hang.IDHangHoa)).FirstOrDefault();
+                        hang.GiaVon = Convert.ToDouble(GiaVonTB.GiaNhapTrungBinh);
+                        // thay đổi giá bán nếu khác giá bán cũ
                         if (prod.GiaBanMoi != prod.GiaBanCu)
                         {
-                            // thay đổi giá bán nếu khác giá bán cũ
-                            hhHangHoa hang = DBDataProvider.DB.hhHangHoas.Where(x => x.IDHangHoa == prod.IDHangHoa).FirstOrDefault();
                             hang.GiaBan = prod.GiaBanMoi;
                         }
                     }
@@ -352,6 +359,7 @@ namespace KobePaint.Pages.Kho
                                 DBDataProvider.DB.SubmitChanges();
                             }
                         #endregion
+
                         nhapKho.CongNoCu = Supplier.CongNo;
                         nhapKho.CongNoMoi = Supplier.CongNo + ConLai;
                         Supplier.TongTienHang += TongTien;

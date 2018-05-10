@@ -55,7 +55,7 @@
     </item>
    
 
-    <item Text="Danh sách khách hàng" NavigateUrl="" />
+    <item Text="Danh sách khách hàng" NavigateUrl="~/Pages/BaoCao/DanhSachKhachHang.aspx" />
     <item Text="Báo cáo công nợ NCC" NavigateUrl="~/Pages/BaoCao/CongNoNCC.aspx" />
     <item Text="Báo cáo thanh toán cho NCC" NavigateUrl="~/Pages/BaoCao/ThanhToanNCC.aspx" />
     <item Text="Báo cáo Nhập-Xuất-Tồn" NavigateUrl="" />

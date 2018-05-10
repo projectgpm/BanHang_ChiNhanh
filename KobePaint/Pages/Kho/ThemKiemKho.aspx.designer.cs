@@ -13,24 +13,6 @@ namespace KobePaint.Pages.Kho {
     public partial class ThemKiemKho {
         
         /// <summary>
-        /// cbpInfo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxCallbackPanel cbpInfo;
-        
-        /// <summary>
-        /// PanelContent3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.PanelContent PanelContent3;
-        
-        /// <summary>
         /// panelImport control.
         /// </summary>
         /// <remarks>
@@ -155,6 +137,24 @@ namespace KobePaint.Pages.Kho {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.SplitterContentControl SplitterContentControl2;
+        
+        /// <summary>
+        /// cbpInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxCallbackPanel cbpInfo;
+        
+        /// <summary>
+        /// PanelContent3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.PanelContent PanelContent3;
         
         /// <summary>
         /// flayoutInfosImport control.

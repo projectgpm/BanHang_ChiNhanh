@@ -12,7 +12,7 @@
     </script>
     <dx:ASPxGridView ID="gridThanhToan" runat="server" AutoGenerateColumns="False" ClientInstanceName="gridThanhToan" DataSourceID="dsPhieuThu" KeyFieldName="IDPhieuThu" Width="100%">
         <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="0" ShowTitlePanel="True" />
-        <SettingsBehavior AutoExpandAllGroups="True" />
+        <SettingsBehavior AutoExpandAllGroups="True" AllowSelectByRowClick="True" EnableCustomizationWindow="True" />
         <SettingsCommandButton>
             <ShowAdaptiveDetailButton ButtonType="Image">
             </ShowAdaptiveDetailButton>

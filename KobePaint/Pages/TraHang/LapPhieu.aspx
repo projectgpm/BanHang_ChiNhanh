@@ -224,7 +224,7 @@
                                                                                         ClientInstanceName="ccbBarcode"
                                                                                         DropDownWidth="600" DropDownStyle="DropDown"
                                                                                         ValueField="IDHangHoa"
-                                                                                        NullText="Nhập Barcode hoặc mã hàng ......." Width="100%" TextFormatString="{0} - {1}"
+                                                                                        NullText="Nhập Barcode hoặc mã hàng" Width="100%" TextFormatString="{0} - {1}"
                                                                                         EnableCallbackMode="true" CallbackPageSize="20"
                                                                                         OnItemsRequestedByFilterCondition="ccbBarcode_ItemsRequestedByFilterCondition"
                                                                                         OnItemRequestedByValue="ccbBarcode_ItemRequestedByValue">

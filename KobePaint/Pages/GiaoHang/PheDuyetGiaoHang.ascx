@@ -20,7 +20,7 @@
             </CancelButton>
         </SettingsCommandButton>
         <ClientSideEvents endcallback="onEndCallBack" />
-        <SettingsDetail ShowDetailRow="True" />
+        <SettingsDetail ShowDetailRow="True" AllowOnlyOneMasterRowExpanded="True" />
         <Templates>
             <DetailRow>
                 <dx:ASPxGridView ID="gridChiTietHang" runat="server" AutoGenerateColumns="False" DataSourceID="dsChiTietDonHang" KeyFieldName="ID" OnBeforePerformDataSelect="gridChiTietHang_BeforePerformDataSelect" OnCustomColumnDisplayText="gridChiTietHang_CustomColumnDisplayText" Width="100%">
@@ -169,6 +169,8 @@
                     </Items>
                 </PropertiesComboBox>
                 <Settings AllowAutoFilter="False" AllowHeaderFilter="False" />
+
+<CellStyle HorizontalAlign="Center" Font-Bold="True"></CellStyle>
             </dx:GridViewDataComboBoxColumn>
         </Columns>
     </dx:ASPxGridView>

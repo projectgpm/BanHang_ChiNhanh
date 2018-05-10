@@ -5,7 +5,7 @@
         <SettingsEditing Mode="Batch">
         </SettingsEditing>
         <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="500" ShowFilterRow="false"/>
-        <SettingsDetail ShowDetailRow="True" />
+        <SettingsDetail ShowDetailRow="True" AllowOnlyOneMasterRowExpanded="True" />
         <SettingsCommandButton>
             <ShowAdaptiveDetailButton ButtonType="Image">
             </ShowAdaptiveDetailButton>
@@ -143,6 +143,8 @@
                     </Items>
                 </PropertiesComboBox>
                 <Settings AllowAutoFilter="False" AllowHeaderFilter="False" />
+
+<CellStyle HorizontalAlign="Center" Font-Bold="True"></CellStyle>
             </dx:GridViewDataComboBoxColumn>
         </Columns>
     </dx:ASPxGridView>

@@ -402,6 +402,13 @@ namespace KobePaint
 				return this.GetTable<ghPhieuGiaoHang>();
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spAVG_IDHangHoa")]
+		public ISingleResult<spAVG_IDHangHoaResult> spAVG_IDHangHoa([global::System.Data.Linq.Mapping.ParameterAttribute(Name="IDHangHoa", DbType="Int")] System.Nullable<int> iDHangHoa)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iDHangHoa);
+			return ((ISingleResult<spAVG_IDHangHoaResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ghPhieuDaiLyThanhToan")]
@@ -9798,6 +9805,32 @@ namespace KobePaint
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	public partial class spAVG_IDHangHoaResult
+	{
+		
+		private double _GiaNhapTrungBinh;
+		
+		public spAVG_IDHangHoaResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GiaNhapTrungBinh", DbType="Float NOT NULL")]
+		public double GiaNhapTrungBinh
+		{
+			get
+			{
+				return this._GiaNhapTrungBinh;
+			}
+			set
+			{
+				if ((this._GiaNhapTrungBinh != value))
+				{
+					this._GiaNhapTrungBinh = value;
+				}
 			}
 		}
 	}
