@@ -44,7 +44,7 @@
   </item>
   
   <item Text="Báo cáo" >
-    <item Text="Báo cáo khách hàng" >
+    <item Text="Báo cáo bán hàng" >
       <item Text="Báo cáo doanh thu" NavigateUrl="~/Pages/BaoCao/DoanhThuDaiLy.aspx" />
       <item Text="Báo cáo doanh thu theo hàng hóa" NavigateUrl="" />
       <item Text="Báo cáo công nợ" NavigateUrl="~/Pages/BaoCao/CongNo.aspx" />

@@ -16,7 +16,7 @@
              UpdateHeightControlInPage(gridChiTietCongNo, hformThongTin);
          }
          function onXemBaoCaoClick() {
-             if (checkInput())
+             //if (checkInput())
                  gridChiTietCongNo.Refresh();
          }
          function checkInput() {
@@ -46,13 +46,13 @@
                     <dx:LayoutItem Caption="Khách hàng">
                         <LayoutItemNestedControlCollection>
                             <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer1" runat="server">
-                                <dx:ASPxComboBox ID="ccbKhachHang" ClientInstanceName="ccbKhachHang" runat="server" DataSourceID="dsKhachHang" DisplayFormatString="{0}" TextField="HoTen" ValueField="IDKhachHang" NullText="---Chọn khách hàng---" Width="100%">
+                                <dx:ASPxComboBox ID="ccbKhachHang" ClientInstanceName="ccbKhachHang" runat="server" DataSourceID="dsKhachHang" DisplayFormatString="{0};{1}" TextField="HoTen" ValueField="IDKhachHang" NullText="---Chọn khách hàng---" Width="100%">
                                     <Columns>
+                                        <dx:ListBoxColumn Caption="Mã khách hàng" FieldName="MaKhachHang" />
                                         <dx:ListBoxColumn Caption="Họ tên" FieldName="HoTen" />
-                                        <dx:ListBoxColumn Caption="Điện thoại" FieldName="DienThoai" />
                                     </Columns>
                                 </dx:ASPxComboBox>
-                                <asp:SqlDataSource ID="dsKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDKhachHang], [HoTen], [DienThoai] FROM [khKhachHang] WHERE [LoaiKhachHangID] <> 2"></asp:SqlDataSource>
+                                <asp:SqlDataSource ID="dsKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [IDKhachHang], [HoTen], [MaKhachHang] FROM [khKhachHang] WHERE [LoaiKhachHangID] <> 2"></asp:SqlDataSource>
                             </dx:LayoutItemNestedControlContainer>
                         </LayoutItemNestedControlCollection>
                     </dx:LayoutItem>
@@ -164,9 +164,9 @@
     <asp:SqlDataSource ID="dsChiTiet" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
         SelectCommand="spDoanhThuDaiLy" SelectCommandType="StoredProcedure">
         <SelectParameters>
-             <asp:ControlParameter ControlID="formThongTin$ccbKhachHang" Name="IDKhachHang" PropertyName="Value" Type="Int32" />
-            <asp:ControlParameter ControlID="formThongTin$fromDay" Name="TuNgay" PropertyName="Value" />
-            <asp:ControlParameter ControlID="formThongTin$toDay" Name="DenNgay" PropertyName="Value" />
+             <asp:ControlParameter ControlID="formThongTin$ccbKhachHang" Name="IDKhachHang" DefaultValue="-1"  PropertyName="Value" />
+            <asp:ControlParameter ControlID="formThongTin$fromDay" Name="TuNgay" DefaultValue="2018-01-01" PropertyName="Value" />
+            <asp:ControlParameter ControlID="formThongTin$toDay" Name="DenNgay" DefaultValue="2018-01-01"   PropertyName="Value" />
         </SelectParameters>
     </asp:SqlDataSource>
    
