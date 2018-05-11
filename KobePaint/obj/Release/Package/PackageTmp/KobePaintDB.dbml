@@ -449,4 +449,10 @@
       <Association Name="nvNhanVien_ghPhieuGiaoHang" Member="nvNhanVien" ThisKey="NhanVienID" OtherKey="IDNhanVien" Type="nvNhanVien" IsForeignKey="true" />
     </Type>
   </Table>
+  <Function Name="dbo.spAVG_IDHangHoa" Method="spAVG_IDHangHoa">
+    <Parameter Name="IDHangHoa" Parameter="iDHangHoa" Type="System.Int32" DbType="Int" />
+    <ElementType Name="spAVG_IDHangHoaResult">
+      <Column Name="GiaNhapTrungBinh" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

@@ -4,7 +4,7 @@
         <SettingsEditing EditFormColumnCount="3">
         </SettingsEditing>
         <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="0" ShowFilterRow="True" ShowTitlePanel="True"/>
-        <SettingsDetail ShowDetailRow="True" />
+        <SettingsDetail ShowDetailRow="True" AllowOnlyOneMasterRowExpanded="True" />
         <Templates>
             <DetailRow>
                 <div style="padding-top:0px; padding-bottom: 14px;">
@@ -36,7 +36,7 @@
                             <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                             </PropertiesSpinEdit>
                         </dx:GridViewDataSpinEditColumn>
-                        <dx:GridViewDataSpinEditColumn Caption="Giá vốn" FieldName="GiaVon" VisibleIndex="5" Width="80px">
+                        <dx:GridViewDataSpinEditColumn Caption="Giá nhập" FieldName="GiaVon" VisibleIndex="5" Width="80px">
                             <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                             </PropertiesSpinEdit>
                         </dx:GridViewDataSpinEditColumn>
@@ -99,7 +99,7 @@ FROM kNhapKhoChiTiet INNER JOIN hhHangHoa ON kNhapKhoChiTiet.HangHoaID = hhHangH
             </SearchPanel>
         </Styles>
         <Paddings Padding="0px" />
-        <SettingsBehavior AutoExpandAllGroups="True" ConfirmDelete="True" />
+        <SettingsBehavior AutoExpandAllGroups="True" ConfirmDelete="True" AllowSelectByRowClick="True" />
         <SettingsCommandButton>
             <ShowAdaptiveDetailButton ButtonType="Image">
             </ShowAdaptiveDetailButton>

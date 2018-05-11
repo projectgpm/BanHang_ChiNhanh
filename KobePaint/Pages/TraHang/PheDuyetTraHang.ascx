@@ -4,7 +4,7 @@
         <ClientSideEvents endcallback="onEndCallBackReturn" />    
         <SettingsEditing Mode="Batch">
         </SettingsEditing>
-        <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="500" ShowFilterRow="false"/>
+        <Settings VerticalScrollBarMode="Visible" ShowFilterRow="false"/>
         <SettingsDetail ShowDetailRow="True" AllowOnlyOneMasterRowExpanded="True" />
         <SettingsCommandButton>
             <ShowAdaptiveDetailButton ButtonType="Image">

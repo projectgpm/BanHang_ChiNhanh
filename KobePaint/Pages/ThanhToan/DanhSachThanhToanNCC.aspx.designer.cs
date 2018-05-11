@@ -13,6 +13,60 @@ namespace KobePaint.Pages.ThanhToan {
     public partial class DanhSachThanhToanNCC {
         
         /// <summary>
+        /// flThongTin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxFormLayout flThongTin;
+        
+        /// <summary>
+        /// LayoutItemNestedControlContainer1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer1;
+        
+        /// <summary>
+        /// btnXuatExcel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxButton btnXuatExcel;
+        
+        /// <summary>
+        /// LayoutItemNestedControlContainer2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer2;
+        
+        /// <summary>
+        /// ccbHienThi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxComboBox ccbHienThi;
+        
+        /// <summary>
+        /// exporterGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxGridViewExporter exporterGrid;
+        
+        /// <summary>
         /// gridThanhToan control.
         /// </summary>
         /// <remarks>

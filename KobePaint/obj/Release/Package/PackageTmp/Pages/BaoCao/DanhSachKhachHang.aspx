@@ -1,21 +1,21 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.master" AutoEventWireup="true" CodeBehind="DanhSachKH.aspx.cs" Inherits="KobePaint.Pages.KH_NCC.DanhSachKH" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.master" AutoEventWireup="true" CodeBehind="DanhSachKhachHang.aspx.cs" Inherits="KobePaint.Pages.BaoCao.DanhSachKhachHang" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <script type="text/javascript">
-        function ShowPopup(elementID, paras) {
-            cbpInfoStep.PerformCallback(paras);
-            popupInfoStep.ShowAtElementByID(elementID);
-        }
-        function HidePopup() {
-            popupInfoStep.Hide();
-        }
-    </script>
-    <dx:ASPxGridView ID="gridDanhSachKH" runat="server" AutoGenerateColumns="False" ClientInstanceName="gridDanhSachKH" DataSourceID="dsKhachHang" KeyFieldName="IDKhachHang" Width="100%" OnHtmlDataCellPrepared="gridDanhSachKH_HtmlDataCellPrepared" OnCustomColumnDisplayText="gridDanhSachKH_CustomColumnDisplayText">
-        <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="0" ShowFilterRow="True" ShowTitlePanel="True"/>
+      <dx:ASPxButton ID="btnXuatExcel" runat="server" OnClick="btnXuatExcel_Click" Text="Xuất Excel">
+       </dx:ASPxButton> 
+      <dx:ASPxGridViewExporter ID="exproter" runat="server" ExportedRowType="All" GridViewID="gridDanhSachKH">
+      </dx:ASPxGridViewExporter>
+    <dx:ASPxGridView ID="gridDanhSachKH" runat="server"  AutoGenerateColumns="False" ClientInstanceName="gridDanhSachKH" DataSourceID="dsKhachHang" KeyFieldName="IDKhachHang" Width="100%" OnCustomColumnDisplayText="gridDanhSachKH_CustomColumnDisplayText">
+        <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="0" ShowFilterRow="True" ShowTitlePanel="True" ShowFooter="True" ShowFilterRowMenu="True"  ShowHeaderFilterButton="true"/>
         <SettingsPager PageSize="30" AlwaysShowPager="True" >
             <Summary EmptyText="Không có dữ liệu" Text="Trang {0}/{1}" />
         </SettingsPager>
         <SettingsSearchPanel Visible="True" />
         <SettingsText EmptyDataRow="Không có dữ liệu !!" HeaderFilterCancelButton="Hủy" HeaderFilterFrom="Từ" HeaderFilterOkButton="Lọc" HeaderFilterTo="Đến" SearchPanelEditorNullText="Nhập thông tin khách hàng cần tìm..." Title="DANH SÁCH KHÁCH HÀNG" />
+         <TotalSummary>
+             <dx:ASPxSummaryItem DisplayFormat="Tổng: {0:N0}" FieldName="TongTienHang" ShowInGroupFooterColumn="Tổng tiền hàng" SummaryType="Sum" />
+             <dx:ASPxSummaryItem DisplayFormat="{0:N0}" FieldName="TienTraHang" ShowInGroupFooterColumn="Tiền trả hàng" SummaryType="Sum" />
+             <dx:ASPxSummaryItem DisplayFormat="{0:N0}" FieldName="CongNo" ShowInGroupFooterColumn="Nợ" SummaryType="Sum" />
+         </TotalSummary>
         <FormatConditions>
             <dx:GridViewFormatConditionHighlight Expression="[TienTTConLai] &gt;= [HanMucCongNo] And [HanMucCongNo] &lt;&gt; 0" FieldName="TienTTConLai" Format="Custom">
                 <CellStyle BackColor="LightPink" ForeColor="DarkRed">
@@ -80,8 +80,6 @@
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn Caption="Điện thoại" FieldName="DienThoai" VisibleIndex="4">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewCommandColumn Caption=" " ShowEditButton="True" VisibleIndex="15" Width="60px">
-            </dx:GridViewCommandColumn>
             <dx:GridViewDataDateColumn Caption="Lần cuối mua hàng" FieldName="LanCuoiMuaHang" VisibleIndex="6">
                 <PropertiesDateEdit DisplayFormatString="dd/MM/yy H:mm:ss" EditFormat="Custom" EditFormatString="dd/MM/yy H:mm:ss">
                 </PropertiesDateEdit>
@@ -97,10 +95,12 @@
                 </PropertiesSpinEdit>
                 <EditFormSettings Visible="False" />
             </dx:GridViewDataSpinEditColumn>
-            <dx:GridViewDataSpinEditColumn Caption="Nợ" FieldName="CongNo" VisibleIndex="11">
+            <dx:GridViewDataSpinEditColumn Caption="Nợ" FieldName="CongNo" VisibleIndex="11" CellStyle-Font-Bold="true">
                 <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">
                 </PropertiesSpinEdit>
                 <EditFormSettings Visible="False" />
+
+<CellStyle Font-Bold="True"></CellStyle>
             </dx:GridViewDataSpinEditColumn>
             <dx:GridViewDataTextColumn Caption="Ghi chú" FieldName="GhiChu" Visible="False" VisibleIndex="13">
                 <EditFormSettings Visible="True" />
@@ -113,31 +113,18 @@
                 </PropertiesComboBox>
             </dx:GridViewDataComboBoxColumn>
         </Columns>
+
+
     </dx:ASPxGridView>
-    <asp:SqlDataSource ID="dsLoaiKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" SelectCommand="SELECT [TenLoaiKhachHang], [IDLoaiKhachHang] FROM [khLoaiKhachHang] WHERE (([DaXoa] = @DaXoa) AND ([IDLoaiKhachHang] &lt;&gt; @IDLoaiKhachHang))">
+    <asp:SqlDataSource ID="dsLoaiKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
+        SelectCommand="SELECT [TenLoaiKhachHang], [IDLoaiKhachHang] FROM [khLoaiKhachHang] WHERE (([DaXoa] = @DaXoa) )">
         <SelectParameters>
             <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
-            <asp:Parameter DefaultValue="2" Name="IDLoaiKhachHang" Type="Int32" />
+           
         </SelectParameters>
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="dsKhachHang" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
-        SelectCommand="SELECT * FROM [khKhachHang] WHERE [DaXoa] = 0 AND [LoaiKhachHangID] <> 2;" 
-        DeleteCommand="DELETE FROM [khKhachHang] WHERE [IDKhachHang] = @IDKhachHang" 
-        UpdateCommand="UPDATE [khKhachHang] SET [HoTen] = @HoTen, [DiaChi] = @DiaChi,[Email] = @Email, [DienThoai] = @DienThoai, [GhiChu] = @GhiChu WHERE [IDKhachHang] = @IDKhachHang">
-        <SelectParameters>
-            <%--<asp:Parameter Name="DaXoa" Type="Int32" />--%>
-        </SelectParameters>
-        <DeleteParameters>
-           <%-- <asp:Parameter Name="IDKhachHang" Type="Int32" />--%>
-        </DeleteParameters>
-        <UpdateParameters>
-            <asp:Parameter Name="HoTen" Type="String" />
-            <asp:Parameter Name="DiaChi" Type="String" />
-            <asp:Parameter Name="DienThoai" Type="String" />
-            <asp:Parameter Name="GhiChu" Type="String" />
-            <asp:Parameter Name="Email" Type="String" />
-            <asp:Parameter Name="IDKhachHang" Type="Int32" />
-        </UpdateParameters>
+        SelectCommand="SELECT * FROM [khKhachHang] WHERE [DaXoa] = 0">
     </asp:SqlDataSource>
     <dx:ASPxGlobalEvents ID="globalEventGrid" runat="server">
         <ClientSideEvents BrowserWindowResized="function(s, e) {
@@ -146,19 +133,4 @@
 	        UpdateControlHeight(gridDanhSachKH);
         }" />
     </dx:ASPxGlobalEvents>
-    <dx:ASPxPopupControl ID="popupInfoStep" runat="server" ClientInstanceName="popupInfoStep" CloseAction="MouseOut" ShowHeader="False" Width="300px">
-        <ContentCollection>
-            <dx:PopupControlContentControl runat="server">
-                <div id="contentPopup">
-                    <dx:ASPxCallbackPanel ID="cbpInfoStep" ClientInstanceName="cbpInfoStep" runat="server" OnCallback="cbpInfoStep_Callback" Width="100%">
-                        <PanelCollection>
-                            <dx:PanelContent runat="server">
-                                <asp:Literal ID="litNoiDung" runat="server"></asp:Literal>
-                            </dx:PanelContent>
-                        </PanelCollection>
-                    </dx:ASPxCallbackPanel>
-                </div>
-            </dx:PopupControlContentControl>
-        </ContentCollection>
-    </dx:ASPxPopupControl>
 </asp:Content>

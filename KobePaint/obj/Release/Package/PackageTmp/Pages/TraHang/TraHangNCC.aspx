@@ -117,11 +117,15 @@
                                                             <dx:LayoutItem Caption="Nhà cung cấp">
                                                                 <LayoutItemNestedControlCollection>
                                                                     <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer2" runat="server">
-                                                                        <dx:ASPxComboBox ID="ccbNhaCungCap" ClientInstanceName="ccbNhaCungCap" NullText="-- Chọn nhà cung cấp --" runat="server" Width="100%" DataSourceID="dsNhaCungCap" ValueField="IDKhachHang" TextField="HoTen">
+                                                                        <dx:ASPxComboBox ID="ccbNhaCungCap" ClientInstanceName="ccbNhaCungCap" TextFormatString="{0};{1}" NullText="-- Chọn nhà cung cấp --" runat="server" Width="100%" DataSourceID="dsNhaCungCap" ValueField="IDKhachHang" TextField="HoTen">
                                                                         <ClientSideEvents SelectedIndexChanged="ccbNhaCungCapChanged" />
+                                                                            <Columns>
+                                                                                <dx:ListBoxColumn FieldName="MaKhachHang" Width="100px" Caption="Mã khách hàng" />
+                                                                                <dx:ListBoxColumn FieldName="HoTen" Width="250px" Caption="Tên khách hàng" />
+                                                                            </Columns>
                                                                         </dx:ASPxComboBox>
                                                                         <asp:SqlDataSource ID="dsNhaCungCap" runat="server" ConnectionString="<%$ ConnectionStrings:KobePaintConnectionString %>" 
-                                                                            SelectCommand="SELECT [IDKhachHang], [HoTen] FROM [khKhachHang] WHERE (([DaXoa] = @DaXoa) AND ([LoaiKhachHangID] = @LoaiKhachHangID)) ORDER BY [HoTen]">
+                                                                            SelectCommand="SELECT [IDKhachHang],[MaKhachHang], [HoTen] FROM [khKhachHang] WHERE (([DaXoa] = @DaXoa) AND ([LoaiKhachHangID] = @LoaiKhachHangID)) ORDER BY [HoTen]">
                                                                             <SelectParameters>
                                                                                 <asp:Parameter DefaultValue="0" Name="DaXoa" Type="Int32" />
                                                                                 <asp:Parameter DefaultValue="2" Name="LoaiKhachHangID" Type="Int32" />
@@ -222,7 +226,7 @@
                                                                                         ClientInstanceName="ccbBarcode"
                                                                                         DropDownWidth="600" DropDownStyle="DropDown"
                                                                                         ValueField="IDHangHoa"
-                                                                                        NullText="Nhập Barcode hoặc mã hàng ......." Width="100%" TextFormatString="{0} - {1}"
+                                                                                        NullText="Nhập Barcode hoặc mã hàng" Width="100%" TextFormatString="{0} - {1}"
                                                                                         EnableCallbackMode="true" CallbackPageSize="20"
                                                                                         OnItemsRequestedByFilterCondition="ccbBarcode_ItemsRequestedByFilterCondition"
                                                                                         OnItemRequestedByValue="ccbBarcode_ItemRequestedByValue">
@@ -293,7 +297,7 @@
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewCommandColumn Caption="Xóa" ShowDeleteButton="True" ShowInCustomizationForm="True" VisibleIndex="9" Width="50px">
                                                                 </dx:GridViewCommandColumn>
-                                                                <dx:GridViewDataTextColumn Caption="TK" FieldName="TonKho" ShowInCustomizationForm="True" VisibleIndex="3" Width="50px">
+                                                                <dx:GridViewDataTextColumn Caption="Tồn" FieldName="TonKho" ShowInCustomizationForm="True" VisibleIndex="3" Width="50px">
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataSpinEditColumn Caption="Thành tiền" FieldName="ThanhTien" ShowInCustomizationForm="True" VisibleIndex="6" Width="100px">
                                                                     <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">

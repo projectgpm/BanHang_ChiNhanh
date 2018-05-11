@@ -301,7 +301,7 @@
             this.xrLabel14,
             this.xrTable2});
             this.Detail1.Dpi = 100F;
-            this.Detail1.HeightF = 308.0256F;
+            this.Detail1.HeightF = 298.0256F;
             this.Detail1.Name = "Detail1";
             // 
             // xrLabel19
@@ -542,7 +542,7 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTable2.Dpi = 100F;
             this.xrTable2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
-            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(9.999997F, 273.0256F);
+            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(10.00001F, 263.0256F);
             this.xrTable2.Name = "xrTable2";
             this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow2});
@@ -727,7 +727,7 @@
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "TongCongNo")});
             this.xrLabel8.Dpi = 100F;
             this.xrLabel8.Font = new System.Drawing.Font("Times New Roman", 11F);
-            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(82.89539F, 115.8482F);
+            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(76.50383F, 115.8482F);
             this.xrLabel8.Name = "xrLabel8";
             this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel8.SizeF = new System.Drawing.SizeF(515.6086F, 23F);
@@ -917,7 +917,7 @@
             this.lblBangChu.LocationFloat = new DevExpress.Utils.PointFloat(8.503828F, 115.8482F);
             this.lblBangChu.Name = "lblBangChu";
             this.lblBangChu.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lblBangChu.SizeF = new System.Drawing.SizeF(74.3915F, 23F);
+            this.lblBangChu.SizeF = new System.Drawing.SizeF(68F, 23F);
             this.lblBangChu.StylePriority.UseFont = false;
             this.lblBangChu.Text = "Bằng chữ:";
             // 

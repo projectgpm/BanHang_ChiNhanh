@@ -172,7 +172,7 @@
                                                                                                 </asp:SqlDataSource>
                                                                                             </td>
                                                                                             <td style="width: 10%; padding-left: 10px;">
-                                                                                                <dx:ASPxHyperLink ID="hpThemNCC" Target="_blank" runat="server" Text="Thêm" NavigateUrl="/Pages/KhachHang/ThemKH.aspx">
+                                                                                                <dx:ASPxHyperLink ID="hpThemNCC" Target="_blank" runat="server" Text="Thêm" NavigateUrl="~/Pages/KhachHang/ThemKH.aspx">
                                                                                                 </dx:ASPxHyperLink>
 
                                                                                             </td>

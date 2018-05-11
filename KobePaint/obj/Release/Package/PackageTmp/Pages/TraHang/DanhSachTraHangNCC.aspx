@@ -25,7 +25,7 @@
         <SettingsEditing EditFormColumnCount="3">
         </SettingsEditing>
         <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="0" ShowFilterRow="True" ShowTitlePanel="True"/>
-        <SettingsDetail ShowDetailRow="True" />
+        <SettingsDetail ShowDetailRow="True" AllowOnlyOneMasterRowExpanded="True" />
         <Templates>
             <DetailRow>
                 <div style="padding-top:0px; padding-bottom: 14px;">
@@ -123,7 +123,7 @@
             </SearchPanel>
         </Styles>
         <Paddings Padding="0px" />
-        <SettingsBehavior AutoExpandAllGroups="True" ConfirmDelete="True" />
+        <SettingsBehavior AutoExpandAllGroups="True" ConfirmDelete="True" AllowSelectByRowClick="True" />
         <SettingsCommandButton>
             <ShowAdaptiveDetailButton ButtonType="Image">
             </ShowAdaptiveDetailButton>

@@ -30,7 +30,7 @@
   </item>
   
   <item Text="Thanh toán" >
-    <item Text="Lập phiếu thanh toán" NavigateUrl="~/Pages/ThanhToan/LapThanhToan.aspx" />
+    <item Text="Lập phiếu KH thanh toán" NavigateUrl="~/Pages/ThanhToan/LapThanhToan.aspx" />
     <item Text="Danh sách thanh toán" NavigateUrl="~/Pages/ThanhToan/DanhSachThanhToan.aspx" />
     <item Text="Lập phiếu thanh toán NCC" NavigateUrl="~/Pages/ThanhToan/LapThanhToanNCC.aspx" />
     <item Text="Danh sách thanh toán NCC" NavigateUrl="~/Pages/ThanhToan/DanhSachThanhToanNCC.aspx" />
@@ -44,9 +44,9 @@
   </item>
   
   <item Text="Báo cáo" >
-    <item Text="Báo cáo khách hàng" >
+    <item Text="Báo cáo bán hàng" >
       <item Text="Báo cáo doanh thu" NavigateUrl="~/Pages/BaoCao/DoanhThuDaiLy.aspx" />
-      <item Text="Báo cáo doanh thu theo hàng hóa" NavigateUrl="" />
+      <item Text="Báo cáo doanh thu theo hàng hóa(chưa)" NavigateUrl="" />
       <item Text="Báo cáo công nợ" NavigateUrl="~/Pages/BaoCao/CongNo.aspx" />
       <item Text="Báo cáo công nợ chi tiết theo ngày" NavigateUrl="~/Pages/BaoCao/CongNoDLTheoNgay.aspx" />
       <item Text="Báo cáo công nợ chi tiết theo khách hàng" NavigateUrl="~/Pages/BaoCao/CongNoDLChiTiet.aspx" />
@@ -55,14 +55,14 @@
     </item>
    
 
-    <item Text="Danh sách khách hàng" NavigateUrl="" />
+    <item Text="Danh sách khách hàng" NavigateUrl="~/Pages/BaoCao/DanhSachKhachHang.aspx" />
     <item Text="Báo cáo công nợ NCC" NavigateUrl="~/Pages/BaoCao/CongNoNCC.aspx" />
     <item Text="Báo cáo thanh toán cho NCC" NavigateUrl="~/Pages/BaoCao/ThanhToanNCC.aspx" />
-    <item Text="Báo cáo Nhập-Xuất-Tồn" NavigateUrl="" />
-    <item Text="Báo cáo tồn kho" NavigateUrl="" />
-    <item Text="Báo cáo nhập kho chi tiết" NavigateUrl="" />
-    <item Text="Báo cáo xuất kho chi tiết" NavigateUrl="" />
-    <item Text="Báo cáo doanh thu tổng hợp" NavigateUrl="" />
+    <item Text="Báo cáo Nhập-Xuất-Tồn(chưa)" NavigateUrl="" />
+    <item Text="Báo cáo tồn kho(chưa)" NavigateUrl="" />
+    <item Text="Báo cáo nhập kho chi tiết(chưa)" NavigateUrl="" />
+    <item Text="Báo cáo xuất kho chi tiết(chưa)" NavigateUrl="" />
+    <item Text="Báo cáo doanh thu tổng hợp(chưa)" NavigateUrl="" />
    
   </item>
   <item Text="Hệ thống" >

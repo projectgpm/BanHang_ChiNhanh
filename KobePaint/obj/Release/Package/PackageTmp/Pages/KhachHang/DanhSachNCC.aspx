@@ -39,6 +39,7 @@
         <Paddings Padding="0px" />
         <Border BorderWidth="0px" />
         <BorderBottom BorderWidth="1px" />
+        <SettingsBehavior AllowSelectByRowClick="True" />
         <SettingsCommandButton>
             <ShowAdaptiveDetailButton ButtonType="Image">
             </ShowAdaptiveDetailButton>

@@ -9,10 +9,44 @@
         function onEndCallBackViewRp() {            
             reportViewer.GetViewer().Refresh();            
         }
+        function ccbHienThiSelectChange() {
+            if (ccbHienThi.GetValue() == 0) {
+                gridThanhToan.CollapseAll();
+            }
+            else {
+                gridThanhToan.ExpandAll()
+            }
+        }
     </script>
-    <dx:ASPxGridView ID="gridThanhToan" runat="server" AutoGenerateColumns="False" ClientInstanceName="gridThanhToan" DataSourceID="dsPhieuThu" KeyFieldName="IDPhieuThu" Width="100%">
-        <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="0" ShowTitlePanel="True" />
-        <SettingsBehavior AutoExpandAllGroups="True" />
+    <dx:ASPxFormLayout ID="flThongTin" runat="server" ClientInstanceName="flThongTin" ColCount="2">
+        <Items>
+            <dx:LayoutItem ShowCaption="False">
+                <LayoutItemNestedControlCollection>
+                    <dx:LayoutItemNestedControlContainer runat="server">
+                        <dx:ASPxButton ID="btnXuatExcel" runat="server" ClientInstanceName="btnXuatExcel" Text="Xuất Excel" OnClick="btnXuatExcel_Click">
+                        </dx:ASPxButton>
+                    </dx:LayoutItemNestedControlContainer>
+                </LayoutItemNestedControlCollection>
+            </dx:LayoutItem>
+            <dx:LayoutItem Caption="Hiển thị">
+                <LayoutItemNestedControlCollection>
+                    <dx:LayoutItemNestedControlContainer runat="server">
+                        <dx:ASPxComboBox ID="ccbHienThi" runat="server" ClientInstanceName="ccbHienThi" SelectedIndex="0">
+                            <Items>
+                                <dx:ListEditItem Text="Thu gọn các hàng" Value="0" />
+                                <dx:ListEditItem Text="Mở rộng các hàng" Value="1" />
+                            </Items>
+                            <ClientSideEvents SelectedIndexChanged="ccbHienThiSelectChange" />
+                        </dx:ASPxComboBox>
+                    </dx:LayoutItemNestedControlContainer>
+                </LayoutItemNestedControlCollection>
+            </dx:LayoutItem>
+        </Items>
+    </dx:ASPxFormLayout>
+    <dx:ASPxGridView ID="gridThanhToan"  runat="server"  AutoGenerateColumns="False" ClientInstanceName="gridThanhToan" DataSourceID="dsPhieuThu" KeyFieldName="IDPhieuThu" Width="100%">
+        
+        <Settings  VerticalScrollBarMode="Visible" VerticalScrollableHeight="0" ShowTitlePanel="false" />
+        <SettingsBehavior  AutoExpandAllGroups="True" AllowSelectByRowClick="True" EnableCustomizationWindow="True" />
         <SettingsCommandButton>
             <ShowAdaptiveDetailButton ButtonType="Image">
             </ShowAdaptiveDetailButton>
@@ -107,6 +141,8 @@
 	        UpdateControlHeight(gridThanhToan);                      
         }" />
     </dx:ASPxGlobalEvents>
+    <dx:ASPxGridViewExporter ID="exporterGrid" runat="server" GridViewID="gridThanhToan">
+    </dx:ASPxGridViewExporter>
     <dx:ASPxPopupControl ID="popupViewReport" ClientInstanceName="popupViewReport" runat="server" HeaderText="Đại lý thanh toán" Width="850px" ShowHeader="false" PopupVerticalAlign="WindowCenter" Height="600px" PopupHorizontalAlign="WindowCenter" ScrollBars="Auto" >
         <ContentCollection>
             <dx:PopupControlContentControl runat="server">

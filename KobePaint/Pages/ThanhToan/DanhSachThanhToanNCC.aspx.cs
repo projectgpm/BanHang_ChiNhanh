@@ -1,4 +1,6 @@
-﻿using DevExpress.Web;
+﻿using DevExpress.Export;
+using DevExpress.Web;
+using DevExpress.XtraPrinting;
 using KobePaint.App_Code;
 using KobePaint.Reports;
 using System;
@@ -20,6 +22,7 @@ namespace KobePaint.Pages.ThanhToan
             }
             if (!IsPostBack)
             {
+                gridThanhToan.CollapseAll();
                 hdfViewReport["view"] = 0;
             }
             if (hdfViewReport["view"].ToString() != "0")
@@ -72,6 +75,11 @@ namespace KobePaint.Pages.ThanhToan
             {
                 Session["oPhieuTT"] = value;
             }
+        }
+
+        protected void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+            exporterGrid.WriteXlsxToResponse(new XlsxExportOptionsEx { ExportType = ExportType.WYSIWYG });
         }
     }
 }

@@ -217,7 +217,7 @@
                                                                                                 </asp:SqlDataSource>
                                                                                             </td>
                                                                                             <td style="width: 10%; padding-left: 10px;">
-                                                                                                <dx:ASPxHyperLink ID="hpThemNCC" Target="_blank" runat="server" Text="Thêm" NavigateUrl="/Pages/KhachHang/ThemKH.aspx" ImageHeight="30px" ImageUrl="~/images/add.png" ImageWidth="30px" ToolTip="Thêm mới">
+                                                                                                <dx:ASPxHyperLink ID="hpThemNCC" Target="_blank" runat="server" Text="Thêm" NavigateUrl="~/Pages/KhachHang/ThemKH.aspx" ImageHeight="30px" ImageUrl="~/images/add.png" ImageWidth="30px" ToolTip="Thêm mới">
                                                                                                 </dx:ASPxHyperLink>
                                                                                             </td>
                                                                                         </tr>
@@ -434,7 +434,7 @@
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewCommandColumn Caption="Xóa" ShowDeleteButton="True" ShowInCustomizationForm="True" VisibleIndex="9" Width="50px">
                                                                 </dx:GridViewCommandColumn>
-                                                                <dx:GridViewDataTextColumn Caption="TK" FieldName="TonKho" ShowInCustomizationForm="True" VisibleIndex="3" Width="50px">
+                                                                <dx:GridViewDataTextColumn Caption="Tồn" FieldName="TonKho" ShowInCustomizationForm="True" VisibleIndex="3" Width="50px">
                                                                 </dx:GridViewDataTextColumn>
                                                                 <dx:GridViewDataSpinEditColumn Caption="Thành tiền" FieldName="ThanhTien" ShowInCustomizationForm="True" VisibleIndex="7" Width="150px">
                                                                     <PropertiesSpinEdit DisplayFormatString="N0" NumberFormat="Custom">

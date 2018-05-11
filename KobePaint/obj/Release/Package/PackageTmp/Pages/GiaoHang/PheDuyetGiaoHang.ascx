@@ -4,7 +4,7 @@
 <dx:ASPxGridView ID="gridDonHang" ClientInstanceName="gridDonHang" runat="server" AutoGenerateColumns="False" DataSourceID="dsDonHang" KeyFieldName="IDPhieuGiaoHang" Width="100%" OnCustomColumnDisplayText="gridDonHang_CustomColumnDisplayText" OnRowUpdating="gridDonHang_RowUpdating">
         <SettingsEditing Mode="Batch">
         </SettingsEditing>
-        <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="500" ShowFilterRow="false"/>
+        <Settings VerticalScrollBarMode="Visible"  ShowFilterRow="false"/>
         <SettingsCommandButton>
             <ShowAdaptiveDetailButton ButtonType="Image">
             </ShowAdaptiveDetailButton>
@@ -20,7 +20,7 @@
             </CancelButton>
         </SettingsCommandButton>
         <ClientSideEvents endcallback="onEndCallBack" />
-        <SettingsDetail ShowDetailRow="True" />
+        <SettingsDetail ShowDetailRow="True" AllowOnlyOneMasterRowExpanded="True" />
         <Templates>
             <DetailRow>
                 <dx:ASPxGridView ID="gridChiTietHang" runat="server" AutoGenerateColumns="False" DataSourceID="dsChiTietDonHang" KeyFieldName="ID" OnBeforePerformDataSelect="gridChiTietHang_BeforePerformDataSelect" OnCustomColumnDisplayText="gridChiTietHang_CustomColumnDisplayText" Width="100%">
@@ -161,6 +161,14 @@
             <dx:GridViewDataTextColumn Caption="Địa chỉ giao hàng" FieldName="DiaChiGiaoHang" Width="150px" VisibleIndex="10" ReadOnly="true">
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataComboBoxColumn Caption="Phê duyệt" FieldName="TrangThai" VisibleIndex="11" Width="150px" CellStyle-HorizontalAlign="Center" CellStyle-Font-Bold="true">
+               <%-- <DataItemTemplate>
+                    <dx:ASPxComboBox runat="server" ID="TrangThai"
+                        Value='<%# Eval("TrangThai")%>' ValueType="System.Int32" Width="100%">
+                    </dx:ASPxComboBox >
+                </DataItemTemplate>--%>
+                 <CellStyle>
+                    <Paddings Padding="2px" />
+                </CellStyle>
                 <PropertiesComboBox EnableFocusedStyle="False">
                     <Items>
                         <dx:ListEditItem Text="Đã đặt" Value="0" />
@@ -168,7 +176,9 @@
                         <dx:ListEditItem Text="Hủy đơn hàng" Value="2" />
                     </Items>
                 </PropertiesComboBox>
-                <Settings AllowAutoFilter="False" AllowHeaderFilter="False" />
+            <Settings AllowAutoFilter="False" AllowHeaderFilter="False" />
+
+<CellStyle HorizontalAlign="Center" Font-Bold="True"></CellStyle>
             </dx:GridViewDataComboBoxColumn>
         </Columns>
     </dx:ASPxGridView>

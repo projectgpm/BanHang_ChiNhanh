@@ -54,7 +54,7 @@
 
     <dx:ASPxGridView ID="gridHangHoa" runat="server" AutoGenerateColumns="False" ClientInstanceName="gridHangHoa" Width="100%" DataSourceID="dsHangHoa" KeyFieldName="IDHangHoa" OnCustomColumnDisplayText="grid_CustomColumnDisplayText">
         <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="0" ShowFilterRow="True"/>
-        <SettingsDetail ShowDetailRow="True" />
+        <SettingsDetail ShowDetailRow="True" AllowOnlyOneMasterRowExpanded="True" />
         <Templates>
             <DetailRow>
                 <div style="width: 100%; text-align:center;">
@@ -157,7 +157,7 @@
         <Paddings Padding="0px" />
         <Border BorderWidth="0px" />
         <BorderBottom BorderWidth="1px" />
-        <SettingsBehavior ConfirmDelete="True" />
+        <SettingsBehavior ConfirmDelete="True" AllowSelectByRowClick="True" />
         <SettingsCommandButton>
             <ShowAdaptiveDetailButton ButtonType="Image">
             </ShowAdaptiveDetailButton>

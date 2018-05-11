@@ -9,9 +9,44 @@
         function onEndCallBackViewRp() {
             reportViewer.GetViewer().Refresh();
         }
+        function ccbHienThiSelectChange() {
+            if (ccbHienThi.GetValue() == 0) {
+                gridThanhToan.CollapseAll();
+            }
+            else {
+                gridThanhToan.ExpandAll()
+            }
+        }
     </script>
+    <dx:ASPxFormLayout ID="flThongTin" runat="server" ClientInstanceName="flThongTin" ColCount="2">
+        <Items>
+            <dx:LayoutItem ShowCaption="False">
+                <LayoutItemNestedControlCollection>
+                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer1" runat="server">
+                        <dx:ASPxButton ID="btnXuatExcel" runat="server" ClientInstanceName="btnXuatExcel" Text="Xuất Excel" OnClick="btnXuatExcel_Click">
+                        </dx:ASPxButton>
+                    </dx:LayoutItemNestedControlContainer>
+                </LayoutItemNestedControlCollection>
+            </dx:LayoutItem>
+            <dx:LayoutItem Caption="Hiển thị">
+                <LayoutItemNestedControlCollection>
+                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer2" runat="server">
+                        <dx:ASPxComboBox ID="ccbHienThi" runat="server" ClientInstanceName="ccbHienThi" SelectedIndex="0">
+                            <Items>
+                                <dx:ListEditItem Text="Thu gọn các hàng" Value="0" />
+                                <dx:ListEditItem Text="Mở rộng các hàng" Value="1" />
+                            </Items>
+                            <ClientSideEvents SelectedIndexChanged="ccbHienThiSelectChange" />
+                        </dx:ASPxComboBox>
+                    </dx:LayoutItemNestedControlContainer>
+                </LayoutItemNestedControlCollection>
+            </dx:LayoutItem>
+        </Items>
+    </dx:ASPxFormLayout>
+     <dx:ASPxGridViewExporter ID="exporterGrid" runat="server" GridViewID="gridThanhToan">
+    </dx:ASPxGridViewExporter>
     <dx:ASPxGridView ID="gridThanhToan" runat="server" AutoGenerateColumns="False" ClientInstanceName="gridThanhToan" DataSourceID="dsPhieuThu" KeyFieldName="IDPhieuThu" Width="100%">
-        <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="0" ShowTitlePanel="True" />
+        <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="0" ShowTitlePanel="false" />
         <SettingsBehavior AutoExpandAllGroups="True" />
         <SettingsCommandButton>
             <ShowAdaptiveDetailButton ButtonType="Image">
