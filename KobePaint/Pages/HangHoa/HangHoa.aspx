@@ -53,6 +53,7 @@
 
 
     <dx:ASPxGridView ID="gridHangHoa" runat="server" AutoGenerateColumns="False" ClientInstanceName="gridHangHoa" Width="100%" DataSourceID="dsHangHoa" KeyFieldName="IDHangHoa" OnCustomColumnDisplayText="grid_CustomColumnDisplayText">
+        
         <Settings VerticalScrollBarMode="Visible" VerticalScrollableHeight="0" ShowFilterRow="True"/>
         <SettingsDetail ShowDetailRow="True" AllowOnlyOneMasterRowExpanded="True" />
         <Templates>
@@ -75,7 +76,9 @@
                                     </Image>
                                 </EditButton>
                                 <DeleteButton ButtonType="Image" RenderMode="Image">
+
                                     <Image IconID="actions_close_16x16devav">
+                                     
                                     </Image>
                                 </DeleteButton>
                             </SettingsCommandButton>
@@ -179,9 +182,10 @@
                 <Image IconID="edit_edit_16x16office2013" ToolTip="Cập nhật tên và giá">
                 </Image>
             </EditButton>
-            <DeleteButton ButtonType="Image" RenderMode="Image">
+            <DeleteButton ButtonType="Image"  RenderMode="Image">
                 <Image IconID="arrows_play_16x16" ToolTip="Ngừng kinh doanh">
                 </Image>
+                 <%--<Image ToolTip="Ngừng kinh doanh" Url="../../images/add.png" Width="16px" Height="16px" />--%>
             </DeleteButton>
         </SettingsCommandButton>
         <EditFormLayoutProperties ColCount="2">

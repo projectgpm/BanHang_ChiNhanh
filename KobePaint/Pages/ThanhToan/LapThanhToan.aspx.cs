@@ -92,6 +92,7 @@ namespace KobePaint.Pages.ThanhToan
                     ListPhieuThanhToan(IDKhachHang);
                     break;
                 case "Review": CreateReportReview(); break;
+                case "redirect": DevExpress.Web.ASPxWebControl.RedirectOnCallback("~/Pages/ThanhToan/LapThanhToan.aspx"); break;
                 default:
                     LuuThanhToan();
                     Reset();
@@ -302,10 +303,7 @@ namespace KobePaint.Pages.ThanhToan
             }
         }
 
-        protected void btnRenew_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Pages/ThanhToan/LapThanhToan.aspx");
-        }
+        
     }
     
 }

@@ -29,13 +29,13 @@
             ccbNhaCungCap.PerformCallback();
         }
         function onSaveClick() {
-            if (checkInput()) {
+            if (checkInput() && confirm('Xác nhận tao tác ?')) {
                 cbpInfoImport.PerformCallback('Save');
                 cbpInfoImport.PerformCallback('redirect');
             }
         }
         function onSaveNextClick() {
-            if (checkInput()) {
+            if (checkInput() && confirm('Xác nhận tao tác ?')) {
                 cbpInfoImport.PerformCallback('Save');
                 cbpInfo.PerformCallback('refresh');
             }
@@ -71,6 +71,7 @@
                 alert('Tiền thanh toán phải lớn hơn hoặc bằng 0.');
                 return false;
             };
+            
             return true;
         }
 
@@ -407,17 +408,7 @@
                                     <div style="align-items: center; text-align: center; padding-top: 5px;">
                                         <table style="margin: 0 auto;">
                                             <tr>
-                                                <%-- <td style="padding-right:10px;">
-                                        <dx:ASPxButton  ID="btnPreview" runat="server" Text="Xem trước" BackColor="#5cb85c" AutoPostBack="false" UseSubmitBehavior="false">
-                                            <ClientSideEvents Click="onReviewClick" />
-                                        </dx:ASPxButton>
-                                    </td>--%>
-                                                <%--<td>
-                                                    <dx:ASPxButton ID="btnLuuTemp" runat="server" Text="Lưu tạm" AutoPostBack="false" UseSubmitBehavior="false">
-                                                        <ClientSideEvents Click="onSaveTempClick" />
-                                                    </dx:ASPxButton>
-                                                </td>--%>
-                                                <td style="padding-left: 10px">
+                                                <td>
                                                     <dx:ASPxButton ID="btnLuuVaIn" runat="server" Text="Lưu kho" AutoPostBack="false" UseSubmitBehavior="false">
                                                         <ClientSideEvents Click="onSaveClick" />
                                                     </dx:ASPxButton>
@@ -428,7 +419,8 @@
                                                     </dx:ASPxButton>
                                                 </td>
                                                 <td style="padding-left: 10px;">
-                                                    <dx:ASPxButton ID="btnRenew" runat="server" Text="Trở về" BackColor="#d9534f" AutoPostBack="true" PostBackUrl="~/Pages/Kho/DanhSachNhapKho.aspx" UseSubmitBehavior="false">
+                                                    <dx:ASPxButton ID="btnTroVe"  ClientInstanceName="btnTroVe" runat="server" Text="Trở về" BackColor="#d9534f" AutoPostBack="false"  UseSubmitBehavior="false">
+                                                    <ClientSideEvents Click=" function(){ if(confirm('Xác nhận tao tác ?')){ cbpInfoImport.PerformCallback('redirect'); } }" />
                                                     </dx:ASPxButton>
                                                 </td>
                                             </tr>

@@ -15,25 +15,29 @@
                             <dx:LayoutItem ShowCaption="False">
                                 <LayoutItemNestedControlCollection>
                                     <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer1" runat="server">
-                                        <dx:ASPxButton ID="btnXuatExcel" runat="server" OnClick="btnXuatExcel_Click" Text="Xuất Excel">
-                                        </dx:ASPxButton>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                      <dx:ASPxButton ID="btnXuatExcel" runat="server" OnClick="btnXuatExcel_Click" Text="Xuất Excel"> </dx:ASPxButton>
+
+                                                </td>
+                                                <td style="padding-left:10px">
+                                                    <dx:ASPxComboBox Caption="Loại tồn kho" ID="ccbLoaiTonKho" runat="server" AutoPostBack="false" ClientInstanceName="ccbLoaiTonKho" SelectedIndex="0" >
+                                                        <Items>
+                                                            <dx:ListEditItem Selected="True" Text="Chỉ lấy hàng tồn" Value="0" />
+                                                            <dx:ListEditItem Text="Hết hàng" Value="1" />
+                                                            <dx:ListEditItem Text="Tất cả" Value="2" />
+                                                        </Items>
+                                                        <ClientSideEvents SelectedIndexChanged="function(s,e){ LoadTonKho(); }" />
+                                                    </dx:ASPxComboBox>    
+                                                </td>
+                                            </tr>
+                                        </table>
+                                      
                                     </dx:LayoutItemNestedControlContainer>
                                 </LayoutItemNestedControlCollection>
                             </dx:LayoutItem>
-                            <dx:LayoutItem Caption="Loại tồn kho" HorizontalAlign="Left" Width="100%">
-                                <LayoutItemNestedControlCollection>
-                                    <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer2" runat="server">
-                                        <dx:ASPxComboBox ID="ccbLoaiTonKho" runat="server" AutoPostBack="false" ClientInstanceName="ccbLoaiTonKho" SelectedIndex="0" >
-                                            <Items>
-                                                <dx:ListEditItem Selected="True" Text="Chỉ lấy hàng tồn" Value="0" />
-                                                <dx:ListEditItem Text="Hết hàng" Value="1" />
-                                                <dx:ListEditItem Text="Tất cả" Value="2" />
-                                            </Items>
-                                            <ClientSideEvents SelectedIndexChanged="function(s,e){ LoadTonKho(); }" />
-                                        </dx:ASPxComboBox>    
-                                    </dx:LayoutItemNestedControlContainer>
-                                </LayoutItemNestedControlCollection>
-                            </dx:LayoutItem>
+                            
                             <dx:LayoutItem Caption="Nhóm khách hàng" ColSpan="2" ShowCaption="False">
                                 <LayoutItemNestedControlCollection>
                                     <dx:LayoutItemNestedControlContainer ID="LayoutItemNestedControlContainer3" runat="server">

@@ -20,9 +20,11 @@
                 cbpThemHH.PerformCallback('Save');
             }
         }
-        function onRenewClick()
-        {
-            cbpThemHH.PerformCallback('Renew');
+        function onRenewClick() {
+
+            if (confirm('Xác nhận thao tác ?'))
+                cbpThemHH.PerformCallback('Renew');
+            ;
         }
         //popup
         function ShowDVT() {
@@ -186,23 +188,23 @@
                                         <dx:LayoutItemNestedControlContainer runat="server">
                                             <table >
                                                 <tr>
-                                                    <td style="padding-right:10px;width:110px;">
+                                                    <td >
                                                         <dx:ASPxButton ID="btnSave" runat="server" Text="Lưu" ValidationGroup="checkInput" AutoPostBack="false">
                                                             <ClientSideEvents Click="onSaveClick" />
                                                         </dx:ASPxButton>
                                                     </td>
-                                                   <td style="padding-right:10px;width:110px;">
+                                                   <td style="padding-left:10px;">
                                                         <dx:ASPxButton ID="btnLuuTiepTuc" runat="server" Text="Lưu & tiếp tục" ValidationGroup="checkInput" AutoPostBack="false">
                                                             <ClientSideEvents Click="onLuuTiepTucClick" />
                                                         </dx:ASPxButton>
                                                     </td>
-                                                    <td style="padding-right:10px;width:110px;">
+                                                    <td style="padding-left:10px;">
                                                         <dx:ASPxButton ID="btnRenew" runat="server" Text="Lập mới" Width="100" BackColor="#d9534f" AutoPostBack="false">
-                                                            <ClientSideEvents Click="onRenewClick" />
+                                                            <ClientSideEvents   Click="onRenewClick"  />
                                                         </dx:ASPxButton>
                                                         
                                                     </td>
-                                                     <td style="padding-right:10px;width:110px;">
+                                                     <td style="padding-left:10px;">
                                                         <dx:ASPxButton ID="btnTroVe" runat="server" Text="Trở về" AutoPostBack="true" PostBackUrl="~/Pages/HangHoa/HangHoa.aspx" >
                                                         </dx:ASPxButton>
                                                     </td>

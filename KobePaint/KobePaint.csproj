@@ -54,6 +54,8 @@
     <Reference Include="DevExpress.Web.Resources.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpo.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraCharts.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v16.1.Web, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGauges.v16.1.Core, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v16.1, Version=16.1.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -163,6 +165,7 @@
     <Content Include="Pages\ThanhToan\LapThanhToanNCC.aspx" />
     <Content Include="Pages\ThuChi\DanhSachThuChi.aspx" />
     <Content Include="Pages\ThuChi\LapPhieuThuChi.aspx" />
+    <Content Include="Pages\TongQuan\TongQuan.aspx" />
     <Content Include="Pages\TraHang\DanhSachTraHang.aspx" />
     <Content Include="Pages\TraHang\DanhSachTraHangNCC.aspx" />
     <Content Include="Pages\TraHang\LapPhieu.aspx" />
@@ -546,6 +549,13 @@
     <Compile Include="Pages\ThuChi\LapPhieuThuChi.aspx.designer.cs">
       <DependentUpon>LapPhieuThuChi.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\TongQuan\TongQuan.aspx.cs">
+      <DependentUpon>TongQuan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\TongQuan\TongQuan.aspx.designer.cs">
+      <DependentUpon>TongQuan.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\TraHang\DanhSachTraHang.aspx.cs">
       <DependentUpon>DanhSachTraHang.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -657,7 +667,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\UploadTemp\" />
-    <Folder Include="Pages\TongQuan\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

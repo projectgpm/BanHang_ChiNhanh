@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <items>
+  <!--<item text="Tổng quan" NavigateUrl="~/Pages/TongQuan/TongQuan.aspx"  ></item>-->
   <item text="Hàng hóa">
     <item Text="Thêm hàng hóa" NavigateUrl="~/Pages/HangHoa/ThemHangHoa.aspx" ></item>
     <item Text="Danh sách hàng hóa" NavigateUrl="~/Pages/HangHoa/HangHoa.aspx" ></item>

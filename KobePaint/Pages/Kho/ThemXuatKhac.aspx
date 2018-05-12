@@ -11,13 +11,13 @@
             cbpInfo.PerformCallback("import");
         }
         function onSaveClick() {
-            if (checkInput()) {
+            if (checkInput() && confirm('Xác nhận thao tác ?')) {
                 cbpInfo.PerformCallback('Save');
                 cbpInfo.PerformCallback('redirect');
             }
         }
         function onSaveNextClick() {
-            if (checkInput()) {
+            if (checkInput() && confirm('Xác nhận thao tác ?')) {
                 cbpInfo.PerformCallback('Save');
             }
         }
@@ -288,7 +288,7 @@
                                     <div style="align-items: center; text-align: center; padding-top: 5px;">
                                         <table style="margin: 0 auto;">
                                             <tr>
-                                                <td style="padding-left: 10px">
+                                                <td>
                                                     <dx:ASPxButton ID="btnLuuVaIn" runat="server" Text="Lưu" AutoPostBack="false" UseSubmitBehavior="false">
                                                         <ClientSideEvents Click="onSaveClick" />
                                                     </dx:ASPxButton>
@@ -299,7 +299,8 @@
                                                     </dx:ASPxButton>
                                                 </td>
                                                 <td style="padding-left: 10px;">
-                                                    <dx:ASPxButton ID="btnRenew" runat="server" Text="Trở về" BackColor="#d9534f" AutoPostBack="true" PostBackUrl="~/Pages/Kho/DanhSachXuatKhac.aspx" UseSubmitBehavior="false">
+                                                    <dx:ASPxButton ID="btnTroVe" ClientInstanceName="btnTroVe" runat="server" Text="Trở về" BackColor="#d9534f" AutoPostBack="false" UseSubmitBehavior="false">
+                                                    <ClientSideEvents Click="function(){if(confirm('Xác nhận thao tác ?')){ cbpInfo.PerformCallback('redirect'); }}" />
                                                     </dx:ASPxButton>
                                                 </td>
                                             </tr>

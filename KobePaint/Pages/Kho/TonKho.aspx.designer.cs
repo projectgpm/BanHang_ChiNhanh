@@ -58,15 +58,6 @@ namespace KobePaint.Pages.Kho {
         protected global::DevExpress.Web.ASPxButton btnXuatExcel;
         
         /// <summary>
-        /// LayoutItemNestedControlContainer2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.LayoutItemNestedControlContainer LayoutItemNestedControlContainer2;
-        
-        /// <summary>
         /// ccbLoaiTonKho control.
         /// </summary>
         /// <remarks>

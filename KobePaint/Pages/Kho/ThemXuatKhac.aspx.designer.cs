@@ -283,13 +283,13 @@ namespace KobePaint.Pages.Kho {
         protected global::DevExpress.Web.ASPxButton btnLuuTiepTuc;
         
         /// <summary>
-        /// btnRenew control.
+        /// btnTroVe control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxButton btnRenew;
+        protected global::DevExpress.Web.ASPxButton btnTroVe;
         
         /// <summary>
         /// globalEventGrid control.

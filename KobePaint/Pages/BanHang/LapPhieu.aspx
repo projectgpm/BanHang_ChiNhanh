@@ -35,7 +35,7 @@
                 ccbNhaCungCap.PerformCallback();
             }
             function onSaveClick() {
-                if (checkInput() && checkInputGiamGia()) {
+                if (checkInput() && checkInputGiamGia() && confirm('Xác nhận thao tác ?')) {
                     cbpInfoImport.PerformCallback('Save');
                     cbpInfo.PerformCallback('lammoi');
                   
